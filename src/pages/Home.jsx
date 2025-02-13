@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default function Home() {
+function Home() {
   return (
-    <div>Home</div>
+    <div className='w-100 bg-amber-100'>
+      Home
+    </div>
   )
 }
+
+export default Home
