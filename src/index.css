@@ -1,2 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inder&display=swap');
 @import "tailwindcss";
+
+.font-inter {
+    font-family: "Inder", serif;
+}
+.container-xxl {
+    @apply max-w-7xl m-auto px-5;
+  }
+/* How it works ========================= */
+.how-it-works {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* ------------- How it works ------------- */

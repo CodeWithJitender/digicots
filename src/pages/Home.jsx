@@ -1,12 +1,19 @@
 import React from 'react';
+import Hero from '../sections/home/hero';
+import Showreel from '../sections/home/Showreel';
+import homeHero from '../assets/home-hero.png'; // Adjust path as needed
+import showreel from '../assets/showreels.mp4'; // Adjust path as needed
+import HowItWorks from '../sections/home/HowItWorks';
+import Solutions from '../sections/home/Solutions';
 
 function Home() {
   return (
-    <div className='bg-amber-950 text-white min-h-screen flex items-center justify-center'>
-      <h1 className="text-3xl font-bold">
-        Home
-      </h1>
-    </div>
+    <>
+      <Hero img={homeHero} />
+      <Showreel reel={showreel} />
+      <HowItWorks/>
+      <Solutions/>
+    </>
   );
 }
 
