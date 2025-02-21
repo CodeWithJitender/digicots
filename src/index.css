@@ -5,7 +5,7 @@
     font-family: "Inder", serif;
 }
 .container-xxl {
-    @apply max-w-7xl m-auto px-5;
+    @apply max-w-7xl m-auto px-5 py-24;
   }
 /* How it works ========================= */
 .how-it-works {
@@ -15,3 +15,7 @@
 }
 
 /* ------------- How it works ------------- */
+
+.insights-box h1{
+font-size: clamp(36px, 100vw, 80px) !important;
+}

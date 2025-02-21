@@ -1,11 +1,11 @@
 import React from 'react'
 
-function MainHeading({heading, pera, cl}) {
+function MainHeading({heading, pera, cl, tColor}) {
   return (
     <div className="">
-    <div className={`main-heading max-w-3xl m-auto`}>
-        <h2 className='text-5xl text-white font-bold mb-5'>{heading ? heading : " "}</h2>
-        <p className='text-[14px] text-white font-normal mb-5'>{pera ? pera : " "}</p>
+    <div className={`main-heading max-w-3xl m-auto ${cl}`}>
+        <h2 className={`${tColor} font-bold font-inter mb-4`} style={{fontSize:"clamp(20px, 20vw, 48px)"}}>{heading ? heading : " "}</h2>
+        <p className={`text-[14px] ${tColor} font-normal font-inter`}>{pera ? pera : " "}</p>
     </div>
     </div>
   )

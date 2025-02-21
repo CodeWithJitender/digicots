@@ -5,6 +5,8 @@ import homeHero from '../assets/home-hero.png'; // Adjust path as needed
 import showreel from '../assets/showreels.mp4'; // Adjust path as needed
 import HowItWorks from '../sections/home/HowItWorks';
 import Solutions from '../sections/home/Solutions';
+import OurWork from '../sections/home/OurWork';
+import Insights from '../sections/home/Insights';
 
 function Home() {
   return (
@@ -13,6 +15,8 @@ function Home() {
       <Showreel reel={showreel} />
       <HowItWorks/>
       <Solutions/>
+      <OurWork/>
+      <Insights/>
     </>
   );
 }

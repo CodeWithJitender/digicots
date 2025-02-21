@@ -38,9 +38,9 @@ function HowItWorks() {
   ];
 
   return (
-    <section className="how-it-works py-24" style={{ backgroundImage: "url('how-it-works.png')" }}>
+    <section className="how-it-works" style={{ backgroundImage: "url('how-it-works.png')" }}>
       <div className="container-xxl">
-      <MainHeading heading="HOW IT WORKS" pera="We specialize in personalized and conversational marketing, crafting tailored experiences for every business." />
+      <MainHeading heading="HOW IT WORKS"  pera="We specialize in personalized and conversational marketing, crafting tailored experiences for every business." cl={'text-center'} tColor={'text-white'} />
       
       <div className="wolf-card-container grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5 mt-20">
         {data.map((dataChild, index) => (
