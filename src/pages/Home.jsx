@@ -7,6 +7,7 @@ import HowItWorks from '../sections/home/HowItWorks';
 import Solutions from '../sections/home/Solutions';
 import OurWork from '../sections/home/OurWork';
 import Insights from '../sections/home/Insights';
+import OurJourney from '../sections/home/OurJourney';
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       <Solutions/>
       <OurWork/>
       <Insights/>
+      <OurJourney/>
     </>
   );
 }

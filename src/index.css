@@ -4,9 +4,11 @@
 .font-inter {
     font-family: "Inder", serif;
 }
+
 .container-xxl {
     @apply max-w-7xl m-auto px-5 py-24;
-  }
+}
+
 /* How it works ========================= */
 .how-it-works {
     background-position: center center;
@@ -16,6 +18,20 @@
 
 /* ------------- How it works ------------- */
 
-.insights-box h1{
-font-size: clamp(36px, 100vw, 80px) !important;
+.insights-box h1 {
+    font-size: clamp(36px, 20vw, 80px);
+}
+.jou-card *{
+    transition: .5s;
+}
+.jou-card.active .jou-card-inner {
+    width: 350px !important;
+    height: 100%;
+
+}
+
+.jou-card.active .jou-card-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
