@@ -12,8 +12,9 @@ import OurJourney from '../sections/home/OurJourney';
 function Home() {
   return (
     <>
-      <Hero img={homeHero} />
-      <Showreel reel={showreel} />
+      <Hero img={homeHero} /> {/* Done animation*/}
+      
+      
       <HowItWorks/>
       <Solutions/>
       <OurWork/>

@@ -21,7 +21,7 @@ function Showreel() {
   }, []);
 
   return (
-    <section className="showreel relative">
+    <section className="showreel relative h-full w-full">
       <div style={{ backgroundImage: "url('reel-cover.png')" }} className="reel-cover absolute top-0 left-0 w-full h-full flex justify-center items-center bg-cover bg-center z-10">
         <div style={{ fontSize: "clamp(30px, 5vw, 150px)" }} className="reel-text flex items-center gap-3 font-inter font-bold text-white cursor-pointer">
           <span>PLAY</span>
@@ -32,7 +32,7 @@ function Showreel() {
       <div className="reel-video">
           <video src="showreels.mp4" className="w-full" controls>
           </video>
-        </div>
+      </div>
     </section>
   );
 }
