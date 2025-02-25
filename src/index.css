@@ -38,11 +38,11 @@
     object-fit: cover;
 }
 
-/* .dropdown{
+.dropdown{
     visibility: hidden;
     opacity: 0;
     transition: .5s;
-} */
+}
 .discover-link:hover .dropdown {
     visibility: visible;
     opacity: 1;

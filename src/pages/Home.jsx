@@ -9,6 +9,7 @@ import OurWork from "../sections/home/OurWork";
 import Insights from "../sections/home/Insights";
 import OurJourney from "../sections/home/OurJourney";
 import Header from "../components/Header";
+import Faq from "../sections/home/Faq";
 
 function Home() {
   return (
@@ -21,6 +22,7 @@ function Home() {
       <OurWork />
       <Insights />
       <OurJourney />
+      <Faq/>
     </>
   );
 }
