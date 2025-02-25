@@ -50,7 +50,7 @@ function Solutions() {
               className="font-semibold text-white"
             >
               Keep them coming{" "}
-              <i class="fal fa-arrow-up rotate-45 text-[#DF782B] ml-2" />
+              <i className="fal fa-arrow-up rotate-45 text-[#DF782B] ml-2" />
             </Link>
             </div>
           </div>

@@ -14,79 +14,74 @@ function Insights() {
           cl={"text-center"}
           tColor={"text-black"}
         />
-        <div className="insights-container mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          <div id="insights-1" className="insights-box bg-black p-5 rounded-3xl">
-            <div>
-              <h1 className="font-bold font-inter text-white">29%</h1>
-            </div>
-            <div className="">
-              <h4 className="font-bold font-inter text-white text-2xl">
-                Lorem Ispum
-              </h4>
-              <p className="font-inter text-white text-sm mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
+         <div className="insights-container mt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 gap-5">
+          {/* Box 1 */}
+          <div className="insights-box bg-black p-5 rounded-3xl">
+            <h1 className="font-bold font-inter text-white">29%</h1>
+            <h4 className="font-bold font-inter text-white text-2xl">
+              Lorem Ipsum
+            </h4>
+            <p className="font-inter text-white text-sm mt-3">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
           </div>
-          <div id="insights-2" className="insights-box bg-[#93E9FF] p-5 rounded-3xl flex pr-0 lg:col-span-2" >
+
+          {/* Box 2 */}
+          <div className="insights-box bg-[#93E9FF] p-5 rounded-3xl flex flex-col md:flex-col lg:flex-row pr-0 md:col-span-1 lg:col-span-3">
             <div className="flex flex-col justify-between pr-2">
-              <div className="">
-                <h1 className="font-bold font-inter">512+</h1>
-              </div>
-              <div className="">
-                <h4 className="font-bold font-inter  text-2xl">Lorem Ispum</h4>
-                <p className="font-inter text-sm mt-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-              </div>
-            </div>
-            <div className="">
-              <img src="insights-img.png" className="w-full max-w-3xl" alt="" />
-            </div>
-          </div>
-          <div id="insights-3" className="insights-box bg-[#63D863] p-5 rounded-3xl flex flex-col justify-between">
-            <div>
-              <h1 className="font-bold font-inter">196K</h1>
-            </div>
-            <div className="">
-              <h4 className="font-bold font-inter text-2xl">Lorem Ispum</h4>
+              <h1 className="font-bold font-inter">512+</h1>
+              <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
               <p className="font-inter text-sm mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
             </div>
+            <img
+              src="insights-img.png"
+              className="w-full max-w-sm md:max-w-md lg:max-w-xs"
+              alt=""
+            />
           </div>
-          <div id="insights-4" className="insights-box bg-[#61A0FF] p-5 rounded-3xl lg:flex items-center gap-5 col-auto lg:col-span-3" >
-            <div>
-              <h1 className="font-bold font-inter">91.6M</h1>
-            </div>
-            <div className="">
-              <h4 className="font-bold font-inter  text-2xl">Lorem Ispum</h4>
-              <p className="font-inter text-sm mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
+
+          {/* Box 3 */}
+          <div className="insights-box bg-[#63D863] p-5 rounded-3xl flex flex-col justify-between">
+            <h1 className="font-bold font-inter">196K</h1>
+            <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
+            <p className="font-inter text-sm mt-3">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
           </div>
-          <div id="insights-5" className="insights-box bg-[#FF6969] p-5 rounded-3xl flex items-center gap-5 flex-col pt-0">
-            <img src="insights-img-2.png" alt="" />
-            <div className="">
-              <h4 className="font-bold font-inter  text-2xl">Lorem Ispum</h4>
-              <p className="font-inter text-sm mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
+
+          {/* Box 4 */}
+          <div className="insights-box bg-[#61A0FF] p-5 rounded-3xl flex flex-col md:flex-col lg:flex-row items-center gap-5 md:col-span-1 lg:col-span-3">
+            <h1 className="font-bold font-inter">91.6M</h1>
+            <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
+            <p className="font-inter text-sm mt-3">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
           </div>
-          <div className="col-span-4 text-center">
+
+          {/* Box 5 */}
+          <div className="insights-box bg-[#FF6969] p-5 rounded-3xl sm:col-span-2 flex flex-col items-center gap-5">
+            <img
+              src="insights-img-2.png"
+              alt=""
+              className="w-full max-w-sm md:max-w-md lg:max-w-xs"
+            />
+            <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
+            <p className="font-inter text-sm mt-3">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+          </div>
+
+          {/* CTA Link */}
+          <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-4 text-center">
             <Link
               to={"/"}
               className="font-semibold flex items-center justify-center"
             >
               Keep them coming{" "}
-              <i class="fal fa-arrow-up rotate-45 text-[#DF782B] ml-2" />
+              <i className="fal fa-arrow-up rotate-45 text-[#DF782B] ml-2" />
             </Link>
           </div>
         </div>
