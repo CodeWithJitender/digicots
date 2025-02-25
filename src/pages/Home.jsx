@@ -10,6 +10,7 @@ import Insights from "../sections/home/Insights";
 import OurJourney from "../sections/home/OurJourney";
 import Header from "../components/Header";
 import Faq from "../sections/home/Faq";
+import KeywordsSection from "../sections/home/KeywordsSection";
 
 function Home() {
   return (
@@ -21,6 +22,7 @@ function Home() {
       <Solutions />
       <OurWork />
       <Insights />
+      <KeywordsSection/>
       <OurJourney />
       <Faq/>
     </>
