@@ -19,6 +19,7 @@ function Insights() {
         start: "top -10%",
         end: "top -90%",
         scrub: 1,
+        snap:true
       },
     });
 
