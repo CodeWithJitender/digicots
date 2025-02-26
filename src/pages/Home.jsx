@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "../sections/home/hero";
+import Hero from "../sections/home/Hero";
 import homeHero from "../assets/home-hero.png"; // Adjust path as needed
 import HowItWorks from "../sections/home/HowItWorks";
 import Solutions from "../sections/home/Solutions";
