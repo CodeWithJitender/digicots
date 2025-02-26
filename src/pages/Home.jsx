@@ -15,7 +15,7 @@ function Home() {
       <Hero img={homeHero} /> {/* Done animation*/}
       
       
-      <HowItWorks/>
+      <HowItWorks/> {/* Done animation*/}
       <Solutions/>
       <OurWork/>
       <Insights/>
