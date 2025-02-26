@@ -1,5 +1,4 @@
 import React from 'react'
-// import homeHero from '../assets/home-hero.png'; // Adjust path as needed
 
 function Hero({img}) {
   return (

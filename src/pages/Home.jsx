@@ -11,6 +11,7 @@ import OurJourney from "../sections/home/OurJourney";
 import Header from "../components/Header";
 import Faq from "../sections/home/Faq";
 import KeywordsSection from "../sections/home/KeywordsSection";
+import Testimonials from "../sections/home/Testimonials";
 
 function Home() {
   return (
@@ -24,6 +25,7 @@ function Home() {
       <Insights />
       <KeywordsSection/>
       <OurJourney />
+      <Testimonials/>
       <Faq/>
     </>
   );

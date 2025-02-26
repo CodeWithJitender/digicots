@@ -75,3 +75,19 @@ header .dropdown{
     overflow-x: hidden;
     overflow-y: scroll;
 }
+
+.testimonial-slider .testimonials-img img{
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(80%);
+}
+.testimonial-slider .swiper-slide-active .testimonial-text{
+display: block;
+}
+.testimonial-slider .swiper-slide-active .testimonials-img{
+    max-width: 100%;
+    width: 100%;
+}
+.testimonial-slider .swiper-slide-active .testimonials-img img{
+    filter: grayscale(0%);
+}
