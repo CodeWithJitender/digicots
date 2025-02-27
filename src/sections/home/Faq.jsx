@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import TextAnimation from "../../animation/text/TextAnimation";
+import TextAnimation1 from "../../animation/text/TextAnimation1";
+import TextAnimation2 from "../../animation/text/TextAnimation2";
 
 const faqs = [
   {
@@ -39,43 +40,50 @@ const Faq = () => {
           {/* Left Side - Heading */}
           <div className="flex flex-col h-full justify-between">
             <div>
-              <TextAnimation
-                animeStart="60%"
-                className="h-[65px] overflow-hidden"
-              >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
+                <TextAnimation1
+                  animeStart="60%"
+                  duration=".5"
+                  className="h-[65px] overflow-hidden"
+                >
                   We are here to
-                </h2>
-              </TextAnimation>
-              <TextAnimation
-                animeStart="60%"
-                className="h-[65px] overflow-hidden"
-              >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
+                </TextAnimation1>
+              </h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
+                <TextAnimation1
+                  animeStart="60%"
+                  duration=".5"
+                  className="h-[65px] overflow-hidden"
+                >
                   answer all of
-                </h2>
-              </TextAnimation>
-              <TextAnimation
-                animeStart="60%"
-                className="h-[65px] overflow-hidden"
-              >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
-                  your questions<span className="text-[#DF782B]">.</span>
-                </h2>
-              </TextAnimation>
+                </TextAnimation1>
+              </h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
+                <TextAnimation1
+                  animeStart="60%"
+                  duration=".5"
+                  className="h-[65px] overflow-hidden"
+                >
+                  your questions 
+                </TextAnimation1>
+                <span className="text-[#DF782B]">.</span>
+                
+              </h2>
             </div>
             <div className="mt-10 text-sm">
-              <TextAnimation animeStart="90%">
-                <p className="font-semibold font-inter">Still Seeking help?</p>
-              </TextAnimation>
-              <TextAnimation animeStart="90%">
-                <Link
-                  to="/contact"
-                  className="text-[#DF782B] font-semibold font-inter"
-                >
+              <p className="font-semibold font-inter">
+                <TextAnimation1 animeStart="90%" duration=".5">
+                  Still Seeking help?
+                </TextAnimation1>
+              </p>
+              <Link
+                to="/contact"
+                className="text-[#DF782B] font-semibold font-inter"
+              >
+                <TextAnimation1 animeStart="90%" duration=".5">
                   Contact Our Representative.
-                </Link>
-              </TextAnimation>
+                </TextAnimation1>
+              </Link>
             </div>
           </div>
 
@@ -90,19 +98,21 @@ const Faq = () => {
                   className="w-full text-left py-4 flex justify-between items-center"
                   onClick={() => toggleFAQ(index)}
                 >
-                  <TextAnimation animeStart="90%">
-                    <span className="text-lg font-semibold font-inter">
+                  <span className="text-lg font-semibold font-inter">
+                    <TextAnimation1 animeStart="90%" duration=".5">
                       {faq.question}
-                    </span>
-                  </TextAnimation>
+                    </TextAnimation1>
+                  </span>
                   <span className="text-2xl font-inter">
                     {openIndex === index ? "-" : "+"}
                   </span>
                 </button>
                 {openIndex === index && faq.answer && (
-                  <TextAnimation animeStart="90%">
-                    <p className="text-gray-400 text-sm pb-4">{faq.answer}</p>
-                  </TextAnimation>
+                  <p className="text-gray-400 text-sm pb-4">
+                    <TextAnimation2 animeStart="90%" duration={.3}>
+                      {faq.answer}
+                    </TextAnimation2>
+                  </p>
                 )}
               </div>
             ))}

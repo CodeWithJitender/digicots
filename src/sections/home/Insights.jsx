@@ -24,7 +24,7 @@ function Insights() {
     });
 
     tl.from(blackBoxRef.current, {
-      scale: 6.7,
+      scale: 10,
       left: "210%",
     }).from(blackBoxTextRef.current, {
       opacity: 0,
@@ -33,7 +33,7 @@ function Insights() {
       opacity: 0,
       stagger: 0.2,
       scale:0,
-      left:"-80%",
+      left:"-80%"
     })
   }, []);
 
@@ -56,7 +56,7 @@ function Insights() {
             {/* Box 1 */}
             <div
               ref={blackBoxRef}
-              className="insights-box relative bg-black p-5 rounded-3xl"
+              className="insights-box relative z-10 bg-black p-5 rounded-3xl"
             >
               <div ref={blackBoxTextRef} className="">
                 <h1 className="font-bold font-inter text-white">29%</h1>
