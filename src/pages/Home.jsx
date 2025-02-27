@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "../sections/home/hero";
+import Hero from "../sections/home/Hero";
 import Showreel from "../sections/home/Showreel";
 import homeHero from "../assets/home-hero.png"; // Adjust path as needed
 import showreel from "../assets/showreels.mp4"; // Adjust path as needed

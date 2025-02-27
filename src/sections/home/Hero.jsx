@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Hero({img}) {
+function Hero() {
   return (
-    <section className='hero-home'>
-        <img src={img} alt="" className='w-full' />
+    <section className='hero'>
+        <img src="home-hero.png" className='w-full' alt="" />
     </section>
   )
 }

@@ -84,11 +84,11 @@ function Testimonials() {
           >
             {testimonials.map((testimonial) => (
               <SwiperSlide key={testimonial.id}>
-                <div className="testimonial-item flex gap-4">
-                  <div className="testimonial-text hidden bg-[#202020] rounded-2xl p-5 flex flex-col justify-between">
+                <div className="testimonial-item flex  gap-4">
+                  <div className="testimonial-text hidden bg-[url('test-bg.png')] bg-no-repeat bg-cover rounded-2xl p-5 flex flex-col justify-between">
                     <p className="font-inter  text-white text-[14px]">{testimonial.text}</p>
                     <div>
-                      <div className="name font-inter  text-white text-[20px]">{testimonial.name}</div>
+                      <div className="name font-great-vibes  text-white text-2xl">{testimonial.name}</div>
                       <div className="position font-inter font-bold  text-white text-[14px]">{testimonial.position}</div>
                     </div>
                   </div>
