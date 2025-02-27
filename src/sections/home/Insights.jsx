@@ -44,6 +44,7 @@ function Insights() {
       <section ref={parentRef} className="insights sticky top-0 overflow-hidden">
         <div className="container-xxl">
           <MainHeading
+          animeStart="-10%"
             heading={"INSIGHTS"}
             pera={
               "We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
