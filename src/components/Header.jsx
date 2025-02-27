@@ -59,10 +59,10 @@ function Header() {
       <div className="header-wrapper relative flex items-center justify-between bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4">
       <div className="logo">
         <Link to="/">
-          <img src="logo-white.png" className="max-w-52 " alt="" />
+          <img src="logo-white.png" className="max-w-36 md:max-w-40 lg:max-w-52" alt="" />
         </Link>
       </div>
-      <div className="menu">
+      <div className="menu hidden lg:block">
         <ul className="list-none m-0 p-0 flex items-center gap-10">
           <li className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
             <Link to="/" className="font-bold text-white text-[14px] font-inter "> Work</Link>
@@ -89,7 +89,7 @@ function Header() {
         </ul>
       </div>
       <div className="side-btn">
-        <Link className="bg-[#DF782B] rounded-[8px] font-bold text-white text-[14px] font-inter  p-5" to='/'>Let's Talk</Link>
+        <Link className="bg-[#DF782B] rounded-[8px] font-bold text-white text-[14px] font-inter p-3  lg:p-5" to='/'>Let's Talk</Link>
       </div>
       </div>
     </header>
