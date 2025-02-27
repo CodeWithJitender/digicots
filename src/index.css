@@ -13,6 +13,10 @@
     @apply max-w-7xl m-auto px-5 py-24;
 }
 
+.container-xl {
+    @apply max-w-7xl m-auto px-5 py-10;
+}
+
 /* How it works ========================= */
 .how-it-works {
     background-position: center center;

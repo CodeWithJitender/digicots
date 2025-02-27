@@ -1,8 +1,8 @@
 import React from "react";
 
-function JourneyCard({ head, pera, bg, img, status, onClick }) {
+function JourneyCard({ head, pera, bg, img, status, onMouseMove,ref }) {
   return (
-    <div className={`jou-card ${status}`} onClick={onClick}>
+    <div ref={ref} className={`jou-card ${status}  ${status ==="active" ? "z-2" :""} relative`} onMouseMove={onMouseMove}>
       <div className={status === "active" ? "jou-card-inner relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" : ""}>
         <div className="jou-img">
           <img src={status === "active" ? img : bg} alt="" />

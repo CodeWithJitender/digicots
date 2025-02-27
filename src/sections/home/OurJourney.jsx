@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import MainHeading from "../../components/MainHeading";
 import JourneyCard from "../../components/JourneyCard";
 import { useState } from "react";
+import { ScrollTrigger } from "gsap/all";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 function OurJourney() {
-    const [activeIndex, setActiveIndex] = useState(3); // Initially, step 4 is active
+    const [activeIndex, setActiveIndex] = useState(); // Initially, step 4 is active
 
   const handleCardClick = (index) => {
     setActiveIndex(index);
@@ -53,8 +56,30 @@ function OurJourney() {
       mainImg: "journey-1.png",
     },
   ];
+
+  const cardRefs = useRef([]); // Array of refs
+  const parentRef = useRef(null);
+  gsap.registerPlugin(ScrollTrigger);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: parentRef.current,
+        start: "top 30%",
+        end: "top 5%",
+        scrub: 1,
+      },
+    });
+   tl.from(cardRefs.current,{
+    x:"700%",
+    duration:1,
+   })
+  }, []);
+
+
+
   return (
-    <section className="our-journey bg-[#DF782B] py-10">
+    <section ref={parentRef} className="our-journey bg-[#DF782B] py-10 overflow-hidden">
       <div className="container mx-auto">
         <MainHeading
           heading={"OUR JOURNEY"}
@@ -65,13 +90,14 @@ function OurJourney() {
         <div className="journey-card-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 mt-20 gap-4">
           {data.map((card, index) => (
             <JourneyCard
+              ref={(el) => (cardRefs.current[index] = el)}
               key={index}
               head={card.head}
               pera={card.pera}
               bg={card.bgImg}
               img={card.mainImg}
               status={index === activeIndex ? "active" : "in-active"}
-              onClick={() => handleCardClick(index)} // Make it interactive
+              onMouseMove={() => handleCardClick(index)} // Make it interactive
             />
           ))}
         </div>
