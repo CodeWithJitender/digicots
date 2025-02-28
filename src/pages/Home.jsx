@@ -14,7 +14,7 @@ import Testimonials from "../sections/home/Testimonials";
 function Home() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Hero img={homeHero} /> {/* Done animation*/}
       <HowItWorks/> {/* Done animation*/}
       <Solutions/>

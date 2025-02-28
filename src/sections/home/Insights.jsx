@@ -126,7 +126,7 @@ function Insights() {
             </div>
 
             {/* CTA Link */}
-            <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-4 text-center">
+            <div className="col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-5 text-center">
               <Link
                 to={"/"}
                 className="font-semibold flex items-center justify-center"

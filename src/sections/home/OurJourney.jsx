@@ -87,7 +87,7 @@ function OurJourney() {
           cl={"text-center"}
           tColor={"text-white"}
         />
-        <div className="journey-card-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 mt-20 gap-4">
+        <div className="journey-card-container grid grid-cols-7 mt-20">
           {data.map((card, index) => (
             <JourneyCard
               ref={(el) => (cardRefs.current[index] = el)}

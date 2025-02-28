@@ -76,7 +76,7 @@ function HowItWorks() {
             tColor={"text-white"}
           />
 
-          <div className="wolf-card-container grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5 mt-20">
+          <div className="wolf-card-container grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5 mt-20">
             {data.map((dataChild, index) => (
               <div
                 ref={(el) => (cardRefs.current[index] = el)}
