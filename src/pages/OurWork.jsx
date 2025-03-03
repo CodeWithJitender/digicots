@@ -1,8 +1,15 @@
 import React from 'react'
+import Header from '../components/Header'
+import HeroHeading from '../sections/our-work/HeroHeading'
+import BrandingGrid from '../sections/our-work/BrandingGrid'
 
 function OurWork() {
   return (
-    <div>OurWork</div>
+    <div className='bg-black'>
+    <Header/>
+    <HeroHeading/>
+    <BrandingGrid/>
+    </div>
   )
 }
 

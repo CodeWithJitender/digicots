@@ -79,6 +79,7 @@
     opacity: 1;
 }
 
+
 header *::-webkit-scrollbar {
     width: 8px;
     /* Adjust width */
@@ -96,11 +97,34 @@ header *::-webkit-scrollbar-thumb {
     /* Scrollbar color */
     border-radius: 10px;
 }
-
+ 
 header *::-webkit-scrollbar-thumb:hover {
     background: #b45e22;
     /* Darker on hover */
 }
+
+.popup-container::-webkit-scrollbar-track {
+    background: #EBEBEB;
+    overflow: hidden;
+    /* Track color */
+    border-radius: 10px;
+}
+.popup-container::-webkit-scrollbar {
+    width: 8px;
+    /* Adjust width */
+    /* height: 8px; */
+}
+.popup-container::-webkit-scrollbar-thumb {
+    background: #b45e22;
+    /* Darker on hover */
+    border-radius: 10px;
+
+}
+.popup-container::-webkit-scrollbar-thumb:hover {
+    background: #b45e22;
+    /* Darker on hover */
+}
+
 
 header .dropdown{
     overflow-x: hidden;
