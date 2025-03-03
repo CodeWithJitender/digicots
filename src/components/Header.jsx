@@ -55,8 +55,8 @@ function Header() {
       icon: "icon-5.png"
     }
   ];
-  const [toggle, setToggle] = useState(true);
-  const [subMenu, setSubMenu] = useState(true);
+  const [toggle, setToggle] = useState(false);
+  const [subMenu, setSubMenu] = useState(false);
   return (
     <header className="sticky top-0  z-[100] ">
       <div className="header-wrapper relative flex items-center justify-between bg-[#242424] lg:bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4">
@@ -104,7 +104,7 @@ function Header() {
                 Discover
               </Link>
               <div className="dropdown  absolute top-20 left-[50%] z-[100] border-[10px] border-[#FFFFFF33] rounded-3xl translate-x-[-50%] w-full max-w-[600px] lg:max-w-[900px] xl:max-w-[1300px]">
-                <div className="dropdown-inner bg-gradient-to-l from-gray-800 via-gray-900 p-5 to-black rounded-3xl grid grid-cols-2 xl:grid-cols-3">
+                <div className="dropdown-inner bg-gradient-to-l from-gray-800 via-gray-900 p-5 to-black  grid grid-cols-2 xl:grid-cols-3">
                   {data.map((item, index) => (
                     <DiscoverItem
                       title={item.title}
