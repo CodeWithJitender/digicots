@@ -4,11 +4,46 @@ import MainHeading from "../../components/MainHeading";
 
 function Testimonials() {
   const [testimonials, setTestimonials] = useState([
-    { id: 1, name: "John Doe", position: "CEO Ashwary.Design", text: "Lorem ipsum...", img: "testimonial-1.jpg", isCenter: false },
-    { id: 2, name: "Jane Smith", position: "CEO Ashwary.Design", text: "Lorem ipsum...", img: "testimonial-2.jpg", isCenter: false },
-    { id: 3, name: "Ashwary Sinha", position: "CEO Ashwary.Design", text: "Lorem ipsum...", img: "testimonial-3.jpg", isCenter: false },
-    { id: 4, name: "Ashwary Sinha", position: "CEO Ashwary.Design", text: "Lorem ipsum...", img: "testimonial-4.jpg", isCenter: false },
-    { id: 5, name: "Ashwary Sinha", position: "CEO Ashwary.Design", text: "Lorem ipsum...", img: "testimonial-5.jpg", isCenter: false },
+    {
+      id: 1,
+      name: "John Doe",
+      position: "CEO Ashwary.Design",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      img: "testimonial-1.jpg",
+      isCenter: false,
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      position: "CEO Ashwary.Design",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      img: "testimonial-2.jpg",
+      isCenter: false,
+    },
+    {
+      id: 3,
+      name: "Ashwary Sinha",
+      position: "CEO Ashwary.Design",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      img: "testimonial-3.jpg",
+      isCenter: false,
+    },
+    {
+      id: 4,
+      name: "Ashwary Sinha",
+      position: "CEO Ashwary.Design",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      img: "testimonial-4.jpg",
+      isCenter: false,
+    },
+    {
+      id: 5,
+      name: "Ashwary Sinha",
+      position: "CEO Ashwary.Design",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      img: "testimonial-5.jpg",
+      isCenter: false,
+    },
   ]);
 
   const scrollRef = useRef(null);
@@ -53,7 +88,8 @@ function Testimonials() {
 
       gsap.to(".testimonial-item img", {
         duration: 1,
-        x: (_, el) => (window.innerWidth > 768 ? direction * 20 : direction * 10), // Mobile screens par kam effect
+        x: (_, el) =>
+          window.innerWidth > 768 ? direction * 20 : direction * 10,
         ease: "power2.out",
       });
     };
@@ -66,53 +102,110 @@ function Testimonials() {
   useEffect(() => {
     gsap.to(".testimonial-item", {
       duration: 1,
-      width: (i) => (testimonials[i].isCenter ? (window.innerWidth > 768 ? "350px" : "250px") : "180px"),
+      width: (i) =>
+        testimonials[i].isCenter
+          ? window.innerWidth > 768
+            ? "350px"
+            : "250px"
+          : "180px",
       filter: (i) => (testimonials[i].isCenter ? "none" : "grayscale(100%)"),
       ease: "power2.out",
+    });
+
+    gsap.to(".testimonial-text", {
+      duration: 0.5,
+      opacity: (i) => (testimonials[i].isCenter ? 0 : 0),
     });
   }, [testimonials]);
 
   const handleScroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = window.innerWidth > 768 ? 250 : 200; // Mobile ke liye kam scroll
-      scrollRef.current.scrollLeft += direction === "left" ? -scrollAmount : scrollAmount;
+      const scrollAmount = window.innerWidth > 768 ? 250 : 200;
+      scrollRef.current.scrollLeft +=
+        direction === "left" ? -scrollAmount : scrollAmount;
     }
   };
 
   return (
     <section className="testimonial relative py-10">
       <div className="container mx-auto">
-        <MainHeading heading="TESTIMONIALS" pera="Lorem ipsum dolor sit amet, consectetur adipiscing" cl="text-center" tColor="black" />
+        <MainHeading
+          heading="TESTIMONIALS"
+          pera="Lorem ipsum dolor sit amet, consectetur adipiscing"
+          cl="text-center"
+          tColor="black"
+        />
         <div className="relative max-w-7xl overflow-hidden mx-auto">
-          {/* Left Scroll Button */}
-          <button
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black text-white p-2 md:p-3 rounded-full z-10"
+          {/* <button
+            className="absolute cursor-pointer left-2 top-1/2 -translate-y-1/2 text-white p-2 md:p-3 rounded-full z-10"
             onClick={() => handleScroll("left")}
           >
             ◀
-          </button>
+          </button> */}
 
-          {/* Testimonial List */}
-          <div ref={scrollRef} className="w-full flex flex-nowrap gap-4 md:gap-10 mt-6 px-[20vw] md:px-[30vw] overflow-x-auto no-scrollBar rounded-lg scroll-smooth">
+          <div
+            ref={scrollRef}
+            className="w-full flex flex-nowrap gap-4 md:gap-10 mt-6 px-[20vw] md:px-[30vw] overflow-x-auto no-scrollBar rounded-lg scroll-smooth"
+          >
             {testimonials.map((t, i) => (
-              <div key={i} className="testimonial-item relative h-[250px] md:h-[400px] rounded-lg flex-shrink-0 overflow-hidden">
-                <div className="absolute h-full w-full bg-zinc-700/[.9]">
-                  
+              <div
+                key={i}
+                className="testimonial-item relative h-[250px] md:h-[400px] rounded-lg flex-shrink-0 overflow-hidden"
+                onMouseEnter={() => {
+                  if (t.isCenter) {
+                    gsap.to(`.testimonial-text-${t.id}`, {
+                      opacity: 1,
+                      duration: 0.5,
+                    });
+                  }
+                }}
+                onMouseMove={() => {
+                  if (t.isCenter) {
+                    gsap.to(`.testimonial-text-${t.id}`, {
+                      opacity: 1,
+                      duration: 0.5,
+                    });
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (t.isCenter) {
+                    gsap.to(`.testimonial-text-${t.id}`, {
+                      opacity: 0,
+                      duration: 0.5,
+                    });
+                  }
+                }}
+              >
+                <div
+                  className={`testimonial-text cursor-pointer rounded-lg testimonial-text-${t.id} absolute h-full w-full bg-[#202020] top-0 left-0 bottom-0 right-0 z-10 opacity-0 rounded-2xl p-5 flex flex-col justify-between`}
+                >
+                  <p className="font-inter  text-white text-[14px]">{t.text}</p>
+                  <div>
+                    <div className="name font-inter  text-white text-[20px]">
+                      {t.name}
+                    </div>
+                    <div className="position font-inter font-bold  text-white text-[14px]">
+                      {t.position}
+                    </div>
+                  </div>
                 </div>
                 <div className="h-full w-full max-w-[250px] md:max-w-[400px] rounded-lg overflow-hidden">
-                  <img src={t.img} className="h-full w-full object-cover rounded-lg" alt={t.name} />
+                  <img
+                    src={t.img}
+                    className="h-full w-full scale-[1.3] object-cover"
+                    alt={t.name}
+                  />
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Right Scroll Button */}
-          <button
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white p-2 md:p-3 rounded-full z-10"
+          {/* <button
+            className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 text-white p-2 md:p-3 rounded-full z-10"
             onClick={() => handleScroll("right")}
           >
             ▶
-          </button>
+          </button> */}
         </div>
       </div>
     </section>
