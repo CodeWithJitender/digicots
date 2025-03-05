@@ -6,23 +6,30 @@ import CaseStudy from "./CaseStudy";
 const slides = [
   {
     image: "case-study-1.png",
-    title: "Product 1",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "Product: With Long Heading",
+    text: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
+    tags:['Design', 'Web-Dev', 'Product']
   },
   {
     image: "case-study-2.png",
-    title: "Product 2",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "Product: With Long Heading",
+    text: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
+    tags:['Design', 'Web-Dev', 'Product']
+
   },
   {
     image: "case-study-3.png",
-    title: "Product 3",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "Product: With Long Heading",
+    text: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
+    tags:['Design', 'Web-Dev', 'Product']
+
   },
   {
-    image: "case-study-1.png",
-    title: "Product 4",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    image: "case-study-2.png",
+    title: "Product: With Long Heading",
+    text: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."],
+    tags:['Design', 'Web-Dev', 'Product']
+
   },
 ];
 
@@ -58,7 +65,7 @@ export default function SimpleSlider() {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute flex flex-col h-full justify-end top-0 left-0 w-full">
-                    <div className="p-5 backdrop-blur-lg bg-black/40 text-white">
+                    <div className="p-5 backdrop-blur-[3px] bg-black/40 text-white">
                       <h4 className="text-2xl font-bold">{slide.title}</h4>
                       <p className="text-sm mt-3">{slide.text}</p>
                     </div>
