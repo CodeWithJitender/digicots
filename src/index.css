@@ -33,10 +33,13 @@
 .jou-card * {
     transition: .5s;
 }
+.jou-card{
+    height: 400px !important;
+}
 
 .jou-card.active .jou-card-inner {
-    width: 350px !important;
-    height: 100%;
+    /* width: 350px !important; */
+    /* height: 100%; */
 
 }
 
@@ -184,14 +187,43 @@ display: block;
 
 @media screen and (max-width: 767px) {
     .banner .slider {
-        width: 100px;
-        height: 150px;
-        left: calc(50% - 50px);
+        position: absolute;
+        width: 200vw;
+        height: 100vh;
+        bottom: 10%;
+        left: calc(50% - 100vw);
+        transform-style: preserve-3d;
+        transform: perspective(5400px);
+        animation: autoRun 50s linear infinite;
+        z-index: 2;
+        scale: .9;
     }
+    
+    /* Animation Stop on Hover */
+    .banner .slider:hover {
+        animation-play-state: paused;
+    }
+    
+    @keyframes autoRun {
+        from {
+            transform: perspective(400px) rotateX(0deg) rotateY(0deg);
+        }
+        to {
+            transform: perspective(400px) rotateX(0deg) rotateY(360deg);
+        }
+    }
+    
     .banner .slider .item {
+        position: absolute;
+        inset: 0 0 0 0;
+        height: 250vh;
+        width: 250vh;
         transform: 
             rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-            translateZ(180px);
+            scaleX(-1)
+            translateZ(5900px);
+        cursor: pointer;
+        overflow: hidden;
     }
 }
 

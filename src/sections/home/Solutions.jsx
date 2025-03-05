@@ -113,8 +113,8 @@ function Solutions() {
 
   return (
     data && (
-      <div className="h-[400vh] relative">
-        <section ref={parentRef} className="h-screen solution sticky top-0">
+      <div className="min-h-[400vh] relative">
+        <section ref={parentRef} className="min-h-screen solution sticky top-0">
           <div className="container-xl">
             <HeadingWithLink
               head="SOLUTIONS"
@@ -136,7 +136,7 @@ function Solutions() {
                     />
                   ))}
                 </div>
-                <div className="sol-content-right">
+                <div className="sol-content-right space-y-3">
                   <div className="h-[60px] overflow-hidden">
                     {data.map((d, index) => (
                       <h3

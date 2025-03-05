@@ -15,7 +15,7 @@ const TextAnimation1 = ({ children, className = "", animeStart = "50" , animeEnd
 
     gsap.from(letterRefs.current, {
       y: -10,
-      transformOrigin:"top",
+      transformOrigin:"bottom",
       scaleY: 0,
       duration: duration,
       stagger: duration/10, // Har letter thoda delay se animate hoga

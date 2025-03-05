@@ -62,7 +62,7 @@ function HowItWorks() {
   }, []);
 
   return (
-    <div className="h-[140vh] w-full relative">
+    <div className="min-h-[140vh] w-full relative">
       <section
         ref={parentRef}
         className="how-it-works sticky top-0"

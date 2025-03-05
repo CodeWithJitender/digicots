@@ -17,11 +17,11 @@ function OurJourney() {
     { head: "Lorem ipsum 4", pera: "Lorem ipsum dolor sit amet...", bgImg: "journey-bg-4.png", mainImg: "journey-1.png" },
     { head: "Lorem ipsum 5", pera: "Lorem ipsum dolor sit amet...", bgImg: "journey-bg-5.png", mainImg: "journey-1.png" },
     { head: "Lorem ipsum 6", pera: "Lorem ipsum dolor sit amet...", bgImg: "journey-bg-6.png", mainImg: "journey-1.png" },
-    { head: "Lorem ipsum 7", pera: "Lorem ipsum dolor sit amet...", bgImg: "journey-bg-1.png", mainImg: "journey-1.png" },
   ];
 
   const cardRefs = useRef([]);
   const parentRef = useRef(null);
+  const cardContainerRef = useRef(null);
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
@@ -29,55 +29,47 @@ function OurJourney() {
       scrollTrigger: {
         trigger: parentRef.current,
         start: "top 30%",
-        end: "top -10%",
+        end: "top 10%",
         scrub: 1,
         snap:true
       },
     });
-
-
-    tl.to(cardRefs.current,{
-      rotateY:20,
-      stagger:.4,
-      duration:1,
+    tl.to(cardContainerRef.current, {
+      left:"20%",
+      duration:10,
       ease:"linear",
-      transform:"translateX(400%)"
     },"a")
-    tl.to(cardRefs.current,{
-      rotateY:0,
-      scale:1.2,
-      stagger:.4,
+    .to(cardRefs.current,{
+      rotateY:20,
+      stagger:1,
       duration:1,
       ease:"linear",
       delay:1,
-      transform:"translateX(150%)"
+      scale:1.05
     },"a")
-    tl.to(cardRefs.current,{
-      rotateY:-20,
-      scale:1.2,
-      stagger:.4,
+    .to(cardRefs.current,{
+      rotateY:0,
+      stagger:1,
       duration:1,
       ease:"linear",
       delay:2,
-      transform:"translateX(0%)"
+      scale:1.1
     },"a")
-    tl.to(cardRefs.current,{
-      rotateY:0,
-      scale:1,
-      stagger:.4,
+    .to(cardRefs.current,{
+      rotateY:-20,
+      stagger:1,
       duration:1,
       ease:"linear",
       delay:3,
-      transform:"translateX(-100%)"
+      scale:1.05
     },"a")
-    tl.to(cardRefs.current,{
+    .to(cardRefs.current,{
       rotateY:0,
-      scale:1,
-      stagger:.4,
+      stagger:1,
       duration:1,
       ease:"linear",
       delay:4,
-      transform:"translateX(-200%)"
+      scale:1
     },"a")
   
   }, []);
@@ -86,17 +78,18 @@ function OurJourney() {
     <section ref={parentRef} className="our-journey bg-[#DF782B] py-10 overflow-hidden">
       <div className="container mx-auto">
         <MainHeading heading="OUR JOURNEY" pera="Lorem ipsum dolor sit amet, consectetur adipiscing" cl="text-center" tColor="text-white" />
-        <div className="journey-card-container perspective-normal grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 mt-20 gap-10">
+        <div ref={cardContainerRef} className="journey-card-container relative left-[80%] perspective-normal flex no-scrollBar py-10 mt-20 gap-5">
           {data.map((card, index) => (
-            <JourneyCard
-              ref={(el) => (cardRefs.current[index] = el)}
-              key={index}
-              head={card.head}
-              pera={card.pera}
-              bg={card.bgImg}
-              img={card.mainImg}
-              onMouseMove={() => handleCardClick(index)}
-            />
+             <JourneyCard
+               ref={(el) => (cardRefs.current[index] = el)}
+               currentCard={cardRefs.current[index]}
+               key={index}
+               head={card.head}
+               pera={card.pera}
+               bg={card.bgImg}
+               img={card.mainImg}
+             />
+            
           ))}
         </div>
       </div>

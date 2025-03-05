@@ -136,12 +136,12 @@ function Testimonials() {
           tColor="black"
         />
         <div className="relative max-w-7xl overflow-hidden mx-auto">
-          {/* <button
+          <button
             className="absolute cursor-pointer left-2 top-1/2 -translate-y-1/2 text-white p-2 md:p-3 rounded-full z-10"
             onClick={() => handleScroll("left")}
           >
             ◀
-          </button> */}
+          </button>
 
           <div
             ref={scrollRef}
@@ -156,6 +156,7 @@ function Testimonials() {
                     gsap.to(`.testimonial-text-${t.id}`, {
                       opacity: 1,
                       duration: 0.5,
+                      top:0
                     });
                   }
                 }}
@@ -164,6 +165,7 @@ function Testimonials() {
                     gsap.to(`.testimonial-text-${t.id}`, {
                       opacity: 1,
                       duration: 0.5,
+                      top:0
                     });
                   }
                 }}
@@ -172,12 +174,13 @@ function Testimonials() {
                     gsap.to(`.testimonial-text-${t.id}`, {
                       opacity: 0,
                       duration: 0.5,
+                      top:"100%"
                     });
                   }
                 }}
               >
                 <div
-                  className={`testimonial-text cursor-pointer rounded-lg testimonial-text-${t.id} absolute h-full w-full bg-[#202020] top-0 left-0 bottom-0 right-0 z-10 opacity-0 rounded-2xl p-5 flex flex-col justify-between`}
+                  className={`testimonial-text cursor-pointer rounded-lg testimonial-text-${t.id} absolute h-full w-full bg-[#202020] top-[100%] left-0 z-10 opacity-0 rounded-2xl p-5 flex flex-col justify-between`}
                 >
                   <p className="font-inter  text-white text-[14px]">{t.text}</p>
                   <div>
@@ -200,12 +203,12 @@ function Testimonials() {
             ))}
           </div>
 
-          {/* <button
+          <button
             className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 text-white p-2 md:p-3 rounded-full z-10"
             onClick={() => handleScroll("right")}
           >
             ▶
-          </button> */}
+          </button>
         </div>
       </div>
     </section>

@@ -55,7 +55,7 @@ function Header() {
     },
   ];
   return (
-    <header className="sticky top-0  z-[100] ">
+    <header className="fixed  w-full top-0 z-[100] ">
       <div className="header-wrapper relative flex items-center justify-between bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4">
       <div className="logo">
         <Link to="/">

@@ -13,34 +13,61 @@ function Insights() {
 
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: parentRef.current,
-        start: "top -10%",
-        end: "top -90%",
-        scrub: 1,
-        snap:true
-      },
-    });
+    let tl;
+    if(window.innerWidth>600 ){
+      tl =gsap.timeline({
+        scrollTrigger: {
+          trigger: parentRef.current,
+          start: "top -10%",
+          end: "top -90%",
+          scrub: 1,
+          snap:true
+        },
+      })
+      tl.from(blackBoxRef.current, {
+        scale: 10,
+        left: "210%",
+      }).from(blackBoxTextRef.current, {
+        opacity: 0,
+      })
+      .from(boxsRefs.current, {
+        opacity: 0,
+        stagger: 0.2,
+        scale:0,
+        left:"-80%"
+      })
+    }else{
+      tl =gsap.timeline({
+        scrollTrigger: {
+          trigger: parentRef.current,
+          start: "top 0%",
+          end: "top -150%",
+          scrub: 1,
+          snap:true
+        },
+      })
+      tl.from(blackBoxRef.current, {
+        scale: 5,
+        duration:.5
+        // left: "210%",
+      }).from(blackBoxTextRef.current, {
+        opacity: 0,
+      })
+      .from(boxsRefs.current, {
+        opacity: 0,
+        stagger: 2,
+        scale:0,
+        left:"-80%"
+      })
+    }
 
-    tl.from(blackBoxRef.current, {
-      scale: 10,
-      left: "210%",
-    }).from(blackBoxTextRef.current, {
-      opacity: 0,
-    })
-    .from(boxsRefs.current, {
-      opacity: 0,
-      stagger: 0.2,
-      scale:0,
-      left:"-80%"
-    })
+    
   }, []);
 
   // console.log(blackBoxTextRef);
 
   return (
-    <div className="h-[200vh] relative ">
+    <div className="min-h-[200vh] relative  top-[-1px]">
       <section ref={parentRef} className="insights sticky top-0 overflow-hidden">
         <div className="container-xxl">
           <MainHeading
