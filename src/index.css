@@ -6,8 +6,13 @@
     font-family: "Inder", serif;
 }
 
+<<<<<<< HEAD
 .font-great-vibes {
     font-family: "Great Vibes", serif;
+=======
+.no-scrollBar::-webkit-scrollbar{
+    display: none;
+>>>>>>> main
 }
 
 .container-xxl {
@@ -141,12 +146,18 @@ header .dropdown {
 
 .testimonial-slider .testimonials-img img {
     height: 100%;
+    /* width: 50%; */
     object-fit: cover;
     filter: grayscale(80%);
 }
 
+<<<<<<< HEAD
 .testimonial-slider .swiper-slide-active .testimonial-text {
     display: block;
+=======
+.testimonial-slider .swiper-slide-active .testimonial-text{
+display: block;
+>>>>>>> main
 }
 
 .testimonial-slider .swiper-slide-active .testimonials-img {
@@ -166,7 +177,10 @@ header .dropdown {
 
 /* our work cyndrical animation */
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 .banner {
     width: 100%;
     height: 100vh;
@@ -188,29 +202,35 @@ header .dropdown {
     scale: .9;
 }
 
+/* Animation Stop on Hover */
+.banner .slider:hover {
+    animation-play-state: paused;
+}
+
 @keyframes autoRun {
     from {
-        transform: perspective(1500px) rotateX(-0deg) rotateY(0deg);
+        transform: perspective(1500px) rotateX(0deg) rotateY(0deg);
     }
-
     to {
-        transform: perspective(1500px) rotateX(-0deg) rotateY(360deg);
+        transform: perspective(1500px) rotateX(0deg) rotateY(360deg);
     }
 }
 
 .banner .slider .item {
     position: absolute;
     inset: 0 0 0 0;
-    height: 200vh;
-    width: fit-content;
-    /* transform: scaleX(-1); */
-    transform:
-        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) scaleX(-2) scaleY(1.2) translateZ(4400px);
+    height: 250vh;
+    width: 200vh;
+    transform: 
+        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        scaleX(-1)
+        translateZ(4400px);
     cursor: pointer;
+    overflow: hidden;
 }
 
 .banner .slider .item .checkout {
-    transition: all ease .5s;
+    transition: all ease 0.5s;
 }
 
 .banner .slider .item:hover .checkout {
@@ -223,18 +243,27 @@ header .dropdown {
     object-fit: cover;
 }
 
+/* Responsive adjustments */
 @media screen and (max-width: 1023px) {
     .banner .slider {
         width: 160px;
         height: 200px;
         left: calc(50% - 80px);
     }
+<<<<<<< HEAD
 
     .banner .slider .item {
         transform:
             rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(300px);
     }
 
+=======
+    .banner .slider .item {
+        transform: 
+            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(300px);
+    }
+>>>>>>> main
 }
 
 @media screen and (max-width: 767px) {
@@ -243,6 +272,7 @@ header .dropdown {
         height: 150px;
         left: calc(50% - 50px);
     }
+<<<<<<< HEAD
 
     .banner .slider .item {
         transform:
@@ -261,3 +291,35 @@ header .dropdown {
     opacity: 1;
     visibility: visible;
 }
+
+.custom-stroke  {
+    -webkit-text-stroke: .5px #ED510C;
+    -webkit-text-fill-color: transparent;
+  }
+=======
+    .banner .slider .item {
+        transform: 
+            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(180px);
+    }
+}
+
+/* For screens larger than 2048px */
+@media screen and (min-width: 2049px) {
+    .banner .slider {
+        width: 50vw;
+        height: 100vh;
+        left: calc(50% - 25vw);
+        transform: perspective(3000px);
+    }
+
+    .banner .slider .item {
+        height: 280vh;
+        width: 220vh;
+        transform: 
+            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            scaleX(-1)
+            translateZ(6000px);
+    }
+}
+>>>>>>> main

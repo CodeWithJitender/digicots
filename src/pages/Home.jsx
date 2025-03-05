@@ -14,11 +14,11 @@ import Testimonials from "../sections/home/Testimonials";
 function Home() {
   return (
     <>
-      <Header />
-      <Hero img={homeHero} /> {/* Done animation*/}
-      <HowItWorks/> {/* Done animation*/}
-      <Solutions/>
-      <OurWork/>
+      {/* <Header /> */}
+      {/* <Hero img={homeHero} />  */}
+      {/* <HowItWorks/>  */}
+      {/* <Solutions/> */}
+      {/* <OurWork/> */}
       <Insights/>
       <KeywordsSection/>
       <OurJourney/> 

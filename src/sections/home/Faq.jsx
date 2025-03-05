@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import TextAnimation1 from "../../animation/text/TextAnimation1";
 import TextAnimation2 from "../../animation/text/TextAnimation2";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 const faqs = [
   {
@@ -33,6 +37,22 @@ const Faq = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const blockRefs = useRef([]);
+  const pointRef = useRef(null);
+  gsap.registerPlugin(ScrollTrigger)
+  useGSAP(()=>{
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: blockRefs.current,
+        start: "top 80%",
+        end: "top 0%",
+        // scrub: 1,
+      },
+    });
+    tl.from(blockRefs.current, { opacity: 0, y: 100, duration: 1,stagger:.3 },"a")
+    tl.from(pointRef.current, { opacity: 0, y: -100, scaleY:0, transformOrigin:"top", delay:.5, duration: 1 },"a")
+  },[])
+
   return (
     <section className="bg-black text-white">
       <div className="container-xxl">
@@ -60,13 +80,13 @@ const Faq = () => {
               </h2>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
                 <TextAnimation1
-                  animeStart="60%"
+                  animeStart="70%"
                   duration=".5"
                   className="h-[65px] overflow-hidden"
                 >
                   your questions 
                 </TextAnimation1>
-                <span className="text-[#DF782B]">.</span>
+                <span ref={pointRef} className="text-[#DF782B] inline-block relative">.</span>
                 
               </h2>
             </div>
@@ -91,6 +111,7 @@ const Faq = () => {
           <div>
             {faqs.map((faq, index) => (
               <div
+              ref={(el) => (blockRefs.current[index] = el)}
                 key={index}
                 className="border-t border-gray-600 border-dashed  last:border-b"
               >
@@ -99,9 +120,7 @@ const Faq = () => {
                   onClick={() => toggleFAQ(index)}
                 >
                   <span className="text-lg font-semibold font-inter">
-                    <TextAnimation1 animeStart="90%" duration=".5">
                       {faq.question}
-                    </TextAnimation1>
                   </span>
                   <span className="text-2xl font-inter">
                     {openIndex === index ? "-" : "+"}
@@ -109,7 +128,7 @@ const Faq = () => {
                 </button>
                 {openIndex === index && faq.answer && (
                   <p className="text-gray-400 text-sm pb-4">
-                    <TextAnimation2 animeStart="90%" duration={.3}>
+                    <TextAnimation2 animeStart="90%" duration={.2}>
                       {faq.answer}
                     </TextAnimation2>
                   </p>
