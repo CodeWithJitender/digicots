@@ -118,7 +118,7 @@ function Header() {
             </li>
             <li className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
               <Link
-                to="/"
+                to="/case-study"
                 className="font-bold text-white text-[14px] font-inter "
               >
                 Case Stuides

@@ -261,3 +261,8 @@ header .dropdown {
     opacity: 1;
     visibility: visible;
 }
+
+.custom-stroke  {
+    -webkit-text-stroke: .5px #ED510C;
+    -webkit-text-fill-color: transparent;
+  }
