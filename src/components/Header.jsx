@@ -73,7 +73,7 @@ function Header() {
           <ul className="list-none m-0 p-0 flex items-center gap-10">
             <li className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
               <Link
-                to="/"
+                to="/our-work"
                 className="font-bold text-white text-[14px] font-inter "
               >
                 {" "}
@@ -82,7 +82,7 @@ function Header() {
             </li>
             <li className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
               <Link
-                to="/"
+                to="/insights"
                 className="font-bold text-white text-[14px] font-inter "
               >
                 Insights
@@ -90,7 +90,7 @@ function Header() {
             </li>
             <li className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
               <Link
-                to="/"
+                to="/about"
                 className="font-bold text-white text-[14px] font-inter "
               >
                 About Us
@@ -98,7 +98,7 @@ function Header() {
             </li>
             <li className="discover-link pb-2.5 ">
               <Link
-                to="/"
+                to="/discover"
                 className=" font-bold text-white text-[14px] font-inter "
               >
                 Discover
@@ -132,7 +132,7 @@ function Header() {
             <ul>
               <li>
                 <Link
-                  to="/"
+                  to="/our-work"
                   className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                 >
                   <div className="link-t"> Work </div>
@@ -141,7 +141,7 @@ function Header() {
               </li>
               <li>
                 <Link
-                  to="/"
+                  to="/insights"
                   className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                 >
                   <div className="link-t"> Insight </div>
@@ -150,7 +150,7 @@ function Header() {
               </li>
               <li>
                 <Link
-                  to="/"
+                  to="/about"
                   className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                 >
                   <div className="link-t"> About Us </div>
@@ -159,7 +159,7 @@ function Header() {
               </li>
               <li>
                 <Link
-                  to="/"
+
                   className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"  onClick={() => setSubMenu((togg) => !togg)}
                 >
                   <div className="link-t"> Discover <span className="text-[#525252]">Solutions</span> </div>
@@ -213,7 +213,7 @@ function Header() {
           </div>
           <Link
             className="bg-[#DF782B] max-h-full rounded-[8px] font-bold text-white text-[14px] hidden lg:block font-inter p-3  lg:p-5"
-            to="/"
+            to="/contact"
           >
             Let's Talk
           </Link>

@@ -5,6 +5,7 @@
 .font-inter {
     font-family: "Inder", serif;
 }
+
 .font-great-vibes {
     font-family: "Great Vibes", serif;
 }
@@ -38,6 +39,7 @@
     position: relative;
     transform: translate(0%, 0%);
 }
+
 .jou-card.active .jou-card-inner {
     width: 350px !important;
     height: 100%;
@@ -54,6 +56,7 @@
     height: 100%;
     object-fit: cover;
 }
+
 .jou-card.active .jou-text {
     width: 100%;
     height: 100%;
@@ -65,15 +68,17 @@
     padding: 12px;
 }
 
-.dropdown{
+.dropdown {
     visibility: hidden;
     opacity: 0;
     transition: .5s;
 }
-.sub-menu-wrapper{
+
+.sub-menu-wrapper {
     height: 80vh;
     overflow-y: scroll;
 }
+
 .discover-link:hover .dropdown {
     visibility: visible;
     opacity: 1;
@@ -97,7 +102,7 @@ header *::-webkit-scrollbar-thumb {
     /* Scrollbar color */
     border-radius: 10px;
 }
- 
+
 header *::-webkit-scrollbar-thumb:hover {
     background: #b45e22;
     /* Darker on hover */
@@ -109,62 +114,68 @@ header *::-webkit-scrollbar-thumb:hover {
     /* Track color */
     border-radius: 10px;
 }
+
 .popup-container::-webkit-scrollbar {
     width: 8px;
     /* Adjust width */
     /* height: 8px; */
 }
+
 .popup-container::-webkit-scrollbar-thumb {
     background: #b45e22;
     /* Darker on hover */
     border-radius: 10px;
 
 }
+
 .popup-container::-webkit-scrollbar-thumb:hover {
     background: #b45e22;
     /* Darker on hover */
 }
 
 
-header .dropdown{
+header .dropdown {
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.testimonial-slider .testimonials-img img{
+.testimonial-slider .testimonials-img img {
     height: 100%;
     object-fit: cover;
     filter: grayscale(80%);
 }
-.testimonial-slider .swiper-slide-active .testimonial-text{
-display: block;
+
+.testimonial-slider .swiper-slide-active .testimonial-text {
+    display: block;
 }
-.testimonial-slider .swiper-slide-active .testimonials-img{
+
+.testimonial-slider .swiper-slide-active .testimonials-img {
     max-width: 100%;
     width: 100%;
 }
-.testimonial-slider .swiper-slide-active .testimonials-img img{
+
+.testimonial-slider .swiper-slide-active .testimonials-img img {
     filter: grayscale(0%);
 }
 
-.jou-card *{
+.jou-card * {
     transition: .5s;
 }
-.jou-card.active{
 
-}
+.jou-card.active {}
 
 /* our work cyndrical animation */
 
 
-.banner{
+.banner {
     width: 100%;
     height: 100vh;
     text-align: center;
     position: relative;
     overflow: hidden;
 }
-.banner .slider{
+
+.banner .slider {
     position: absolute;
     width: 60vw;
     height: 100vh;
@@ -176,64 +187,77 @@ display: block;
     z-index: 2;
     scale: .9;
 }
-@keyframes autoRun{
-    from{
+
+@keyframes autoRun {
+    from {
         transform: perspective(1500px) rotateX(-0deg) rotateY(0deg);
-    }to{
+    }
+
+    to {
         transform: perspective(1500px) rotateX(-0deg) rotateY(360deg);
     }
 }
 
-.banner .slider .item{
+.banner .slider .item {
     position: absolute;
     inset: 0 0 0 0;
     height: 200vh;
     width: fit-content;
     /* transform: scaleX(-1); */
-    transform: 
-        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-        scaleX(-2)
-        scaleY(1.2)
-        translateZ(4400px);
-        cursor: pointer;
+    transform:
+        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) scaleX(-2) scaleY(1.2) translateZ(4400px);
+    cursor: pointer;
 }
-.banner .slider .item .checkout{
+
+.banner .slider .item .checkout {
     transition: all ease .5s;
 }
 
-.banner .slider .item:hover .checkout{
+.banner .slider .item:hover .checkout {
     opacity: 1;
 }
 
-.banner .slider .item img{
+.banner .slider .item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 @media screen and (max-width: 1023px) {
-    .banner .slider{
+    .banner .slider {
         width: 160px;
         height: 200px;
         left: calc(50% - 80px);
     }
-    .banner .slider .item{
-        transform: 
-            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-            translateZ(300px);
+
+    .banner .slider .item {
+        transform:
+            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(300px);
     }
-    
+
 }
+
 @media screen and (max-width: 767px) {
-    .banner .slider{
+    .banner .slider {
         width: 100px;
         height: 150px;
         left: calc(50% - 50px);
     }
-    .banner .slider .item{
-        transform: 
-            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-            translateZ(180px);
+
+    .banner .slider .item {
+        transform:
+            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(180px);
     }
-   
+
+}
+
+.member-text {
+    opacity: 0;
+    visibility: hidden;
+    position: relative;
+}
+
+.member-box:hover .member-text {
+    opacity: 1;
+    visibility: visible;
 }

@@ -36,20 +36,20 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-[#1a1a1a] min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 lg:px-20 py-12">
+    <div className="bg-[#1a1a1a] min-h-screen flex flex-col-reverse  md:flex-row items-center justify-center md:px-6 lg:px-20 py-12">
       {/* Left Section - Fox Image & Addresses */}
-      <div className="w-full lg:w-1/2 flex flex-col items-start">
-        <img src="lets-talk.png" alt="Fox" className="w-full max-w-md " />
-        <div className="mt-8 text-white grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="w-full md:w-1/2 flex flex-col items-start">
+        <img src="lets-talk.png" alt="Fox" className="w-full max-w-md hidden md:block" />
+        <div className="mt-8 text-white grid grid-cols-2 items-center justify-items-center gap-6 w-full">
           {[
             { country: "India", address: "14, Near Mahavir Pharmacy, Diu", phone: "+91 9876 812 3791", addLink:'https://www.google.com/', phoneLink:'+91 9876 812 3791' },
             { country: "USA", address: "47 W 13th St, New York, NY 10011", phone: "(+1) 230-528-5548", addLink:'https://www.google.com/', phoneLink:'(+1) 230-528-5548' },
             { country: "Singapore", address: "8 Temasek Boulevard, Suntec Tower 3", phone: "(+65) 528-5548", addLink:'https://www.google.com/', phoneLink:'(+65) 528-5548' },
             { country: "Canada", address: "201 James St N, Hamilton, Ontario", phone: "(905) 528-5548", addLink:'https://www.google.com/', phoneLink:'(905) 528-5548' }
           ].map((item, index) => (
-            <div key={index}>
+            <div key={index} className="max-w-[200px]">
               <h3 className="text-2xl mb-3 font-black font-inter">{item.country}</h3>
-              <div className="h-[60px] flex flex-col justify-between">
+              <div className="h-[100px] lg:h-[60px] flex flex-col justify-between">
               <p> <a href={item.addLink} target="_blank" className="text-white font-inter">{item.address}</a></p>
               <p> <a href={`tel:${item.phoneLink}`} target="_blank" className="text-white font-inter">{item.phone}</a></p>
               </div>
@@ -59,11 +59,13 @@ const ContactForm = () => {
       </div>
 
       {/* Right Section - Multi-Tab Form */}
-      <div className="w-full lg:w-1/2 bg-[#1a1a1a] px-8 py-8">
-        <h1 className="text-white text-4xl font-bold">Let’s Talk</h1>
+      <div className="w-full md:w-1/2 bg-[#1a1a1a] px-8 py-8">
+      <img src="lets-talk.png" alt="Fox" className="w-full max-w-md block mb-4 md:hidden" />
+
+        <h1 className="text-white text-center md:text-start text-4xl sm:text-7xl md:text-8xl font-bold ">Let's Talk</h1>
 
         {/* Tabs */}
-        <div className="flex justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3">
+        <div className="flex flex-wrap justify-center  md:justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3">
           {[
             { id: "dominance", label: "Let’s Talk Dominance!" },
             { id: "help", label: "Howl for Help" },
@@ -96,7 +98,12 @@ const ContactForm = () => {
                 <input name="contactNumber" type="text" placeholder="Contact Number" onChange={handleChange} className="flex-1 bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none" />
               </div>
               <input name="email" type="email" placeholder="Email Address" onChange={handleChange} className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none" />
-              <textarea name="additionalInfo" placeholder="Additional Information" onChange={handleChange} className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none" />
+              <select className="w-full bg-[#3A3A3A] text-white p-3 rounded-md focus:outline-none pe-2.5">
+                <option>Purpose</option>
+                <option>Business Inquiry</option>
+                <option>Collaboration</option>
+              </select>
+              <textarea name="additionalInfo" placeholder="Additional Information" rows='5' onChange={handleChange} className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none" />
             </>
           )}
 
