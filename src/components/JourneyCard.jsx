@@ -7,10 +7,11 @@ const JourneyCard = forwardRef(({ head, pera, bg, img, status }, ref) => {
   const rectRef = useRef({ width: 100 }); // Default rect values
 
   useEffect(() => {
-    if (ref?.current) {
-      rectRef.current = ref.current.getBoundingClientRect(); // Get actual dimensions
+    if (ref && ref.current) {
+      rectRef.current = ref.current.getBoundingClientRect();
     }
   }, [ref]);
+
 
   const handleMouseEnter = () => {
     gsap.to(contentRef.current, {
@@ -19,6 +20,7 @@ const JourneyCard = forwardRef(({ head, pera, bg, img, status }, ref) => {
       ease: "power2.out",
     });
     
+    console.log(ref)
     if (ref?.current) {
       gsap.to(ref.current, {
         width: 3 * rectRef.current.width,
@@ -46,6 +48,8 @@ const JourneyCard = forwardRef(({ head, pera, bg, img, status }, ref) => {
       });
     }
   };
+
+  
 
   return (
     <div

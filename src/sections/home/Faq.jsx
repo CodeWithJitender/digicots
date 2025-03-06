@@ -50,7 +50,7 @@ const Faq = () => {
       },
     });
     tl.from(blockRefs.current, { opacity: 0, y: 100, duration: 1,stagger:.3 },"a")
-    tl.from(pointRef.current, { opacity: 0, y: -100, scaleY:0, transformOrigin:"top", delay:.5, duration: 1 },"a")
+    tl.from(pointRef.current, { opacity: 0, y: 100, scaleY:0, transformOrigin:"top", delay:.5, duration: 1 },"a")
   },[])
 
   return (
@@ -92,17 +92,17 @@ const Faq = () => {
             </div>
             <div className="mt-10 text-sm">
               <p className="font-semibold font-inter">
-                <TextAnimation1 animeStart="90%" duration=".5">
+                {/* <TextAnimation1 animeStart="90%" duration=".5"> */}
                   Still Seeking help?
-                </TextAnimation1>
+                {/* </TextAnimation1> */}
               </p>
               <Link
                 to="/contact"
                 className="text-[#DF782B] font-semibold font-inter"
               >
-                <TextAnimation1 animeStart="90%" duration=".5">
+                {/* <TextAnimation1 animeStart="90%" duration=".5"> */}
                   Contact Our Representative.
-                </TextAnimation1>
+                {/* </TextAnimation1> */}
               </Link>
             </div>
           </div>

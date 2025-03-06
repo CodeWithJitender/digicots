@@ -14,7 +14,7 @@ import Testimonials from "../sections/home/Testimonials";
 function Home() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Hero img={homeHero} /> 
       <HowItWorks/> 
       <Solutions/>
