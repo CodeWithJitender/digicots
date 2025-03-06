@@ -14,11 +14,13 @@ function MainHeading({ heading, pera, cl, tColor,animeStart="50", animeEnd="60" 
             {heading ? heading : " "}
         </TextAnimation1>
           </h2>
-          <p className={`text-[14px] ${tColor} font-normal font-inter`}>
-        <TextAnimation2 animeStart={animeStart}>
-            {pera ? pera : " "}
-        </TextAnimation2>
-          </p>
+          {pera && (
+            <p className={`text-[14px] ${tColor} font-normal font-inter`}>
+            <TextAnimation2 animeStart={animeStart}>
+                {pera ? pera : " "}
+            </TextAnimation2>
+              </p>
+          )}
       </div>
     </div>
   );

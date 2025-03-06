@@ -1,8 +1,13 @@
 import React from 'react'
+import Header from '../components/Header'
+import SimpleSlider from '../sections/case-studies/SimpleSlider'
 
 function CaseStudie() {
   return (
-    <div>CaseStudie</div>
+    <div>
+      <Header/>
+      <SimpleSlider/>
+    </div>
   )
 }
 

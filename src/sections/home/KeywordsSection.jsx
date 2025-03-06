@@ -29,7 +29,7 @@ function KeywordsSection() {
 
   return (
     <div ref={parentRef} className=" bg-white py-4 overflow-hidden">
-      <div ref={marqueeRef} className="whitespace-nowrap animate-marquee flex items-center gap-6 text-black font-bold text-xl md:text-3xl">
+      <div ref={marqueeRef} className="whitespace-nowrap animate-marquee flex items-center gap-6 text-black font-bold md:text-6xl pb-10">
         <span>Creativity</span>
         <span className="text-[#DF782B]">•</span>
         <span>Authenticity</span>

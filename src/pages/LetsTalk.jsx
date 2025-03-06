@@ -1,8 +1,13 @@
 import React from 'react'
+import Header from '../components/Header'
+import ContactForm from '../sections/lets-talk/ContactForm'
 
 function LetsTalk() {
   return (
-    <div>LetsTalk</div>
+    <div>
+      <Header/>
+      <ContactForm/>
+    </div>
   )
 }
 
