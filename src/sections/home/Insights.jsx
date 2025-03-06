@@ -55,7 +55,8 @@ function Insights() {
       })
       .from(boxsRefs.current, {
         opacity: 0,
-        stagger: 2,
+        stagger: 4,
+        delay:4,
         scale:0,
         left:"-80%"
       })
