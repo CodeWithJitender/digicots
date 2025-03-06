@@ -226,7 +226,7 @@ function OurJourney() {
           gsap.to(cardRefs.current[index], {
             width: "20vw",
             borderRadius: "8px",
-            // scaleY: 1.2,
+            scaleY: 1.2,
             duration: 0.5,
             ease: "back.inOut",
           });
@@ -255,7 +255,7 @@ function OurJourney() {
           gsap.to(cardRefs.current[index], {
             width: "8vw",
             borderRadius:"0px",
-            // scaleY: 1,
+            scaleY: 1,
             duration: 0.5,
             ease: "power4.out",
           });
