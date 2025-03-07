@@ -58,7 +58,7 @@ function Header() {
   const [toggle, setToggle] = useState(false);
   const [subMenu, setSubMenu] = useState(false);
   return (
-    <header className="sticky top-0  z-[100] ">
+    <header className="sticky top-0 z-[100]">
       <div className="header-wrapper relative flex items-center justify-between bg-[#242424] lg:bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4">
         <div className="logo">
           <Link to="/">

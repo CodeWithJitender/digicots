@@ -2,6 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useState } from "react";
+import BlogModal from "./BlogModal";
 
 const slides = [
   {
@@ -11,6 +13,19 @@ const slides = [
     date: "Jan 25, 2025",
     readTime: "2 Min Read",
     thumbnail: "blog/thumb-1.png",
+    img: "blog/topic-4.png",
+      imgArr: [
+        "blog-post1.png",
+        "blog-post2.png",
+        "blog-post3.png",
+        "blog-post4.png",
+        "blog-post5.png",
+        "blog-post6.png",
+        "blog-post7.png",
+        "blog-post8.png",
+        "blog-post9.png",
+        "blog-post0.png"
+      ]
   },
   {
     image: "blog/blog-1.png",
@@ -19,6 +34,19 @@ const slides = [
     date: "Feb 10, 2025",
     readTime: "3 Min Read",
     thumbnail: "blog/thumb-1.png",
+    img: "blog/topic-4.png",
+      imgArr: [
+        "blog-post1.png",
+        "blog-post2.png",
+        "blog-post3.png",
+        "blog-post4.png",
+        "blog-post5.png",
+        "blog-post6.png",
+        "blog-post7.png",
+        "blog-post8.png",
+        "blog-post9.png",
+        "blog-post0.png"
+      ]
   },
   {
     image: "blog/blog-1.png",
@@ -27,6 +55,19 @@ const slides = [
     date: "Jan 25, 2025",
     readTime: "2 Min Read",
     thumbnail: "blog/thumb-1.png",
+    img: "blog/topic-4.png",
+      imgArr: [
+        "blog-post1.png",
+        "blog-post2.png",
+        "blog-post3.png",
+        "blog-post4.png",
+        "blog-post5.png",
+        "blog-post6.png",
+        "blog-post7.png",
+        "blog-post8.png",
+        "blog-post9.png",
+        "blog-post0.png"
+      ]
   },
   {
     image: "blog/blog-1.png",
@@ -35,10 +76,36 @@ const slides = [
     date: "Feb 10, 2025",
     readTime: "3 Min Read",
     thumbnail: "blog/thumb-1.png",
+    img: "blog/topic-4.png",
+      imgArr: [
+        "blog-post1.png",
+        "blog-post2.png",
+        "blog-post3.png",
+        "blog-post4.png",
+        "blog-post5.png",
+        "blog-post6.png",
+        "blog-post7.png",
+        "blog-post8.png",
+        "blog-post9.png",
+        "blog-post0.png"
+      ]
   },
 ];
 
 export default function ThumbnailSlider() {
+   const [selectedPost, setSelectedPost] = useState(null);
+        const [isOpen, setIsOpen] = useState(false);
+      
+        const openModal = (post) => {
+          setSelectedPost(post);
+          setIsOpen(true);
+        };
+      
+        const closeModal = () => {
+          setIsOpen(false);
+          setSelectedPost(null);
+        };
+
   return (
     <section>
         <div className="container-xxl">
@@ -54,7 +121,10 @@ export default function ThumbnailSlider() {
         className="w-full rounded-lg overflow-hidden"
       >
         {slides.map((slide, index) => (
-          <SwiperSlide key={index} className="relative">
+                
+                <SwiperSlide key={index} className="relative"  >
+                  <div className="" onClick={() => openModal(slide)}>
+
             {/* Background Image */}
             <div className="relative h-[500px] w-full">
               <img
@@ -96,6 +166,8 @@ export default function ThumbnailSlider() {
                 </div>
               </div>
             )}
+                  </div>
+
           </SwiperSlide>
         ))}
       </Swiper>
@@ -122,6 +194,8 @@ export default function ThumbnailSlider() {
       `}</style>
     </div>
         </div>
+        {/* Modal */}
+              <BlogModal isOpen={isOpen} onClose={closeModal} post={selectedPost} />
     </section>
   );
 }

@@ -14,7 +14,7 @@ export default function BlogModal({ isOpen, onClose, post }) {
         {/* Main Content */}
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left - Large Image */}
-          <div className="relative h-[100vh] max-h-[100vh]">
+          <div className="relative h-[100vh] max-h-[100vh] hidden md:block">
             <img
               src={post.img}
               alt="Blog Image"
@@ -32,7 +32,7 @@ export default function BlogModal({ isOpen, onClose, post }) {
           </div>
 
           {/* Right - Scrolling Text Content */}
-          <div className="p-6 flex flex-col space-y-6">
+          <div className="p-6 flex flex-col space-y-6 h-[100vh]">
             {/* Header Actions */}
             <div className="flex justify-between items-center px-6 py-4">
               <div className="flex space-x-3">
@@ -45,11 +45,10 @@ export default function BlogModal({ isOpen, onClose, post }) {
               </button>
             </div>
             <div className="w-full h-full flex justify-center items-center">
-
             <div className="blogmodal-img max-w-[650px]  overflow-x-scroll ">
-                <div className="grid grid-cols-10 w-[5000px] gap-8 pb-5">
+                <div className="grid grid-cols-10 w-[3000px] sm:w-[5000px] gap-4 lg:gap-8 pb-5">
                 {post.imgArr.map((imgi)=>(
-                <img src={imgi} className="w-full max-w-[500px] rounded-2xl " alt="" />
+                <img src={imgi} className="w-full max-w-[350px] sm:max-w-[500px] rounded-2xl " alt="" />
                 ))}
                 </div>  
             </div>
