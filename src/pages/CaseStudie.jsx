@@ -5,7 +5,6 @@ import SimpleSlider from '../sections/case-studies/SimpleSlider'
 function CaseStudie() {
   return (
     <div>
-      <Header/>
       <SimpleSlider/>
     </div>
   )

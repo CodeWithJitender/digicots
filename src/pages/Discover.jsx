@@ -4,7 +4,6 @@ import Header from '../components/Header'
 function Discover() {
   return (
     <div>
-      <Header/>
     </div>
   )
 }

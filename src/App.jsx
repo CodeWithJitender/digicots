@@ -11,6 +11,7 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import gsap from "gsap";
 import { createContext, useContext } from "react";
+import Header from "./components/Header";
 const LenisContext = createContext(null);
 export const useLenis = () => useContext(LenisContext);
 
@@ -51,8 +52,11 @@ function App() {
   // lenis.on("scroll", ({ scroll }) => console.log(scroll));
 
   return (
+    <>
     <LenisContext.Provider value={lenis.current}>
+
       <Router>
+      <Header/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -65,6 +69,7 @@ function App() {
         </Routes>
       </Router>
     </LenisContext.Provider>
+    </>
   );
 }
 
