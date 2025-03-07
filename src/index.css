@@ -125,6 +125,30 @@ header *::-webkit-scrollbar-thumb:hover {
 .popup-container::-webkit-scrollbar-thumb:hover {
     background: #b45e22;
 }
+.blogmodal-img::-webkit-scrollbar-track {
+    background: #EBEBEB;
+    overflow: hidden;
+    /* Track color */
+    border-radius: 10px;
+}
+
+.blogmodal-img::-webkit-scrollbar {
+    width: 8px;
+    /* Adjust width */
+    /* height: 8px; */
+}
+
+.blogmodal-img::-webkit-scrollbar-thumb {
+    background: #b45e22;
+    /* Darker on hover */
+    border-radius: 10px;
+
+}
+
+.blogmodal-img::-webkit-scrollbar-thumb:hover {
+    background: #b45e22;
+    /* Darker on hover */
+}
 
 header .dropdown {
     overflow-x: hidden;
