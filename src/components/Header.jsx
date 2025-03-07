@@ -95,11 +95,41 @@ function Header() {
     }
   },[menuRef.current,toggle])
 
+
+  const logoRef = useRef(null);
+  const linksRef = useRef([]);
+  const letsTalkRef = useRef(null);
+  useGSAP(()=>{
+    const tl = gsap.timeline();
+    tl
+    .from(logoRef.current,{
+      duration: .8,
+      opacity: 0,
+      x: -50,
+      ease: "power4.inOut",
+    })
+    .from(linksRef.current,{
+      duration: .8,
+      opacity: 0,
+      y: -50,
+      stagger:.2,
+      ease: "power4.inOut",
+    })
+    .from(letsTalkRef.current,{
+      duration: .8,
+      opacity: 0,
+      x: 50,
+      ease: "power4.inOut",
+    })
+  },[logoRef.current,linksRef.current])
+
+
+
   return (
-    <header className="sticky top-0  z-[100] ">
+    <header className="sticky top-0  z-[100] overflow-hidden w-full ">
       <div className="header-wrapper relative flex items-center justify-between bg-[#242424] lg:bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4">
-        <div className="logo">
-          <Link to="/">
+        <div ref={logoRef} className="logo">
+          <Link  to="/">
             <img
               src="logo-white.png"
               className="max-w-36 md:max-w-40 lg:max-w-52"
@@ -109,7 +139,7 @@ function Header() {
         </div>
         <div className="menu hidden lg:block">
           <ul className="list-none m-0 p-0 flex items-center gap-10">
-            <li className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
+            <li ref={(el)=> linksRef.current[0] = el} className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
               <Link
                 to="/our-work"
                 className="font-bold text-white text-[14px] font-inter "
@@ -118,7 +148,7 @@ function Header() {
                 Work
               </Link>
             </li>
-            <li className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
+            <li ref={(el)=> linksRef.current[1] = el} className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
               <Link
                 to="/insights"
                 className="font-bold text-white text-[14px] font-inter "
@@ -126,7 +156,7 @@ function Header() {
                 Insights
               </Link>
             </li>
-            <li className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
+            <li ref={(el)=> linksRef.current[2] = el} className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
               <Link
                 to="/about"
                 className="font-bold text-white text-[14px] font-inter "
@@ -134,7 +164,7 @@ function Header() {
                 About Us
               </Link>
             </li>
-            <li className="discover-link pb-2.5 ">
+            <li ref={(el)=> linksRef.current[3] = el} className="discover-link pb-2.5 ">
               <Link
                 to="/discover"
                 className=" font-bold text-white text-[14px] font-inter "
@@ -153,8 +183,8 @@ function Header() {
                   ))}
                 </div>
               </div>
-            </li>
-            <li className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
+            </li> 
+            <li ref={(el)=> linksRef.current[4] = el} className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5">
               <Link
                 to="/case-study"
                 className="font-bold text-white text-[14px] font-inter "
@@ -243,7 +273,7 @@ function Header() {
             </div>
           </div>
         </div>
-        <div className="side-btn cursor-pointer">
+        <div ref={letsTalkRef} className="side-btn cursor-pointer">
           <div className="toggler block lg:hidden bg-white p-3 rounded-[50px]" onClick={() => setToggle((togg) => !togg)}>
             <span className="w-8 bg-black h-0.5 block rounded-3xl"></span>
             <span className="w-8 bg-black h-0.5 block rounded-3xl mt-1"></span>
