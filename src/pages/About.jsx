@@ -9,6 +9,7 @@ import MeetThePack from '../sections/about/MeetThePack'
 function About() {
   return (
     <div>
+      <Hero/>
       <MeetThePack/>
       <HowWeWork/>
       <WhyChooseUs/>
