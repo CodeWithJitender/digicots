@@ -105,8 +105,8 @@ function HowWeWork() {
 
   return (
     <div className="min-h-[200vh]">
-      <section className=" sticky top-0 how-we-work py-10">
-        <div className="min-h-screen overflow-hidden container mx-auto px-4">
+      <section className=" sticky top-0 how-we-work py-10 overflow-hidden">
+        <div className="min-h-screen container mx-auto px-4">
           {/* Heading Section */}
           <HeadingWithLink
             head="HOW WE WORK?!"
