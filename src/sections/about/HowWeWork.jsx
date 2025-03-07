@@ -122,7 +122,7 @@ function HowWeWork() {
                 key={card.id}
                 {...card}
                 className="absolute"
-                style={window.innerWidth > 600 ? { left: `${i * 8.5}%`, width: `${74.5}% ` } : { top: `${i * 10}%`, }}
+                style={window.innerWidth > 600 ? { left: `${i * 8.5}%`, width: `${100 - 3.7*8.5}% ` } : { top: `${i * 10}%`, }}
               />
             ))}
           </div>
