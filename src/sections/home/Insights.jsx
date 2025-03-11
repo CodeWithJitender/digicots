@@ -14,12 +14,12 @@ function Insights() {
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
     let tl;
-    if(window.innerWidth>600 ){
+    if(window.innerWidth>1023 ){
       tl =gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
-          start: "top -10%",
-          end: "top -90%",
+          start: "top 0%",
+          end: "top -140%",
           scrub: 1,
           snap:true
         },
@@ -27,52 +27,109 @@ function Insights() {
       tl.from(blackBoxRef.current, {
         scale: 10,
         left: "210%",
-      }).from(blackBoxTextRef.current, {
-        opacity: 0,
+        duration:10,
+        ease:"power1.inOut"
       })
+      .to(blackBoxRef.current, {
+        // scale: 0,
+        duration:10,
+        left: "0%",
+        ease: "expoScale(0.5,7,none)",
+      },"a")
+      .from(blackBoxTextRef.current, {
+        duration:10,
+        opacity: 0,
+        ease: "expoScale(0.5,7,none)",
+      },"a")
       .from(boxsRefs.current, {
         opacity: 0,
-        stagger: 0.2,
-        scale:0,
-        left:"-80%"
+        stagger: 3,
+        scale:1.1,
+        duration:5,
+        ease: "expoScale(0.5,7,none)",
       })
+    }else if(window.innerWidth>638 ){
+      tl =gsap.timeline({
+        scrollTrigger: {
+          trigger: parentRef.current,
+          start: "top 10%",
+          end: "top -140%",
+          scrub: 1,
+          // snap:true
+        },
+      })
+      tl.from(blackBoxRef.current, {
+        scale: 4,
+        left: "0%",
+        duration:5,
+        ease:"power1.inOut"
+      })
+      .to(blackBoxRef.current, {
+        // scale: 0,
+        duration:5,
+        left: "0%",
+        ease: "expoScale(0.5,7,none)",
+      },"a")
+      .from(blackBoxTextRef.current, {
+        duration:5,
+        opacity: 0,
+        ease: "expoScale(0.5,7,none)",
+      },"a")
+      .from(boxsRefs.current, {
+        delay:3,
+        opacity: 0,
+        stagger: 8,
+        scale:1.1,
+        duration:5,
+        ease: "expoScale(0.5,7,none)",
+      },"a")
     }else{
       tl =gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
-          start: "top 0%",
-          end: "top -150%",
+          start: "top -5%",
+          end: "top -140%",
           scrub: 1,
-          snap:true
+          // snap:true
         },
       })
       tl.from(blackBoxRef.current, {
-        scale: 5,
-        duration:.5
-        // left: "210%",
-      }).from(blackBoxTextRef.current, {
-        opacity: 0,
+        scaleY : 4,
+        scaleX:2,
+        left: "0%",
+        duration:3,
+        ease:"power1.inOut"
       })
+      .to(blackBoxRef.current, {
+        // scale: 0,
+        duration:3,
+        left: "0%",
+        ease: "expoScale(0.5,7,none)",
+      },"a")
+      .from(blackBoxTextRef.current, {
+        duration:3,
+        opacity: 0,
+        ease: "expoScale(0.5,7,none)",
+      },"a")
       .from(boxsRefs.current, {
+        delay:3,
         opacity: 0,
-        stagger: 4,
-        delay:4,
-        scale:0,
-        left:"-80%"
+        stagger: 5,
+        scale:1.1,
+        duration:10,
+        ease: "expoScale(0.5,7,none)",
       })
-    }
-
-    
+    }    
   }, []);
 
   // console.log(blackBoxTextRef);
 
   return (
-    <div className="min-h-[200vh] relative  top-[-1px]">
+    <div className="min-h-[250vh] relative top-[-1px]">
       <section ref={parentRef} className="insights sticky top-0 overflow-hidden">
         <div className="container-xxl">
           <MainHeading
-          animeStart="-10%"
+          animeStart="10%"
             heading={"INSIGHTS"}
             pera={
               "We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
@@ -84,7 +141,7 @@ function Insights() {
             {/* Box 1 */}
             <div
               ref={blackBoxRef}
-              className="insights-box relative z-10 bg-black p-5 rounded-3xl"
+              className="insights-box lg:left-[200vw] md:left-[47vw] relative z-10 bg-black p-5 rounded-3xl"
             >
               <div ref={blackBoxTextRef} className="">
                 <h1 className="font-bold font-inter text-white">29%</h1>
@@ -101,7 +158,7 @@ function Insights() {
             {/* Box 2 */}
             <div 
              ref={(el) => (boxsRefs.current[0] = el)}
-            className="insights-box relative bg-[#93E9FF] p-5 rounded-3xl flex flex-col md:flex-col lg:flex-row pr-0 md:col-span-1 lg:col-span-3">
+            className="insights-box relative bg-[#93E9FF] p-5 rounded-3xl flex flex-col md:flex-col lg:flex-row pr-0  md:col-span-1 lg:col-span-3 ">
               <div className="flex flex-col justify-between pr-2">
                 <h1 className="font-bold font-inter">512+</h1>
                 <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
@@ -117,15 +174,15 @@ function Insights() {
             </div>
 
             {/* Box 3 */}
-            <div
-             ref={(el) => (boxsRefs.current[1] = el)}
-             className="insights-box relative bg-[#63D863] p-5 rounded-3xl flex flex-col justify-between">
-              <h1 className="font-bold font-inter">196K</h1>
-              <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
-              <p className="font-inter text-sm mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-            </div>
+              <div
+              ref={(el) => (boxsRefs.current[1] = el)}
+              className="insights-box relative bg-[#63D863] p-5 rounded-3xl flex flex-col justify-between">
+                <h1 className="font-bold font-inter">196K</h1>
+                <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
+                <p className="font-inter text-sm mt-3">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
 
             {/* Box 4 */}
             <div

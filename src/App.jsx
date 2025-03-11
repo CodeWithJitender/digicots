@@ -19,35 +19,33 @@ function App() {
   const lenis = useRef(null);
 
   useEffect(() => {
-    // Initialize Lenis with smoother settings
     lenis.current = new Lenis({
-      duration: 1.2, // Smooth scroll duration
-      easing: (t) => 1 - Math.pow(1 - t, 3), // Premium cubic easing
+      duration: 8, // Increase duration for slower effect
+      easing: (t) => 1 - Math.pow(1 - t, 5), // Even smoother easing
       smooth: true,
-      smoothTouch: false, // Disable smooth touch scroll for better control
+      smoothTouch: true, // Enable smooth scrolling on touch
       direction: "vertical",
       gestureDirection: "vertical",
-      touchMultiplier: 2, // More control on touch scroll
-      infinite: false, // Set to true if you want infinite scrolling
+      wheelMultiplier: 0.5, // Reduce speed of scroll when using mouse wheel
+      touchMultiplier: 0.3, // Reduce touch scroll speed
+      infinite: false,
     });
-
-    // Optimized animation frame loop
+  
     function raf(time) {
       lenis.current.raf(time);
       requestAnimationFrame(raf);
     }
-
     requestAnimationFrame(raf);
-
+  
     // Sync GSAP with Lenis (if using GSAP)
     gsap.ticker.add((time) => {
       lenis.current.raf(time * 1000);
     });
-
-    // Cleanup
+  
     return () => lenis.current.destroy();
   }, []);
-
+  
+  
   // Debugging Scroll Position (Optional)
   // lenis.on("scroll", ({ scroll }) => console.log(scroll));
 
@@ -56,7 +54,7 @@ function App() {
     <LenisContext.Provider value={lenis.current}>
 
       <Router>
-      <Header/>
+      {/* <Header/> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

@@ -3,12 +3,12 @@ import { gsap } from "gsap";
 import MainHeading from "../../components/MainHeading";
 
 function Testimonials() {
-  const [testimonials, setTestimonials] = useState([
+  const data = [
     {
       id: 1,
       name: "John Doe",
       position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       img: "testimonial-1.jpg",
       isCenter: false,
     },
@@ -16,7 +16,7 @@ function Testimonials() {
       id: 2,
       name: "Jane Smith",
       position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       img: "testimonial-2.jpg",
       isCenter: false,
     },
@@ -24,7 +24,7 @@ function Testimonials() {
       id: 3,
       name: "Ashwary Sinha",
       position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       img: "testimonial-3.jpg",
       isCenter: false,
     },
@@ -32,7 +32,7 @@ function Testimonials() {
       id: 4,
       name: "Ashwary Sinha",
       position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       img: "testimonial-4.jpg",
       isCenter: false,
     },
@@ -40,10 +40,42 @@ function Testimonials() {
       id: 5,
       name: "Ashwary Sinha",
       position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       img: "testimonial-5.jpg",
       isCenter: false,
     },
+  ]
+  const [testimonials, setTestimonials] = useState([
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
+    ...data,
   ]);
 
   const scrollRef = useRef(null);
@@ -80,6 +112,10 @@ function Testimonials() {
   }, []);
 
   useEffect(() => {
+    if (scrollRef.current) {
+      const scrollAmount = window.innerWidth > 768 ? 250 + window.innerWidth *10+ 210 : 200 + window.innerWidth *10+ 210;
+      scrollRef.current.scrollLeft += scrollAmount;
+    }
     const handleScroll = () => {
       updateCenterElement();
       const currentScrollLeft = scrollRef.current.scrollLeft;
@@ -88,8 +124,9 @@ function Testimonials() {
 
       gsap.to(".testimonial-item img", {
         duration: 1,
+        // transformOrigin:"center center",
         x: (_, el) =>
-          window.innerWidth > 768 ? direction * 20 : direction * 10,
+          window.innerWidth > 768 ? direction * 10 : direction * 10,
         ease: "power2.out",
       });
     };
@@ -102,31 +139,58 @@ function Testimonials() {
   useEffect(() => {
     gsap.to(".testimonial-item", {
       duration: 1,
+      transformOrigin: "center center",
+      // delay:0.5,
       width: (i) =>
-        testimonials[i].isCenter
-          ? window.innerWidth > 768
-            ? "350px"
-            : "250px"
-          : "180px",
+        testimonials[i].isCenter ? (window.innerWidth > 768 ? "350px" : "250px") : "180px",
       filter: (i) => (testimonials[i].isCenter ? "none" : "grayscale(100%)"),
+      onStart: function () {
+        gsap.to(`.testimonial-text`, {
+          opacity: 0,
+          duration: 0.5,
+          top: "100%",
+          ease: "power2.out",
+          delay: 0.05,
+        })
+
+        const item = testimonials.find(t => t.isCenter); // Find the object with isCenter = true
+        const index = testimonials.findIndex(t => t === item); // Get the index of that object
+        console.log(index);
+        if (testimonials[index].isCenter) {
+          console.log("center")
+          gsap.to(`.testimonial-text-${index}`, {
+            opacity: 1,
+            duration: 0.5,
+            top: "70%",
+            ease: "power2.out",
+            delay: 0.07,
+          })
+        }
+      },
       ease: "power2.out",
     });
 
-    gsap.to(".testimonial-text", {
-      duration: 0.5,
-      opacity: (i) => (testimonials[i].isCenter ? 0 : 0),
-    });
+   
+    
   }, [testimonials]);
+  
+  
 
   const handleScroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = window.innerWidth > 768 ? 250 : 200;
-      scrollRef.current.scrollLeft +=
-        direction === "left" ? -scrollAmount : scrollAmount;
+      const scrollAmount = window.innerWidth > 768 ? 220 : 200;
+      gsap.to(scrollRef.current, {
+        duration: .5, // Adjust duration for smoothness
+        scrollLeft:
+          direction === "left"
+            ? scrollRef.current.scrollLeft - scrollAmount
+            : scrollRef.current.scrollLeft + scrollAmount,
+        ease: "power4.inOut", // Smooth deceleration
+      });
     }
   };
 
-  return (
+  return testimonials.length > 0 && (
     <section className="testimonial relative py-10">
       <div className="container mx-auto">
         <MainHeading
@@ -151,36 +215,9 @@ function Testimonials() {
               <div
                 key={i}
                 className="testimonial-item relative h-[250px] md:h-[400px] rounded-lg flex-shrink-0 overflow-hidden"
-                onMouseEnter={() => {
-                  if (t.isCenter) {
-                    gsap.to(`.testimonial-text-${t.id}`, {
-                      opacity: 1,
-                      duration: 0.5,
-                      top:0
-                    });
-                  }
-                }}
-                onMouseMove={() => {
-                  if (t.isCenter) {
-                    gsap.to(`.testimonial-text-${t.id}`, {
-                      opacity: 1,
-                      duration: 0.5,
-                      top:0
-                    });
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (t.isCenter) {
-                    gsap.to(`.testimonial-text-${t.id}`, {
-                      opacity: 0,
-                      duration: 0.5,
-                      top:"100%"
-                    });
-                  }
-                }}
               >
                 <div
-                  className={`testimonial-text cursor-pointer rounded-lg testimonial-text-${t.id} absolute h-full w-full bg-[#202020] top-[100%] left-0 z-10 opacity-0 rounded-2xl p-5 flex flex-col justify-between`}
+                  className={`testimonial-text cursor-pointer rounded-lg testimonial-text-${i} absolute h-[30%] w-full bg-[#20202053] backdrop-blur top-[100%] left-0 z-10 opacity-0 p-5 flex flex-col justify-between`}
                 >
                   <p className="font-inter  text-white text-[14px]">{t.text}</p>
                   <div>
@@ -195,7 +232,7 @@ function Testimonials() {
                 <div className="h-full w-full max-w-[250px] md:max-w-[400px] rounded-lg overflow-hidden">
                   <img
                     src={t.img}
-                    className="h-full w-full scale-[1.3] object-cover"
+                    className="h-full w-full scale-[1.2] object-cover"
                     alt={t.name}
                   />
                 </div>

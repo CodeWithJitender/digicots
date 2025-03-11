@@ -17,7 +17,7 @@ const HeroReelAnimation = ({parentRef}) => {
                 start:"top 0%",
                 end:"top -120%",
                 scrub:1,
-                snap:[0,.76,1]
+                // snap:[0,.76,1]
             }
         })
         tl.from(reelRef.current, {

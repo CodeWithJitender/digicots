@@ -54,18 +54,32 @@ function HowItWorks() {
         scrub: 1,
       },
     });
-    tl.from(cardRefs.current, {
-      y: 100,
-      opacity: 0,
-      stagger: 0.2,
-    });
+    if(window.innerWidth>600){
+      tl.from(cardRefs.current, {
+        y: 100,
+        duration:3,
+        opacity: 0,
+        stagger: 3,
+        ease: "expoScale(0.5,7,none)",
+      });
+    }else{
+      tl.from(cardRefs.current, {
+        top: "50%",
+        duration:1.5,
+        opacity: 0,
+        stagger: 1.3,
+        ease: "expoScale(0.5,7,none)",
+      });
+    }
   }, []);
+
+  console.log(window.innerWidth);
 
   return (
     <div className="min-h-[140vh] w-full relative">
       <section
         ref={parentRef}
-        className="how-it-works sticky top-0"
+        className="how-it-works h-screen sticky top-0"
         style={{ backgroundImage: "url('how-it-works.png')" }}
       >
         <div className="container-xxl">
@@ -76,12 +90,12 @@ function HowItWorks() {
             tColor={"text-white"}
           />
 
-          <div className="wolf-card-container grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5 mt-20">
+          <div className="wolf-card-container h-[70vh] md:h-fit relative grid md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5 mt-20">
             {data.map((dataChild, index) => (
               <div
                 ref={(el) => (cardRefs.current[index] = el)}
-                className="wolf-card p-4 rounded-2xl shadow-lg border-8 border-[#FFFFFF4D]"
-                style={{ background: dataChild.bg_Color }}
+                className="wolf-card absolute md:static p-4 rounded-2xl shadow-lg border-8 border-[#FFFFFF4D]"
+                style={{ background: dataChild.bg_Color, top: window.innerWidth > 600 ? 0:index*5 + "%" }}
                 key={index}
               >
                 <div className="wolf-img mb-4">
