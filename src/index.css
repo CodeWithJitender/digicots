@@ -27,11 +27,11 @@
 }
 
 .container-xxl {
-    @apply max-w-7xl m-auto px-5 py-24;
+    @apply max-w-7xl m-auto px-5 py-10 md:py-24;
 }
 
 .container-xl {
-    @apply max-w-7xl m-auto px-5 py-10;
+    @apply max-w-7xl m-auto px-5 md:py-10;
 }
 
 /* How it works section */
@@ -161,6 +161,19 @@ header *::-webkit-scrollbar-thumb:hover {
   /* Darker on hover */
 }
 
+.service-text::-webkit-scrollbar-track {
+    background: #FFD5B5;
+    border-radius: 10px;
+}
+
+.service-text::-webkit-scrollbar {
+    width: 16px;
+}
+.service-text::-webkit-scrollbar-thumb {
+    background: #b45e22;
+    border-radius: 10px;
+
+}
 
 header .dropdown {
   overflow-x: hidden;
@@ -292,5 +305,76 @@ header .dropdown {
     width: 220vh;
     transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
       translateZ(6000px);
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 50vh;
+  margin-top: 5vh;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease-in-out !important;
+  width: 10vw !important;
+  transform-origin: center !important;
+  position: relative;
+  cursor: grab;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-in-out !important;
+  object-fit: cover;
+  filter: grayscale(100%);
+  scale: 1.1;
+  transform-origin: center !important;
+}
+
+/* Active Slide: Increase Width with Smooth Expansion */
+.swiper-slide-active {
+  width: 25vw !important;
+  transition: all 0.5s ease-in-out !important;
+  transform-origin: center !important;
+}
+.swiper-slide-active img {
+  filter: grayscale(0);
+}
+
+/* Adjacent Slides: Slightly Increase Width for Better Effect */
+.swiper-slide-prev,
+.swiper-slide-next {
+  /* width: 15vw !important; */
+  /* transition: all 0.5s ease-in-out !important; */
+}
+
+@media (max-width: 600px) {
+  .swiper {
+    width: 100%;
+    height: 30vh;
+    margin-top: 15vh;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out !important;
+    width: 30vw !important;
+    transform-origin: center !important;
+    position: relative;
+    cursor: grab;
+  }
+
+  /* Active Slide: Increase Width with Smooth Expansion */
+  .swiper-slide-active {
+    width: 50vw !important;
+    transition: all 0.5s ease-in-out !important;
+    transform-origin: center !important;
   }
 }
