@@ -34,7 +34,7 @@ export default function CaseStudy({ slide, onClose }) {
                 {/* <Link>Next Project</Link> */}
                 <Link to={''} className="flex gap-1 items-center font-medium text-sm text-[#6F6F6F] font-inter">
                 <span>Next Project</span>
-                <i class="fas fa-arrow-right"></i>
+                <i className="fas fa-arrow-right"></i>
                 </Link>
             </div>
             </div>

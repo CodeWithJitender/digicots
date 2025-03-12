@@ -5,7 +5,6 @@ import ContactForm from '../sections/lets-talk/ContactForm'
 function LetsTalk() {
   return (
     <div>
-      <Header/>
       <ContactForm/>
     </div>
   )

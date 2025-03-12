@@ -7,7 +7,7 @@ function MainHeading({ heading, pera, cl, tColor,animeStart="50", animeEnd="60" 
     <div className="">
       <div className={`main-heading max-w-3xl m-auto ${cl}`}>
           <h2
-            className={`${tColor} font-bold font-inter mb-4`}
+            className={`${tColor} font-bold overflow-hidden font-inter mb-4`}
             style={{ fontSize: "clamp(20px, 20vw, 48px)" }}
           >
         <TextAnimation1 animeStart={animeStart} animeEnd={animeEnd}>
@@ -15,10 +15,10 @@ function MainHeading({ heading, pera, cl, tColor,animeStart="50", animeEnd="60" 
         </TextAnimation1>
           </h2>
           {pera && (
-            <p className={`text-[14px] ${tColor} font-normal font-inter`}>
-            <TextAnimation2 animeStart={animeStart}>
+            <p className={`text-[14px] ${tColor} overflow-hidden font-normal font-inter`}>
+            <TextAnimation1 animeStart={animeStart}>
                 {pera ? pera : " "}
-            </TextAnimation2>
+            </TextAnimation1>
               </p>
           )}
       </div>

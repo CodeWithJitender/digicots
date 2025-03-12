@@ -9,7 +9,6 @@ import MeetThePack from '../sections/about/MeetThePack'
 function About() {
   return (
     <div>
-      <Header/>
       <Hero/>
       <MeetThePack/>
       <HowWeWork/>

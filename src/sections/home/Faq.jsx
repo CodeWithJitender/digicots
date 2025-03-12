@@ -38,7 +38,6 @@ const Faq = () => {
   };
 
   const blockRefs = useRef([]);
-  const pointRef = useRef(null);
   gsap.registerPlugin(ScrollTrigger)
   useGSAP(()=>{
     const tl = gsap.timeline({
@@ -50,7 +49,6 @@ const Faq = () => {
       },
     });
     tl.from(blockRefs.current, { opacity: 0, y: 100, duration: 1,stagger:.3 },"a")
-    tl.from(pointRef.current, { opacity: 0, y: -100, scaleY:0, transformOrigin:"top", delay:.5, duration: 1 },"a")
   },[])
 
   return (
@@ -60,49 +58,48 @@ const Faq = () => {
           {/* Left Side - Heading */}
           <div className="flex flex-col h-full justify-between">
             <div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter overflow-hidden">
                 <TextAnimation1
-                  animeStart="60%"
-                  duration=".5"
-                  className="h-[65px] overflow-hidden"
+                  animeStart="100%"
+                  duration="1.5"
+                  className="overflow-hidden"
                 >
                   We are here to
                 </TextAnimation1>
               </h2>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter overflow-hidden">
                 <TextAnimation1
-                  animeStart="60%"
-                  duration=".5"
-                  className="h-[65px] overflow-hidden"
+                  animeStart="100%"
+                  duration="1.5"
+                  className="overflow-hidden"
                 >
                   answer all of
                 </TextAnimation1>
               </h2>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter overflow-hidden">
                 <TextAnimation1
-                  animeStart="70%"
-                  duration=".5"
-                  className="h-[65px] overflow-hidden"
+                  animeStart="100%"
+                  duration="1.5"
+                  className="overflow-hidden"
                 >
                   your questions 
+                <span className="text-[#DF782B] inline-block relative">.</span>
                 </TextAnimation1>
-                <span ref={pointRef} className="text-[#DF782B] inline-block relative">.</span>
-                
               </h2>
             </div>
             <div className="mt-10 text-sm">
               <p className="font-semibold font-inter">
-                <TextAnimation1 animeStart="90%" duration=".5">
+                {/* <TextAnimation1 animeStart="90%" duration=".5"> */}
                   Still Seeking help?
-                </TextAnimation1>
+                {/* </TextAnimation1> */}
               </p>
               <Link
                 to="/contact"
                 className="text-[#DF782B] font-semibold font-inter"
               >
-                <TextAnimation1 animeStart="90%" duration=".5">
+                {/* <TextAnimation1 animeStart="90%" duration=".5"> */}
                   Contact Our Representative.
-                </TextAnimation1>
+                {/* </TextAnimation1> */}
               </Link>
             </div>
           </div>
@@ -128,7 +125,7 @@ const Faq = () => {
                 </button>
                 {openIndex === index && faq.answer && (
                   <p className="text-gray-400 text-sm pb-4">
-                    <TextAnimation2 animeStart="90%" duration={.2}>
+                    <TextAnimation2 animeStart="90%" duration={.6}>
                       {faq.answer}
                     </TextAnimation2>
                   </p>

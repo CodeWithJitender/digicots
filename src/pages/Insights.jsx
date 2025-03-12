@@ -7,7 +7,6 @@ import TopicList from '../sections/insights/TopicList'
 function Insights() {
   return (
     <div className='bg-[#242424]'>
-      <Header/>
       <HeroSlider/>
       <BlogList/>
       <TopicList/>

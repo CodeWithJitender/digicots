@@ -12,27 +12,46 @@ const CylindricalSlider = () => {
   const checkoutRef = useRef(null);
   const sliderRef = useRef(null);
   const isInsideItem = useRef(false); // Track if mouse is inside an item
-
   useEffect(() => {
     if (!checkoutRef.current) return;
 
     const checkout = checkoutRef.current;
-    const moveX = gsap.quickTo(checkout, "x", { duration: 0.3 });
-    const moveY = gsap.quickTo(checkout, "top", { duration: 0.3 });
-    const fade = gsap.quickTo(checkout, "opacity", { duration: 0.3 });
+    const moveX = gsap.quickTo(checkout, "x", { duration: 0.2 ,onUpdate:()=>{
+      if (!isInsideItem.current) {
+        scaleTween.play();
+    } else {
+        scaleTween.reverse();
+    }
+    } });
+    const moveY = gsap.quickTo(checkout, "top", { duration: 0.2,onUpdate:()=>{
+      if (!isInsideItem.current) {
+        scaleTween.play();
+    } else {
+        scaleTween.reverse();
+    }
+    } });
+    const fade = gsap.quickTo(checkout, "opacity", { duration: 0.1, delay: 10 });
+
+    let scaleTween = gsap.to(checkout, { scale: .3, duration: 0.1, paused: true });
 
     const handleMouseMove = (event) => {
-      if (!sliderRef.current) return;
-      const sliderRect = sliderRef.current.getBoundingClientRect();
+        if (!sliderRef.current) return;
+        const sliderRect = sliderRef.current.getBoundingClientRect();
 
-      moveX(event.clientX);
-      moveY(event.clientY - sliderRect.top);
-      fade(isInsideItem.current ? 1 : 0);
+        if(isInsideItem.current){
+          moveX(event.clientX);
+          moveY(event.clientY - sliderRect.top);
+        }
+
+        fade(isInsideItem.current ? 1 : 0);
+        
+        
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+}, []);
+
 
   return (
     <div ref={sliderRef} className="banner w-full overflow-hidden relative">
