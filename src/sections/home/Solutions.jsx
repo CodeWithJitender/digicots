@@ -49,7 +49,7 @@ function Solutions() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: parentRef.current,
-        start: "top 10%",
+        start: "top 50%",
         end: "top -300%",
         scrub: 1,
       },

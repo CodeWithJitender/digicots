@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import MainHeading from "../../components/MainHeading";
+import TestimonialsSlider from "../../components/TestmonialsSlider";
 
 function Testimonials() {
   const data = [
@@ -49,157 +50,130 @@ function Testimonials() {
     ...data,
     ...data,
     ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
-    ...data,
   ]);
 
-  const scrollRef = useRef(null);
-  const lastScrollLeft = useRef(0);
+  // const scrollRef = useRef(null);
+  // const lastScrollLeft = useRef(0);
 
-  const updateCenterElement = () => {
-    if (!scrollRef.current) return;
+  // const updateCenterElement = () => {
+  //   if (!scrollRef.current) return;
 
-    const scrollLeft = scrollRef.current.scrollLeft;
-    const containerWidth = scrollRef.current.clientWidth;
-    const centerPosition = scrollLeft + containerWidth / 2;
+  //   const scrollLeft = scrollRef.current.scrollLeft;
+  //   const containerWidth = scrollRef.current.clientWidth;
+  //   const centerPosition = scrollLeft + containerWidth / 2;
 
-    let closestIndex = 0;
-    let minDistance = Infinity;
+  //   let closestIndex = 0;
+  //   let minDistance = Infinity;
 
-    testimonials.forEach((_, index) => {
-      const element = scrollRef.current.children[index];
-      const elementCenter = element.offsetLeft + element.clientWidth / 2;
-      const distance = Math.abs(centerPosition - elementCenter);
+  //   testimonials.forEach((_, index) => {
+  //     const element = scrollRef.current.children[index];
+  //     const elementCenter = element.offsetLeft + element.clientWidth / 2;
+  //     const distance = Math.abs(centerPosition - elementCenter);
 
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = index;
-      }
-    });
+  //     if (distance < minDistance) {
+  //       minDistance = distance;
+  //       closestIndex = index;
+  //     }
+  //   });
 
-    setTestimonials((prev) =>
-      prev.map((t, i) => ({ ...t, isCenter: i === closestIndex }))
-    );
-  };
+  //   setTestimonials((prev) =>
+  //     prev.map((t, i) => ({ ...t, isCenter: i === closestIndex }))
+  //   );
+  // };
 
-  useEffect(() => {
-    updateCenterElement();
-  }, []);
+  // useEffect(() => {
+  //   updateCenterElement();
+  // }, []);
 
-  useEffect(() => {
-    if (scrollRef.current) {
-      const scrollAmount = window.innerWidth > 768 ? 250 + window.innerWidth *10+ 210 : 200 + window.innerWidth *10+ 210;
-      scrollRef.current.scrollLeft += scrollAmount;
-    }
-    const handleScroll = () => {
-      updateCenterElement();
-      const currentScrollLeft = scrollRef.current.scrollLeft;
-      const direction = currentScrollLeft > lastScrollLeft.current ? 1 : -1;
-      lastScrollLeft.current = currentScrollLeft;
+  // useEffect(() => {
+  //   if (scrollRef.current) {
+  //     const scrollAmount = window.innerWidth > 768 ? 250 + window.innerWidth *10+ 210 : 200 + window.innerWidth *10+ 210;
+  //     scrollRef.current.scrollLeft += scrollAmount;
+  //   }
+  //   const handleScroll = () => {
+  //     updateCenterElement();
+  //     const currentScrollLeft = scrollRef.current.scrollLeft;
+  //     const direction = currentScrollLeft > lastScrollLeft.current ? 1 : -1;
+  //     lastScrollLeft.current = currentScrollLeft;
 
-      gsap.to(".testimonial-item img", {
-        duration: 1,
-        // transformOrigin:"center center",
-        x: (_, el) =>
-          window.innerWidth > 768 ? direction * 10 : direction * 10,
-        ease: "power2.out",
-      });
-    };
+  //     gsap.to(".testimonial-item img", {
+  //       duration: 1,
+  //       // transformOrigin:"center center",
+  //       x: (_, el) =>
+  //         window.innerWidth > 768 ? direction * 10 : direction * 10,
+  //       ease: "power2.out",
+  //     });
+  //   };
 
-    const ref = scrollRef.current;
-    ref?.addEventListener("scroll", handleScroll);
-    return () => ref?.removeEventListener("scroll", handleScroll);
-  }, []);
+  //   const ref = scrollRef.current;
+  //   ref?.addEventListener("scroll", handleScroll);
+  //   return () => ref?.removeEventListener("scroll", handleScroll);
+  // }, []);
 
-  useEffect(() => {
-    gsap.to(".testimonial-item", {
-      duration: 1,
-      transformOrigin: "center center",
-      // delay:0.5,
-      width: (i) =>
-        testimonials[i].isCenter ? (window.innerWidth > 768 ? "350px" : "250px") : "180px",
-      filter: (i) => (testimonials[i].isCenter ? "none" : "grayscale(100%)"),
-      onStart: function () {
-        gsap.to(`.testimonial-text`, {
-          opacity: 0,
-          duration: 0.5,
-          top: "100%",
-          ease: "power2.out",
-          delay: 0.05,
-        })
+  // useEffect(() => {
+  //   gsap.to(".testimonial-item", {
+  //     duration: 1,
+  //     transformOrigin: "center center",
+  //     // delay:0.5,
+  //     width: (i) =>
+  //       testimonials[i].isCenter ? (window.innerWidth > 768 ? "350px" : "250px") : "180px",
+  //     filter: (i) => (testimonials[i].isCenter ? "none" : "grayscale(100%)"),
+  //     onStart: function () {
+  //       gsap.to(`.testimonial-text`, {
+  //         opacity: 0,
+  //         duration: 0.5,
+  //         top: "100%",
+  //         ease: "power2.out",
+  //         delay: 0.05,
+  //       })
 
-        const item = testimonials.find(t => t.isCenter); // Find the object with isCenter = true
-        const index = testimonials.findIndex(t => t === item); // Get the index of that object
-        console.log(index);
-        if (testimonials[index].isCenter) {
-          console.log("center")
-          gsap.to(`.testimonial-text-${index}`, {
-            opacity: 1,
-            duration: 0.5,
-            top: "70%",
-            ease: "power2.out",
-            delay: 0.07,
-          })
-        }
-      },
-      ease: "power2.out",
-    });
+  //       const item = testimonials.find(t => t.isCenter); // Find the object with isCenter = true
+  //       const index = testimonials.findIndex(t => t === item); // Get the index of that object
+  //       console.log(index);
+  //       if (testimonials[index].isCenter) {
+  //         console.log("center")
+  //         gsap.to(`.testimonial-text-${index}`, {
+  //           opacity: 1,
+  //           duration: 0.5,
+  //           top: "70%",
+  //           ease: "power2.out",
+  //           delay: 0.07,
+  //         })
+  //       }
+  //     },
+  //     ease: "power2.out",
+  //   });
 
    
     
-  }, [testimonials]);
+  // }, [testimonials]);
   
   
 
-  const handleScroll = (direction) => {
-    if (scrollRef.current) {
-      const scrollAmount = window.innerWidth > 768 ? 220 : 200;
-      gsap.to(scrollRef.current, {
-        duration: .5, // Adjust duration for smoothness
-        scrollLeft:
-          direction === "left"
-            ? scrollRef.current.scrollLeft - scrollAmount
-            : scrollRef.current.scrollLeft + scrollAmount,
-        ease: "power4.inOut", // Smooth deceleration
-      });
-    }
-  };
+  // const handleScroll = (direction) => {
+  //   if (scrollRef.current) {
+  //     const scrollAmount = window.innerWidth > 768 ? 220 : 200;
+  //     gsap.to(scrollRef.current, {
+  //       duration: .5, // Adjust duration for smoothness
+  //       scrollLeft:
+  //         direction === "left"
+  //           ? scrollRef.current.scrollLeft - scrollAmount
+  //           : scrollRef.current.scrollLeft + scrollAmount,
+  //       ease: "power4.inOut", // Smooth deceleration
+  //     });
+  //   }
+  // };
 
   return testimonials.length > 0 && (
-    <section className="testimonial relative py-10">
-      <div className="container mx-auto">
+    <section className="testimonial min-h-screen relative py-10 md:px-40">
+      <div className="container">
         <MainHeading
           heading="TESTIMONIALS"
           pera="Lorem ipsum dolor sit amet, consectetur adipiscing"
           cl="text-center"
           tColor="black"
         />
-        <div className="relative max-w-7xl overflow-hidden mx-auto">
+        {/* <div className="relative max-w-7xl overflow-hidden mx-auto">
           <button
             className="absolute cursor-pointer left-2 top-1/2 -translate-y-1/2 text-white p-2 md:p-3 rounded-full z-10"
             onClick={() => handleScroll("left")}
@@ -246,7 +220,11 @@ function Testimonials() {
           >
             ▶
           </button>
-        </div>
+        </div> */}
+
+        <TestimonialsSlider data={testimonials} />
+
+
       </div>
     </section>
   );

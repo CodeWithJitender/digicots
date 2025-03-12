@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     lenis.current = new Lenis({
-      duration: 8, // Increase duration for slower effect
+      duration: 4, // Increase duration for slower effect
       easing: (t) => 1 - Math.pow(1 - t, 5), // Even smoother easing
       smooth: true,
       smoothTouch: true, // Enable smooth scrolling on touch

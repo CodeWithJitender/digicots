@@ -113,42 +113,58 @@ function Header() {
   }, [menuRef.current, toggle, upperLine.current, lowerLine.current]);
 
 
-  let lastScrollY = window.scrollY;
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
 
-  let ticking = false;
-
-  useGSAP(() => {
     const handleScroll = () => {
       if (!ticking) {
+        ticking = true;
         requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          if (currentScrollY > lastScrollY) {
-            // Scroll Down → Hide Navbar
-            gsap.to([logoRef.current, letsTalkRef.current], { 
-              y: "-200%", 
-              duration: 0.6, 
-              ease: "power2.out" 
+          const deltaY = currentScrollY - lastScrollY;
+
+          if (deltaY > 0) {
+            // Scroll Down
+            gsap.to([logoRef.current, letsTalkRef.current], {
+              y: "-200%",
+              duration: 0.4,
+              ease: "power2.out",
             });
-          } else {
-            // Scroll Up → Show Navbar
-            gsap.to([logoRef.current, letsTalkRef.current], { 
-              y: "0%", 
-              duration: 0.4, 
-              ease: "power2.out" 
+          } else if (deltaY < 0) {
+            // Scroll Up
+            gsap.to([logoRef.current, letsTalkRef.current], {
+              y: "0%",
+              duration: 0.4,
+              ease: "power2.out",
             });
           }
+
           lastScrollY = currentScrollY;
           ticking = false;
         });
-        ticking = true;
       }
     };
 
-    if(window.innerWidth > 600){
-      window.addEventListener("scroll", handleScroll);
-    }
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const mediaQuery = window.matchMedia('(min-width: 601px)');
+
+    const handleMediaQueryChange = (event) => {
+      if (event.matches) {
+        window.addEventListener('scroll', handleScroll);
+      } else {
+        window.removeEventListener('scroll', handleScroll);
+      }
+    };
+
+    handleMediaQueryChange(mediaQuery); // Initial check
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+    };
+  }, [logoRef, letsTalkRef]);
+
 
 
 
