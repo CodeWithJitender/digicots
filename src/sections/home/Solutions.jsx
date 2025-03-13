@@ -62,7 +62,7 @@ function Solutions() {
       left: "110%",
       opacity: 0,
       duration: 3,
-      ease: "power4.inOut",
+      ease: "linear",
     })
       .to(
         contentRef.current,
@@ -78,12 +78,13 @@ function Solutions() {
         {
           duration: 0.8,
           scale: 0,
-          delay: 1,
+          delay: .9,
           ease: "back.out(4)",
           stagger: 1.7,
         },
         "a"
-      );
+      )
+      
    }else{
     tl.from(blackBoxRef.current, {
       left: "110%",
@@ -105,7 +106,7 @@ function Solutions() {
         {
           duration: 0.8,
           scale: 0,
-          delay: .8,
+          delay:1,
           ease: "back.out(4)",
           stagger: 1.7,
         },
@@ -138,12 +139,12 @@ function Solutions() {
                 <div
                   ref={(el) => (contentRef.current[index] = el)}
                   key={index}
-                  className="solution-content min-w-[70vw] md:translate-x-[150%] md:translate-y-0 translate-y-[150%] relative z-[10] h-full flex items-center justify-between flex-col md:flex-row "
+                  className="solution-content min-w-[70vw] md:translate-x-[150%] md:translate-y-0 translate-y-[150%] relative z-[10] h-full flex items-center md:justify-between xl:justify-center xl:gap-[5vw] flex-col md:flex-row "
                 >
-                  <div className="sol-content-left relative">
-                    <img key={d.title} src={d.img} alt="" className="w-full" />
+                  <div className="sol-content-left lg:h-[35vh] xl:h-[20vh] relative">
+                    <img key={d.title} src={d.img} alt="" className=" h-full object-contain" />
                   </div>
-                  <div className="sol-content-right md:space-y-3">
+                  <div className="sol-content-right md:w-[500px] h-[80%] md:space-y-3">
                     <div className="">
                       <h3
                         key={index}

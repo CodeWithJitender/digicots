@@ -192,7 +192,7 @@ header .dropdown {
   height: 100vh;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  /* overflow-x: hidden; */
 }
 
 .banner .slider {

@@ -54,7 +54,7 @@ const CylindricalSlider = () => {
 
 
   return (
-    <div ref={sliderRef} className="banner w-full overflow-hidden relative">
+    <div ref={sliderRef} className="banner overflow-visible w-full relative">
       <div className="relative z-10">
         <MainHeading
           heading="OUR WORK"

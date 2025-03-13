@@ -22,6 +22,7 @@ export default function TestimonialsSlider({ data }) {
         gsap.to(activeSlide, {
           top: window.innerWidth > 600 ? "70%" : "50%",
           opacity: 1,
+          delay:.6,
           duration: 0.8,
           ease: "power2.out",
           onComplete: () => {
@@ -86,7 +87,7 @@ export default function TestimonialsSlider({ data }) {
       className="mySwiper"
     >
       {data.map((d, i) => (
-        <SwiperSlide key={i} className="rounded-2xl overflow-hidden">
+        <SwiperSlide key={i} className="rounded-2xl overflow-hidden float-right w-auto">
           {/* Parallax Image */}
           <img
             src={d.img}

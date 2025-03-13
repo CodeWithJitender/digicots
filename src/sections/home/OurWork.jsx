@@ -4,7 +4,7 @@ import CylindricalSlider from "../../components/OurWorkSlider";
 
 function OurWork() {
   return (
-    <section className="our-work bg-black">
+    <section className="our-work w-full bg-black">
         <CylindricalSlider />
     </section>
   );

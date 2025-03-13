@@ -79,7 +79,7 @@ function HowItWorks() {
     <div className="min-h-[140vh] w-full relative">
       <section
         ref={parentRef}
-        className="how-it-works h-screen sticky top-0"
+        className="how-it-works min-h-screen sticky top-0"
         style={{ backgroundImage: "url('how-it-works.png')" }}
       >
         <div className="container-xxl">

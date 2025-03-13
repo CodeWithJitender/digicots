@@ -468,68 +468,110 @@ window.addEventListener("scroll", handleScroll);
     //   }
     // };
     const handleMouseEnter = (index) => {
-      gsap.to(contentRef.current, {
-        opacity: 1,
+      
+      gsap.to(cardRefs.current[index],{
+        filter: `grayscale(50%)`
+      })
+    };
+    const handleMouseClick = (index) => {
+      // 🔄 Reset all cards first
+      cardRefs.current.forEach((card, i) => {
+        if (card) {
+          gsap.to(card, {
+            width: window.innerWidth > 600 ? "8vw" : "30vw",
+            borderRadius: "0px",
+            scaleY: 1,
+            duration: 0.5,
+            // opacity:0,
+            ease: "power4.out",
+          });
+        }
       });
-
+    
+      // 🏗️ Animate clicked card
       if (cardRefs.current[index]) {
-        if (window.innerWidth > 600) {
-          gsap.to(cardRefs.current[index], {
-            width: "20vw",
+        gsap.to(contentRef.current, {
+          opacity: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: "power4.out",
+        });
+    
+        gsap.to(cardRefs.current[index], {
+          width: window.innerWidth > 600 ? "20vw" : "50vw",
+          borderRadius: "8px",
+          scaleY: 1.2,
+          duration: 0.5,
+          ease: "back.inOut",
+        });
+    
+        gsap.to(contentRef.current, {
+          opacity: 1,
+        });
+      }
+    };
+    
+    const handleMouseClickOutside = () => {
+      // 🔄 Reset all cards to normal size
+      cardRefs.current.forEach((card) => {
+        if (card) {
+          gsap.to(card, {
+            width: window.innerWidth > 600 ? "20vw" : "50vw",
             borderRadius: "8px",
             scaleY: 1.2,
             duration: 0.5,
             ease: "back.inOut",
           });
-        } else {
-          gsap.to(cardRefs.current[index], {
-            width: "50vw",
-            borderRadius: "0px",
-            // scaleY: 1.2,
-            duration: 0.5,
-            ease: "power4.out",
-          });
         }
-      }
-    };
-
-    const handleMouseLeave = (index) => {
-      gsap.to(contentRef.current, {
-        opacity: 0,
-        scale: 1,
-        duration: 0.5,
-        ease: "power4.out",
       });
+    
+      gsap.to(contentRef.current, {
+        opacity: 1,
+      });
+    };
+    
+    
+    const handleMouseLeave = (index) => {
+      gsap.to(cardRefs.current[index],{
+        filter: `grayscale(0%)`
+      })
+      // gsap.to(contentRef.current, {
+      //   opacity: 0,
+      //   scale: 1,
+      //   duration: 0.5,
+      //   ease: "power4.out",
+      // });
 
-      if (cardRefs.current[index]) {
-        if (window.innerWidth > 600) {
-          gsap.to(cardRefs.current[index], {
-            width: "8vw",
-            borderRadius: "0px",
-            scaleY: 1,
-            duration: 0.5,
-            ease: "power4.out",
-          });
-        } else {
-          gsap.to(cardRefs.current[index], {
-            width: "30vw",
-            borderRadius: "0px",
-            // scaleY: 1,
-            duration: 0.5,
-            ease: "power4.out",
-          });
-        }
-      }
+      // if (cardRefs.current[index]) {
+      //   if (window.innerWidth > 600) {
+      //     gsap.to(cardRefs.current[index], {
+      //       width: "8vw",
+      //       borderRadius: "0px",
+      //       scaleY: 1,
+      //       duration: 0.5,
+      //       ease: "power4.out",
+      //     });
+      //   } else {
+      //     gsap.to(cardRefs.current[index], {
+      //       width: "30vw",
+      //       borderRadius: "0px",
+      //       // scaleY: 1,
+      //       duration: 0.5,
+      //       ease: "power4.out",
+      //     });
+      //   }
+      // }
     };
 
     return (
       <div
         ref={ref}
         className={`jou-card ${activeIndex === index ? "active z-2" : ""} 
-        relative flex-shrink-0 md:h-[20vw] md:w-[8vw] w-[100px] overflow-hidden bg-cover bg-center cursor-pointer`}
+        relative flex-shrink-0  md:h-[20vw] md:w-[8vw] w-[100px] overflow-hidden bg-cover bg-center cursor-pointer`}
         style={{ backgroundImage: `url(${card.bgImg})` }}
         onMouseEnter={() => handleMouseEnter(index)}
         onMouseLeave={() => handleMouseLeave(index)}
+        onClick={() => handleMouseClick(index)}
       >
         {/* Inner Content (Hidden Initially) */}
         <div
