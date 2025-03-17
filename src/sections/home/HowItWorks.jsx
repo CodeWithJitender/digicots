@@ -46,15 +46,15 @@ function HowItWorks() {
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: parentRef.current,
-        start: "top 0%",
-        end: "top -40%",
-        scrub: 1,
-      },
-    });
     if(window.innerWidth>600){
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: parentRef.current,
+          start: "top 0%",
+          end: "top -40%",
+          scrub: 1,
+        },
+      });
       tl.from(cardRefs.current, {
         y: 100,
         duration:3,
@@ -63,11 +63,19 @@ function HowItWorks() {
         ease: "expoScale(0.5,7,none)",
       });
     }else{
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: parentRef.current,
+          start: "top 0-3%",
+          end: "top -30%",
+          scrub: 1,
+        },
+      });
       tl.from(cardRefs.current, {
         top: "50%",
-        duration:1.5,
+        duration:4,
         opacity: 0,
-        stagger: 1.3,
+        stagger: 5,
         ease: "expoScale(0.5,7,none)",
       });
     }
@@ -76,10 +84,10 @@ function HowItWorks() {
   console.log(window.innerWidth);
 
   return (
-    <div className="min-h-[140vh] w-full relative">
+    <div className="md:min-h-[140vh] w-full relative">
       <section
         ref={parentRef}
-        className="how-it-works min-h-screen sticky top-0"
+        className="how-it-works min-h-screen sticky top-0 overflow-hidden"
         style={{ backgroundImage: "url('how-it-works.png')" }}
       >
         <div className="container-xxl">
@@ -95,7 +103,7 @@ function HowItWorks() {
               <div
                 ref={(el) => (cardRefs.current[index] = el)}
                 className="wolf-card absolute md:static p-4 rounded-2xl shadow-lg border-8 border-[#FFFFFF4D]"
-                style={{ background: dataChild.bg_Color, top: window.innerWidth > 600 ? 0:index*5 + "%" }}
+                style={{ background: dataChild.bg_Color, top: window.innerWidth > 600 ? 0 : index*6 + "%" }}
                 key={index}
               >
                 <div className="wolf-img mb-4">

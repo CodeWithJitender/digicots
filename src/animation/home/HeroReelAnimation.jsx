@@ -22,9 +22,9 @@ const HeroReelAnimation = ({parentRef}) => {
         })
         tl.from(reelRef.current, {
             duration: 2,
-            scale:.1,
-            bottom:"-40%",
-            right:"-40%",
+            scale: window.innerWidth > 450 ?  .1 : .2,
+            bottom: window.innerWidth > 405 ?  "-40%" : "-35%",
+            right: window.innerWidth > 405 ? "-40%" :"-35%",
             borderRadius:"32px",
         })
         .to(reelRef.current, {

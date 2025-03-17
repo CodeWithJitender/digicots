@@ -12,7 +12,7 @@ export default function TestimonialsSlider({ data }) {
   let animateText;
   useGSAP(() => {
     clearTimeout(animateText);
-    gsap.to(".testimonial-text", { top: "100%", opacity: 0, duration: 0.5 }); // Reset all
+    gsap.to(".testimonial-text", { top: "100%", opacity: 0, duration: 0.1 }); // Reset all
 
     animateText = setTimeout(() => {
       const activeSlide = document.querySelector(
@@ -20,19 +20,19 @@ export default function TestimonialsSlider({ data }) {
       );
       if (activeSlide) {
         gsap.to(activeSlide, {
-          top: window.innerWidth > 600 ? "70%" : "50%",
+          top: window.innerWidth > 770 ? "70%" : "50%",
           opacity: 1,
-          delay:.6,
+          delay: 0.3,
           duration: 0.8,
           ease: "power2.out",
           onComplete: () => {
             gsap.to(".testimonial-text", {
               top: "100%",
               opacity: 0,
-              duration: 0.5,
+              duration: 0.1,
             }); // Reset all
             gsap.to(".swiper-slide-active .testimonial-text", {
-              top: window.innerWidth > 600 ? "70%" : "50%",
+              top: window.innerWidth > 770 ? "70%" : "50%",
               opacity: 1,
               ease: "power2.out",
             });
@@ -41,6 +41,27 @@ export default function TestimonialsSlider({ data }) {
       }
     }, 1000);
   }, [activeIndex]); // Run when activeIndex changes
+  console.log(window.innerWidth);
+  const mapRange = (value, inMin, inMax, outMin, outMax) => {
+    return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+  };
+
+  const [slidesPerView, setSlidesPerView] = useState(
+    mapRange(window.innerWidth, 770, 1536, 3.5, 5.5)
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesPerView(mapRange(window.innerWidth, 770, 1536, 3.5, 5.5));
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    console.log(slidesPerView);
+  }, [slidesPerView]);
 
   return (
     <Swiper
@@ -68,13 +89,13 @@ export default function TestimonialsSlider({ data }) {
         });
       }}
       breakpoints={
-        window.innerWidth > 600
+        window.innerWidth > 770
           ? {
-              "@0.00": { slidesPerView: 6, spaceBetween: 10 },
-              "@0.75": { slidesPerView: 6, spaceBetween: 20 },
-              "@1.00": { slidesPerView: 6, spaceBetween: 30 },
-              "@1.50": { slidesPerView: 6, spaceBetween: 40 },
-              "@2.50": { slidesPerView: 6, spaceBetween: 50 },
+              "@0.00": { slidesPerView, spaceBetween: 10 },
+              "@0.75": { slidesPerView, spaceBetween: 20 },
+              "@1.00": { slidesPerView, spaceBetween: 30 },
+              "@1.50": { slidesPerView, spaceBetween: 40 },
+              "@2.50": { slidesPerView, spaceBetween: 50 },
             }
           : {
               "@0.00": { slidesPerView: 3, spaceBetween: 10 },
@@ -87,7 +108,10 @@ export default function TestimonialsSlider({ data }) {
       className="mySwiper"
     >
       {data.map((d, i) => (
-        <SwiperSlide key={i} className="rounded-2xl overflow-hidden float-right w-auto">
+        <SwiperSlide
+          key={i}
+          className="rounded-2xl overflow-hidden float-right w-auto"
+        >
           {/* Parallax Image */}
           <img
             src={d.img}
@@ -96,7 +120,9 @@ export default function TestimonialsSlider({ data }) {
           />
 
           <div className="testimonial-text cursor-pointer rounded-lg absolute md:h-[30%] h-[50%] w-full bg-[#20202053] backdrop-blur top-[100%] left-0 z-10 opacity-0 p-5 flex flex-col justify-between">
-            <p className="font-inter text-white md:text-[12px] text-[10px]">{d.text}</p>
+            <p className="font-inter text-white md:text-[12px] text-[10px]">
+              {d.text}
+            </p>
             <div>
               <div className="name font-inter text-white md:text-[15px] text-[12px]">
                 {d.name}

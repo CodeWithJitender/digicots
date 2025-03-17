@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/all'
 import React, { useRef } from 'react'
 
 const TextAnimation1 = ({ children, className = "", animeStart = "50" , animeEnd="40", duration=2 }) => {
+  console.log(animeStart,children);
   const parentRef = useRef(null);
   const letterRefs = useRef([]); // Har letter ka reference store karega
 
@@ -37,7 +38,8 @@ const TextAnimation1 = ({ children, className = "", animeStart = "50" , animeEnd
         trigger: parentRef.current,
         start: `top ${animeStart}%`,
         // end: `top ${animeEnd}%`,
-        // scrub:true
+        // scrub:true,
+        // markers:true
       },
     })
   }, []);

@@ -87,8 +87,8 @@ function Insights() {
       tl =gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
-          start: "top -5%",
-          end: "top -140%",
+          start: "top 10%",
+          end: "top -200%",
           scrub: 1,
           // snap:true
         },
@@ -129,7 +129,7 @@ function Insights() {
       <section ref={parentRef} className="insights sticky top-0 overflow-hidden">
         <div className="container-xxl">
           <MainHeading
-          animeStart="10%"
+          animeStart="27%"
             heading={"INSIGHTS"}
             pera={
               "We specialize in personalized and conversational marketing, crafting tailored experiences for every business."

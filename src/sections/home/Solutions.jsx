@@ -76,8 +76,8 @@ function Solutions() {
       .from(
         ".sol-content-left img",
         {
-          duration: 0.8,
-          scale: 0,
+          duration: 2,
+          opacity:0,
           delay: .9,
           ease: "back.out(4)",
           stagger: 1.7,
@@ -95,7 +95,7 @@ function Solutions() {
       .to(
         contentRef.current,
         {
-          translateY: "-355%",
+          translateY: "-365%",
           duration: 10,
           // ease:"linear",
         },
@@ -104,11 +104,11 @@ function Solutions() {
       .from(
         ".sol-content-left img",
         {
-          duration: 0.8,
-          scale: 0,
-          delay:1,
-          ease: "back.out(4)",
-          stagger: 1.7,
+          duration: 2,
+          opacity: 0,
+          delay:.2,
+          ease: "power4.inOut",
+          stagger: 1.5,
         },
         "a"
       );
@@ -133,7 +133,7 @@ function Solutions() {
 
             <div
               ref={blackBoxRef}
-              className="solution-content-container opacity-100 overflow-hidden relative mt-5 bg-[#202020] rounded-3xl py-8 md:py-24 px-5 md:px-10 flex gap-20 flex-col md:flex-row"
+              className="solution-content-container h-[75vh] md:h-auto opacity-100 overflow-hidden relative mt-5 bg-[#202020] rounded-3xl py-8 md:py-24 px-5 md:px-10 flex gap-20 flex-col md:flex-row"
             >
               {data.map((d, index) => (
                 <div
@@ -142,7 +142,7 @@ function Solutions() {
                   className="solution-content min-w-[70vw] md:translate-x-[150%] md:translate-y-0 translate-y-[150%] relative z-[10] h-full flex items-center md:justify-between xl:justify-center xl:gap-[5vw] flex-col md:flex-row "
                 >
                   <div className="sol-content-left lg:h-[35vh] xl:h-[20vh] relative">
-                    <img key={d.title} src={d.img} alt="" className=" h-full object-contain" />
+                    <img key={d.title} src={d.img} alt="" className=" md:scale-[2.5] h-full object-contain" />
                   </div>
                   <div className="sol-content-right md:w-[500px] h-[80%] md:space-y-3">
                     <div className="">
@@ -150,7 +150,7 @@ function Solutions() {
                         key={index}
                         className="font-bold overflow-hidden w-fit capitalize text-white md:text-6xl text-2xl md:mb-3 font-inter"
                       >
-                        <TextAnimation1 animeStart={window.innerWidth > 600 ? -15 * (index * 3.4) : 4 * ((index !=0 ? index + 25 : 7))}>
+                        <TextAnimation1 animeStart={window.innerWidth > 600 ? -15 * (index * 3.4) : (93.15 + (index * 32)) }>
                           {d.title.split(" ")[0]}
                         </TextAnimation1>
                       </h3>
@@ -160,7 +160,7 @@ function Solutions() {
                         key={index}
                         className="font-bold capitalize overflow-hidden w-fit text-white md:text-6xl text-2xl md:mb-3 font-inter"
                       >
-                        <TextAnimation1 animeStart={window.innerWidth > 600 ? -15 * (index * 3.4) : 4 * ((index !=0 ? index + 25 : 7))}>
+                        <TextAnimation1 animeStart={window.innerWidth > 600 ? -15 * (index * 3.4) : (93 + (index * 32)) } >
                           {d.title.split(" ")[1]}
                         </TextAnimation1>
                       </h3>
@@ -177,7 +177,7 @@ function Solutions() {
                         className="text-[#808080] font-normal font-inter"
                         style={{ fontSize: "clamp(10px, 20vw, 12px)" }}
                       >
-                        <TextAnimation2 animeStart={-14.8 * (index * 3.4)} duration={.6}>
+                        <TextAnimation2 animeStart={window.innerWidth > 600 ? -14.8 * (index * 3.4) : (94 + (index * 32)) } duration={.6}>
                           {d.description}
                         </TextAnimation2>
                       </p>

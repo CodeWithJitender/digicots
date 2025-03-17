@@ -75,43 +75,73 @@ function Header() {
     console.log(toggle);
     if (toggle) {
       const tl = gsap.timeline();
-      tl.to(menuRef.current, {
-        top: "71px",
-        display: "initial",
-        opacity: 1,
-        duration: 1,
-        ease: "power3.inOut",
-      },"a").to(mainMenuRef.current, {
-        top: "0%",
-        opacity: 1,
-      }).to(upperLine.current,{
-        rotate:"45deg",
-        y:2
-      },"a").to(lowerLine.current,{
-        rotate:"-45deg",
-        y:-2
-      },"a")
-      .to(navRef.current,{
-        // height: "100vh",
-      })
+      tl.to(
+        menuRef.current,
+        {
+          top: "71px",
+          display: "initial",
+          opacity: 1,
+          duration: 1,
+          ease: "power3.inOut",
+        },
+        "a"
+      )
+        .to(mainMenuRef.current, {
+          top: "0%",
+          opacity: 1,
+        })
+        .from([liRefs.current, ".contact-btn"], {
+          opacity: 0,
+          y: 20,
+          stagger: 0.4,
+          duration: 0.6,
+        })
+        .to(
+          upperLine.current,
+          {
+            rotate: "45deg",
+            y: 2,
+          },
+          "a"
+        )
+        .to(
+          lowerLine.current,
+          {
+            rotate: "-45deg",
+            y: -2,
+          },
+          "a"
+        )
     } else {
+      setSubMenu(false)
       const tl = gsap.timeline();
-      tl.to(mainMenuRef.current, {
-        top: "100%",
-        opacity: 0,
-      },"a").to(menuRef.current, {
-        top: "-100%",
-        display: "none",
-        opacity: 0,
-        duration: 1,
-        ease: "power3.inOut",
-      }).to([upperLine.current,lowerLine.current],{
-        rotate:"0deg",
-        y:0
-      },"a")
+      tl.to(
+        mainMenuRef.current,
+        {
+          top: "100%",
+          opacity: 0,
+        },
+        "a"
+      )
+        .to(menuRef.current, {
+          top: "-100%",
+          display: "none",
+          opacity: 0,
+          duration: 1,
+          ease: "power3.inOut",
+        })
+        .to(
+          [upperLine.current, lowerLine.current],
+          {
+            rotate: "0deg",
+            y: 0,
+          },
+          "a"
+        );
     }
   }, [menuRef.current, toggle, upperLine.current, lowerLine.current]);
 
+  
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -146,41 +176,70 @@ function Header() {
       }
     };
 
-    const mediaQuery = window.matchMedia('(min-width: 601px)');
+    const mediaQuery = window.matchMedia("(min-width: 601px)");
 
     const handleMediaQueryChange = (event) => {
       if (event.matches) {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
       } else {
-        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener("scroll", handleScroll);
       }
     };
 
     handleMediaQueryChange(mediaQuery); // Initial check
-    mediaQuery.addEventListener('change', handleMediaQueryChange);
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+      window.removeEventListener("scroll", handleScroll);
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
   }, [logoRef, letsTalkRef]);
 
+  const liRefs = useRef([]); // Array to store refs for each li
 
+  const menuItems = [
+    { name: "Work", link: "/our-work" },
+    { name: "Insight", link: "/insights" },
+    { name: "About Us", link: "/about" },
+    { name: "Discover Solutions", link: "#", isDropdown: true },
+    { name: "Case Studies", link: "/" },
+  ];
 
+  const itemRefs = useRef([]); // Array to store refs
 
+  useGSAP(() => {
+    if (subMenu) {
+      const tl = gsap.timeline();
 
+      // Ensure itemRefs.current has valid elements before animation
+      if (itemRefs.current.length > 0) {
+        tl.from(
+          itemRefs.current.filter((el) => el), // Filter out any null values
+          {
+            opacity: 0,
+            // duration: 0.8,
+            y: 50, // Add slight movement
+            ease: "power3.inOut",
+            // stagger: 0.2, // Stagger animation
+          },
+          "a"
+        );
+      }
+    }
+  }, [subMenu]);
 
+  console.log(itemRefs.current)
 
 
   return (
-    <header  className="fixed top-[-1px] z-[1000] w-full ">
+    <header className="fixed top-[-1px] z-[1000] w-full ">
       {/* <div className="header-wrapper relative flex items-center justify-between bg-[#242424] lg:bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4"> */}
-      <div  className="header-wrapper relative flex items-center justify-between px-6 py-4 bg-zinc-500/[.1] lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none ">
+      <div className="header-wrapper relative flex items-center justify-between px-6 py-4 bg-zinc-500/[.1] lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none ">
         <div ref={logoRef} className="logo">
           <Link to="/">
             <img
               src="logo-white.png"
-              className="max-w-36 md:max-w-40 lg:max-w-52"
+              className="max-w-24 md:max-w-34 lg:max-w-40"
               alt=""
             />
           </Link>
@@ -268,58 +327,27 @@ function Header() {
                 subMenu ? "start-[-100%]" : "start-[0%]"
               }`}
             >
-              <ul>
-                <li>
-                  <Link
-                    to="/our-work"
-                    className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
-                  >
-                    <div className="link-t"> Work </div>
-                    <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/insights"
-                    className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
-                  >
-                    <div className="link-t"> Insight </div>
-                    <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/about"
-                    className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
-                  >
-                    <div className="link-t"> About Us </div>
-                    <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
-                    onClick={() => setSubMenu((togg) => !togg)}
-                  >
-                    <div className="link-t">
-                      {" "}
-                      Discover <span className="text-[#525252]">
-                        Solutions
-                      </span>{" "}
-                    </div>
-                    {/* <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i> */}
-                    <i className="fal fa-chevron-right text-white ml-3"></i>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
-                  >
-                    <div className="link-t"> Case Studies</div>
-                    <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
-                  </Link>
-                </li>
+              <ul className="space-y-2">
+                {menuItems.map((item, index) => (
+                  <li key={index} ref={(el) => (liRefs.current[index] = el)}>
+                    <Link
+                      to={item.isDropdown ? "#" : item.link}
+                      className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
+                      onClick={
+                        item.isDropdown
+                          ? () => setSubMenu((prev) => !prev)
+                          : undefined
+                      }
+                    >
+                      <div className="link-t">{item.name}</div>
+                      {item.isDropdown ? (
+                        <i className="fal fa-chevron-right text-white ml-3"></i>
+                      ) : (
+                        <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
+                      )}
+                    </Link>
+                  </li>
+                ))}
               </ul>
               <div className="contact-btn">
                 <Link
@@ -348,10 +376,12 @@ function Header() {
               <div className="sub-menu-wrapper w-full">
                 {data.map((item, index) => (
                   <DiscoverItem
+                    key={index}
+                    ref={(el) => (itemRefs.current[index] = el)} // Store ref in array
                     title={item.title}
                     pera={item.pera}
                     icon={item.icon}
-                    key={index}
+                    link={item.link}
                   />
                 ))}
               </div>
