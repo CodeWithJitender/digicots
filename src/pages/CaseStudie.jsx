@@ -8,7 +8,7 @@ function CaseStudie() {
     <div className='h-screen w-full'>
       <Scene />
 
-      <SimpleSlider/>
+      {/* <SimpleSlider/> */}
     </div>
   )
 }

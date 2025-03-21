@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { useDrag } from "react-use-gesture";
 import * as THREE from "three";
 import gsap from "gsap";
@@ -116,7 +116,12 @@ const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
   const materialRef = useRef();
 
   return (
-    <mesh onClick={onClick} position={position} rotation={rotation} ref={cardRef}>
+    <mesh
+      onClick={onClick}
+      position={position}
+      rotation={rotation}
+      ref={cardRef}
+    >
       <planeGeometry args={[2, 2.5, 1, 1]} /> {/* Reduced segments to 1, 1 */}
       <shaderMaterial
         ref={materialRef}
@@ -149,124 +154,6 @@ const Card2 = ({ position, rotation, texture, cardRef }) => {
   );
 };
 
-const RotatingGroup = ({ setSelectedIndex }) => {
-  const groupRef = useRef();
-  const dragState = useRef(0);
-  const isDragging = useRef(false);
-  const isAnimating = useRef(false);
-
-  // Fade in and scale animation when it mounts
-  useEffect(() => {
-    if (groupRef.current) {
-      groupRef.current.children.forEach((mesh) => {
-        // Set initial scale to 1.5
-        mesh.scale.set(1.5, 1.5, 1.5);
-
-        // Animate opacity and scale
-        if (mesh.material.uniforms.uOpacity) {
-          gsap.to(mesh.material.uniforms.uOpacity, {
-            value: 1, // Fade in to opacity 1
-            duration: 2, // Duration of the fade-in animation
-          });
-        }
-
-        // Animate scale from 1.5 to 1
-        gsap.to(mesh.scale, {
-          x: 1,
-          y: 1,
-          z: 1,
-          duration: 2, // Duration of the scale animation
-          ease: "power2.out", // Smooth easing
-        });
-      });
-
-      // Animate position and rotation
-      const tl = gsap.timeline();
-      tl.to(
-        groupRef.current.rotation,
-        {
-          z: 3, // Rotate to z: 3
-          duration: 4, // Duration of the rotation animation
-          ease: "back.inOut(1.7)",
-        },
-        "a"
-      )
-        .to(
-          groupRef.current.position,
-          {
-            y: -15, // Move to y: -15
-            duration: 4, // Duration of the position animation
-            ease: "power4.inOut",
-          },
-          "a"
-        )
-        .to(
-          groupRef.current.rotation,
-          {
-            z: 3.3, // Rotate to z: 3.3
-            duration: 4, // Duration of the rotation animation
-            ease: "power2.inOut",
-          },
-          "a"
-        );
-    }
-  }, []);
-
-  useFrame(() => {
-    groupRef.current.rotation.z -= dragState.current * 0.0009;
-    dragState.current *= 0.99; // Smooth deceleration
-  });
-
-  const bind = useDrag(
-    ({ movement: [mx], down }) => {
-      dragState.current = down ? mx * 0.02 : dragState.current;
-      if (down && !isDragging.current && !isAnimating.current) {
-        groupRef.current.children.forEach((mesh) => {
-          isAnimating.current = true;
-          if (mesh.material.uniforms.uTime) {
-            gsap.to(mesh.material.uniforms.uTime, {
-              value: "+=1",
-            });
-          }
-        });
-        isDragging.current = true;
-      }
-      if (!down) {
-        groupRef.current.children.forEach((mesh) => {
-          isAnimating.current = false;
-          if (mesh.material.uniforms.uTime) {
-            gsap.to(mesh.material.uniforms.uTime, {
-              value: "0",
-            });
-          }
-        });
-        isDragging.current = false;
-      }
-    },
-    { target: window }
-  ); // Enable drag anywhere on the canvas
-
-  return (
-    <group position={[0, -10, 0]} ref={groupRef} {...bind()}>
-      {loadedTextures.map((texture, i) => {
-        const angle = (i / cardCount) * Math.PI * 2;
-        const x = Math.cos(angle) * radius;
-        const y = Math.sin(angle) * radius;
-        const rotation = [0, 0, angle + Math.PI / 2];
-        return (
-          <Card1
-            // onClick={() => setSelectedIndex(i % 3)} // Set selected index
-            key={i}
-            position={[x, y, 0]}
-            texture={texture}
-            rotation={rotation}
-          />
-        );
-      })}
-    </group>
-  );
-};
-
 const StackedGroup = ({ setIsLoading }) => {
   const cardRefs = useRef([]);
 
@@ -276,17 +163,19 @@ const StackedGroup = ({ setIsLoading }) => {
         if (cardRef?.position) {
           gsap.to(cardRef.position, {
             x: 9,
-            y: index % 2 == 0 ? 0 : 10,
-            duration: 2,
-            delay: index * 0.2 + 0.1,
+            y: index % 2 == 0 ? 0 : 20,
+            duration: 1.5,
+            delay: index * 0.1 + 0.01,
             onStart: () => {
               gsap.to(cardRef.material.uniforms.uTime, {
                 value: "20",
                 duration: 2,
-                onComplete: () => {
-                  if (index === cardRefs.current.length - 1) {
-                    setIsLoading(false); // Update isLoading state
-                  }
+                onStart: () => {
+                  setTimeout(() => {
+                    if (index === cardRefs.current.length - 1) {
+                      setIsLoading(false); // Update isLoading state
+                    }
+                  }, 300);
                 },
               });
             },
@@ -298,7 +187,7 @@ const StackedGroup = ({ setIsLoading }) => {
 
   return (
     <group position={[0, 0, -3]} rotation={[-0.4, 0, 1]}>
-      {loadedTextures.slice(0, 10).map((texture, i) => (
+      {loadedTextures.slice(0, 30).map((texture, i) => (
         <Card2
           key={i}
           position={[i * 0.02, i * 0.01, i * 0.01]}
@@ -311,7 +200,194 @@ const StackedGroup = ({ setIsLoading }) => {
   );
 };
 
-const Slide = ({ index }) => {
+
+const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
+  const groupRef = useRef();
+  const dragState = useRef(0);
+  const isDragging = useRef(false);
+  const isAnimating = useRef(false);
+  const scrollVelocity = useRef(0);
+
+  useEffect(() => {
+    if (groupRef.current) {
+      groupRef.current.children.forEach((mesh) => {
+        mesh.scale.set(1.5, 1.5, 1.5);
+        if (mesh.material.uniforms.uOpacity) {
+          gsap.to(mesh.material.uniforms.uOpacity, {
+            value: 1,
+            duration: 2,
+          });
+        }
+        gsap.to(mesh.scale, {
+          x: 1,
+          y: 1,
+          z: 1,
+          duration: 2,
+          ease: "power2.out",
+        });
+      });
+
+      const tl = gsap.timeline();
+      tl.to(
+        groupRef.current.rotation,
+        {
+          z: 3,
+          duration: 4,
+          ease: "back.inOut(1.7)",
+        },
+        "a"
+      )
+        .to(
+          groupRef.current.position,
+          {
+            y: -15,
+            duration: 4,
+            ease: "power4.inOut",
+          },
+          "a"
+        )
+        .to(
+          groupRef.current.rotation,
+          {
+            z: 3.3,
+            duration: 4,
+            ease: "power2.inOut",
+          },
+          "a"
+        );
+    }
+
+    const handleWheel = (event) => {
+      const newVelocity = event.deltaY * 0.0003;
+      gsap.to(scrollVelocity, {
+        current: newVelocity,
+        duration: 1,
+        ease: "power4.out",
+      });
+
+      groupRef.current.children.forEach((mesh) => {
+        isAnimating.current = true;
+        if (mesh.material.uniforms.uTime) {
+          gsap.to(mesh.material.uniforms.uTime, {
+            value: "+=.3",
+            duration: 0.5,
+            onComplete: () => {
+              gsap.to(mesh.material.uniforms.uTime, { value: "0" });
+            },
+          });
+        }
+      });
+
+      if (bgRef.current) {
+        const targetX = Math.min(Math.max(scrollVelocity.current * 200, -200), 200); // Maps to -1 to 1
+        gsap.to(bgRef.current.position, {
+          x: targetX,
+          duration: 0.5,
+          ease: "power2.out",
+          onComplete: () => {
+            gsap.to(bgRef.current.position, {
+              x: 0,
+              duration: 1,
+              ease: "power2.inOut",
+            });
+          },
+        });
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel);
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+    };
+  }, [bgRef]);
+
+  useFrame(() => {
+    // groupRef.current.rotation.z -= dragState.current * 0.0009;
+    groupRef.current.rotation.z += scrollVelocity.current;
+
+    if (bgRef.current) {
+      // bgRef.current.position.x -= dragState.current * 0.0009;
+      bgRef.current.position.x += scrollVelocity.current;
+    }
+
+    // dragState.current *= 0.99;
+    scrollVelocity.current *= 0.99;
+  });
+
+  const bind = useDrag(
+    ({ movement: [mx], down }) => {
+      dragState.current = down ? mx * 0.02 : dragState.current;
+      if (down && !isDragging.current && !isAnimating.current) {
+        groupRef.current.children.forEach((mesh) => {
+          isAnimating.current = true;
+          if (mesh.material.uniforms.uTime) {
+            gsap.to(mesh.material.uniforms.uTime, { value: "+=1" });
+          }
+        });
+
+        if (bgRef.current) {
+          const targetX = Math.min(Math.max(mx * 0.005, -1), 1); // Maps drag to -1 to 1
+          gsap.to(bgRef.current.position, {
+            x: targetX,
+            duration: 0.5,
+            ease: "power2.out",
+            onComplete: () => {
+              gsap.to(bgRef.current.position, {
+                x: 0,
+                duration: 1,
+                ease: "power2.inOut",
+              });
+            },
+          });
+        }
+
+        isDragging.current = true;
+      }
+      if (!down) {
+        groupRef.current.children.forEach((mesh) => {
+          isAnimating.current = false;
+          if (mesh.material.uniforms.uTime) {
+            gsap.to(mesh.material.uniforms.uTime, { value: "0" });
+          }
+        });
+
+        if (bgRef.current) {
+          bgRef.current.children.forEach((mesh) => {
+            isAnimating.current = false;
+            if (mesh.material.uniforms.uTime) {
+              gsap.to(mesh.material.uniforms.uTime, { value: "0" });
+            }
+          });
+        }
+
+        isDragging.current = false;
+      }
+    },
+    { target: window }
+  );
+
+  return (
+    <group position={[0, -10, 0.5]} ref={groupRef} {...bind()}>
+      {loadedTextures.map((texture, i) => {
+        const angle = (i / cardCount) * Math.PI * 2;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        const rotation = [0, 0, angle + Math.PI / 2];
+        return (
+          <Card1
+            key={i}
+            position={[x, y, 0]}
+            texture={texture}
+            rotation={rotation}
+          />
+        );
+      })}
+    </group>
+  );
+};
+
+
+const Slide = ({ index, onClose }) => {
   const slides = [
     {
       image: "case-study-1.png",
@@ -342,38 +418,119 @@ const Slide = ({ index }) => {
     },
   ];
 
-  const [selectedCase, setSelectedCase] = useState(null);
-
-  useEffect(() => {
-    if (index >= 0 && index < slides.length) {
-      setSelectedCase(slides[index]);
-    }
-  }, [index]);
+  const selectedCase = slides[index];
 
   return selectedCase ? (
-    <CaseStudy slide={selectedCase} onClose={() => setSelectedCase(null)} />
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 1000,
+      }}
+    >
+      <CaseStudy slide={selectedCase} onClose={onClose} />
+    </div>
   ) : null;
 };
+
+const Bg = ({bgRef}) => {
+  const numCards = 300; // Number of small cards (adjust for density)
+  const cardsRef = useRef([]);
+
+  // Generate random positions and velocities for the cards
+  useEffect(() => {
+    cardsRef.current.forEach((card, index) => {
+      if (!card) return; // Ensure the card exists
+
+      // Random initial position
+      card.position.set(
+        (Math.random() - 0.5) * 20, // X: Random between -10 and 10
+        (Math.random() - 100) * index % 60, // Y: Start below the screen
+        (Math.random() - 1) * 20 // Z: Random between -10 and 10
+      );
+
+      // Random upward velocity (slower speed)
+      card.velocity = new THREE.Vector3(
+        0, // No horizontal movement
+        Math.random() * 0.005 + 0.01, // Y: Move upwards with slower random speed
+        // Math.min(Math.random() *.005,0) // No depth movement
+      );
+
+      // Assign a texture from the loadedTextures array in a loop
+      card.material.map = loadedTextures[index % loadedTextures.length];
+      card.material.needsUpdate = true; // Ensure the material updates
+    });
+  }, []);
+
+
+
+
+
+
+  // Animate the cards
+  useFrame(() => {
+    cardsRef.current.forEach((card) => {
+      if (!card) return; // Ensure the card exists
+
+      // Update position based on velocity
+      card.position.add(card.velocity);
+
+      // Reset position if the card moves above the screen
+      if (card.position.y > 10) {
+        card.position.y = Math.random() - 10; // Reset to the bottom
+        card.position.x = (Math.random() - 0.5) * 20; // Randomize X position
+        card.position.z = (Math.random() - 1) * 30; // Randomize Z position
+      }
+    });
+  });
+
+  return (
+    <>
+      <group ref={bgRef}>
+      {Array.from({ length: numCards }).map((_, i) => (
+        <mesh key={i} ref={(el) => (cardsRef.current[i] = el)}>
+          <planeGeometry args={[0.2, 0.2]} /> {/* Small card size */}
+          <meshBasicMaterial transparent opacity={0.7} />
+        </mesh>
+      ))}
+      </group>
+    </>
+  );
+};
+
 const Scene = () => {
-  const [isLoading, setIsLoading] = useState(true); // Use state for isLoading
-  const [selectedIndex, setSelectedIndex] = useState(-1); // Use state for selectedIndex
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const bgRef = useRef([]);  // Shared reference for Bg cards
 
   return (
     <>
       <Canvas
         className="h-screen w-full bg-black"
+        style={{ background: "transparent" }}
         camera={{ position: [0, 0, 10], fov: 25 }}
       >
         <ambientLight intensity={0.5} />
         {isLoading ? (
           <StackedGroup setIsLoading={setIsLoading} />
         ) : (
-          <RotatingGroup setSelectedIndex={setSelectedIndex} />
+          <>
+            <RotatingGroup setSelectedIndex={setSelectedIndex} bgRef={bgRef} />
+            <Bg bgRef={bgRef} />
+          </>
         )}
       </Canvas>
-      {selectedIndex !== -1 && <Slide index={selectedIndex} />}
+      {selectedIndex !== -1 && <Slide index={selectedIndex} onClose={() => setSelectedIndex(-1)} />}
     </>
   );
 };
+
 
 export default Scene;

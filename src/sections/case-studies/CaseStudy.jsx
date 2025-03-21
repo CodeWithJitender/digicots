@@ -19,13 +19,13 @@ export default function CaseStudy({ slide, onClose }) {
                 {slide.title}
               </h2>
               {slide.text.map((text, index) => (
-                <p className=" text-gray-600 mb-3">{text}</p>
+                <p key={index} className=" text-gray-600 mb-3">{text}</p>
               ))}
             </div>
             <div className="">
             <div className="flex gap-3">
             {slide.tags.map((text, index) => (
-                <button className="bg-[#ED510C] text-white px-4 py-2 rounded-[20px] font-inter font-bold">{text}</button>
+                <button key={index} className="bg-[#ED510C] text-white px-4 py-2 rounded-[20px] font-inter font-bold">{text}</button>
               ))}
             </div>
             <div className="h-0.5 bg-[#CECECE] my-5"></div>
