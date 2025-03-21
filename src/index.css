@@ -84,21 +84,21 @@
 }
 
 /* Dropdown styling */
-.dropdown {
+/* .dropdown {
   visibility: hidden;
   opacity: 0;
   transition: 0.5s;
-}
+} */
 
 .sub-menu-wrapper {
   height: 80vh;
   overflow-y: scroll;
 }
 
-.discover-link:hover .dropdown {
+/* .discover-link:hover .dropdown {
   visibility: visible;
   opacity: 1;
-}
+} */
 
 /* Scrollbar styling */
 header *::-webkit-scrollbar {

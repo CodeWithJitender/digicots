@@ -228,8 +228,30 @@ function Header() {
     }
   }, [subMenu]);
 
-  console.log(itemRefs.current)
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const timeoutRef = useRef(null); // Delay ke liye ref use karenge
 
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutRef.current); // Pehle se koi timeout hai toh usko hata do
+    setIsDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsDropdownVisible(false);
+    }, 500); // 200ms ka delay, taki dropdown instantly na hide ho
+  };
+
+  useGSAP(()=>{
+    if(isDropdownVisible){
+      gsap.from(".dropdown",{
+        opacity:1,
+        pointerEvents:"all",
+        duration:.5,
+        y:20
+      })
+    }
+  },[isDropdownVisible])
 
   return (
     <header className="fixed top-[-1px] z-[1000] w-full ">
@@ -283,6 +305,8 @@ function Header() {
             <li
               ref={(el) => (linksRef.current[3] = el)}
               className="discover-link pb-2.5 "
+              onMouseEnter={handleMouseEnter} // Dropdown pe mouse aaye toh hide mat karo
+          onMouseLeave={handleMouseLeave} // Dropdown se bahar jaane pe hide karo
             >
               <Link
                 to="/discover"
@@ -290,18 +314,7 @@ function Header() {
               >
                 Discover
               </Link>
-              <div className="dropdown  absolute top-20 left-[50%] z-[100] border-[10px] border-[#FFFFFF33] rounded-3xl translate-x-[-50%] w-full max-w-[600px] lg:max-w-[900px] xl:max-w-[1300px]">
-                <div className="dropdown-inner bg-gradient-to-l from-gray-800 via-gray-900 p-5 to-black  grid grid-cols-2 xl:grid-cols-3">
-                  {data.map((item, index) => (
-                    <DiscoverItem
-                      title={item.title}
-                      pera={item.pera}
-                      icon={item.icon}
-                      key={index}
-                    />
-                  ))}
-                </div>
-              </div>
+              
             </li>
             <li
               ref={(el) => (linksRef.current[4] = el)}
@@ -316,6 +329,22 @@ function Header() {
             </li>
           </ul>
         </div>
+        {isDropdownVisible && (<div
+                 onMouseEnter={handleMouseEnter} // Dropdown pe mouse aaye toh hide mat karo
+                 onMouseLeave={handleMouseLeave} // Dropdown se bahar jaane pe hide karo
+         
+         className="dropdown absolute top-30 left-[50%] no-scrollBar z-[100] bg-zinc-800/[.5] backdrop-blur-xl rounded-3xl translate-x-[-50%] w-[350%] max-w-[600px] lg:max-w-[900px] xl:max-w-[1300px]">
+                <div className="dropdown-inner no-scrollBar grid grid-cols-2 xl:grid-cols-3 p-3">
+                  {data.map((item, index) => (
+                    <DiscoverItem
+                      title={item.title}
+                      pera={item.pera}
+                      icon={item.icon}
+                      key={index}
+                    />
+                  ))}
+                </div>
+              </div>)}
         <div
           ref={menuRef}
           className={`mobile-menu  bg-zinc-500/[.1] backdrop-blur-sm overflow-hidden absolute opacity-0 top-[-100%] z-[10]  w-full left-0 h-[100vh] lg:hidden `}
