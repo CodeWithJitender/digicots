@@ -258,7 +258,7 @@ const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
     }
 
     const handleWheel = (event) => {
-      const newVelocity = event.deltaY * 0.0003;
+      const newVelocity = event.deltaY * 0.0002;
       gsap.to(scrollVelocity, {
         current: newVelocity,
         duration: 1,
