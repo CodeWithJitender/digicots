@@ -281,12 +281,24 @@ const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
       if (bgRef.current) {
         const targetX = Math.min(Math.max(scrollVelocity.current * 200, -200), 200); // Maps to -1 to 1
         gsap.to(bgRef.current.position, {
-          x: targetX,
+          x: -targetX,
           duration: 0.5,
           ease: "power2.out",
           onComplete: () => {
             gsap.to(bgRef.current.position, {
               x: 0,
+              duration: 1,
+              ease: "power2.inOut",
+            });
+          },
+        });
+        gsap.to(bgRef.current.rotation, {
+          z: (targetX * .03),
+          duration: 0.5,
+          ease: "power2.out",
+          onComplete: () => {
+            gsap.to(bgRef.current.rotation, {
+              z: 0,
               duration: 1,
               ease: "power2.inOut",
             });
@@ -308,6 +320,7 @@ const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
     if (bgRef.current) {
       // bgRef.current.position.x -= dragState.current * 0.0009;
       bgRef.current.position.x += scrollVelocity.current;
+      bgRef.current.rotation.z += scrollVelocity.current;
     }
 
     // dragState.current *= 0.99;
