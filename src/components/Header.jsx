@@ -202,7 +202,7 @@ function Header() {
     { name: "Insight", link: "/insights" },
     { name: "About Us", link: "/about" },
     { name: "Discover Solutions", link: "#", isDropdown: true },
-    { name: "Case Studies", link: "/" },
+    { name: "Case Studies", link: "/case-study" },
   ];
 
   const itemRefs = useRef([]); // Array to store refs

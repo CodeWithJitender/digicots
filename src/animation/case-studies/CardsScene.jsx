@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { useDrag } from "react-use-gesture";
 import * as THREE from "three";
@@ -44,7 +44,9 @@ const loadedTextures = textures.map((src) => textureLoader.load(src));
 const cardCount = textures.length;
 const radius = 15; // Radius of the circle
 
-const vertexShader1 = `
+const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
+
+  const vertexShader1 = `
   varying vec2 vUv;
   uniform float uTime;
 
@@ -91,28 +93,6 @@ const fragmentShader1 = `
     gl_FragColor = texColor;
   }
 `;
-
-const vertexShader2 = `
-  varying vec2 vUv;
-  uniform float uTime;
-  void main() {
-    vUv = uv;
-    vec3 pos = position;
-    pos.xyz += sin(pos.y + uTime*1.) * 0.2;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
-  }
-`;
-
-const fragmentShader2 = `
-  varying vec2 vUv;
-  uniform sampler2D uTexture;
-  void main() {
-    vec4 texColor = texture2D(uTexture, vUv);
-    gl_FragColor = texColor;
-  }
-`;
-
-const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
   const materialRef = useRef();
 
   return (
@@ -132,13 +112,32 @@ const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
         }}
         vertexShader={vertexShader1}
         fragmentShader={fragmentShader1}
-        transparent={true} // Enable transparency
+        // transparent={true} // Enable transparency
       />
     </mesh>
   );
 };
 
 const Card2 = ({ position, rotation, texture, cardRef }) => {
+  const vertexShader2 = `
+  varying vec2 vUv;
+  uniform float uTime;
+  void main() {
+    vUv = uv;
+    vec3 pos = position;
+    pos.xyz += sin(pos.y + uTime*1.) * 0.2;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+  }
+`;
+
+const fragmentShader2 = `
+  varying vec2 vUv;
+  uniform sampler2D uTexture;
+  void main() {
+    vec4 texColor = texture2D(uTexture, vUv);
+    gl_FragColor = texColor;
+  }
+`;
   return (
     <mesh position={position} rotation={rotation} ref={cardRef}>
       <planeGeometry args={[2, 3, 80, 80]} /> {/* Reduced segments to 1, 1 */}
@@ -201,12 +200,22 @@ const StackedGroup = ({ setIsLoading }) => {
 };
 
 
-const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
+
+const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
   const groupRef = useRef();
   const dragState = useRef(0);
   const isDragging = useRef(false);
   const isAnimating = useRef(false);
   const scrollVelocity = useRef(0);
+
+  // Memoize the onClick handler to avoid unnecessary re-renders
+  const handleCardClick = useCallback(
+    (index) => (event) => {
+      event.stopPropagation(); // Prevent event bubbling
+      setSelectedIndex(index);
+    },
+    [setSelectedIndex]
+  );
 
   useEffect(() => {
     if (groupRef.current) {
@@ -265,21 +274,23 @@ const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
         ease: "power4.out",
       });
 
-      groupRef.current.children.forEach((mesh) => {
-        isAnimating.current = true;
-        if (mesh.material.uniforms.uTime) {
-          gsap.to(mesh.material.uniforms.uTime, {
-            value: "+=.3",
-            duration: 0.5,
-            onComplete: () => {
-              gsap.to(mesh.material.uniforms.uTime, { value: "0" });
-            },
-          });
-        }
-      });
+      if (groupRef.current) {
+        groupRef.current.children.forEach((mesh) => {
+          isAnimating.current = true;
+          if (mesh.material.uniforms.uTime) {
+            gsap.to(mesh.material.uniforms.uTime, {
+              value: "+=.3",
+              duration: 0.5,
+              onComplete: () => {
+                gsap.to(mesh.material.uniforms.uTime, { value: "0" });
+              },
+            });
+          }
+        });
+      }
 
       if (bgRef.current) {
-        const targetX = Math.min(Math.max(scrollVelocity.current * 200, -200), 200); // Maps to -1 to 1
+        const targetX = Math.min(Math.max(scrollVelocity.current * 200, -200), 200);
         gsap.to(bgRef.current.position, {
           x: -targetX,
           duration: 0.5,
@@ -293,7 +304,7 @@ const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
           },
         });
         gsap.to(bgRef.current.rotation, {
-          z: (targetX * .03),
+          z: targetX * 0.03,
           duration: 0.5,
           ease: "power2.out",
           onComplete: () => {
@@ -307,80 +318,30 @@ const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
       }
     };
 
-    window.addEventListener("wheel", handleWheel);
+
+    canvas.addEventListener("wheel", handleWheel);
     return () => {
-      window.removeEventListener("wheel", handleWheel);
+      canvas.removeEventListener("wheel", handleWheel);
     };
   }, [bgRef]);
 
   useFrame(() => {
-    // groupRef.current.rotation.z -= dragState.current * 0.0009;
-    groupRef.current.rotation.z += scrollVelocity.current;
+    if (groupRef.current) {
+      groupRef.current.rotation.z += scrollVelocity.current;
+    }
 
     if (bgRef.current) {
-      // bgRef.current.position.x -= dragState.current * 0.0009;
       bgRef.current.position.x += scrollVelocity.current;
       bgRef.current.rotation.z += scrollVelocity.current;
     }
 
-    // dragState.current *= 0.99;
     scrollVelocity.current *= 0.99;
   });
 
-  const bind = useDrag(
-    ({ movement: [mx], down }) => {
-      dragState.current = down ? mx * 0.02 : dragState.current;
-      if (down && !isDragging.current && !isAnimating.current) {
-        groupRef.current.children.forEach((mesh) => {
-          isAnimating.current = true;
-          if (mesh.material.uniforms.uTime) {
-            gsap.to(mesh.material.uniforms.uTime, { value: "+=1" });
-          }
-        });
-
-        if (bgRef.current) {
-          const targetX = Math.min(Math.max(mx * 0.005, -1), 1); // Maps drag to -1 to 1
-          gsap.to(bgRef.current.position, {
-            x: targetX,
-            duration: 0.5,
-            ease: "power2.out",
-            onComplete: () => {
-              gsap.to(bgRef.current.position, {
-                x: 0,
-                duration: 1,
-                ease: "power2.inOut",
-              });
-            },
-          });
-        }
-
-        isDragging.current = true;
-      }
-      if (!down) {
-        groupRef.current.children.forEach((mesh) => {
-          isAnimating.current = false;
-          if (mesh.material.uniforms.uTime) {
-            gsap.to(mesh.material.uniforms.uTime, { value: "0" });
-          }
-        });
-
-        if (bgRef.current) {
-          bgRef.current.children.forEach((mesh) => {
-            isAnimating.current = false;
-            if (mesh.material.uniforms.uTime) {
-              gsap.to(mesh.material.uniforms.uTime, { value: "0" });
-            }
-          });
-        }
-
-        isDragging.current = false;
-      }
-    },
-    { target: window }
-  );
+  
 
   return (
-    <group position={[0, -10, 0.5]} ref={groupRef} {...bind()}>
+    <group position={[0, -10, 0.5]} ref={groupRef}>
       {loadedTextures.map((texture, i) => {
         const angle = (i / cardCount) * Math.PI * 2;
         const x = Math.cos(angle) * radius;
@@ -388,6 +349,7 @@ const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
         const rotation = [0, 0, angle + Math.PI / 2];
         return (
           <Card1
+            onClick={handleCardClick(i % 3)} // Use memoized handler
             key={i}
             position={[x, y, 0]}
             texture={texture}
@@ -398,6 +360,7 @@ const RotatingGroup = ({ setSelectedIndex, bgRef }) => {
     </group>
   );
 };
+
 
 
 const Slide = ({ index, onClose }) => {
@@ -522,10 +485,12 @@ const Scene = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const bgRef = useRef([]);  // Shared reference for Bg cards
-
+  const canvasRef = useRef(null);  // Shared reference for Bg cards
+  
   return (
     <>
       <Canvas
+      ref={canvasRef}
         className="h-screen w-full bg-black"
         style={{ background: "transparent" }}
         camera={{ position: [0, 0, 10], fov: 25 }}
@@ -535,7 +500,7 @@ const Scene = () => {
           <StackedGroup setIsLoading={setIsLoading} />
         ) : (
           <>
-            <RotatingGroup setSelectedIndex={setSelectedIndex} bgRef={bgRef} />
+            <RotatingGroup canvas={canvasRef.current} setSelectedIndex={setSelectedIndex} bgRef={bgRef} />
             <Bg bgRef={bgRef} />
           </>
         )}
