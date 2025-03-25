@@ -4,6 +4,7 @@ import { useDrag } from "react-use-gesture";
 import * as THREE from "three";
 import gsap from "gsap";
 import CaseStudy from "../../sections/case-studies/CaseStudy";
+import { useGSAP } from "@gsap/react";
 
 const textures = [
   "case-study-1.png",
@@ -45,7 +46,6 @@ const cardCount = textures.length;
 const radius = 15; // Radius of the circle
 
 const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
-
   const vertexShader1 = `
   varying vec2 vUv;
   uniform float uTime;
@@ -58,7 +58,7 @@ const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
   }
 `;
 
-const fragmentShader1 = `
+  const fragmentShader1 = `
   varying vec2 vUv;
   uniform sampler2D uTexture;
   uniform float uTime;
@@ -97,7 +97,11 @@ const fragmentShader1 = `
 
   return (
     <mesh
-      onClick={onClick}
+      onClick={() => {
+        onClick();
+        // console.log(geometryRef.current)
+        // handleClick()
+      }}
       position={position}
       rotation={rotation}
       ref={cardRef}
@@ -130,7 +134,7 @@ const Card2 = ({ position, rotation, texture, cardRef }) => {
   }
 `;
 
-const fragmentShader2 = `
+  const fragmentShader2 = `
   varying vec2 vUv;
   uniform sampler2D uTexture;
   void main() {
@@ -199,28 +203,75 @@ const StackedGroup = ({ setIsLoading }) => {
   );
 };
 
-
-
 const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
   const groupRef = useRef();
   const dragState = useRef(0);
   const isDragging = useRef(false);
   const isAnimating = useRef(false);
   const scrollVelocity = useRef(0);
+  const cardsRef = useRef([]);
 
   // Memoize the onClick handler to avoid unnecessary re-renders
+  const cardSpacing = 0.2042429411506563; // Rotation difference per card
+  const referenceIndex = 7; // Reference index
+  const initialPosition = 0.1; // Position of the reference card (index 7)
+
   const handleCardClick = useCallback(
-    (index) => (event) => {
-      event.stopPropagation(); // Prevent event bubbling
-      setSelectedIndex(index);
+    (clickedIndex) => (event) => {
+      if (!groupRef.current) return;
+
+      // Get the current rotation of the group
+      const currentPosition = groupRef.current.rotation.z;
+
+      // Calculate the expected position for the clicked card to be at the center
+      const expectedPosition =
+        initialPosition + (clickedIndex - referenceIndex) * cardSpacing;
+
+      console.log("Current Position:", currentPosition);
+      console.log();
+      console.log("Clicked Card Index:", clickedIndex);
+      console.log("Expected Position:");
+
+      // Calculate the difference between the expected position and current position
+      // const difference = -(expectedPosition - currentPosition);
+
+      // Animate rotation to bring the selected card to center
+      gsap.to(groupRef.current.rotation, {
+        z: -(expectedPosition % clickedIndex) + cardSpacing, // Animate to expected position
+        duration: .5,
+        ease: "power4.out",
+      });
+
+      // Scale animation (unchanged from your code)
+      if (cardsRef.current[clickedIndex]) {
+        gsap.to(cardsRef.current[clickedIndex].scale, {
+          x: -7,
+          y: 7,
+          z: 7,
+          duration: 1,
+          delay: 0.5,
+          ease: "back.inOut(.8)",
+          onComplete() {
+            setSelectedIndex(clickedIndex % 3);
+            gsap.to(cardsRef.current[clickedIndex].scale, {
+              x: 1,
+              y: 1,
+              z: 1,
+              delay: 0.5,
+              duration: 0.8,
+              ease: "power4.out",
+            });
+          },
+        });
+      }
     },
-    [setSelectedIndex]
+    []
   );
 
   useEffect(() => {
     if (groupRef.current) {
       groupRef.current.children.forEach((mesh) => {
-        mesh.scale.set(1.5, 1.5, 1.5);
+        mesh.scale.set(1.2, 1.2, 1.2);
         if (mesh.material.uniforms.uOpacity) {
           gsap.to(mesh.material.uniforms.uOpacity, {
             value: 1,
@@ -231,8 +282,9 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
           x: 1,
           y: 1,
           z: 1,
-          duration: 2,
-          ease: "power2.out",
+          delay: 4.5,
+          duration: 1,
+          ease: "back.out",
         });
       });
 
@@ -240,8 +292,8 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
       tl.to(
         groupRef.current.rotation,
         {
-          z: 3,
-          duration: 4,
+          z: -10,
+          duration: 2,
           ease: "back.inOut(1.7)",
         },
         "a"
@@ -258,7 +310,8 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
         .to(
           groupRef.current.rotation,
           {
-            z: 3.3,
+            z: 0.1,
+            delay: 1,
             duration: 4,
             ease: "power2.inOut",
           },
@@ -290,7 +343,10 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
       }
 
       if (bgRef.current) {
-        const targetX = Math.min(Math.max(scrollVelocity.current * 200, -200), 200);
+        const targetX = Math.min(
+          Math.max(scrollVelocity.current * 200, -200),
+          200
+        );
         gsap.to(bgRef.current.position, {
           x: -targetX,
           duration: 0.5,
@@ -318,12 +374,11 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
       }
     };
 
-
-    canvas.addEventListener("wheel", handleWheel);
+    window?.addEventListener("wheel", handleWheel);
     return () => {
-      canvas.removeEventListener("wheel", handleWheel);
+      window?.removeEventListener("wheel", handleWheel);
     };
-  }, [bgRef]);
+  }, [bgRef, window]);
 
   useFrame(() => {
     if (groupRef.current) {
@@ -338,8 +393,6 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
     scrollVelocity.current *= 0.99;
   });
 
-  
-
   return (
     <group position={[0, -10, 0.5]} ref={groupRef}>
       {loadedTextures.map((texture, i) => {
@@ -349,11 +402,12 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
         const rotation = [0, 0, angle + Math.PI / 2];
         return (
           <Card1
-            onClick={handleCardClick(i % 3)} // Use memoized handler
+            onClick={handleCardClick(i)} // Use memoized handler
             key={i}
             position={[x, y, 0]}
             texture={texture}
             rotation={rotation}
+            cardRef={(el) => (cardsRef.current[i] = el)}
           />
         );
       })}
@@ -361,99 +415,124 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
   );
 };
 
-
-
-const Slide = ({ index, onClose }) => {
+const Slide = ({ index, onClose,setSelectedIndex }) => {
   const slides = [
     {
-      image: "case-study-1.png",
+      image: ["case-study-1.png", "case-study-1.png", "case-study-1.png"],
       title: "Product: With Long Heading",
       text: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       ],
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "case-study-2.png",
+      image: ["case-study-2.png", "case-study-2.png", "case-study-2.png"],
       title: "Product: With Long Heading",
       text: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       ],
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "case-study-3.png",
+      image: ["case-study-3.png", "case-study-3.png", "case-study-3.png"],
       title: "Product: With Long Heading",
       text: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       ],
       tags: ["Design", "Web-Dev", "Product"],
     },
   ];
 
   const selectedCase = slides[index];
+  const selectedContainerRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(selectedContainerRef.current, {
+      opacity: 0,
+      scale:1.2,
+      // top:"100%",
+      duration: 1,
+      ease: "back.inOut(.5)",
+    });
+  }, [index, onclose]);
 
   return selectedCase ? (
     <div
+      ref={selectedContainerRef}
       style={{
-        position: "absolute",
+        position: "fixed",
         top: 0,
         left: 0,
         width: "100%",
         height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         zIndex: 1000,
       }}
     >
-      <CaseStudy slide={selectedCase} onClose={onClose} />
+      <CaseStudy slide={selectedCase} onClose={onClose} index={index} setSelectedIndex={setSelectedIndex} />
     </div>
   ) : null;
 };
 
-const Bg = ({bgRef}) => {
+const Bg = ({ bgRef }) => {
   const numCards = 300; // Number of small cards (adjust for density)
   const cardsRef = useRef([]);
 
   // Generate random positions and velocities for the cards
-  useEffect(() => {
+  useGSAP(() => {
     cardsRef.current.forEach((card, index) => {
-      if (!card) return; // Ensure the card exists
+      if (!card || !card.position) return; // Ensure the card and its position exist
 
       // Random initial position
       card.position.set(
         (Math.random() - 0.5) * 20, // X: Random between -10 and 10
-        (Math.random() - 100) * index % 60, // Y: Start below the screen
+        ((Math.random() - 100) * index) % 60, // Y: Start below the screen
         (Math.random() - 1) * 20 // Z: Random between -10 and 10
       );
 
       // Random upward velocity (slower speed)
       card.velocity = new THREE.Vector3(
         0, // No horizontal movement
-        Math.random() * 0.005 + 0.01, // Y: Move upwards with slower random speed
-        // Math.min(Math.random() *.005,0) // No depth movement
+        Math.random() * 0.005 + 0.01 // Y: Move upwards with slower random speed
       );
 
-      // Assign a texture from the loadedTextures array in a loop
-      card.material.map = loadedTextures[index % loadedTextures.length];
-      card.material.needsUpdate = true; // Ensure the material updates
+      // Ensure the texture array exists and is properly indexed
+      if (loadedTextures?.length) {
+        card.material.map = loadedTextures[index % loadedTextures.length];
+        card.material.needsUpdate = true; // Ensure the material updates
+      }
     });
-  }, []);
 
+    const targetX = 50;
+    console.log(bgRef);
 
-
-
-
+    gsap.from(bgRef.current.position, {
+      x: -targetX * 3,
+      z: targetX,
+      duration: 3,
+      delay: 1,
+      ease: "power2.out",
+    });
+    gsap.from(bgRef.current.rotation, {
+      z: -targetX,
+      duration: 3,
+      delay: 1,
+      ease: "power2.out",
+    });
+  }, [bgRef]);
 
   // Animate the cards
   useFrame(() => {
     cardsRef.current.forEach((card) => {
-      if (!card) return; // Ensure the card exists
+      if (!card || !card.position || !card.velocity) return; // Ensure the card exists and has velocity
 
       // Update position based on velocity
       card.position.add(card.velocity);
@@ -470,12 +549,12 @@ const Bg = ({bgRef}) => {
   return (
     <>
       <group ref={bgRef}>
-      {Array.from({ length: numCards }).map((_, i) => (
-        <mesh key={i} ref={(el) => (cardsRef.current[i] = el)}>
-          <planeGeometry args={[0.2, 0.2]} /> {/* Small card size */}
-          <meshBasicMaterial transparent opacity={0.7} />
-        </mesh>
-      ))}
+        {Array.from({ length: numCards }).map((_, i) => (
+          <mesh key={i} ref={(el) => (cardsRef.current[i] = el || null)}>
+            <planeGeometry args={[0.2, 0.2]} /> {/* Small card size */}
+            <meshBasicMaterial transparent opacity={0.5} />
+          </mesh>
+        ))}
       </group>
     </>
   );
@@ -484,31 +563,37 @@ const Bg = ({bgRef}) => {
 const Scene = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const bgRef = useRef([]);  // Shared reference for Bg cards
-  const canvasRef = useRef(null);  // Shared reference for Bg cards
-  
+  const bgRef = useRef([]); // Shared reference for Bg cards
+  const canvasRef = useRef(null); // Shared reference for Bg cards
+
   return (
     <>
-      <Canvas
-      ref={canvasRef}
-        className="h-screen w-full bg-black"
-        style={{ background: "transparent" }}
-        camera={{ position: [0, 0, 10], fov: 25 }}
-      >
-        <ambientLight intensity={0.5} />
-        {isLoading ? (
-          <StackedGroup setIsLoading={setIsLoading} />
-        ) : (
-          <>
-            <RotatingGroup canvas={canvasRef.current} setSelectedIndex={setSelectedIndex} bgRef={bgRef} />
-            <Bg bgRef={bgRef} />
-          </>
-        )}
-      </Canvas>
-      {selectedIndex !== -1 && <Slide index={selectedIndex} onClose={() => setSelectedIndex(-1)} />}
+      {selectedIndex == -1 ? (
+        <Canvas
+          ref={canvasRef}
+          className="h-screen w-full bg-black"
+          style={{ background: "transparent" }}
+          camera={{ position: [0, 0, 10], fov: 25 }}
+        >
+          <ambientLight intensity={0.5} />
+          {isLoading ? (
+            <StackedGroup setIsLoading={setIsLoading} />
+          ) : (
+            <>
+              <RotatingGroup
+                canvas={canvasRef.current}
+                setSelectedIndex={setSelectedIndex}
+                bgRef={bgRef}
+              />
+              <Bg bgRef={bgRef} />
+            </>
+          )}
+        </Canvas>
+      ) : (
+        <Slide index={selectedIndex} setSelectedIndex={setSelectedIndex} />
+      )}
     </>
   );
 };
-
 
 export default Scene;
