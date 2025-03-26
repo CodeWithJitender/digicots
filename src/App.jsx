@@ -25,6 +25,7 @@ function App() {
       smooth: true,
       smoothTouch: true, // Enable smooth scrolling on touch
       direction: "vertical",
+      // content:document.querySelector("body"),
       gestureDirection: "vertical",
       wheelMultiplier: 0.5, // Reduce speed of scroll when using mouse wheel
       touchMultiplier: 0.3, // Reduce touch scroll speed

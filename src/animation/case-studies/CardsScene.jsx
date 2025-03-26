@@ -189,7 +189,7 @@ const StackedGroup = ({ setIsLoading }) => {
   }, [cardRefs.current, setIsLoading]);
 
   return (
-    <group position={[0, 0, -3]} rotation={[-0.4, 0, 1]}>
+    <group position={window.innerWidth > 600 ? [0, -.5, -3] :  [0, -.5, -10]} rotation={[-0.5, 0, 1.2]}>
       {loadedTextures.slice(0, 30).map((texture, i) => (
         <Card2
           key={i}
@@ -394,7 +394,7 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
   });
 
   return (
-    <group position={[0, -10, 0.5]} ref={groupRef}>
+    <group position={window.innerWidth > 600 ? [0, -10, 0.5] : [0, -15, -12]} ref={groupRef}>
       {loadedTextures.map((texture, i) => {
         const angle = (i / cardCount) * Math.PI * 2;
         const x = Math.cos(angle) * radius;
@@ -419,7 +419,11 @@ const Slide = ({ index, onClose,setSelectedIndex }) => {
   const slides = [
     {
       image: ["case-study-1.png", "case-study-1.png", "case-study-1.png"],
-      title: "Product: With Long Heading",
+      title: [
+        "Product: With Long Heading",
+        "Product: With Long Heading",
+        "Product: With Long Heading",
+      ],
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -429,7 +433,11 @@ const Slide = ({ index, onClose,setSelectedIndex }) => {
     },
     {
       image: ["case-study-2.png", "case-study-2.png", "case-study-2.png"],
-      title: "Product: With Long Heading",
+      title: [
+        "Product: With Long Heading",
+        "Product: With Long Heading",
+        "Product: With Long Heading",
+      ],
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -439,7 +447,11 @@ const Slide = ({ index, onClose,setSelectedIndex }) => {
     },
     {
       image: ["case-study-3.png", "case-study-3.png", "case-study-3.png"],
-      title: "Product: With Long Heading",
+      title: [
+        "Product: With Long Heading",
+        "Product: With Long Heading",
+        "Product: With Long Heading",
+      ],
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -495,7 +507,7 @@ const Bg = ({ bgRef }) => {
       card.position.set(
         (Math.random() - 0.5) * 20, // X: Random between -10 and 10
         ((Math.random() - 100) * index) % 60, // Y: Start below the screen
-        (Math.random() - 1) * 20 // Z: Random between -10 and 10
+        Math.random() * (30 - 13) - 30 // Z: Random between -15 and -13
       );
 
       // Random upward velocity (slower speed)
@@ -541,7 +553,7 @@ const Bg = ({ bgRef }) => {
       if (card.position.y > 10) {
         card.position.y = Math.random() - 10; // Reset to the bottom
         card.position.x = (Math.random() - 0.5) * 20; // Randomize X position
-        card.position.z = (Math.random() - 1) * 30; // Randomize Z position
+        card.position.z = Math.random() * (30 - 13) - 30; // Randomize Z position
       }
     });
   });
@@ -551,7 +563,7 @@ const Bg = ({ bgRef }) => {
       <group ref={bgRef}>
         {Array.from({ length: numCards }).map((_, i) => (
           <mesh key={i} ref={(el) => (cardsRef.current[i] = el || null)}>
-            <planeGeometry args={[0.2, 0.2]} /> {/* Small card size */}
+            <planeGeometry args={[.3, .3]} /> {/* Small card size */}
             <meshBasicMaterial transparent opacity={0.5} />
           </mesh>
         ))}

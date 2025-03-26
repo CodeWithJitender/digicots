@@ -5,7 +5,7 @@ import BrandingGrid from '../sections/our-work/BrandingGrid'
 
 function OurWork() {
   return (
-    <div className='bg-black'>
+    <div className='bg-black overflow-x-hidden'>
     <HeroHeading/>
     <BrandingGrid/>
     </div>
