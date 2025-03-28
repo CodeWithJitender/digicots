@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BlogModal from "./BlogModal";
 
 export default function TopicSection() {
@@ -22,32 +22,33 @@ export default function TopicSection() {
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
       img: "blog/topic-4.png",
-      imgArr:['blog-post1.png', 'blog-post2.png', 'blog-post3.png', 'blog-post4.png', 'blog-post5.png', 'blog-post6.png', 'blog-post7.png', 'blog-post8.png','blog-post9.png', 'blog-post0.png'] // Replace with actual images
+      imgArr:['blog-post1.png', 'blog-post2.png', 'blog-post3.png', 'blog-post4.png', 'blog-post5.png', 'blog-post6.png', 'blog-post7.png', 'blog-post8.png','blog-post9.png'] // Replace with actual images
     },
     {
       title: "This is a very long heading with lots of words...",
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
       img: "blog/topic-3.png",
-      imgArr:['blog-post1.png', 'blog-post2.png', 'blog-post3.png', 'blog-post4.png', 'blog-post5.png', 'blog-post6.png', 'blog-post7.png', 'blog-post8.png','blog-post9.png', 'blog-post0.png']
+      imgArr:['blog-post1.png', 'blog-post2.png', 'blog-post3.png', 'blog-post4.png', 'blog-post5.png', 'blog-post6.png', 'blog-post7.png', 'blog-post8.png','blog-post9.png']
     },
     {
       title: "This is a very long heading with lots of words...",
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
       img: "blog/topic-2.png",
-      imgArr:['blog-post1.png', 'blog-post2.png', 'blog-post3.png', 'blog-post4.png', 'blog-post5.png', 'blog-post6.png', 'blog-post7.png', 'blog-post8.png','blog-post9.png', 'blog-post0.png']
+      imgArr:['blog-post1.png', 'blog-post2.png', 'blog-post3.png', 'blog-post4.png', 'blog-post5.png', 'blog-post6.png', 'blog-post7.png', 'blog-post8.png','blog-post9.png']
     },
     {
       title: "This is a very long heading with lots of words...",
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
       img: "blog/topic-1.png",
-      imgArr:['blog-post1.png', 'blog-post2.png', 'blog-post3.png', 'blog-post4.png', 'blog-post5.png', 'blog-post6.png', 'blog-post7.png', 'blog-post8.png','blog-post9.png', 'blog-post0.png']
+      imgArr:['blog-post1.png', 'blog-post2.png', 'blog-post3.png', 'blog-post4.png', 'blog-post5.png', 'blog-post6.png', 'blog-post7.png', 'blog-post8.png','blog-post9.png']
     }
   ];
 
   return (
+    <>
     <section className=" text-white  px-6 ">
       <div className="max-w-7xl mx-auto">
         {/* Header Section
@@ -63,11 +64,13 @@ export default function TopicSection() {
           {posts.map((post, index) => (
             <div key={index} className="relative group cursor-pointer" onClick={() => openModal(post)}>
               {/* Image */}
-              <img
-                src={post.img}
-                alt="Blog Post"
-                className="w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
-              />
+              <div className="overflow-hidden rounded-lg transition-all duration-1000 ">
+                <img
+                  src={post.img}
+                  alt="Blog Post"
+                  className="w-full object-cover rounded-lg transition-all duration-1000 group-hover:scale-120"
+                />
+              </div>
 
               {/* Text Content */}
               <div className="mt-3">
@@ -83,7 +86,8 @@ export default function TopicSection() {
       </div>
 
       {/* Modal */}
-      <BlogModal isOpen={isOpen} onClose={closeModal} post={selectedPost} />
     </section>
+      <BlogModal isOpen={isOpen} onClose={closeModal} post={selectedPost} />
+      </>
   );
 }

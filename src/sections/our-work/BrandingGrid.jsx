@@ -338,7 +338,7 @@ const CardWrapper = ({ setSelectedCard, from, to }) => {
       scrollTrigger: {
         trigger: cardWrapperRef.current,
         start: "top 120%",
-        end: window.innerWidth > 628 ?  "top -90%" : "top -30%",
+        end: window.innerWidth > 628 ?  "top -90%" : "top -40%",
         scrub: 1,
         // markers: true,
       },
@@ -367,7 +367,7 @@ const CardWrapper = ({ setSelectedCard, from, to }) => {
           scale: window.innerWidth > 628 ?  1.2 : 1.1,
           opacity: .2,
           rotationX: -40,
-          duration: 20,
+          duration: window.innerWidth > 628 ?  20 : 15,
           ease: "power1.inOut", // Changed from linear
           immediateRender: false, // Ensures smooth transition between animations
         },
