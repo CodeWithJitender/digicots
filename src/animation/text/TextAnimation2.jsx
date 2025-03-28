@@ -14,7 +14,8 @@ const TextAnimation2 = ({ children, className = "", animeStart = "50" , animeEnd
     if (!letterRefs.current.length) return; // Ensure letters exist
 
     gsap.from(letterRefs.current, {
-      opacity: .2,
+      opacity:0,
+      filter:"blur(10px)",
       duration: duration,
       stagger: duration/50, // Har letter thoda delay se animate hoga
       scrollTrigger: {
