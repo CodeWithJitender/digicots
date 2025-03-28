@@ -12,6 +12,19 @@ const slides = [
     date: "Jan 25, 2025",
     readTime: "2 Min Read",
     thumbnail: "blog/thumb-1.png",
+    img: "blog/topic-4.png",
+      imgArr: [
+        "blog-post1.png",
+        "blog-post2.png",
+        "blog-post3.png",
+        "blog-post4.png",
+        "blog-post5.png",
+        "blog-post6.png",
+        "blog-post7.png",
+        "blog-post8.png",
+        "blog-post9.png",
+        "blog-post0.png"
+      ]
   },
   {
     image: "blog/blog-1.png",
@@ -20,6 +33,19 @@ const slides = [
     date: "Feb 10, 2025",
     readTime: "3 Min Read",
     thumbnail: "blog/thumb-1.png",
+    img: "blog/topic-4.png",
+      imgArr: [
+        "blog-post1.png",
+        "blog-post2.png",
+        "blog-post3.png",
+        "blog-post4.png",
+        "blog-post5.png",
+        "blog-post6.png",
+        "blog-post7.png",
+        "blog-post8.png",
+        "blog-post9.png",
+        "blog-post0.png"
+      ]
   },
   {
     image: "blog/blog-1.png",
@@ -28,6 +54,19 @@ const slides = [
     date: "Jan 25, 2025",
     readTime: "2 Min Read",
     thumbnail: "blog/thumb-1.png",
+    img: "blog/topic-4.png",
+      imgArr: [
+        "blog-post1.png",
+        "blog-post2.png",
+        "blog-post3.png",
+        "blog-post4.png",
+        "blog-post5.png",
+        "blog-post6.png",
+        "blog-post7.png",
+        "blog-post8.png",
+        "blog-post9.png",
+        "blog-post0.png"
+      ]
   },
   {
     image: "blog/blog-1.png",
@@ -36,10 +75,36 @@ const slides = [
     date: "Feb 10, 2025",
     readTime: "3 Min Read",
     thumbnail: "blog/thumb-1.png",
+    img: "blog/topic-4.png",
+      imgArr: [
+        "blog-post1.png",
+        "blog-post2.png",
+        "blog-post3.png",
+        "blog-post4.png",
+        "blog-post5.png",
+        "blog-post6.png",
+        "blog-post7.png",
+        "blog-post8.png",
+        "blog-post9.png",
+        "blog-post0.png"
+      ]
   },
 ];
 
 export default function ThumbnailSlider() {
+   const [selectedPost, setSelectedPost] = useState(null);
+        const [isOpen, setIsOpen] = useState(false);
+      
+        const openModal = (post) => {
+          setSelectedPost(post);
+          setIsOpen(true);
+        };
+      
+        const closeModal = () => {
+          setIsOpen(false);
+          setSelectedPost(null);
+        };
+
   return (
     <motion.section
       initial={{ opacity: 0, scale: 1.1, filter: "blur(4px)" }}
