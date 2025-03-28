@@ -3,6 +3,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const slides = [
   {
