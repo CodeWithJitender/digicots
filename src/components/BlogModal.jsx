@@ -167,7 +167,7 @@ export default function BlogModal({ isOpen, onClose, post }) {
                       key={i}
                       ref={(el) => (imgRef.current[i] = el)}
                       src={img}
-                      className=" overflow-hidden absolute scale-[1.1] w-[300px] md:w-[400px] -translate-x-1/2 top-0 left-[200%] h-[80vh] object-cover rounded-lg "
+                      className=" overflow-hidden absolute scale-[1.1] w-[90vw] md:w-[400px] -translate-x-1/2 top-0 left-[200%] h-[75vh] md:[80vh] object-cover rounded-lg "
                       style={{ left: i == 0 && "50%", scale: i == 0 && 1 }}
                       alt=""
                     />
