@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function BlogSection() {
   const posts = [
@@ -130,8 +131,35 @@ export default function BlogSection() {
 
 
 
+  const mainImgRef = useRef(null);
+
+  gsap.registerPlugin(ScrollTrigger)
+  useGSAP(()=>{
+    const tl = gsap.timeline({
+      scrollTrigger:{
+        trigger:mainImgRef.current,
+        start:"top 70%",
+        end:"top 30%",
+        scrub: true,
+      }
+    })
+    tl.from(mainImgRef.current , {
+      opacity:0,
+      scale:.9,
+      duration:1,
+      filter:"blur(4px)",
+      ease: "power1.inOut",
+      transformOrigin: "center",
+    })
+  },[mainImgRef.current])
+
+
+
   return (
-    <section className=" text-white py-12 px-6 md:px-12">
+    <section 
+    ref={mainImgRef}
+
+     className=" text-white py-12 px-6 md:px-12">
       <div className="max-w-6xl relative mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         {/* Left Side - Blog List */}
         <div>
