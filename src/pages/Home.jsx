@@ -10,6 +10,7 @@ import Header from "../components/Header";
 import Faq from "../sections/home/Faq";
 import KeywordsSection from "../sections/home/KeywordsSection";
 import Testimonials from "../sections/home/Testimonials";
+import Footer from "../components/Footer";
 
 function Home() {
   return (
@@ -23,6 +24,7 @@ function Home() {
       <OurJourney/> 
       <Testimonials/>
       <Faq/>
+      <Footer/>
     </>
   );
 }

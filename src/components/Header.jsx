@@ -11,51 +11,61 @@ function Header() {
       title: "Website Development",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-1.png",
+      id: "Website Development",
     },
     {
       title: "Artificial Reality (AR)",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-2.png",
+      id: "artificial-reality",
     },
     {
       title: "Outdoor Advertising",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-3.png",
+      id: "outdoor-advertising",
     },
     {
       title: "Public Relations",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-4.png",
+      id: "public-relations",
     },
     {
       title: "Performance Marketing",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-5.png",
+      id: "performance-marketing",
     },
     {
       title: "Digital Marketing",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-6.png",
+      id: "digital-marketing",
     },
     {
       title: "Creative Designing",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-7.png",
+      id: "creative-designing",
     },
     {
       title: "Outreach Solutions",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-8.png",
+      id: "outreach-solutions",
     },
     {
       title: "Content Production",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-9.png",
+      id: "content-production",
     },
     {
       title: "Performance Marketing",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-5.png",
+      id: "performance-marketing",
     },
   ];
   const [toggle, setToggle] = useState(false);
@@ -75,43 +85,67 @@ function Header() {
     console.log(toggle);
     if (toggle) {
       const tl = gsap.timeline();
-      tl.to(menuRef.current, {
-        top: "71px",
-        display: "initial",
-        opacity: 1,
-        duration: 1,
-        ease: "power3.inOut",
-      },"a").to(mainMenuRef.current, {
-        top: "0%",
-        opacity: 1,
-      }).to(upperLine.current,{
-        rotate:"45deg",
-        y:2
-      },"a").to(lowerLine.current,{
-        rotate:"-45deg",
-        y:-2
-      },"a")
-      .to(navRef.current,{
-        // height: "100vh",
-      })
+      tl.to(
+        menuRef.current,
+        {
+          top: "71px",
+          display: "initial",
+          opacity: 1,
+          duration: 1,
+          ease: "power3.inOut",
+        },
+        "a"
+      )
+        .to(mainMenuRef.current, {
+          top: "0%",
+          opacity: 1,
+        })
+        .to(
+          upperLine.current,
+          {
+            rotate: "45deg",
+            y: 2,
+          },
+          "a"
+        )
+        .to(
+          lowerLine.current,
+          {
+            rotate: "-45deg",
+            y: -2,
+          },
+          "a"
+        )
+        .to(navRef.current, {
+          // height: "100vh",
+        });
     } else {
       const tl = gsap.timeline();
-      tl.to(mainMenuRef.current, {
-        top: "100%",
-        opacity: 0,
-      },"a").to(menuRef.current, {
-        top: "-100%",
-        display: "none",
-        opacity: 0,
-        duration: 1,
-        ease: "power3.inOut",
-      }).to([upperLine.current,lowerLine.current],{
-        rotate:"0deg",
-        y:0
-      },"a")
+      tl.to(
+        mainMenuRef.current,
+        {
+          top: "100%",
+          opacity: 0,
+        },
+        "a"
+      )
+        .to(menuRef.current, {
+          top: "-100%",
+          display: "none",
+          opacity: 0,
+          duration: 1,
+          ease: "power3.inOut",
+        })
+        .to(
+          [upperLine.current, lowerLine.current],
+          {
+            rotate: "0deg",
+            y: 0,
+          },
+          "a"
+        );
     }
   }, [menuRef.current, toggle, upperLine.current, lowerLine.current]);
-
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -146,36 +180,29 @@ function Header() {
       }
     };
 
-    const mediaQuery = window.matchMedia('(min-width: 601px)');
+    const mediaQuery = window.matchMedia("(min-width: 601px)");
 
     const handleMediaQueryChange = (event) => {
       if (event.matches) {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
       } else {
-        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener("scroll", handleScroll);
       }
     };
 
     handleMediaQueryChange(mediaQuery); // Initial check
-    mediaQuery.addEventListener('change', handleMediaQueryChange);
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+      window.removeEventListener("scroll", handleScroll);
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
   }, [logoRef, letsTalkRef]);
 
-
-
-
-
-
-
-
   return (
-    <header  className="fixed top-[-1px] z-[1000] w-full ">
+    <header className="fixed top-[-1px] z-[1000] w-full ">
       {/* <div className="header-wrapper relative flex items-center justify-between bg-[#242424] lg:bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4"> */}
-      <div  className="header-wrapper relative flex items-center justify-between px-6 py-4 bg-zinc-500/[.1] lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none ">
+      <div className="header-wrapper relative flex items-center justify-between px-6 py-4 bg-zinc-500/[.1] lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none ">
         <div ref={logoRef} className="logo">
           <Link to="/">
             <img
@@ -239,6 +266,7 @@ function Header() {
                       pera={item.pera}
                       icon={item.icon}
                       key={index}
+                      link={item.id}
                     />
                   ))}
                 </div>
