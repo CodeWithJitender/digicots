@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import ScrollableCanvasAnimationMP4 from "./components/animations/ScrollableCanvasAnimationMP4";
+import AutoPlayCanvasAnimation from "./components/animations/AutoPlayCanvasAnimation";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -14,7 +15,7 @@ const App = () => {
   // Initialize Lenis and sync with ScrollTrigger
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.08,
+      lerp: 0.8,
       smoothWheel: true,
     });
 
@@ -55,18 +56,21 @@ const App = () => {
   return (
     isMounted && (
       <div className="main w-full bg-zinc-800">
-        <ScrollableCanvasAnimationMP4
+        {/* <ScrollableCanvasAnimationMP4
+          imgPath={"./our_work_frame/"}
+          frameCount={80}
+          height={"200vh"}
+          /> */}
+        {/* <ScrollableCanvasAnimationMP4
           imgPath={"./short/VID_Sequence."}
           frameCount={200}
           height={"300vh"}
-        />
+          /> */}
 
-        <div className="h-screen w-full ">heyy</div>
-
-        <ScrollableCanvasAnimationMP4
-          imgPath={"./short/VID_Sequence."}
-          frameCount={200}
-          height={"300vh"}
+        <AutoPlayCanvasAnimation
+          imgPath={"./our_work_frame/"}
+          // frameCount={41}
+          // fps={20}
         />
       </div>
     )
