@@ -14,9 +14,9 @@ import Testimonials from "../sections/home/Testimonials";
 function Home() {
   return (
     <div className="main contain-paint">
-      <Hero img={homeHero} /> 
-      <HowItWorks/> 
-      <Solutions/>
+      {/* <Hero img={homeHero} />  */}
+      {/* <HowItWorks/>  */}
+      {/* <Solutions/> */}
       <OurWork/>
       <Insights/>
       <KeywordsSection/>
