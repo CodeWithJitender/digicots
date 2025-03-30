@@ -8,7 +8,7 @@ function OurWork() {
     <section className="our-work w-full bg-black">
         <CylindricalSlider />
         <VideoLikeCanvasAnimation
-        
+                    imgPath={"./our_work_frame/"}
         />
     </section>
   );
