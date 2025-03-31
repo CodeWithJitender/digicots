@@ -14,18 +14,18 @@ const slides = [
     readTime: "2 Min Read",
     thumbnail: "blog/thumb-1.png",
     img: "blog/topic-4.png",
-      imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
-        "blog-post0.png"
-      ]
+    imgArr: [
+      "blog-post1.png",
+      "blog-post2.png",
+      "blog-post3.png",
+      "blog-post4.png",
+      "blog-post5.png",
+      "blog-post6.png",
+      "blog-post7.png",
+      "blog-post8.png",
+      "blog-post9.png",
+      "blog-post0.png",
+    ],
   },
   {
     image: "blog/blog-1.png",
@@ -35,18 +35,18 @@ const slides = [
     readTime: "3 Min Read",
     thumbnail: "blog/thumb-1.png",
     img: "blog/topic-4.png",
-      imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
-        "blog-post0.png"
-      ]
+    imgArr: [
+      "blog-post1.png",
+      "blog-post2.png",
+      "blog-post3.png",
+      "blog-post4.png",
+      "blog-post5.png",
+      "blog-post6.png",
+      "blog-post7.png",
+      "blog-post8.png",
+      "blog-post9.png",
+      "blog-post0.png",
+    ],
   },
   {
     image: "blog/blog-1.png",
@@ -56,18 +56,18 @@ const slides = [
     readTime: "2 Min Read",
     thumbnail: "blog/thumb-1.png",
     img: "blog/topic-4.png",
-      imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
-        "blog-post0.png"
-      ]
+    imgArr: [
+      "blog-post1.png",
+      "blog-post2.png",
+      "blog-post3.png",
+      "blog-post4.png",
+      "blog-post5.png",
+      "blog-post6.png",
+      "blog-post7.png",
+      "blog-post8.png",
+      "blog-post9.png",
+      "blog-post0.png",
+    ],
   },
   {
     image: "blog/blog-1.png",
@@ -77,34 +77,34 @@ const slides = [
     readTime: "3 Min Read",
     thumbnail: "blog/thumb-1.png",
     img: "blog/topic-4.png",
-      imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
-        "blog-post0.png"
-      ]
+    imgArr: [
+      "blog-post1.png",
+      "blog-post2.png",
+      "blog-post3.png",
+      "blog-post4.png",
+      "blog-post5.png",
+      "blog-post6.png",
+      "blog-post7.png",
+      "blog-post8.png",
+      "blog-post9.png",
+      "blog-post0.png",
+    ],
   },
 ];
 
 export default function ThumbnailSlider() {
-   const [selectedPost, setSelectedPost] = useState(null);
-        const [isOpen, setIsOpen] = useState(false);
-      
-        const openModal = (post) => {
-          setSelectedPost(post);
-          setIsOpen(true);
-        };
-      
-        const closeModal = () => {
-          setIsOpen(false);
-          setSelectedPost(null);
-        };
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = (post) => {
+    setSelectedPost(post);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setSelectedPost(null);
+  };
 
   return (
     <motion.section
@@ -121,7 +121,8 @@ export default function ThumbnailSlider() {
             slidesPerView={1}
             loop={true}
             // navigation
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            
+            autoplay={{ delay: 3350, disableOnInteraction: false }}
             className="w-full rounded-lg overflow-hidden"
           >
             {slides.map((slide, index) => (
@@ -160,7 +161,7 @@ export default function ThumbnailSlider() {
                 </div>
 
                 {/* Floating Thumbnail (Next Slide Preview) */}
-                {index < slides.length - 1 && (
+                {index < slides.length - 1 ? (
                   <div className="absolute bottom-6 right-6 bg-gray-900/80 text-white p-3 rounded-lg  items-center space-x-3 hidden md:flex">
                     <img
                       src={slides[index + 1].thumbnail}
@@ -172,38 +173,55 @@ export default function ThumbnailSlider() {
                       <h3 className="text-sm font-semibold">
                         {slides[index + 1].title}
                       </h3>
+                      {/* Progress Bar (Bottom Border) */}
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-700 overflow-hidden">
+                        <div className="h-full bg-orange-500 progress-bar"></div>
+                      </div>
+                    </div>
+                  </div>
+                ):(
+                  <div className="absolute bottom-6 right-6 bg-gray-900/80 text-white p-3 rounded-lg  items-center space-x-3 hidden md:flex">
+                    <img
+                      src={slides[0].thumbnail}
+                      alt="Next post"
+                      className="w-20 h-14 object-cover rounded-md"
+                    />
+                    <div>
+                      <span className="text-orange-400 text-xs">NEXT</span>
+                      <h3 className="text-sm font-semibold">
+                        {slides[0].title}
+                      </h3>
+                      {/* Progress Bar (Bottom Border) */}
+                      <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-700 overflow-hidden">
+                        <div className="h-full bg-orange-500 progress-bar"></div>
+                      </div>
                     </div>
                   </div>
                 )}
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* Progress Bar (Bottom Border) */}
-          {/* <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-700 overflow-hidden">
-        <div className="h-full bg-orange-500 progress-bar"></div>
-      </div> */}
-
-          {/* Progress Bar Animation */}
-          <style jsx>{`
-            .progress-bar {
-              width: 100%;
-              height: 100%;
-              transform: scaleX(0);
-              transform-origin: left;
-              animation: progressBar 4s linear infinite;
-            }
-
-            @keyframes progressBar {
-              0% {
-                transform: scaleX(0);
-              }
-              100% {
-                transform: scaleX(1);
-              }
-            }
-          `}</style>
         </div>
+
+        {/* Progress Bar Animation */}
+        <style jsx>{`
+          .progress-bar {
+            width: 100%;
+            height: 100%;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: progressBar 3.6s linear infinite;
+          }
+
+          @keyframes progressBar {
+            0% {
+              transform: scaleX(0);
+            }
+            100% {
+              transform: scaleX(1);
+            }
+          }
+        `}</style>
       </div>
     </motion.section>
   );

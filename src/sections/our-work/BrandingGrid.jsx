@@ -2,8 +2,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useEffect, useRef, useState } from "react";
-import { useLenis } from "../../App";
-import { document } from "postcss";
 
 const brandingData = [
   {

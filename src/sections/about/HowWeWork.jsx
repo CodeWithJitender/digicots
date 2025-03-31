@@ -72,40 +72,44 @@ function HowWeWork() {
   const cardsRef = useRef([]);
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
-    if(window.innerWidth>600){
+    if (window.innerWidth > 600) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".how-we-work",
-          start: "top 0%",
+          start: "top 10%",
           end: "top -100%",
           scrub: 1,
         },
       });
       tl.from(cardsRef.current, {
-        left:"150%",
-        stagger:.3
+        x: "-1000%",
+        duration: 1.5,
+        stagger: 0.2,
       });
-    }
-    else{
+    } else {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".how-we-work",
-          start: "top 0%",
+          start: "top 10%",
           end: "top -100%",
           scrub: 1,
         },
       });
-      tl.from(cardsRef.current, {
-        top:"150%",
-        stagger:.3
+      tl.fromTo(cardsRef.current, {
+        top: "150%",
+        // y: "105%",
+        stagger: 0.3,
+      },{
+        top:"10%",
+        stagger: 0.3,
       });
     }
-  }, [cardsRef.current,window.innerWidth]);
-  console.log(cardsRef)
+  }, [cardsRef.current, window.innerWidth]);
+  console.log(cardsRef);
 
   return (
-    <div className="min-h-[200vh]">
-      <section className=" sticky top-0 how-we-work py-10 overflow-hidden">
+    <div className=" relative min-h-[200vh]">
+      <section className="sticky top-0 min-h-screen how-we-work py-10 overflow-hidden">
         <div className="min-h-screen container mx-auto px-4">
           {/* Heading Section */}
           <HeadingWithLink
@@ -115,14 +119,14 @@ function HowWeWork() {
           />
 
           {/* Grid Layout for Cards */}
-          <div className="relative mt-28 w-full">
+          <div className="relative mt-28 w-full flex h-[60vh] flex-col md:flex-row gap-8 ">
             {cardList.map((card, i) => (
               <WolfCard
                 ref={(el) => (cardsRef.current[i] = el)}
                 key={card.id}
                 {...card}
-                className="absolute"
-                style={window.innerWidth > 600 ? { left: `${i * 8.5}%`, width: `${100 - 3.7*8.5}% ` } : { top: `${i * 10}%`, }}
+                className=""
+                style={{}}
               />
             ))}
           </div>

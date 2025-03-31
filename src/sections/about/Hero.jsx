@@ -81,15 +81,17 @@ function Model({ modelPath }) {
     <primitive position={[0, window.innerWidth > 640 ? 0.05 : .2  , 0]} object={gltf.scene} ref={modelRef} />
   );
 }
-const RandomBalls = ({ count = 250 }) => {
+
+const RandomBalls = ({ count = 300 }) => {
   const { mouse, clock } = useThree();
   const groupRef = useRef();
+  const startTime = useRef(clock.getElapsedTime()); // Track animation start time
 
   // Initialize balls with original positions and random movement parameters
   const balls = useRef(
     Array.from({ length: count }).map(() => {
-      const speed = 0.2 + Math.random() * 0.3; // Random speed between 0.2-0.5
-      const offset = Math.random() * Math.PI * 2; // Random starting position in cycle
+      const speed = 0.2 + Math.random() * 0.3;
+      const offset = Math.random() * Math.PI * 2;
 
       return {
         originalPosition: [
@@ -111,9 +113,9 @@ const RandomBalls = ({ count = 250 }) => {
         ],
         speed,
         offset,
-        radiusX: 0.05 + Math.random() * 0.1, // Random X movement radius
-        radiusY: 0.05 + Math.random() * 0.1, // Random Y movement radius
-        radiusZ: 0.02 + Math.random() * 0.05, // Random Z movement radius
+        radiusX: 0.05 + Math.random() * 0.1,
+        radiusY: 0.05 + Math.random() * 0.1,
+        radiusZ: 0.02 + Math.random() * 0.05,
       };
     })
   );
@@ -123,6 +125,10 @@ const RandomBalls = ({ count = 250 }) => {
   useFrame(() => {
     if (!groupRef.current) return;
     const time = clock.getElapsedTime();
+    
+    // Calculate animation progress (2-second intro)
+    const elapsedTime = time - startTime.current;
+    const progress = Math.min(elapsedTime / 2, 1);
 
     // Handle mouse rotation (original behavior)
     const deltaX = mouse.x - prevMousePosition.current.x;
@@ -132,18 +138,20 @@ const RandomBalls = ({ count = 250 }) => {
     groupRef.current.rotation.y += deltaX * 0.05;
     groupRef.current.rotation.x -= deltaY * 0.05;
 
-    // Add individual ball movement
+    // Add individual ball movement with intro animation
     groupRef.current.children.forEach((ball, index) => {
       const ballData = balls.current[index];
       const t = time * ballData.speed + ballData.offset;
 
-      // Calculate subtle circular movements
-      ball.position.x =
-        ballData.originalPosition[0] + Math.sin(t) * ballData.radiusX;
-      ball.position.y =
-        ballData.originalPosition[1] + Math.cos(t * 0.7) * ballData.radiusY;
-      ball.position.z =
-        ballData.originalPosition[2] + Math.sin(t * 0.5) * ballData.radiusZ;
+      // Calculate interpolated base position
+      const baseX = ballData.originalPosition[0] * progress;
+      const baseY = ballData.originalPosition[1] * progress;
+      const baseZ = ballData.originalPosition[2] * progress;
+
+      // Apply movement to interpolated position
+      ball.position.x = baseX + Math.sin(t) * ballData.radiusX;
+      ball.position.y = baseY + Math.cos(t * 0.7) * ballData.radiusY;
+      ball.position.z = baseZ + Math.sin(t * 0.5) * ballData.radiusZ;
 
       // Maintain original depth scaling
       const depthFactor = 1 - (ballData.originalPosition[2] + 5) / 10;
@@ -156,7 +164,7 @@ const RandomBalls = ({ count = 250 }) => {
       {balls.current.map((ball, index) => (
         <mesh
           key={index}
-          position={ball.originalPosition}
+          position={[0, 0, 0]} // Start all balls at origin
           castShadow
           receiveShadow
         >
@@ -183,7 +191,7 @@ const Hero = () => {
         trigger:heroRef.current,
         start: "top 0",
         end: "top -100%",
-        markers: true,
+        // markers: true,
         scrub:1,
       }
     })
