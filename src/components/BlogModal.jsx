@@ -102,7 +102,7 @@ export default function BlogModal({ isOpen, onClose, post }) {
   ];
 
   return (
-    <div className="fixed inset-0 z-[10000] bg-black bg-opacity-80 flex justify-center items-end ">
+    <div data-lenis-prevent className="fixed inset-0 z-[10000] bg-black bg-opacity-80 flex justify-center items-end ">
       <motion.div
         ref={layoutRef}
         initial={{ opacity: 0, scale: 1.3, filter: "blur(10px)" }}

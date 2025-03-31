@@ -14,39 +14,6 @@ export default function BlogSection() {
       date: "Jan 25, 2025",
       readTime: "2 Min Read",
       img: "blog/topic-1.png",
-    },
-    {
-      id: "2",
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
-      readTime: "2 Min Read",
-      img: "blog/topic-2.png",
-    },
-    {
-      id: "",
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
-      readTime: "2 Min Read",
-      img: "blog/topic-3.png",
-    },
-    {
-      id: "",
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
-      readTime: "2 Min Read",
-      img: "blog/topic-4.png",
-    },
-  ];
-
-  const posts2 = [
-    {
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
-      img: "blog/topic-4.png",
       imgArr: [
         "blog-post1.png",
         "blog-post2.png",
@@ -60,26 +27,11 @@ export default function BlogSection() {
       ], // Replace with actual images
     },
     {
+      id: "2",
       title: "This is a very long heading with lots of words...",
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
-      img: "blog/topic-3.png",
-      imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
-      ],
-    },
-    {
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
+      readTime: "2 Min Read",
       img: "blog/topic-2.png",
       imgArr: [
         "blog-post1.png",
@@ -91,13 +43,15 @@ export default function BlogSection() {
         "blog-post7.png",
         "blog-post8.png",
         "blog-post9.png",
-      ],
+      ], // Replace with actual images
     },
     {
+      id: "",
       title: "This is a very long heading with lots of words...",
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
-      img: "blog/topic-1.png",
+      readTime: "2 Min Read",
+      img: "blog/topic-3.png",
       imgArr: [
         "blog-post1.png",
         "blog-post2.png",
@@ -108,13 +62,15 @@ export default function BlogSection() {
         "blog-post7.png",
         "blog-post8.png",
         "blog-post9.png",
-      ],
+      ], // Replace with actual images
     },
     {
+      id: "",
       title: "This is a very long heading with lots of words...",
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
-      img: "blog/topic-1.png",
+      readTime: "2 Min Read",
+      img: "blog/topic-4.png",
       imgArr: [
         "blog-post1.png",
         "blog-post2.png",
@@ -125,26 +81,10 @@ export default function BlogSection() {
         "blog-post7.png",
         "blog-post8.png",
         "blog-post9.png",
-      ],
-    },
-    {
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
-      img: "blog/topic-1.png",
-      imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
-      ],
+      ], // Replace with actual images
     },
   ];
+
 
   const [isOpen, setIsOpen] = useState(false);
   const openModal = (post) => {
@@ -277,6 +217,7 @@ export default function BlogSection() {
   }, [mainImgRef.current]);
 
   return (
+    <>
     <section ref={mainImgRef} className=" text-white py-12 px-6 md:px-12">
       <div className="max-w-6xl relative mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         {/* Left Side - Blog List */}
@@ -288,7 +229,7 @@ export default function BlogSection() {
           <div className="">
             {posts.map((post, index) => (
               <div
-                onClick={() => openModal(posts[index])}
+                onClick={() => openModal(post)}
                 ref={(el) => (hoverDivRef.current[index] = el)}
                 key={index}
                 className=" hoverDiv border-t border-gray-600 border-dotted pt-5 md:pt-10 md:pb-5"
@@ -341,8 +282,10 @@ export default function BlogSection() {
           </div>
         </div>
       </div>
-      <BlogModal isOpen={isOpen} onClose={closeModal} post={selectedPost} />
     </section>
+      <BlogModal isOpen={isOpen} onClose={closeModal} post={selectedPost} />
+    </>
+
   );
 }
 
