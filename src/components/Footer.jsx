@@ -58,9 +58,9 @@ export default function Footer() {
         <div className="border-t border-gray-700 my-12"></div>
 
         {/* Bottom Section - Footer Content */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {/* Branding */}
-          <div className="flex flex-col items-center md:items-start sm:col-span-2">
+          <div className="flex flex-col items-center md:items-start col-span-2 md:col-span-1">
             <h3 className="text-4xl font-bold text-[#DF782B]">DigiCots</h3>
             <div className="flex space-x-3 mt-4">
               <div className="w-8 h-8 bg-gray-800 rounded-md"></div>
@@ -71,7 +71,7 @@ export default function Footer() {
           </div>
 
           {/* Address */}
-          <div className="text-center sm:text-left sm:max-w-[250px]">
+          <div className="sm:text-left sm:max-w-[250px]">
             <h4 className="text-lg font-semibold">India</h4>
             <p className="text-gray-400 mt-2">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -81,7 +81,7 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex sm:justify-end sm:gap-20 text-center justify-around md:text-left">
+          <div className="flex sm:justify-end gap-10 sm:gap-20 text-center justify-around md:text-left">
             <div>
               <h4 className="font-semibold">Header</h4>
               <ul className="text-gray-400 mt-2 space-y-1">
