@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { useRef } from "react";
+import MainHeading from "./MainHeading";
 
 export default function BlogModal({ isOpen, onClose, post }) {
   if (!isOpen || !post) return null;
@@ -102,8 +103,12 @@ export default function BlogModal({ isOpen, onClose, post }) {
   ];
 
   return (
-    <div data-lenis-prevent className="fixed inset-0 z-[10000] bg-black bg-opacity-80 flex justify-center items-end ">
+    <div
+      data-lenis-prevent
+      className="fixed inset-0 z-[10000] bg-black bg-opacity-80 flex justify-center items-end "
+    >
       <motion.div
+        data-lenis-prevent
         ref={layoutRef}
         initial={{ opacity: 0, scale: 1.3, filter: "blur(10px)" }}
         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
@@ -174,9 +179,13 @@ export default function BlogModal({ isOpen, onClose, post }) {
                   ))}
                   <div
                     ref={(el) => (imgRef.current[post.imgArr.length] = el)}
-                    className="flex w-full items-center top-[50vh] -translate-y-1/2 justify-center gap-6 absolute -translate-x-1/2 left-[200%]"
+                    className="flex w-full flex-col items-center top-[40vh] gap-6 -translate-y-1/2 absolute -translate-x-1/2 left-[200%]"
                   >
-                    {posts.map((post, index) => (
+                    <h2 className="text-3xl font-bold">
+                      Explore more
+                    </h2>
+                   <div className="flex w-full gap-6 ">
+                   {posts.map((post, index) => (
                       <div
                         key={index}
                         className="relative group cursor-pointer"
@@ -203,6 +212,7 @@ export default function BlogModal({ isOpen, onClose, post }) {
                         </div>
                       </div>
                     ))}
+                   </div>
                   </div>
                 </div>
               </div>
