@@ -9,7 +9,7 @@ function Hero({img}) {
   return (
     <div className='relative h-[200vh] w-full'>
       <section ref={parentRef} className='hero-home sticky top-0 h-screen w-full bg-black p-0 '>
-         <HeroReelAnimation parentRef={parentRef} />
+         {/* <HeroReelAnimation parentRef={parentRef} /> */}
         {/* <img src={img} alt="" className='w-full h-full' /> */}
     </section>
     </div>

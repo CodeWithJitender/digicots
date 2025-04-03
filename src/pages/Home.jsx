@@ -10,6 +10,7 @@ import Header from "../components/Header";
 import Faq from "../sections/home/Faq";
 import KeywordsSection from "../sections/home/KeywordsSection";
 import Testimonials from "../sections/home/Testimonials";
+import ReelCanvas from "../animation/canvas/ReelCanvas";
 
 function Home() {
   return (
@@ -17,11 +18,13 @@ function Home() {
       {/* <Hero img={homeHero} />  */}
       {/* <HowItWorks/>  */}
       {/* <Solutions/> */}
-      <OurWork/>
-      <Insights/>
-      <KeywordsSection/>
-      <OurJourney/> 
-      <Testimonials/>
+      {/* <OurWork/> */}
+      {/* <Insights/> */}
+      {/* <KeywordsSection/> */}
+      {/* <OurJourney/>  */}
+      {/* <Testimonials/> */}
+
+      <ReelCanvas />
       <Faq/>
     </div>
   );
