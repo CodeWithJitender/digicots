@@ -174,7 +174,7 @@ const BrandingCard = ({ card, onClick }) => {
   return (
     <div
       ref={imgRef}
-      className="bg-black text-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform perspective-[1000px]"
+      className=" text-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform perspective-[1000px]"
       onClick={() => onClick(card)}
     >
       <img src={card.image} alt={card.title} className="w-full rounded-2xl " />
