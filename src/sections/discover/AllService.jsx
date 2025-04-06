@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import React, { useRef, useEffect } from "react";
 
 function AllService() {
   const data = {
@@ -130,37 +133,99 @@ function AllService() {
       offerings: {}
     }
   };
+  
+  const serviceRef = useRef([]);
+  const scrollContainerRef = useRef([]);
+  
+  // Handle scroll detection and toggle Lenis prevention
+  useEffect(() => {
+    const handleScroll = (index) => {
+      const container = scrollContainerRef.current[index];
+      if (!container) return;
 
-  // const [selected, setSelected] = useState("Website Development");
+      const checkScroll = () => {
+        const scrollTop = container.scrollTop;
+        const scrollHeight = container.scrollHeight;
+        const clientHeight = container.clientHeight;
+
+        // Check if scrolled to bottom
+        if (scrollTop + clientHeight >= scrollHeight - 1) { // -1 for buffer
+          container.removeAttribute('data-lenis-prevent');
+        } else {
+          container.setAttribute('data-lenis-prevent', '');
+        }
+      };
+
+      container.addEventListener('scroll', checkScroll);
+      return () => container.removeEventListener('scroll', checkScroll);
+    };
+
+    scrollContainerRef.current.forEach((_, index) => handleScroll(index));
+  }, []);
+
+  gsap.registerPlugin(ScrollTrigger);
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".services",
+        start: "top 80%",
+        end: "top -500%",
+        scrub: true,
+      }
+    });
+    tl.from(serviceRef.current, {
+      duration: 5,
+      y: "130%",
+      ease: "power3.inOut",
+      stagger: 2.5
+    }, "a")
+    .to(serviceRef.current, {
+      duration: 5,
+      scale: 0.9,
+      ease: "power3.inOut",
+      delay: 2,
+      borderRadius: "30px",
+      backgroundColor: "#ffeada",
+      stagger: 2.5
+    }, "a");
+  }, [serviceRef.current]);
 
   return (
-    <section className=" bg-[#FFC395]">
-      <div className="container-xxl">
-      {Object.entries(data).map(([title, service], index) => (
-        <div key={index} className="service-box grid md:grid-cols-2 gap-10 md:gap-20 py-4">
-          {/* Left Side - Image and Title */}
-          <div className="service-img">
-            <h5 className="font-normal text-sm text-[#DF782B] font-inter">SOLUTION {index + 1}</h5>
-            <h2 className="font-black text-4xl md:text-6xl text-black font-inter">{title}</h2>
-            <img src={service.img} className="w-full max-w-[600px]" alt={title} />
-          </div>
+    <section className="bg-[#212020] relative min-h-[600vh]">
+      <div className="services sticky top-0 min-h-screen w-full  ">
+        {Object.entries(data).map(([title, service], index) => (
+          <div 
+            ref={(el) => serviceRef.current[index] = el} 
+            key={index} 
+            className="service-box overflow-hidden shadow-2xl shadow-black h-screen absolute top-0 bg-[#FFC395] grid md:grid-cols-2 gap-10 md:gap-20 md:p-30 p-16"
+          >
+            {/* Left Side - Image and Title */}
+            <div className="service-img">
+              <h5 className="font-normal text-sm text-[#DF782B] font-inter">SOLUTION {index + 1}</h5>
+              <h2 className="font-black text-4xl md:text-6xl text-black font-inter">{title}</h2>
+              <img src={service.img} className="w-full max-w-[200px] md:max-w-[600px]" alt={title} />
+            </div>
 
-          {/* Right Side - Description and Offerings */}
-          <div className="service-text md:max-h-[400px] md:overflow-y-scroll md:pe-10">
-            <p className="font-inter text-sm text-black mb-3">{service.description}</p>
+            {/* Right Side - Description and Offerings */}
+            <div 
+              ref={(el) => scrollContainerRef.current[index] = el}
+              data-lenis-prevent 
+              className="service-text md:max-h-[400px] overflow-y-scroll md:pe-10"
+            >
+              <p className="font-inter text-xs md:text-sm text-black mb-3">{service.description}</p>
 
-            {/* Offerings */}
-            <div className="offerings mt-5 md:mt-20">
-              {Object.entries(service.offerings).map(([offeringTitle, offeringDesc], i) => (
-                <div key={i} className="list mt-5">
-                  <div className="font-inter text-2xl text-black capitalize">{offeringTitle}</div>
-                  <p className="font-inter text-sm text-black my-3">{offeringDesc}</p>
-                </div>
-              ))}
+              {/* Offerings */}
+              <div className="offerings mt-5 md:mt-20">
+                {Object.entries(service.offerings).map(([offeringTitle, offeringDesc], i) => (
+                  <div key={i} className="list mt-5">
+                    <div className="font-inter text-sm md:text-2xl text-black capitalize">{offeringTitle}</div>
+                    <p className="font-inter text-xs md:text-sm text-black my-3">{offeringDesc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
       </div>
     </section>
   );

@@ -363,9 +363,13 @@ function Header() {
                       to={item.isDropdown ? "#" : item.link}
                       className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                       onClick={
-                        item.isDropdown
-                          ? () => setSubMenu((prev) => !prev)
-                          : undefined
+                        ()=>{
+                          if (item.isDropdown) {
+                            setSubMenu((togg) => !togg);
+                          } else {
+                            setToggle(false);
+                          }
+                        }
                       }
                     >
                       <div className="link-t">{item.name}</div>
@@ -380,8 +384,9 @@ function Header() {
               </ul>
               <div className="contact-btn">
                 <Link
+                onClick={()=>setToggle(false)}  
                   className="bg-[#ED510C] block text-center rounded-[8px] font-bold text-white text-[14px] font-inter p-3  lg:p-5"
-                  to="/"
+                  to="/contact"
                 >
                   Let's Talk
                 </Link>

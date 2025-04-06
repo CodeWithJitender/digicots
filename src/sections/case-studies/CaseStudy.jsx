@@ -12,28 +12,24 @@ export default function CaseStudy({ slide, index, setSelectedIndex }) {
   const lastScrollTime = useRef(0);
   const currentIndex = useRef(0);
   const isAnimating = useRef(false);
+  const touchStartY = useRef(0); // For touch tracking
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  const handleScroll = useCallback((e) => {
+  // Shared animation logic for both wheel and touch
+  const animateSlide = useCallback((direction) => {
     const now = Date.now();
-
-    // Throttle check (1 second) + animation lock
     if (now - lastScrollTime.current < 1000 || isAnimating.current) return;
 
     lastScrollTime.current = now;
     isAnimating.current = true;
 
-    const deltaY = e.deltaY;
     const itemCount = pRef.current.length;
     let newIndex = currentIndex.current;
 
-    // Determine direction and bounds
-    console.log(imgRef);
-    console.log(currentIndex);
-    console.log(newIndex);
-    if (deltaY > 0 && currentIndex.current < itemCount - 1) {
+    if (direction > 0 && currentIndex.current < itemCount - 1) {
       newIndex++;
-      gsap.to([pRef.current,h2Ref.current], {
-        y: `-${newIndex * 100}%`, // Move to exact position
+      gsap.to([pRef.current, h2Ref.current], {
+        y: `-${newIndex * 100}%`,
         duration: 2,
         ease: "power4.inOut",
         onComplete: () => {
@@ -54,10 +50,10 @@ export default function CaseStudy({ slide, index, setSelectedIndex }) {
         duration: 2,
         ease: "power4.inOut",
       });
-    } else if (deltaY < 0 && currentIndex.current > 0) {
+    } else if (direction < 0 && currentIndex.current > 0) {
       newIndex--;
-      gsap.to([pRef.current,h2Ref.current], {
-        y: `-${newIndex * 100}%`, // Move to exact position
+      gsap.to([pRef.current, h2Ref.current], {
+        y: `-${newIndex * 100}%`,
         duration: 2,
         ease: "power4.inOut",
         onComplete: () => {
@@ -80,33 +76,64 @@ export default function CaseStudy({ slide, index, setSelectedIndex }) {
       });
     } else {
       isAnimating.current = false;
-      return; // At bounds, do nothing
+      return;
     }
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("wheel", handleScroll);
-    return () => window.removeEventListener("wheel", handleScroll);
-  }, [handleScroll]);
-  const [isMobile, setisMobile] = useState(false);
+  // Wheel event handler for laptop
+  const handleScroll = useCallback((e) => {
+    animateSlide(e.deltaY);
+  }, [animateSlide]);
+
+  // Touch event handlers for phone
+  const handleTouchStart = useCallback((e) => {
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchStartY.current - touchY; // Positive = swipe up, Negative = swipe down
+    if (Math.abs(deltaY) > 20) { // Threshold to avoid accidental triggers
+      animateSlide(deltaY); // Use deltaY directly to match wheel behavior
+      touchStartY.current = touchY; // Reset start point for continuous swiping
+    }
+  }, [animateSlide]);
 
   useEffect(() => {
-    setisMobile(window.innerWidth < 768);
-  }, [window.innerWidth]);
+    // Device detection
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
 
-  window.addEventListener("resize", () => {
-    setisMobile(window.innerWidth < 768);
-  });
+    // Add event listeners based on device
+    if (isMobile) {
+      window.addEventListener("touchstart", handleTouchStart, { passive: true });
+      window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    } else {
+      window.addEventListener("wheel", handleScroll, { passive: true });
+    }
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (isMobile) {
+        window.removeEventListener("touchstart", handleTouchStart);
+        window.removeEventListener("touchmove", handleTouchMove);
+      } else {
+        window.removeEventListener("wheel", handleScroll);
+      }
+    };
+  }, [isMobile, handleScroll, handleTouchStart, handleTouchMove]);
 
   return (
     <div
       ref={caseStudyRef}
-      className="fixed inset-0  bg-opacity-60 flex h-[100vh]  z-[1000]"
+      className="fixed inset-0 bg-opacity-60 flex h-[100vh] z-[1000]"
     >
       {isMobile && (
-        <header className="fixed top-[-1px] z-[1000] w-full ">
-          {/* <div className="header-wrapper relative flex items-center justify-between bg-[#242424] lg:bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4"> */}
-          <div className="header-wrapper relative flex items-center justify-between px-6 py-4 bg-zinc-500/[.1] lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none ">
+        <header className="fixed top-[-1px] z-[1000] w-full">
+          <div className="header-wrapper relative flex items-center justify-between px-6 py-4 bg-zinc-500/[.1] lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none">
             <div className="logo">
               <Link to="/">
                 <img
@@ -119,7 +146,6 @@ export default function CaseStudy({ slide, index, setSelectedIndex }) {
             <button
               onClick={() => {
                 gsap.to(caseStudyRef.current, {
-                  // y: `-${(++index)% 3 * 100}%`,
                   opacity: 0,
                   scale: 1.2,
                   duration: 0.5,
@@ -130,22 +156,21 @@ export default function CaseStudy({ slide, index, setSelectedIndex }) {
                   },
                 });
               }}
-              className=" text-xl text-gray-600 hover:text-black cursor-pointer"
+              className="text-xl text-gray-600 hover:text-black cursor-pointer"
             >
               <img src="cross.png" className="max-w-[40px]" alt="" />
             </button>
           </div>
         </header>
       )}
-      <div className="bg-[#EBEBEB]  w-full  overflow-hidden grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-[40%_60%] relative">
+      <div className="bg-[#EBEBEB] w-full overflow-hidden grid grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-[40%_60%] relative">
         <div className="md:h-dvh flex flex-col justify-between p-6 md:row-start-1">
-          <div className="">
-            <div className="md:flex hidden justify-between  mb-10">
+          <div>
+            <div className="md:flex hidden justify-between mb-10">
               <img src="logo-black.png" className="max-w-[200px]" alt="" />
               <button
                 onClick={() => {
                   gsap.to(caseStudyRef.current, {
-                    // y: `-${(++index)% 3 * 100}%`,
                     opacity: 0,
                     scale: 1.2,
                     duration: 0.5,
@@ -156,39 +181,40 @@ export default function CaseStudy({ slide, index, setSelectedIndex }) {
                     },
                   });
                 }}
-                className=" text-xl text-gray-600 hover:text-black cursor-pointer"
+                className="text-xl text-gray-600 hover:text-black cursor-pointer"
               >
                 <img src="cross.png" className="max-w-[40px]" alt="" />
               </button>
             </div>
 
-            <div className="md:h-[15vh] h-[4.9vh]  overflow-hidden md:mb-10 mb-3">
-              {slide.title.map((text, index) => (
+            <div className="md:h-[15vh] h-[4.9vh] overflow-hidden md:mb-10 mb-3">
+              {slide.title.map((text, i) => (
                 <h2
-                key={index}
-                ref={(el)=> (h2Ref.current[index] = el)}
-                 className="md:text-5xl md:h-[15vh] h-[4.9vh] text-2xl font-bold text-[#242424]">
+                  key={i}
+                  ref={(el) => (h2Ref.current[i] = el)}
+                  className="md:text-5xl md:h-[15vh] h-[4.9vh] text-2xl font-bold text-[#242424]"
+                >
                   {text}
                 </h2>
               ))}
             </div>
             <div className="md:h-[40vh] h-[23vh] overflow-hidden">
-              {slide.text.map((text, index) => (
+              {slide.text.map((text, i) => (
                 <p
-                  key={index}
-                  ref={(el) => (pRef.current[index] = el)}
-                  className=" text-gray-600 text-sm md:text-base md:h-[40vh] h-[30vh]"
+                  key={i}
+                  ref={(el) => (pRef.current[i] = el)}
+                  className="text-gray-600 text-sm md:text-base md:h-[40vh] h-[30vh]"
                 >
                   {text}
                 </p>
               ))}
             </div>
           </div>
-          <div className="">
+          <div>
             <div className="flex gap-3">
-              {slide.tags.map((text, index) => (
+              {slide.tags.map((text, i) => (
                 <button
-                  key={index}
+                  key={i}
                   className="bg-[#ED510C] text-white px-4 py-2 rounded-[20px] font-inter font-bold"
                 >
                   {text}
@@ -197,14 +223,12 @@ export default function CaseStudy({ slide, index, setSelectedIndex }) {
             </div>
             <div className="h-0.5 bg-[#CECECE] my-5"></div>
             <div className="next flex justify-between">
-              <p className="font-medium text-sm  font-inter">
-                Another Project Name here{" "}
+              <p className="font-medium text-sm font-inter">
+                Another Project Name here
               </p>
-              {/* <Link>Next Project</Link> */}
               <div
                 onClick={() => {
                   gsap.to(caseStudyRef.current, {
-                    // y: `-${(++index)% 3 * 100}%`,
                     opacity: 0,
                     scale: 1.2,
                     duration: 0.5,
@@ -233,9 +257,7 @@ export default function CaseStudy({ slide, index, setSelectedIndex }) {
               key={i}
               src={s}
               alt={s}
-              className={` absolute ${
-                i != 0 && "top-full scale-[.7] opacity-0"
-              }  w-full h-full object-cover object-center`}
+              className={`absolute ${i !== 0 && "top-full scale-[.7] opacity-0"} w-full h-full object-cover object-center`}
             />
           ))}
         </div>

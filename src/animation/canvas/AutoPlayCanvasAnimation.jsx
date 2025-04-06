@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const VideoLikeCanvasAnimation = ({ imgPath, height = "100vh", fps = 24 }) => {
+const VideoLikeCanvasAnimation = ({ imgPath, height = "100vh", fps = 24,startFrame = 40, endFrame= 80 }) => {
   const canvasRef = useRef(null);
   const imagesRef = useRef([]);
   const progressRef = useRef({ value: 0 });
@@ -10,8 +10,6 @@ const VideoLikeCanvasAnimation = ({ imgPath, height = "100vh", fps = 24 }) => {
 
   // Generate image paths
   const generateImagePaths = () => {
-    const startFrame = 40;
-    const endFrame = 80;
 
     return Array.from(
       { length: endFrame - startFrame + 1 }, // +1 to include both endpoints
@@ -112,6 +110,7 @@ const VideoLikeCanvasAnimation = ({ imgPath, height = "100vh", fps = 24 }) => {
       duration: duration,
       ease: "none", // 'none' is better than 'linear' for frame-perfect animation
       repeat: -1,
+      // yoyo:true,
       onUpdate: () => render(progressRef.current.value),
       // Reset progress on each repeat for perfect loop
       onRepeat: () => {

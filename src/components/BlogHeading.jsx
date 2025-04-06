@@ -30,12 +30,12 @@ function BlogHeading({ heading, linkText, link }) {
           );
         })()}
 
-        <Link
+        {/* <Link
           to=""
           className="bg-white text-black px-4 py-2 rounded-full text-sm font-semibold flex items-center"
         >
           {linkText} <i className="far fa-arrow-right rotate-[-45deg] ms-3"></i>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

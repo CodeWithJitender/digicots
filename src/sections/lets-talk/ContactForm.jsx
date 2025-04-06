@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import TextAnimation1 from "../../animation/text/TextAnimation1";
+import VideoLikeCanvasAnimation from "../../animation/canvas/AutoPlayCanvasAnimation";
 
 const ContactForm = () => {
   const [activeTab, setActiveTab] = useState("dominance");
@@ -45,30 +46,15 @@ const ContactForm = () => {
   const formRef = useRef(null);
   useGSAP(() => {
     const tl = gsap.timeline();
-    tl.from(imgRef.current, {
-      duration: 1,
-      opacity: 0,
-      x: -200,
-      ease: "power4.inOut",
-    })
-    .from(contactRef.current,{
-      duration: 1,
-      opacity: 0,
-      y: 200,
-      ease: "power4.inOut",
-    })
-    .from(tabPRef.current,{
-      duration: 1,
-      opacity: 0,
-      x: 200,
-      ease: "power4.inOut",
-    })
-    .from(formRef.current,{
-      duration: 1,
-      opacity: 0,
-      x: 200,
-      ease: "power4.inOut",
-    })
+    tl
+      .from([contactRef.current,tabPRef.current,formRef.current], {
+        duration: 1.1,
+        opacity: 0,
+        scale:1.2,
+        filter:"blur(10px)",
+        // y: 200,
+        ease: "power1.inOut",
+      })
   }, []);
 
   const indicatorRef = useRef(null);
@@ -81,24 +67,37 @@ const ContactForm = () => {
       gsap.to(indicatorRef.current, {
         x: offsetLeft,
         width: offsetWidth,
-        duration: 0.5,
-        ease: "power3.out",
+        duration: 0.1,
+        ease: "power1.out",
       });
     }
-  }, [activeTab,window.innerWidth]);
-
+  }, [activeTab, window.innerWidth]);
 
   return (
     <div className="bg-[#1a1a1a] overflow-hidden min-h-screen flex flex-col-reverse  md:flex-row items-center justify-center md:px-6 lg:px-20 py-12">
       {/* Left Section - Fox Image & Addresses */}
       <div className="w-full md:w-1/2 flex flex-col items-start">
-        <img
+        {/* <img
           ref={imgRef}
           src="lets-talk.png"
           alt="Fox"
-          className="w-full max-w-md hidden md:block"
-        />
-        <div ref={contactRef} className="mt-8 text-white grid grid-cols-2 items-center justify-items-center gap-6 w-full">
+          /> */}
+
+        {/* <video
+         className="w-full max-w-md hidden md:block absolute top-0 left-0"
+         src="./breating.mp4"
+         autoPlay 
+         loop
+          muted
+        ></video> */}
+
+        {/* <VideoLikeCanvasAnimation imgPath={"./breathing_frame/wolf"} startFrame={41} endFrame={100} /> */}
+        {/* <VideoLikeCanvasAnimation imgPath={"./breating/wolf"} startFrame={15}   endFrame={100} /> */}
+
+        <div
+          ref={contactRef}
+          className="text-white mt-[50vh] grid grid-cols-2 items-center justify-items-center gap-6 w-full"
+        >
           {[
             {
               country: "India",
@@ -168,10 +167,8 @@ const ContactForm = () => {
           className="w-full max-w-md block mb-4 md:hidden"
         />
 
-        <h1 className="text-white text-center md:text-start text-4xl sm:text-7xl md:text-8xl font-bold ">
-          <TextAnimation1>
-          Let's Talk
-          </TextAnimation1>
+        <h1 className="text-white overflow-hidden text-center md:text-start text-4xl sm:text-7xl md:text-8xl font-bold ">
+          <TextAnimation1 >Let's Talk</TextAnimation1>
         </h1>
 
         {/* Tabs */}
@@ -195,26 +192,31 @@ const ContactForm = () => {
           ))}
         </div> */}
 
-<div ref={tabPRef} className="relative flex justify-center md:justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3">
-        {/* Indicator */}
         <div
-          ref={indicatorRef}
-          className="absolute left-0 xl:h-[66%] md:h-[76%] h-[66%] bg-orange-500 rounded-md transition-all duration-300"
-        ></div>
+          ref={tabPRef}
+          className="relative flex justify-center md:justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3"
+        >
+          {/* Indicator */}
+          <div
+            ref={indicatorRef}
+            className="absolute left-0 xl:h-[66%] md:h-[76%] h-[66%] bg-orange-500 rounded-md transition-all duration-300"
+          ></div>
 
-        {["dominance", "help", "pack"].map((tab, index) => (
-          <button
-            key={tab}
-            ref={(el) => (tabRef.current[index] = el)}
-            onClick={() => setActiveTab(tab)}
-            className={`relative px-4 py-2 cursor-pointer rounded-md font-semibold text-white z-10`}
-          >
-            {tab === "dominance" ? "Let’s Talk Dominance!" :
-              tab === "help" ? "Howl for Help" :
-                "Join the Pack!"}
-          </button>
-        ))}
-      </div>
+          {["dominance", "help", "pack"].map((tab, index) => (
+            <button
+              key={tab}
+              ref={(el) => (tabRef.current[index] = el)}
+              onClick={() => setActiveTab(tab)}
+              className={`relative px-4 py-2 cursor-pointer rounded-md font-semibold text-white z-10`}
+            >
+              {tab === "dominance"
+                ? "Let’s Talk Dominance!"
+                : tab === "help"
+                ? "Howl for Help"
+                : "Join the Pack!"}
+            </button>
+          ))}
+        </div>
 
         {/* Form Fields - Different for Each Tab */}
         <form ref={formRef} className="mt-6 space-y-4" onSubmit={handleSubmit}>

@@ -221,7 +221,7 @@ export default function BlogSection() {
     <section ref={mainImgRef} className=" text-white py-12 px-6 md:px-12">
       <div className="max-w-6xl relative mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         {/* Left Side - Blog List */}
-        <div>
+        <div className="relative order-2 md:order-1">
           {/* <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Changes in the <br /> Marketing Landscape
             </h2> */}
@@ -232,16 +232,16 @@ export default function BlogSection() {
                 onClick={() => openModal(post)}
                 ref={(el) => (hoverDivRef.current[index] = el)}
                 key={index}
-                className=" hoverDiv border-t border-gray-600 border-dotted pt-5 md:pt-10 md:pb-5"
+                className=" hoverDiv border-t border-gray-600 border-dotted py-5 md:pt-10 md:pb-5"
               >
                 <Link>
-                  <h3 className="post-title text-lg md:text-2xl font-bold font-inter text-white hover:text-[] pb-2 md:pb-5">
+                  <h3 className="post-title text-base md:text-2xl font-bold font-inter text-white hover:text-[] pb-2 md:pb-5">
                     {post.title}
                   </h3>
                   <div className="flex text-sm text-gray-400 mt-1 space-x-3">
                     <span className="font-bold text-white">{post.author}</span>
-                    <span>{post.date}</span>
-                    <span>{post.readTime}</span>
+                    <span className="text-xs md:text-base">{post.date}</span>
+                    <span className="text-xs md:text-base">{post.readTime}</span>
                   </div>
                 </Link>
               </div>
@@ -264,7 +264,7 @@ export default function BlogSection() {
         )}
 
         {/* Right Side - Featured Post */}
-        <div className="relative">
+        <div className="relative order-1">
           <img
             src="blog/featured-post.png"
             alt="Featured Post"

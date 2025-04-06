@@ -5,7 +5,7 @@ import AllService from '../sections/discover/AllService'
 
 function Discover() {
   return (
-    <div>
+    <div className=''>
       <HeroDiscover/>
       <ServiceDiscover/>
       <AllService/>

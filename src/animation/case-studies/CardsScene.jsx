@@ -210,39 +210,27 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
   const isAnimating = useRef(false);
   const scrollVelocity = useRef(0);
   const cardsRef = useRef([]);
+  const touchStartY = useRef(0); // For touch tracking
 
-  // Memoize the onClick handler to avoid unnecessary re-renders
-  const cardSpacing = 0.2042429411506563; // Rotation difference per card
-  const referenceIndex = 7; // Reference index
-  const initialPosition = 0.1; // Position of the reference card (index 7)
+  // Memoize the onClick handler
+  const cardSpacing = 0.2042429411506563;
+  const referenceIndex = 7;
+  const initialPosition = 0.1;
 
   const handleCardClick = useCallback(
     (clickedIndex) => (event) => {
       if (!groupRef.current) return;
 
-      // Get the current rotation of the group
       const currentPosition = groupRef.current.rotation.z;
-
-      // Calculate the expected position for the clicked card to be at the center
       const expectedPosition =
         initialPosition + (clickedIndex - referenceIndex) * cardSpacing;
 
-      console.log("Current Position:", currentPosition);
-      console.log();
-      console.log("Clicked Card Index:", clickedIndex);
-      console.log("Expected Position:");
-
-      // Calculate the difference between the expected position and current position
-      // const difference = -(expectedPosition - currentPosition);
-
-      // Animate rotation to bring the selected card to center
       gsap.to(groupRef.current.rotation, {
-        z: -(expectedPosition % clickedIndex) + cardSpacing, // Animate to expected position
-        duration: .5,
+        z: -(expectedPosition % clickedIndex) + cardSpacing,
+        duration: 0.5,
         ease: "power4.out",
       });
 
-      // Scale animation (unchanged from your code)
       if (cardsRef.current[clickedIndex]) {
         gsap.to(cardsRef.current[clickedIndex].scale, {
           x: -7,
@@ -265,10 +253,12 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
         });
       }
     },
-    []
+    [setSelectedIndex]
   );
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 600;
+
     if (groupRef.current) {
       groupRef.current.children.forEach((mesh) => {
         mesh.scale.set(1.2, 1.2, 1.2);
@@ -291,36 +281,24 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
       const tl = gsap.timeline();
       tl.to(
         groupRef.current.rotation,
-        {
-          z: -10,
-          duration: 2,
-          ease: "back.inOut(1.7)",
-        },
+        { z: -10, duration: 2, ease: "back.inOut(1.7)" },
         "a"
       )
         .to(
           groupRef.current.position,
-          {
-            y: -15,
-            duration: 4,
-            ease: "power4.inOut",
-          },
-          "a"
+          { y: -15, duration: 4, ease: "power4.inOut" },
+        "a"
         )
         .to(
           groupRef.current.rotation,
-          {
-            z: 0.1,
-            delay: 1,
-            duration: 4,
-            ease: "power2.inOut",
-          },
+          { z: 0.1, delay: 1, duration: 4, ease: "power2.inOut" },
           "a"
         );
     }
 
-    const handleWheel = (event) => {
-      const newVelocity = event.deltaY * 0.0002;
+    // Shared animation logic for both wheel and touch
+    const animateScroll = (delta) => {
+      const newVelocity = delta * 0.0002; // Same multiplier as wheel
       gsap.to(scrollVelocity, {
         current: newVelocity,
         duration: 1,
@@ -343,10 +321,7 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
       }
 
       if (bgRef.current) {
-        const targetX = Math.min(
-          Math.max(scrollVelocity.current * 200, -200),
-          200
-        );
+        const targetX = Math.min(Math.max(scrollVelocity.current * 200, -200), 200);
         gsap.to(bgRef.current.position, {
           x: -targetX,
           duration: 0.5,
@@ -374,22 +349,50 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
       }
     };
 
-    window?.addEventListener("wheel", handleWheel);
-    return () => {
-      window?.removeEventListener("wheel", handleWheel);
+    // Wheel event for desktop
+    const handleWheel = (event) => {
+      animateScroll(event.deltaY);
     };
-  }, [bgRef, window]);
+
+    // Touch events for mobile
+    const handleTouchStart = (e) => {
+      touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY.current - touchY; // Positive = scroll up, Negative = scroll down
+      animateScroll(deltaY * .5); // Multiply to match wheel sensitivity
+      touchStartY.current = touchY; // Update start position for smooth dragging
+    };
+
+    // Add event listeners based on device
+    if (isMobile) {
+      window.addEventListener("touchstart", handleTouchStart, { passive: true });
+      window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    } else {
+      window.addEventListener("wheel", handleWheel, { passive: true });
+    }
+
+    // Cleanup
+    return () => {
+      if (isMobile) {
+        window.removeEventListener("touchstart", handleTouchStart);
+        window.removeEventListener("touchmove", handleTouchMove);
+      } else {
+        window.removeEventListener("wheel", handleWheel);
+      }
+    };
+  }, [bgRef]);
 
   useFrame(() => {
     if (groupRef.current) {
       groupRef.current.rotation.z += scrollVelocity.current;
     }
-
     if (bgRef.current) {
       bgRef.current.position.x += scrollVelocity.current;
       bgRef.current.rotation.z += scrollVelocity.current;
     }
-
     scrollVelocity.current *= 0.99;
   });
 
@@ -402,7 +405,7 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
         const rotation = [0, 0, angle + Math.PI / 2];
         return (
           <Card1
-            onClick={handleCardClick(i)} // Use memoized handler
+            onClick={handleCardClick(i)}
             key={i}
             position={[x, y, 0]}
             texture={texture}
@@ -415,7 +418,8 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
   );
 };
 
-const Slide = ({ index, onClose,setSelectedIndex }) => {
+// Slide Component (unchanged as it doesn't use wheel events)
+const Slide = ({ index, onClose, setSelectedIndex }) => {
   const slides = [
     {
       image: ["case-study-1.png", "case-study-1.png", "case-study-1.png"],
@@ -467,12 +471,11 @@ const Slide = ({ index, onClose,setSelectedIndex }) => {
   useGSAP(() => {
     gsap.from(selectedContainerRef.current, {
       opacity: 0,
-      scale:1.2,
-      // top:"100%",
+      scale: 1.2,
       duration: 1,
       ease: "back.inOut(.5)",
     });
-  }, [index, onclose]);
+  }, [index, onClose]);
 
   return selectedCase ? (
     <div
@@ -494,38 +497,33 @@ const Slide = ({ index, onClose,setSelectedIndex }) => {
   ) : null;
 };
 
+// Bg Component (unchanged as it doesn't use wheel events directly)
 const Bg = ({ bgRef }) => {
-  const numCards = 300; // Number of small cards (adjust for density)
+  const numCards = 300;
   const cardsRef = useRef([]);
 
-  // Generate random positions and velocities for the cards
   useGSAP(() => {
     cardsRef.current.forEach((card, index) => {
-      if (!card || !card.position) return; // Ensure the card and its position exist
+      if (!card || !card.position) return;
 
-      // Random initial position
       card.position.set(
-        (Math.random() - 0.5) * 20, // X: Random between -10 and 10
-        ((Math.random() - 100) * index) % 60, // Y: Start below the screen
-        Math.random() * (30 - 13) - 30 // Z: Random between -15 and -13
+        (Math.random() - 0.5) * 20,
+        ((Math.random() - 100) * index) % 60,
+        Math.random() * (30 - 13) - 30
       );
 
-      // Random upward velocity (slower speed)
       card.velocity = new THREE.Vector3(
-        0, // No horizontal movement
-        Math.random() * 0.005 + 0.01 // Y: Move upwards with slower random speed
+        0,
+        Math.random() * 0.005 + 0.01
       );
 
-      // Ensure the texture array exists and is properly indexed
       if (loadedTextures?.length) {
         card.material.map = loadedTextures[index % loadedTextures.length];
-        card.material.needsUpdate = true; // Ensure the material updates
+        card.material.needsUpdate = true;
       }
     });
 
     const targetX = 50;
-    console.log(bgRef);
-
     gsap.from(bgRef.current.position, {
       x: -targetX * 3,
       z: targetX,
@@ -541,34 +539,29 @@ const Bg = ({ bgRef }) => {
     });
   }, [bgRef]);
 
-  // Animate the cards
   useFrame(() => {
     cardsRef.current.forEach((card) => {
-      if (!card || !card.position || !card.velocity) return; // Ensure the card exists and has velocity
+      if (!card || !card.position || !card.velocity) return;
 
-      // Update position based on velocity
       card.position.add(card.velocity);
 
-      // Reset position if the card moves above the screen
       if (card.position.y > 10) {
-        card.position.y = Math.random() - 10; // Reset to the bottom
-        card.position.x = (Math.random() - 0.5) * 20; // Randomize X position
-        card.position.z = Math.random() * (30 - 13) - 30; // Randomize Z position
+        card.position.y = Math.random() - 10;
+        card.position.x = (Math.random() - 0.5) * 20;
+        card.position.z = Math.random() * (30 - 13) - 30;
       }
     });
   });
 
   return (
-    <>
-      <group ref={bgRef}>
-        {Array.from({ length: numCards }).map((_, i) => (
-          <mesh key={i} ref={(el) => (cardsRef.current[i] = el || null)}>
-            <planeGeometry args={[.3, .3]} /> {/* Small card size */}
-            <meshBasicMaterial transparent opacity={0.5} />
-          </mesh>
-        ))}
-      </group>
-    </>
+    <group ref={bgRef}>
+      {Array.from({ length: numCards }).map((_, i) => (
+        <mesh key={i} ref={(el) => (cardsRef.current[i] = el || null)}>
+          <planeGeometry args={[0.3, 0.3]} />
+          <meshBasicMaterial transparent opacity={0.5} />
+        </mesh>
+      ))}
+    </group>
   );
 };
 
