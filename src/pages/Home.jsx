@@ -15,16 +15,16 @@ import ReelCanvas from "../animation/canvas/ReelCanvas";
 function Home() {
   return (
     <div className="main contain-paint">
-      {/* <Hero img={homeHero} />  */}
-      {/* <HowItWorks/>  */}
-      {/* <Solutions/> */}
-      {/* <OurWork/> */}
-      {/* <Insights/> */}
-      {/* <KeywordsSection/> */}
-      {/* <OurJourney/>  */}
-      {/* <Testimonials/> */}
-
       <ReelCanvas />
+      {/* <Hero img={homeHero} />  */}
+      <HowItWorks/> 
+      <Solutions/>
+      <OurWork/>
+      <Insights/>
+      <KeywordsSection/>
+      <OurJourney/> 
+      <Testimonials/>
+
       <Faq/>
     </div>
   );

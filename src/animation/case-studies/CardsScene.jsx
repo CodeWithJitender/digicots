@@ -189,7 +189,7 @@ const StackedGroup = ({ setIsLoading }) => {
   }, [cardRefs.current, setIsLoading]);
 
   return (
-    <group position={window.innerWidth > 600 ? [0, -.5, -3] :  [0, -.5, -10]} rotation={[-0.5, 0, 1.2]}>
+    <group position={window.innerWidth > 600 ? [0, -1, -3] :  [0, -1.4, -10]} rotation={[-0.5, 0, 1.2]}>
       {loadedTextures.slice(0, 30).map((texture, i) => (
         <Card2
           key={i}

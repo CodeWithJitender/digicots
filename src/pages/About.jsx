@@ -5,6 +5,7 @@ import WhyChooseUs from "../sections/about/WhyChooseUs";
 import OurVision from "../sections/about/OurVision";
 import Header from "../components/Header";
 import MeetThePack from "../sections/about/MeetThePack";
+import useScrollToTop from "../hook/useScrollToTop";
 
 function About() {
   return (
@@ -14,7 +15,6 @@ function About() {
       <HowWeWork/>
       <WhyChooseUs/>
       <OurVision/>
-
     </div>
   );
 }

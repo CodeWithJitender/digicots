@@ -21,8 +21,8 @@ function AllService() {
         "Reel Production & Showreels":
           "Showcasing your strengths and victories in an avant-garde storytelling template.",
         "Amazon Video Ads":
-          "Capturing visions, experiences & character to drive engagement and conversions."
-      }
+          "Capturing visions, experiences & character to drive engagement and conversions.",
+      },
     },
     "Outreach Solutions": {
       img: "icon-8.png ",
@@ -36,8 +36,8 @@ function AllService() {
         "WhatsApp Marketing & Email Campaigns":
           "Direct. Personal. Precise. Tailored messaging to engage, share offers, and nurture leads.",
         "Regional Amplification":
-          "Building customer loyalty in every corner – customizing campaigns to specific geographic regions to enhance relevance and engagement."
-      }
+          "Building customer loyalty in every corner – customizing campaigns to specific geographic regions to enhance relevance and engagement.",
+      },
     },
     "Public Relations": {
       img: "icon-4.png ",
@@ -49,8 +49,8 @@ function AllService() {
         "Authored Articles":
           "Thought leadership content written by company executives or industry experts.",
         "Reputation Management":
-          "Be the voice of authority, guard your image – monitoring and responding to online mentions and ensuring a positive brand image across platforms."
-      }
+          "Be the voice of authority, guard your image – monitoring and responding to online mentions and ensuring a positive brand image across platforms.",
+      },
     },
     "Digital Marketing": {
       img: "icon-6.png ",
@@ -60,8 +60,8 @@ function AllService() {
         "Social Media Management & Evergreen Strategies":
           "Keep your audience engaged and loyal to your brand – creating, scheduling, and managing content using long-term content strategies that transcend the bounds of time.",
         "Campaign-level Strategy & SEO":
-          "Pop up where it matters the most – crafting digital ad strategies, running performance-driven campaigns, and optimizing website to increase organic search visibility."
-      }
+          "Pop up where it matters the most – crafting digital ad strategies, running performance-driven campaigns, and optimizing website to increase organic search visibility.",
+      },
     },
     "Performance Marketing": {
       img: "icon-5.png ",
@@ -73,8 +73,8 @@ function AllService() {
         "Lead Generation & Remarketing Funnels":
           "Bring everyone back to you – strategies to capture interest, nurture leads, and retarget past visitors.",
         "Conversion Rate Optimization (CRO)":
-          "Turn visitors into loyal customers – techniques to improve website performance and checkout processes in order to maximize conversions."
-      }
+          "Turn visitors into loyal customers – techniques to improve website performance and checkout processes in order to maximize conversions.",
+      },
     },
     "Creative Designing": {
       img: "icon-7.png ",
@@ -86,8 +86,8 @@ function AllService() {
         Illustrations:
           "Custom-designed graphics, artwork, and animations that enhance branding and storytelling.",
         "Amazon A+ Content":
-          "Make every detail magnetic, irresistible – enhanced product descriptions on Amazon that include rich media, comparison charts, and storytelling."
-      }
+          "Make every detail magnetic, irresistible – enhanced product descriptions on Amazon that include rich media, comparison charts, and storytelling.",
+      },
     },
     Branding: {
       img: "icon-4.png ",
@@ -99,8 +99,8 @@ function AllService() {
         "Brand Matrix & Packaging Development":
           "Building an identity fortress that no one can trespass – brand positioning, tone, and packaging design.",
         "UI Creation (Adobe Figma)":
-          "Precise, compelling designs – intuitive user interfaces to enhance digital experiences."
-      }
+          "Precise, compelling designs – intuitive user interfaces to enhance digital experiences.",
+      },
     },
     "Outdoor Advertising - Digicots OOH": {
       img: "icon-3.png ",
@@ -110,8 +110,8 @@ function AllService() {
         "Hoardings & Unipoles":
           "Claim every corner yours with inescapable visuals – outdoor billboards placed in strategic positions.",
         "Kiosks & Outdoor Design":
-          "Command attention and leave your mark – small advertising spaces in public areas."
-      }
+          "Command attention and leave your mark – small advertising spaces in public areas.",
+      },
     },
     "Website Development": {
       img: "icon-1.png ",
@@ -123,105 +123,118 @@ function AllService() {
         "Dynamic Website & CRO":
           "Adapt, evolve & dominate every visitor’s journey – interactive elements and website optimization.",
         "UX/UI Creation (Adobe Figma)":
-          "Smooth. Instinctive. Seamless. – Wireframing and dictating mind-blowing user experiences."
-      }
+          "Smooth. Instinctive. Seamless. – Wireframing and dictating mind-blowing user experiences.",
+      },
     },
     "Artificial Reality (AR)": {
       img: "icon-2.png ",
       description:
         "Wildly Immersive Experiences. The future of marketing is immersive. AR brings products to life – allowing consumers to virtually experience near-real manifestations of products before purchasing them. This revolutionizes how brands interact with consumers making experiences richer, more engaging, and more impactful. Engage your audience with interactive tools that leave them hooked and coming back for more.",
-      offerings: {}
-    }
+      offerings: {},
+    },
   };
-  
+
   const serviceRef = useRef([]);
   const scrollContainerRef = useRef([]);
-  
-  // Handle scroll detection and toggle Lenis prevention
-  useEffect(() => {
-    const handleScroll = (index) => {
-      const container = scrollContainerRef.current[index];
-      if (!container) return;
 
-      const checkScroll = () => {
-        const scrollTop = container.scrollTop;
-        const scrollHeight = container.scrollHeight;
-        const clientHeight = container.clientHeight;
-
-        // Check if scrolled to bottom
-        if (scrollTop + clientHeight >= scrollHeight - 1) { // -1 for buffer
-          container.removeAttribute('data-lenis-prevent');
-        } else {
-          container.setAttribute('data-lenis-prevent', '');
-        }
-      };
-
-      container.addEventListener('scroll', checkScroll);
-      return () => container.removeEventListener('scroll', checkScroll);
-    };
-
-    scrollContainerRef.current.forEach((_, index) => handleScroll(index));
-  }, []);
-
-  gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
+    // Ensure refs are populated
+    if (!serviceRef.current.length || !scrollContainerRef.current.length)
+      return;
+
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".services",
-        start: "top 80%",
-        end: "top -500%",
-        scrub: true,
-      }
+        trigger: ".services", // Trigger element
+        start: "top 80%", // Start when top of .services is 80% from viewport top
+        end: "top -500%", // Extended end point for full animation
+        scrub: 1, // Smooth scrubbing (adjustable)
+        markers: true, // Debugging markers (remove in production)
+      },
     });
-    tl.from(serviceRef.current, {
-      duration: 5,
-      y: "130%",
-      ease: "power3.inOut",
-      stagger: 2.5
-    }, "a")
-    .to(serviceRef.current, {
-      duration: 5,
-      scale: 0.9,
-      ease: "power3.inOut",
-      delay: 2,
-      borderRadius: "30px",
-      backgroundColor: "#ffeada",
-      stagger: 2.5
-    }, "a");
-  }, [serviceRef.current]);
+
+    tl.from(
+      serviceRef.current,
+      {
+        y: "130%", // Slide in from below
+        ease: "power3.inOut",
+        duration: 5, // Duration of the slide-in
+        stagger: 3, // Stagger between service elements,
+      },
+      "a"
+    )
+    .to(
+      scrollContainerRef.current,
+      {
+        scrollTop: (i, target) => target.scrollHeight - target.clientHeight, // Scroll to bottom
+        ease: "power2.out", // Smooth scrolling ease
+        duration: 2, // Scroll duration
+        stagger: 3, // Stagger scrolling of containers (optional)
+        delay:4
+        },
+        "a"
+      ) // Start 1s after "a" for sync
+      .to(
+        serviceRef.current,
+        {
+          scale: 0.9, // Scale down
+          borderRadius: "30px", // Round corners
+          backgroundColor: "#ffeada", // Change background
+          ease: "power3.inOut",
+          duration: 5, // Duration of scale animation
+          delay: 2, // Delay after scroll
+          stagger: 3, // Stagger between service elements
+        },
+        "a"
+      ); // Start 3s after "a" for sync
+  }, [serviceRef.current, scrollContainerRef.current]); // Dependencies
 
   return (
     <section className="bg-[#212020] relative min-h-[600vh]">
       <div className="services sticky top-0 min-h-screen w-full  ">
         {Object.entries(data).map(([title, service], index) => (
-          <div 
-            ref={(el) => serviceRef.current[index] = el} 
-            key={index} 
+          <div
+            ref={(el) => (serviceRef.current[index] = el)}
+            key={index}
             className="service-box overflow-hidden shadow-2xl shadow-black h-screen absolute top-0 bg-[#FFC395] grid md:grid-cols-2 gap-10 md:gap-20 md:p-30 p-16"
           >
             {/* Left Side - Image and Title */}
             <div className="service-img">
-              <h5 className="font-normal text-sm text-[#DF782B] font-inter">SOLUTION {index + 1}</h5>
-              <h2 className="font-black text-4xl md:text-6xl text-black font-inter">{title}</h2>
-              <img src={service.img} className="w-full max-w-[200px] md:max-w-[600px]" alt={title} />
+              <h5 className="font-normal text-sm text-[#DF782B] font-inter">
+                SOLUTION {index + 1}
+              </h5>
+              <h2 className="font-black text-4xl md:text-6xl text-black font-inter">
+                {title}
+              </h2>
+              <img
+                src={service.img}
+                className="w-full max-w-[200px] md:max-w-[600px]"
+                alt={title}
+              />
             </div>
 
             {/* Right Side - Description and Offerings */}
-            <div 
-              ref={(el) => scrollContainerRef.current[index] = el}
-              data-lenis-prevent 
+            <div
+              ref={(el) => (scrollContainerRef.current[index] = el)}
               className="service-text md:max-h-[400px] overflow-y-scroll md:pe-10"
             >
-              <p className="font-inter text-xs md:text-sm text-black mb-3">{service.description}</p>
+              <p className="font-inter text-xs md:text-sm text-black mb-3">
+                {service.description}
+              </p>
 
               {/* Offerings */}
               <div className="offerings mt-5 md:mt-20">
-                {Object.entries(service.offerings).map(([offeringTitle, offeringDesc], i) => (
-                  <div key={i} className="list mt-5">
-                    <div className="font-inter text-sm md:text-2xl text-black capitalize">{offeringTitle}</div>
-                    <p className="font-inter text-xs md:text-sm text-black my-3">{offeringDesc}</p>
-                  </div>
-                ))}
+                {Object.entries(service.offerings).map(
+                  ([offeringTitle, offeringDesc], i) => (
+                    <div key={i} className="list mt-5">
+                      <div className="font-inter text-sm md:text-2xl text-black capitalize">
+                        {offeringTitle}
+                      </div>
+                      <p className="font-inter text-xs md:text-sm text-black my-3">
+                        {offeringDesc}
+                      </p>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
