@@ -141,7 +141,7 @@ function HeroDiscover() {
             <h1 className="m-auto max-w-[500px] font-black text-4xl md:text-6xl text-white">
               Let's Discover Our Services
             </h1>
-            <h3 className="m-auto max-w-[350px] font-semibold text-2xl md:text-4xl text-right text-white">
+            <h3 className="m-auto max-w-[350px] font-semibold text-xl md:text-4xl md:text-right text-white">
               We are happy to see you here
             </h3>
           </div>
