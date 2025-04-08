@@ -7,7 +7,7 @@ function Discover() {
   return (
     <div className=''>
       <HeroDiscover/>
-      <ServiceDiscover/>
+      {/* <ServiceDiscover/> */}
       <AllService/>
     </div>
   )

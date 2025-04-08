@@ -199,17 +199,13 @@ const BrandingCard = ({ card, onClick }) => {
 };
 
 const PopupModal = ({ card, onClose }) => {
-
   const popupRef = useRef(null);
-  
   const popupContainer = useRef(null);
-  
 
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
     const tl = gsap.timeline();
-
     if (card) {
       tl.from(popupRef.current, {
         duration: 1,
@@ -220,107 +216,130 @@ const PopupModal = ({ card, onClose }) => {
     }
   }, [popupRef.current, card]);
 
-
   let scrollY = 0; // Track scroll position
+  let touchStartY = 0; // Track initial touch position
 
   useEffect(() => {
     if (!popupContainer.current) return;
-    
+
     const container = popupContainer.current;
     const maxScroll = container.scrollHeight - container.clientHeight + 5;
-    
-    const handleScroll = (e) => {
-      e.preventDefault(); // Prevent default scrolling
 
-      // Update scroll position based on wheel direction
-      scrollY -= e.deltaY * 0.5; // Adjust speed by multiplying deltaY
-      scrollY = Math.max(-maxScroll, Math.min(0, scrollY)); // Clamp scroll
-
-      // Animate scroll with GSAP
+    // Wheel event handler for desktop
+    const handleWheel = (e) => {
+      e.preventDefault();
+      scrollY -= e.deltaY * 0.5;
+      scrollY = Math.max(-maxScroll, Math.min(0, scrollY));
       gsap.to(container, {
-        y: scrollY, // Move container up/down
+        y: scrollY,
         duration: 2,
         ease: "power2.out",
       });
     };
 
-    window.addEventListener("wheel", handleScroll, { passive: false });
+    // Touch event handlers for mobile
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
 
-    return () => window.removeEventListener("wheel", handleScroll);
-  }, [card]); // Run when popup opens
+    const handleTouchMove = (e) => {
+      e.preventDefault();
+      const touchY = e.touches[0].clientY;
+      const deltaY = (touchStartY - touchY) * 0.5; // Adjust speed
+      scrollY -= deltaY;
+      scrollY = Math.max(-maxScroll, Math.min(0, scrollY));
+      gsap.to(container, {
+        y: scrollY,
+        duration: 0.5, // Faster duration for touch responsiveness
+        ease: "power2.out",
+      });
+      touchStartY = touchY; // Update start position for smooth scrolling
+    };
 
+    const handleTouchEnd = () => {
+      // Optional: Add inertia or snap-back effect here if desired
+    };
 
+    // Add event listeners
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    container.addEventListener("touchstart", handleTouchStart, { passive: false });
+    container.addEventListener("touchmove", handleTouchMove, { passive: false });
+    container.addEventListener("touchend", handleTouchEnd, { passive: false });
 
-
+    // Cleanup event listeners
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [card]);
 
   if (!card) return null;
-
-  
-
-
 
   return (
     <div
       ref={popupRef}
+      data-lenis-prevent
       className="fixed inset-0 flex items-end justify-center overflow-hidden bg-black bg-opacity-60 backdrop-blur-md z-50 px-4 "
     >
-        <button
-          className="absolute sm:top-[15vh] top-[8vh] cursor-pointer right-[50%] translate-x-[50%] text-black text-xl bg-white p-2 rounded-[50%]"
-          onClick={() => {
-            gsap.to(popupRef.current, {
-              duration: 0.3,
-              opacity: 0,
-              y: 100,
-              ease: "power4.inOut",
-              onComplete: () => {
-                onClose();
-              },
-            });
-          }}
-        >
-          ✖
-        </button>
+      <button
+        className="absolute sm:top-[15vh] top-[8vh] cursor-pointer right-[50%] translate-x-[50%] text-black text-xl bg-white p-2 rounded-[50%]"
+        onClick={() => {
+          gsap.to(popupRef.current, {
+            duration: 0.3,
+            opacity: 0,
+            y: 100,
+            ease: "power4.inOut",
+            onComplete: () => {
+              onClose();
+            },
+          });
+        }}
+      >
+        ✖
+      </button>
       <div className="bg-white rounded-lg rounded-b-none w-full overflow-hidden max-w-[1400px] p-6 relative shadow-xl ">
         <div className="overflow-hidden ">
-        <div ref={popupContainer} className="max-h-[500px] popup-container">
-          <h2 className="text-2xl font-bold text-center">{card?.title}</h2>
-          <p className="text-gray-600 text-center">{card?.description}</p>
-          <div className="grid md:grid-cols-3 md:justify-items-center mt-4 py-10 gap-10 px-3">
-            <div className="text-sm text-[#202020] max-w-[600px] sm:col-span-2 md:col-auto">
-              <p>{card?.per1}</p>
-              <p className="mt-3">{card?.per2}</p>
+          <div ref={popupContainer} className="max-h-[500px] popup-container">
+            <h2 className="text-2xl font-bold text-center">{card?.title}</h2>
+            <p className="text-gray-600 text-center">{card?.description}</p>
+            <div className="grid md:grid-cols-3 md:justify-items-center mt-4 py-10 gap-10 px-3">
+              <div className="text-sm text-[#202020] max-w-[600px] sm:col-span-2 md:col-auto">
+                <p>{card?.per1}</p>
+                <p className="mt-3">{card?.per2}</p>
+              </div>
+              <div className="h-full flex flex-col justify-between ">
+                <p className="text-2xl font-bold">
+                  Complexity: <br />
+                  <span className="text-gray-600 text-[18px]">
+                    {card?.complexity}
+                  </span>
+                </p>
+                <p className="text-2xl font-bold">
+                  Time Taken: <br />
+                  <span className="text-gray-600 text-[18px]">
+                    {card?.timeTaken}
+                  </span>
+                </p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-end">Services:</p>
+                <ul className="text-gray-600 text-end list-none">
+                  {card?.services?.map((service, index) => (
+                    <li key={index}>{service}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="h-full flex flex-col justify-between ">
-              <p className="text-2xl font-bold">
-                Complexity: <br />
-                <span className="text-gray-600 text-[18px]">
-                  {card?.complexity}
-                </span>
-              </p>
-              <p className="text-2xl font-bold">
-                Time Taken: <br />
-                <span className="text-gray-600 text-[18px]">
-                  {card?.timeTaken}
-                </span>
-              </p>
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-end">Services:</p>
-              <ul className="text-gray-600 text-end list-none">
-                {card?.services?.map((service, index) => (
-                  <li key={index}>{service}</li>
-                ))}
-              </ul>
+            <div className="flex justify-center my-4">
+              <img
+                src={card?.image}
+                alt={card?.title}
+                className="w-full max-h-96 object-cover rounded-lg"
+              />
             </div>
           </div>
-          <div className="flex justify-center my-4">
-            <img
-              src={card?.image}
-              alt={card?.title}
-              className="w-full max-h-96 object-cover rounded-lg"
-            />
-          </div>
-        </div>
         </div>
       </div>
     </div>
