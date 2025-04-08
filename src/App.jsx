@@ -12,6 +12,7 @@ import "lenis/dist/lenis.css";
 import gsap from "gsap";
 import { createContext, useContext } from "react";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 const LenisContext = createContext(null);
 export const useLenis = () => useContext(LenisContext);
 
@@ -65,6 +66,7 @@ function App() {
           <Route path="/discover" element={<Discover />} />
           <Route path="/insights" element={<Insights />} />
         </Routes>
+        <Footer/>
       </Router>
     </LenisContext.Provider>
     </>

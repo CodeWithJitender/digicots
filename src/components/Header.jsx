@@ -289,10 +289,10 @@ function Header() {
           ref={menuRef}
           className={`mobile-menu  bg-zinc-500/[.1] backdrop-blur-sm overflow-hidden absolute opacity-0 top-[-100%] z-[10]  w-full left-0 h-[100vh] lg:hidden `}
         >
-          <div className="relative">
+          <div className="relative h-[calc(100%-70px)] pb-5 bg-[#0b0b0c]">
             <div
               ref={mainMenuRef}
-              className={`main-menu top-[100%] z-[1000] opacity-0 relative transition-[.5s] flex flex-col justify-between px-6  ${
+              className={`main-menu h-[100%] top-[100%] z-[1000] opacity-0 relative transition-[.5s] flex flex-col justify-between px-6  ${
                 subMenu ? "start-[-100%]" : "start-[0%]"
               }`}
             >
@@ -359,7 +359,7 @@ function Header() {
               </div>
             </div>
             <div
-              className={`sub-menu transition-[.5s] px-6 absolute top-0 w-full bg-[#242424] ${
+              className={`sub-menu transition-[.5s] px-6 absolute top-0 w-full bg-[#0b0b0c] ${
                 subMenu ? "start-[0%]" : "start-[100%]"
               }`}
             >

@@ -63,10 +63,26 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-start col-span-2 md:col-span-1">
             <h3 className="text-4xl font-bold text-[#DF782B]">DigiCots</h3>
             <div className="flex space-x-3 mt-4">
-              <div className="w-8 h-8 bg-gray-800 rounded-md"></div>
-              <div className="w-8 h-8 bg-gray-800 rounded-md"></div>
-              <div className="w-8 h-8 bg-gray-800 rounded-md"></div>
-              <div className="w-8 h-8 bg-gray-800 rounded-md"></div>
+              <div className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center">
+                <a href="">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </div>
+              <div className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center">
+                <a href="">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+              <div className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center">
+                <a href="">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+              <div className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center">
+                <a href="">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </div>
             </div>
           </div>
 

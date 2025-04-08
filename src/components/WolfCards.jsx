@@ -2,7 +2,7 @@ import React from "react";
 
 const WolfCard = ({ step, heading, pera, list, quoat, bgColor, textColor, img,className,style,ref }) => {
   return (
-    <div ref={ref} style={style} className={` ${className} px-4 py-12 rounded-xl shadow-lg flex flex-col md:flex-row items-center ${bgColor} ${textColor} w-full`}>
+    <div ref={ref} style={style} className={` ${className} px-4 py-12 rounded-xl shadow-lg flex flex-col  items-center ${bgColor} ${textColor} w-full`}>
       {/* Image Section */}
       <div className="max-w-[200px]">
         <img src={img} alt="Wolf" className="max-w" />
