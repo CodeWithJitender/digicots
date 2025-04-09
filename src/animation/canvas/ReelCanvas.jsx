@@ -174,7 +174,7 @@ const Scene = () => {
   //   }, [opacity]); // Debugging to check when opacity updates
 
   return (
-    <div className="relative min-h-[150vh] w-full bg-black">
+    <div className="relative min-h-[150vh] w-full">
       <div className="sticky top-0" style={{ width: "100vw", height: "100vh" }}>
         <Canvas
           className="homeCanvas"
@@ -184,6 +184,13 @@ const Scene = () => {
           <pointLight position={[10, 10, 10]} />
           <WavePlane />
         </Canvas>
+
+        <div className="h-full w-full absolute top-0">
+          <div className="absolute  bottom-5 left-7 text-sm text-white text-left leading-none ">
+          While you imagined creativity, <br /> We established authenticity!
+          </div>
+        </div>
+
       </div>
     </div>
   );

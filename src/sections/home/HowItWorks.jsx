@@ -41,12 +41,30 @@ function HowItWorks() {
     },
   ];
 
-  const cardRefs = useRef([]); // Array of refs
+  const cardRefs = useRef([]);
   const parentRef = useRef(null);
+  const videoRef = useRef(null);
+  const hasPlayed = useRef(false); // Added flag to track if video has played
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-    if(window.innerWidth>600){
+    const video = videoRef.current;
+    // video.pause(); // Pause video initially
+
+    // Video playback ScrollTrigger
+    ScrollTrigger.create({
+      trigger: parentRef.current,
+      start: "top 30%",
+      onEnter: () => {
+        if (!hasPlayed.current) {
+          // Check if video hasn't played yet
+          video.play();
+          hasPlayed.current = true; // Set flag to true after playing
+        }
+      },
+    });
+
+    if (window.innerWidth > 600) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
@@ -57,12 +75,12 @@ function HowItWorks() {
       });
       tl.from(cardRefs.current, {
         y: 100,
-        duration:3,
+        duration: 3,
         opacity: 0,
         stagger: 3,
         ease: "expoScale(0.5,7,none)",
       });
-    }else{
+    } else {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
@@ -73,7 +91,7 @@ function HowItWorks() {
       });
       tl.from(cardRefs.current, {
         top: "50%",
-        duration:4,
+        duration: 4,
         opacity: 0,
         stagger: 5,
         ease: "expoScale(0.5,7,none)",
@@ -84,13 +102,25 @@ function HowItWorks() {
   console.log(window.innerWidth);
 
   return (
-    <div className="md:min-h-[140vh] w-full relative">
+    <div className="md:min-h-[140vh] h-[140vh] w-full relative bg-black">
       <section
         ref={parentRef}
         className="how-it-works min-h-screen sticky top-0 overflow-hidden"
-        style={{ backgroundImage: "url('how-it-works.png')" }}
+        // style={{ backgroundImage: "url('how-it-works.png')" }}
       >
-        <div className="container-xxl">
+        <div className="absolute w-screen h-screen z-[-1]">
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            id="our-work-video"
+            src="./1.mp4"
+            muted
+            autoPlay
+            // loop
+            playsInline
+          />
+        </div>
+        <div className="container-xxl absolute top-0 left-0 right-0 bottom-0 h-full w-full">
           <MainHeading
             heading="HOW IT WORKS"
             pera="We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
@@ -103,7 +133,10 @@ function HowItWorks() {
               <div
                 ref={(el) => (cardRefs.current[index] = el)}
                 className="wolf-card absolute md:static p-4 rounded-2xl shadow-lg border-8 border-[#FFFFFF4D]"
-                style={{ background: dataChild.bg_Color, top: window.innerWidth > 600 ? 0 : index*6 + "%" }}
+                style={{
+                  background: dataChild.bg_Color,
+                  top: window.innerWidth > 600 ? 0 : 0,
+                }}
                 key={index}
               >
                 <div className="wolf-img mb-4">

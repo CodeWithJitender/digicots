@@ -1,170 +1,160 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
-const VideoLikeCanvasAnimation = ({ imgPath, height = "100vh", fps = 24,startFrame = 40, endFrame= 80 }) => {
+const VideoLikeCanvasAnimation = ({
+  imgPath,
+  height = "100vh",
+  fps = 20,
+  startFrame = 40,
+  endFrame = 80,
+}) => {
   const canvasRef = useRef(null);
-  const imagesRef = useRef([]);
-  const progressRef = useRef({ value: 0 });
-  const animationRef = useRef(null);
-  const frameCount = 41; // Fixed to your 40 frames requirement
-
-  // Generate image paths
-  const generateImagePaths = () => {
-
-    return Array.from(
-      { length: endFrame - startFrame + 1 }, // +1 to include both endpoints
-      (_, i) => `${imgPath}${String(startFrame + i).padStart(4, "0")}.png`
-    );
-  };
-
-  // Preload images
-  const preloadImages = (imagePaths) => {
-    return Promise.all(
-      imagePaths.map(
-        (path) =>
-          new Promise((resolve, reject) => {
-            const img = new Image();
-            img.src = path;
-            img.onload = () => resolve(img);
-            img.onerror = (err) => reject(err);
-          })
-      )
-    );
-  };
-
-
-  const render = (progress) => {
-  const canvas = canvasRef.current;
-  if (!canvas || imagesRef.current.length === 0) return;
-
-  // Calculate frame index
-  const frameIndex = Math.floor(progress * frameCount) % frameCount;
-  const img = imagesRef.current[frameIndex];
-  if (!img) return;
-
-  // Get device pixel ratio
-  const dpr = Math.min(window.devicePixelRatio,2);
-  
-  // Set canvas size accounting for DPR
-  const displayWidth = Math.floor(canvas.clientWidth * dpr);
-  const displayHeight = Math.floor(canvas.clientHeight * dpr);
-  
-  // Only resize if needed
-  if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
-    canvas.width = displayWidth;
-    canvas.height = displayHeight;
-  }
-
-  const context = canvas.getContext("2d", {
-    willReadFrequently: false,
-    alpha: true
-  });
-
-  // Calculate aspect-ratio preserving dimensions
-  const canvasRatio = canvas.width / canvas.height;
-  const imgRatio = img.width / img.height;
-  
-  let width, height, x, y;
-  
-  if (imgRatio > canvasRatio) {
-    // Image is wider than canvas (relative to height)
-    width = canvas.width;
-    height = width / imgRatio;
-    x = 0;
-    y = (canvas.height - height) / 2;
-  } else {
-    // Image is taller than canvas (relative to width)
-    height = canvas.height;
-    width = height * imgRatio;
-    x = (canvas.width - width) / 2;
-    y = 0;
-  }
-
-  // High-quality rendering settings
-  context.save();
-  context.imageSmoothingEnabled = true;
-  context.imageSmoothingQuality = "high";
-  context.globalCompositeOperation = "source-over";
-  context.globalAlpha = 1.0;
-  context.filter = "none";
-
-  // Clear canvas
-  context.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Draw image with high quality
-  context.drawImage(
-    img,
-    0, 0, img.width, img.height,  // source dimensions
-    x, y, width, height           // destination dimensions
-  );
-
-  context.restore();
-};
-
-  // GSAP-powered animation loop
-  const startAnimation = () => {
-    const duration = frameCount / fps; // Exactly the time needed for 40 frames at given fps
-
-    animationRef.current = gsap.to(progressRef.current, {
-      value: 1,
-      duration: duration,
-      ease: "none", // 'none' is better than 'linear' for frame-perfect animation
-      repeat: -1,
-      // yoyo:true,
-      onUpdate: () => render(progressRef.current.value),
-      // Reset progress on each repeat for perfect loop
-      onRepeat: () => {
-        progressRef.current.value = 0;
-      },
-    });
-  };
-
-  // Setup canvas and animations
-  const setupCanvas = async () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    // Set canvas dimensions
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    // Handle window resize
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      render(progressRef.current.value);
-    };
-    window.addEventListener("resize", handleResize);
-
-    // Load images and start animation
-    try {
-      imagesRef.current = await preloadImages(generateImagePaths());
-      render(0);
-      startAnimation();
-    } catch (error) {
-      console.error("Error loading images:", error);
-    }
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      animationRef.current?.kill();
-    };
-  };
+  const containerRef = useRef(null);
+  const [isReady, setIsReady] = useState(false);
+  const frameCount = endFrame - startFrame + 1;
+  const progressRef = useRef(0);
+  const lastFrameIndexRef = useRef(-1); // Track last drawn frame to avoid redundant draws
 
   useEffect(() => {
-    setupCanvas();
-    return () => {
-      animationRef.current?.kill();
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
+    let ctx = canvas.getContext("2d", { alpha: true });
+    const dpr = Math.min(window.devicePixelRatio, 2);
+    let images = [];
+    let animationId;
+
+    // Set canvas size
+    const setCanvasSize = () => {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
     };
-  }, []);
+
+    // Load images
+    const loadImages = async () => {
+      const imagePromises = [];
+      for (let i = startFrame; i <= endFrame; i++) {
+        const frameNumber = String(i).padStart(4, "0");
+        const img = new Image();
+        img.src = `${imgPath}${frameNumber}.png`;
+        imagePromises.push(
+          new Promise((resolve) => {
+            img.onload = () => resolve(img);
+            img.onerror = () => resolve(null);
+          })
+        );
+      }
+      return await Promise.all(imagePromises);
+    };
+
+    // Draw frame with optimization
+    const drawFrame = (frameIndex) => {
+      if (!images[frameIndex] || frameIndex === lastFrameIndexRef.current) return;
+
+      lastFrameIndexRef.current = frameIndex;
+      const img = images[frameIndex];
+      const canvasRatio = canvas.width / canvas.height;
+      const imgRatio = img.width / img.height;
+
+      let width, height, x, y;
+      if (imgRatio > canvasRatio) {
+        height = canvas.height;
+        width = height * imgRatio;
+        x = (canvas.width - width) / 2;
+        y = 0;
+      } else {
+        width = canvas.width;
+        height = width / imgRatio;
+        x = 0;
+        y = (canvas.height - height) / 2;
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, x, y, width, height);
+    };
+
+    // Animation loop
+    const animate = () => {
+      const frameIndex = Math.floor(progressRef.current * frameCount) % frameCount;
+      drawFrame(frameIndex);
+      animationId = requestAnimationFrame(animate);
+    };
+
+    // Initialize
+    const init = async () => {
+      setCanvasSize();
+      images = await loadImages();
+      images = images.filter((img) => img !== null);
+
+      if (images.length === 0) {
+        console.error("No images loaded");
+        return;
+      }
+
+      setIsReady(true);
+
+      // GSAP animation
+      gsap.to(progressRef, {
+        value: 1,
+        duration: frameCount / fps,
+        ease: "none",
+        repeat: -1,
+        onUpdate: function () {
+          progressRef.current = this.progress();
+        },
+      });
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    init();
+
+    // Handle resize with debounce
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        setCanvasSize();
+        const frameIndex = Math.floor(progressRef.current * frameCount) % frameCount;
+        drawFrame(frameIndex);
+      }, 50); // Reduced to 50ms for better responsiveness
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(animationId);
+      gsap.killTweensOf(progressRef);
+    };
+  }, [imgPath, fps, startFrame, endFrame, frameCount]);
 
   return (
-    <div className={`relative z-[10] h-[100vh] w-full`}>
+    <div
+      ref={containerRef}
+      className="absolute top-0 left-0 w-full h-full pointer-events-none"
+      style={{ height }}
+    >
       <canvas
         ref={canvasRef}
-        className="fixed top-0 left-0 h-screen w-full"
-        style={{ imageRendering: "crisp-edges" }}
+        className="w-full h-full"
+        style={{
+          display: "block",
+          width: "100%",
+          height: "100%",
+          backgroundColor: isReady ? "transparent" : "#f0f0f0",
+        }}
       />
+      {!isReady && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          Loading animation frames...
+        </div>
+      )}
     </div>
   );
 };

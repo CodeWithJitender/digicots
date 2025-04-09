@@ -11,19 +11,21 @@ import Faq from "../sections/home/Faq";
 import KeywordsSection from "../sections/home/KeywordsSection";
 import Testimonials from "../sections/home/Testimonials";
 import ReelCanvas from "../animation/canvas/ReelCanvas";
+import HomeHeroCanvas from "../animation/canvas/HomeHeroCanvas";
 
 function Home() {
   return (
     <div className="main contain-paint">
-      <ReelCanvas />
+      {/* <HomeHeroCanvas/> */} //done
+      {/* <ReelCanvas /> */} 
       {/* <Hero img={homeHero} />  */}
-      <HowItWorks/> 
-      <Solutions/>
+      {/* <HowItWorks/>  // done */}
+      {/* <Solutions/> */} //responsive left
       <OurWork/>
-      <Insights/>
-      <KeywordsSection/>
-      <OurJourney/> 
-      <Testimonials/>
+      {/* <Insights/> */}
+      {/* <KeywordsSection/> */}
+      {/* <OurJourney/>  */}
+      {/* <Testimonials/> */}
 
       <Faq/>
     </div>

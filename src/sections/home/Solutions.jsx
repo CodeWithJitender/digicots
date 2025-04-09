@@ -79,9 +79,13 @@ function Solutions() {
   const blackBoxRef = useRef(null);
   const parentRef = useRef(null);
   const contentRef = useRef([]);
+
   gsap.registerPlugin(ScrollTrigger);
+
   useGSAP(() => {
-    
+    // Ensure refs are not null
+    if (!parentRef.current || !blackBoxRef.current || !contentRef.current.length) return;
+
     if (window.innerWidth > 767) {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -89,10 +93,11 @@ function Solutions() {
           start: "top 70%",
           end: "top -1100%",
           scrub: 1,
+          markers: true,
         },
         ease: "linear",
       });
-      // console.log("laptop");
+
       tl.from(blackBoxRef.current, {
         left: "110%",
         opacity: 0,
@@ -112,13 +117,12 @@ function Solutions() {
           ".sol-content-left img",
           {
             opacity: 0,
-            // scale: 2, // Neeche se aayegi image
             duration: 2,
             delay: 6,
             ease: "back.out(1.5)",
             stagger: {
-              each: 8, // Har image ke beech 2s ka gap
-              from: "start", // Pehle wale se start hoga
+              each: 8,
+              from: "start",
             },
           },
           "a"
@@ -127,18 +131,18 @@ function Solutions() {
           ".sol-content-right",
           {
             opacity: 0,
-            scale: 1.1, // Neeche se aayegi image
+            scale: 1.1,
             duration: 3,
             delay: 6,
             ease: "power4.inOut",
             filter: "blur(10px)",
             stagger: {
-              each: 8.05, // Har image ke beech 2s ka gap
-              from: "start", // Pehle wale se start hoga
+              each: 8.05,
+              from: "start",
             },
           },
           "a"
-        )
+        );
     } else {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -149,6 +153,7 @@ function Solutions() {
         },
         ease: "linear",
       });
+
       tl.from(blackBoxRef.current, {
         left: "110%",
         opacity: 0,
@@ -160,7 +165,7 @@ function Solutions() {
           {
             translateY: "-900%",
             duration: 100,
-            ease:"linear",
+            ease: "linear",
           },
           "a"
         )
@@ -168,28 +173,22 @@ function Solutions() {
           ".sol-content-left img",
           {
             opacity: 0,
-            // scale: 2, // Neeche se aayegi image
             duration: 2,
             delay: 6,
             ease: "back.out(1.5)",
             stagger: {
-              each: 4, // Har image ke beech 2s ka gap
-              from: "start", // Pehle wale se start hoga
+              each: 4,
+              from: "start",
             },
           },
           "a"
         );
     }
-  }, [
-    blackBoxRef.current,
-    parentRef.current,
-    contentRef.current,
-    window.innerWidth,
-  ]);
+  }, []); // Empty dependency array to run only once on mount
 
   return (
     data && (
-      <div className="md:min-h-[1200vh] min-h-[1600vh]  relative">
+      <div className="md:min-h-[1200vh] min-h-[1600vh] relative">
         <section
           ref={parentRef}
           className="h-screen solution sticky top-0 overflow-hidden"
@@ -210,98 +209,61 @@ function Solutions() {
                 <div
                   ref={(el) => (contentRef.current[index] = el)}
                   key={index}
-                  className="solution-content min-w-[70vw] md:translate-x-[150%] md:translate-y-0 translate-y-[150%] relative z-[10] h-full flex items-center md:justify-between xl:justify-center lg:gap-[5vw] flex-col md:flex-row "
+                  className="solution-content min-w-[70vw] md:translate-x-[150%] md:translate-y-0 translate-y-[150%] relative z-[10] h-full flex items-center md:justify-between xl:justify-center lg:gap-[5vw] flex-col md:flex-row"
                 >
                   <div className="sol-content-left lg:h-[35vh] xl:h-[20vh] relative">
                     <img
                       key={d.title}
                       src={d.img}
                       alt=""
-                      className=" lg:scale-[2.5] h-full object-contain"
+                      className="lg:scale-[2.5] h-full object-contain"
                     />
                   </div>
                   <div
                     style={{
-                      width:
-                        window.innerWidth > 1023
-                          ? "600px !important"
-                          : "550px !important",
+                      width: window.innerWidth > 1023 ? "600px" : "550px",
                       maxWidth: window.innerWidth > 1023 ? "450px" : "",
                     }}
-                    className="sol-content-right max-h-[80%]  md:space-y-1"
+                    className="sol-content-right max-h-[80%] md:space-y-1"
                   >
-                    <div className="">
+                    <div>
                       <h3
                         key={index}
                         className="font-bold overflow-hidden md:h-[65px] w-fit capitalize text-white md:text-6xl text-2xl md:mb-3 font-inter"
                       >
-                        {/* <TextAnimation1
-                          animeStart={
-                            window.innerWidth > 600
-                              ? -15 * (index * 3.4)
-                              : 93.15 + index * 32
-                          }
-                        > */}
-                          {d.title
-                            .split(" ")
-                            .slice(0, Math.ceil(d.title.split(" ").length / 2))
-                            .join(" ")}
-                        {/* </TextAnimation1> */}
+                        {d.title
+                          .split(" ")
+                          .slice(0, Math.ceil(d.title.split(" ").length / 2))
+                          .join(" ")}
                       </h3>
                     </div>
 
                     {d.title.split(" ").length > 1 && (
-                      <div className="">
+                      <div>
                         <h3
                           key={index}
                           className="font-bold capitalize overflow-hidden md:h-[65px] w-fit text-white md:text-6xl text-2xl md:mb-3 font-inter"
                         >
-                          {/* <TextAnimation1
-                            animeStart={
-                              window.innerWidth > 600
-                                ? -15 * (index * 3.4)
-                                : 93 + index * 32
-                            }
-                          > */}
-                            {d.title
-                              .split(" ")
-                              .slice(Math.ceil(d.title.split(" ").length / 2))
-                              .join(" ")}
-                          {/* </TextAnimation1> */}
+                          {d.title
+                            .split(" ")
+                            .slice(Math.ceil(d.title.split(" ").length / 2))
+                            .join(" ")}
                         </h3>
                       </div>
                     )}
 
-                    {/* <h5
-                  className="text-white mb-4 font-inter"
-                  style={{ fontSize: "clamp(12px, 20vw, 16px)" }}
-                  >
-                  Where big ideas meet smart strategies
-                  </h5> */}
-                    <div className="">
+                    <div>
                       <p
                         key={index}
                         className="text-[#808080] font-normal font-inter"
                         style={{ fontSize: "clamp(10px, 20vw, 12px)" }}
                       >
-                        {/* <TextAnimation2
-                          animeStart={
-                            window.innerWidth > 600
-                              ? -14.8 * (index * 3.4)
-                              : 94 + index * 32
-                          }
-                          duration={0.6}
-                        > */}
-                          {d.description}
-                        {/* </TextAnimation2> */}
+                        {d.description}
                       </p>
                     </div>
-                    {/* <div className="sol-content-img grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5 mt-10">
-                  <img src="sol-box-1.png" alt="" />
-                  <img src="sol-box-2.png" alt="" />
-                </div> */}
+
                     <div className="link md:mt-10"></div>
-                    <div className=" overflow-hidden w-fit ">
+                    <div className="overflow-hidden w-fit">
                       <Link
                         to={"/"}
                         key={index}
