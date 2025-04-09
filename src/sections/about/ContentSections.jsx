@@ -7,6 +7,7 @@ function ContentSections() {
     p: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     link: "/content-production",
     img: "content-production.png",
+    thumbnail: "content-production.png",
     tag: [
       "Product Photography",
       "Corporate Videos",
@@ -19,7 +20,7 @@ function ContentSections() {
   return (
     <div className="solution-box relative">
         <div className="heading-cot absolute w-full h-full flex lg:items-center justify-center text-center z-[-1]">
-            <h1  className="text-stroke text-transparent max-w-[900px] text-9xl font-black uppercase">{data.heading}</h1>
+            <h1  className="text-stroke text-transparent max-w-[900px] text-6xl  md:text-8xl lg:text-9xl font-black uppercase mt-32 lg:mt-0">{data.heading}</h1>
         </div>
       {/* <div className="max-w-[1600px] py-28 m-auto px-10">
         <div className="solution-content grid md:grid-cols-3">
@@ -60,7 +61,7 @@ function ContentSections() {
           </div>
         </div>
       </div> */}
-      <div className="max-w-[1600px] py-28 m-auto px-10">
+      <div className="max-w-[1600px] py-28 m-auto px-5 md:px-10">
   <div className="solution-content grid lg:grid-cols-3 grid-rows-[auto_auto_auto] md:grid-rows-1 gap-6">
     
     {/* solution-main: on mobile it's row 2, on md+ it's col 1 */}
@@ -88,7 +89,7 @@ function ContentSections() {
 
     {/* solution-img: on mobile it's row 1, on md+ it's col 2 */}
     <div className="solution-img flex items-center justify-center row-start-1 lg:row-start-auto lg:col-start-2">
-      <img src={data.img} className="w-full" alt="" />
+      <img src={data.img} className="w-full max-w-[500px]" alt="" />
     </div>
 
     {/* solution-tag: only on md+, in col 3 */}
