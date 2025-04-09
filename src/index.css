@@ -16,7 +16,17 @@
 .font-great-vibes {
   font-family: "Great Vibes", cursive;
 }
-
+.text-stroke {
+  color: black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #ed510c;
+  font-weight: 900;
+  transition:  all .5s;
+}
+.solution-box:hover .text-stroke{
+  -webkit-text-fill-color:#ed510c; /* Will override color (regardless of order) */
+}
 .no-scrollBar::-webkit-scrollbar {
   display: none;
 }
@@ -27,11 +37,11 @@
 }
 
 .container-xxl {
-    @apply max-w-7xl m-auto px-5 py-10 md:py-24;
+  @apply max-w-7xl m-auto px-5 py-10 md:py-24;
 }
 
 .container-xl {
-    @apply max-w-7xl m-auto px-5 md:py-10;
+  @apply max-w-7xl m-auto px-5 md:py-10;
 }
 
 /* How it works section */
@@ -162,17 +172,16 @@ header *::-webkit-scrollbar-thumb:hover {
 }
 
 .service-text::-webkit-scrollbar-track {
-    background: #FFD5B5;
-    border-radius: 10px;
+  background: #ffd5b5;
+  border-radius: 10px;
 }
 
 .service-text::-webkit-scrollbar {
-    width: 16px;
+  width: 16px;
 }
 .service-text::-webkit-scrollbar-thumb {
-    background: #b45e22;
-    border-radius: 10px;
-
+  background: #b45e22;
+  border-radius: 10px;
 }
 
 header .dropdown {

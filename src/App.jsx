@@ -13,6 +13,7 @@ import gsap from "gsap";
 import { createContext, useContext } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CustomTest from "./pages/CustomTest";
 const LenisContext = createContext(null);
 export const useLenis = () => useContext(LenisContext);
 
@@ -65,6 +66,7 @@ function App() {
           <Route path="/our-work" element={<OurWork />} />
           <Route path="/discover" element={<Discover />} />
           <Route path="/insights" element={<Insights />} />
+          <Route path="/custom" element={<CustomTest />} />
         </Routes>
         <Footer/>
       </Router>
