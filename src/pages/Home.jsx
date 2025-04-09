@@ -16,10 +16,10 @@ import HomeHeroCanvas from "../animation/canvas/HomeHeroCanvas";
 function Home() {
   return (
     <div className="main contain-paint">
-      {/* <HomeHeroCanvas/> */} //done
+      <HomeHeroCanvas/> //done
       {/* <ReelCanvas /> */} 
       {/* <Hero img={homeHero} />  */}
-      {/* <HowItWorks/>  // done */}
+      <HowItWorks/>  // done
       {/* <Solutions/> */} //responsive left
       <OurWork/>
       {/* <Insights/> */}
