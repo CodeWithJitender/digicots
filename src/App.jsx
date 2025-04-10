@@ -14,6 +14,7 @@ import { createContext, useContext } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CustomTest from "./pages/CustomTest";
+import Thankyou from "./pages/Thankyou";
 const LenisContext = createContext(null);
 export const useLenis = () => useContext(LenisContext);
 
@@ -67,6 +68,7 @@ function App() {
           <Route path="/discover" element={<Discover />} />
           <Route path="/insights" element={<Insights />} />
           <Route path="/custom" element={<CustomTest />} />
+          <Route path="/thankyou" element={<Thankyou />} />
         </Routes>
         <Footer/>
       </Router>

@@ -19,21 +19,27 @@ export default function Footer() {
 
           {/* Right - Form */}
           <div className="md:w-[65%] w-full">
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-4" action="https://formsubmit.co/jitender@digicots.com" method="POST">
+            <input type="hidden" name="_captcha" value="false"/>
+            <input type="hidden" name="_template" value="table"/>
+            <input type="hidden" name="_next" value="http://localhost:5173/thankyou"/>
               <input
                 type="text"
                 placeholder="Full Name"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5  rounded-[14px] w-full focus:outline-none"
+                name="Full_Name"
               />
               <input
                 type="text"
                 placeholder="Company Name"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5  rounded-[14px] w-full focus:outline-none"
+                name="Company_Name"
               />
               <input
                 type="email"
                 placeholder="Email Address"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5  rounded-[14px] w-full focus:outline-none "
+                name="Email"
               />
               <div className="flex ">
                 <select className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5  rounded-l-[14px] focus:outline-none">
@@ -45,6 +51,7 @@ export default function Footer() {
                   type="text"
                   placeholder="Contact Number"
                   className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5  w-full rounded-r-[14px] focus:outline-none"
+                  name="Contact_Number"
                 />
               </div>
               <button className="md:col-span-2 bg-[#DF782B] hover:bg-orange-600 transition-all text-white font-bold p-4 sm:p-5 rounded-[14px] cursor-pointer">

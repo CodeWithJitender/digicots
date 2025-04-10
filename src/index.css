@@ -33,8 +33,8 @@
   visibility: hidden;
   transition: all .5s;
 }
-.slider-thumb .slick-active button{
-  background-color: #ed510c !important;
+.slider-thumb .slick-active.slick-current .overflow-hidden.cursor-pointer{
+  background-color: #ED510C26 !important;
 }
 @media screen and (max-width:992px) {
   .solution-main,

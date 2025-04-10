@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import HeadingWithLink from "../../components/HeadingWithLink";
 
 const contentData = [
   {
@@ -154,95 +155,105 @@ const ContentSlider = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-col-reverse max-w-[1600px] mx-auto px-5 md:px-10 py-20">
-      {/* Thumbnails */}
-      <div className="slider-thumb mb-10">
-        <Slider {...thumbSettings}>
-          {contentData.map((item, index) => (
-            <div key={index} className="px-2">
-              <div className="border-2 border-[#ED510C] rounded-lg overflow-hidden cursor-pointer  ">
-                <img
-                  src={item.thumbnail}
-                  alt={item.heading}
-                  className="w-full hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            </div>
-          ))}
-        </Slider>
+    <div className="">
+      <div className="container-xxl">
+      <HeadingWithLink
+              head="SOLUTIONS"
+              per="Lorem ipsum dolor sit amet, consectetur adipiscing"
+              link={"/contact"}
+              linkh={"Contact Us"}
+            />
       </div>
-
-      <div className="md:col-start-2 md:col-span-2">
-        <Slider {...mainSettings} className="">
-          {contentData.map((data, index) => (
-            <div key={index}>
-              <div className="solution-box relative lg:h-[600px] xl:h-[500px]">
-                {/* Background Heading */}
-                <div className="heading-cot absolute w-full h-full flex lg:items-center justify-center text-center z-[-1]">
-                  <h1 className="text-stroke text-transparent max-w-[900px] text-6xl md:text-8xl lg:text-9xl font-black uppercase mt-32 lg:mt-0">
-                    {data.heading}
-                  </h1>
+      <div className="flex flex-col lg:flex-col-reverse max-w-[1600px] mx-auto px-5 md:px-10 py-20">
+        {/* Thumbnails */}
+        <div className="slider-thumb mb-10">
+          <Slider {...thumbSettings}>
+            {contentData.map((item, index) => (
+              <div key={index} className="px-2">
+                <div className="border-2 border-[#ED510C] rounded-lg overflow-hidden cursor-pointer  ">
+                  <img
+                    src={item.thumbnail}
+                    alt={item.heading}
+                    className="w-full hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
+              </div>
+            ))}
+          </Slider>
+        </div>
 
-                <div className="solution-content grid lg:grid-cols-3 grid-rows-[auto_auto_auto] md:grid-rows-1 gap-6">
-                  {/* Left Block */}
-                  <div className="solution-main bg-[#202020] rounded-[24px] p-6 lg:p-8 row-start-2 md:row-start-auto md:col-start-1">
-                    <h2
-                      style={{ fontSize: "clamp(32px, 5vw, 60px)" }}
-                      className="font-inter font-black text-white mb-3 leading-[100%]"
-                    >
+        <div className="md:col-start-2 md:col-span-2">
+          <Slider {...mainSettings} className="">
+            {contentData.map((data, index) => (
+              <div key={index}>
+                <div className="solution-box relative lg:h-[600px] xl:h-[500px]">
+                  {/* Background Heading */}
+                  <div className="heading-cot absolute w-full h-full flex lg:items-center justify-center text-center z-[-1]">
+                    <h1 className="text-stroke text-transparent max-w-[900px] text-6xl md:text-8xl lg:text-9xl font-black uppercase mt-32 lg:mt-0">
                       {data.heading}
-                    </h2>
-                    <p className="font-inter text-white my-4">{data.p}</p>
-                    <Link to={data.link} className="text-white">
-                      Explore More{" "}
-                      <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C]"></i>
-                    </Link>
-                    <div className="flex flex-wrap gap-4 mt-4 lg:hidden">
-                      {data.tag.map((text, index) => (
-                        <button
-                          key={index}
-                          className="border-2 border-[#ED510C] text-[#ED510C] px-4 py-2 rounded-[20px] font-inter font-bold text-start"
-                        >
-                          <Link>
-                            {text}
-                            <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C] ms-2"></i>
-                          </Link>
-                        </button>
-                      ))}
+                    </h1>
+                  </div>
+
+                  <div className="solution-content grid lg:grid-cols-3 grid-rows-[auto_auto_auto] md:grid-rows-1 gap-6">
+                    {/* Left Block */}
+                    <div className="solution-main bg-[#202020] rounded-[24px] p-6 lg:p-8 row-start-2 md:row-start-auto md:col-start-1">
+                      <h2
+                        style={{ fontSize: "clamp(32px, 5vw, 60px)" }}
+                        className="font-inter font-black text-white mb-3 leading-[100%]"
+                      >
+                        {data.heading}
+                      </h2>
+                      <p className="font-inter text-white my-4">{data.p}</p>
+                      <Link to={data.link} className="text-white">
+                        Explore More{" "}
+                        <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C]"></i>
+                      </Link>
+                      <div className="flex flex-wrap gap-4 mt-4 lg:hidden">
+                        {data.tag.map((text, index) => (
+                          <button
+                            key={index}
+                            className="border-2 border-[#ED510C] text-[#ED510C] px-4 py-2 rounded-[20px] font-inter font-bold text-start"
+                          >
+                            <Link>
+                              {text}
+                              <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C] ms-2"></i>
+                            </Link>
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Image */}
-                  <div className="solution-img flex items-center justify-center row-start-1 lg:row-start-auto lg:col-start-2">
-                    <img
-                      src={data.img}
-                      className="w-full max-w-[500px]"
-                      alt=""
-                    />
-                  </div>
+                    {/* Image */}
+                    <div className="solution-img flex items-center justify-center row-start-1 lg:row-start-auto lg:col-start-2">
+                      <img
+                        src={data.img}
+                        className="w-full max-w-[500px]"
+                        alt=""
+                      />
+                    </div>
 
-                  {/* Tags */}
-                  <div className="solution-tag bg-[#202020] rounded-[24px] p-6 lg:p-8 hidden lg:block md:col-start-3">
-                    <div className="flex flex-wrap gap-4 text-start">
-                      {data.tag.map((text, index) => (
-                        <button
-                          key={index}
-                          className="border-2 border-[#ED510C] text-[#ED510C] px-4 py-2 rounded-[20px] font-inter font-bold"
-                        >
-                          <Link>
-                            {text}
-                            <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C] ms-2"></i>
-                          </Link>
-                        </button>
-                      ))}
+                    {/* Tags */}
+                    <div className="solution-tag bg-[#202020] rounded-[24px] p-6 lg:p-8 hidden lg:block md:col-start-3">
+                      <div className="flex flex-wrap gap-4 text-start">
+                        {data.tag.map((text, index) => (
+                          <button
+                            key={index}
+                            className="border-2 border-[#ED510C] text-[#ED510C] px-4 py-2 rounded-[20px] font-inter font-bold"
+                          >
+                            <Link>
+                              {text}
+                              <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C] ms-2"></i>
+                            </Link>
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        </div>
       </div>
     </div>
   );
