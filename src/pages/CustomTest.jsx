@@ -1,10 +1,10 @@
 import React from 'react'
-import ContentSections from '../sections/about/ContentSections'
+import ContentSections from '../sections/home/ContentSlider'
 
 function CustomTest() {
   return (
     <div>
-      <ContentSections/>
+      <ContentSlider/>
     </div>
   )
 }

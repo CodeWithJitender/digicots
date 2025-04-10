@@ -23,7 +23,7 @@ function AllService() {
       id: "content-production",
     },
     "Outreach Solutions": {
-      img: "icon-8.png ",
+      img: "icon-8.png",
       description:
         "Exploring the Unknown; Making Your Mark. Extend brand awareness beyond traditional channels by leveraging trusted voices in the industry to authentically engage with niche groups. Reaching the right audience requires more than just good content – it demands strategic outreach that ensures maximum impact.",
       offerings: {
@@ -93,7 +93,7 @@ function AllService() {
       id: "creative-designing",
     },
     Branding: {
-      img: "icon-4.png ",
+      img: "icon-4.png",
       description:
         "Carving the Alpha Identity. Craft the soul of your company – define an identity, shape user perception, and create an emotional connection. Branding is the art of ensuring that people don’t just buy products; they buy into a vision, a story, an experience.",
       offerings: {
@@ -107,7 +107,7 @@ function AllService() {
       id: "branding",
     },
     "Outdoor Advertising - Digicots OOH": {
-      img: "icon-3.png ",
+      img: "icon-3.png",
       description:
         "Marking Your Territory in the Real World. Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled tool for massive brand visibility. We, at Digicots, ensure that advertising comes across as an experience rather than an interruption. While digital ads can be skipped, outdoor ads remain unmissable and serve as a constant, powerful reminder of a brand’s presence.",
       offerings: {
@@ -119,7 +119,7 @@ function AllService() {
       id: "outdoor-advertising",
     },
     "Website Development": {
-      img: "icon-1.png ",
+      img: "icon-1.png",
       description:
         "Your Digital Swarm. A website is more than an online address; it’s a brand’s digital storefront. Website development is a blend of technology, design, and user experience to create seamless, high-converting platforms with every element optimized for performance.",
       offerings: {

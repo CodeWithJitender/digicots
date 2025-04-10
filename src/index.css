@@ -33,6 +33,9 @@
   visibility: hidden;
   transition: all .5s;
 }
+.slider-thumb .slick-active button{
+  background-color: #ed510c !important;
+}
 @media screen and (max-width:992px) {
   .solution-main,
 .solution-tag{
