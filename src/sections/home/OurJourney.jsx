@@ -87,15 +87,15 @@ function OurJourney() {
       const tl2 = gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
-          start: "top -10%",
-          end: "top -90%",
+          start: "top 0%",
+          end: "top -250%",
           scrub: 1,
         },
       });
       tl2.to(cardContainerRef.current, {
         left: "-60%",
-        duration: 10,
-        ease: "power4.in",
+        duration: 40,
+        ease: "linear",
       });
     } else {
       const tl2 = gsap.timeline({
@@ -108,8 +108,8 @@ function OurJourney() {
       });
       tl2.to(cardContainerRef.current, {
         left: "-280%",
-        duration: 10,
-        ease: "power4.in",
+        duration: 40,
+        ease: "linear",
       });
     }
   }, []);
@@ -119,7 +119,7 @@ function OurJourney() {
     let isAnimating = false;
     let scrollTimeout;
 
-    const updateAnimation = () => {
+    const updateAnimation = (e) => {
       if (!cardContainerRef.current || !cardRefs.current) return;
       const cardContainerRect = cardContainerRef.current.getBoundingClientRect();
       if (cardContainerRect.left <= -window.innerWidth * 0.48) return;
@@ -161,7 +161,11 @@ function OurJourney() {
           }
         }
 
+        // console.log(cardRotation)
+
         card.style.transformOrigin = "center center";
+
+        console.log(e.deltaY)
 
         gsap.to(card, {
           scale: scaleFactor,
@@ -184,17 +188,17 @@ function OurJourney() {
       });
     };
 
-    const handleScroll = () => {
+    const handleScroll = (e) => {
       if (isAnimating) return;
       isAnimating = true;
 
       requestAnimationFrame(() => {
         isAnimating = false;
-        updateAnimation();
+        updateAnimation(e);
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll",(e)=> handleScroll(e));
   } else {
     let lastScrollY = window.scrollY;
     let isAnimating = false;
@@ -410,7 +414,7 @@ function OurJourney() {
   };
 
   return (
-    <div className="relative w-full h-[200vh] ">
+    <div className="relative w-full h-[350vh] ">
       <section
         ref={parentRef}
         className="our-journey min-h-screen sticky top-0 bg-[#DF782B] py-10 overflow-hidden"

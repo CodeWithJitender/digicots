@@ -1,39 +1,51 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo, useCallback } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 
-// Card component with plane geometry and texture
-const Card = ({ angle, radius, height, cardWidth, texture, setHovered }) => {
-  const meshRef = useRef();
+// Memoized Card component to prevent unnecessary re-renders
+const Card = React.memo(({ angle, radius, height, cardWidth, texture, setHovered }) => {
   const [isHovered, setIsHovered] = useState(false);
+  
+  const position = useMemo(() => [
+    Math.sin(angle) * radius, 
+    0, 
+    Math.cos(angle) * radius
+  ], [angle, radius]);
+
+  const handlePointerOver = useCallback((e) => {
+    e.stopPropagation();
+    setHovered(true);
+    setIsHovered(true);
+  }, [setHovered]);
+
+  const handlePointerOut = useCallback(() => {
+    setHovered(false);
+    setIsHovered(false);
+  }, [setHovered]);
 
   return (
     <mesh
-      ref={meshRef}
-      position={[Math.sin(angle) * radius, 0, Math.cos(angle) * radius]}
-      rotation={[0, angle , 0]} // Face outward
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setHovered(true);
-        setIsHovered(true);
-      }}
-      onPointerOut={() => {
-        setHovered(false);
-        setIsHovered(false);
-      }}
+      position={position}
+      rotation={[0, angle, 0]}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
     >
       <planeGeometry args={[cardWidth, height]} />
-      <meshBasicMaterial map={texture} side={THREE.DoubleSide} transparent={true} />
+      <meshBasicMaterial 
+        map={texture} 
+        side={THREE.DoubleSide} 
+        transparent={true} 
+      />
     </mesh>
   );
-};
+});
 
 // Scene component with cylinder arrangement
 const CylinderSceneContent = () => {
   const groupRef = useRef();
   const [hovered, setHovered] = useState(false);
 
-  // Responsive dimensions with memoization
+  // Responsive dimensions with memoization and window resize handling
   const { numCards, radius, height, fov } = useMemo(() => ({
     numCards: 15,
     radius: window.innerWidth > 643 ? 30 : 15,
@@ -41,62 +53,69 @@ const CylinderSceneContent = () => {
     fov: window.innerWidth > 643 ? 40 : 60,
   }), []);
 
-  // Preload textures once
+  // Preload textures once with error handling
   const textures = useLoader(THREE.TextureLoader, [
     "./slide-1.png",
     "./slide-2.png",
-  ]);
+  ], undefined, (error) => {
+    console.error("Error loading textures:", error);
+  });
 
   // Calculate card width
-  const circumference = 2 * Math.PI * radius;
-  const cardWidth = circumference / numCards;
+  const cardWidth = useMemo(() => {
+    const circumference = 2 * Math.PI * radius;
+    return circumference / numCards;
+  }, [radius, numCards]);
 
-  // Rotation animation
+  // Rotation animation with optimized frame handling
   useFrame((state, delta) => {
     if (groupRef.current && !hovered) {
-      groupRef.current.rotation.y += delta * .1; // Use delta for smoother, device-independent rotation
+      groupRef.current.rotation.y += delta * 0.1;
     }
   });
 
-  // Generate cards
-  const cards = Array.from({ length: numCards }, (_, i) => {
-    const angle = (i / numCards) * Math.PI * 2;
-    const texture = textures[i % 2 === 0 ? 0 : 1]; // Reuse preloaded textures
-    return (
-      <Card
-        key={i}
-        angle={angle}
-        radius={radius}
-        height={height}
-        cardWidth={cardWidth}
-        texture={texture}
-        setHovered={setHovered}
-      />
-    );
-  });
+  // Generate cards with memoization
+  const cards = useMemo(() => {
+    return Array.from({ length: numCards }, (_, i) => {
+      const angle = (i / numCards) * Math.PI * 2;
+      const textureIndex = i % 2 === 0 ? 0 : 1;
+      return (
+        <Card
+          key={i}
+          angle={angle}
+          radius={radius}
+          height={height}
+          cardWidth={cardWidth}
+          texture={textures[textureIndex]}
+          setHovered={setHovered}
+        />
+      );
+    });
+  }, [numCards, radius, height, cardWidth, textures]);
 
   return <group ref={groupRef}>{cards}</group>;
 };
 
-// Main component
+// Main component with responsive handling
 const CylinderScene = () => {
-  const fov = window.innerWidth > 643 ? 40 : 60; // FOV calculated once
+  const cameraConfig = useMemo(() => ({
+    position: [0, 0, 0],
+    fov: 30
+  }), []);
+
+  const dpr = useMemo(() => Math.min(2, window.devicePixelRatio), []);
 
   return (
     <div style={{ width: "100%", height: "100vh" }}>
       <Canvas
-        camera={{ position: [0, 0, 0], fov:30 }} // Fixed camera position outside cylinder
-        dpr={Math.min(2, window.devicePixelRatio)}
+        camera={cameraConfig}
+        dpr={dpr}
         gl={{ antialias: true }}
       >
-        {/* <ambientLight intensity={0.7} /> */}
-        {/* <pointLight position={[10, 10, 10]} intensity={1} />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} />
-        <directionalLight position={[0,   10, 5]} intensity={0.8} castShadow /> */}
         <CylinderSceneContent />
       </Canvas>
     </div>
   );
 };
 
-export default CylinderScene;
+export default React.memo(CylinderScene);

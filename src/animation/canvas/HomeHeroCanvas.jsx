@@ -12,13 +12,13 @@ function HomeHeroCanvas() {
   const containerRef = useRef(null);
   const screen1TextRef = useRef(null);
   const screen2TextRef = useRef(null);
-  const frameCount = 181; // Total frames from 000 to 180
+  const frameCount = 180; // Total frames from 000 to 180
   const images = useRef([]); // Store loaded images
 
   // Preload all images
   useEffect(() => {
     const loadImages = () => {
-      for (let i = 0; i < frameCount; i++) {
+      for (let i = 1; i < frameCount; i++) {
         const img = new Image();
         img.src = `./hero_section/UNREAL ENGINE ${i
           .toString()

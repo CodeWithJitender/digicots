@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 
 const VideoLikeCanvasAnimation = ({
   imgPath,
@@ -12,52 +11,30 @@ const VideoLikeCanvasAnimation = ({
   const containerRef = useRef(null);
   const [isReady, setIsReady] = useState(false);
   const frameCount = endFrame - startFrame + 1;
+  const lastFrameIndexRef = useRef(-1);
+  const intervalRef = useRef(null);
+  const imagesRef = useRef([]);
+  const isVisibleRef = useRef(true);
   const progressRef = useRef(0);
-  const lastFrameIndexRef = useRef(-1); // Track last drawn frame to avoid redundant draws
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+  // Memoized frame calculation
+  const getFrameIndex = useCallback(
+    (progress) => Math.floor(progress * frameCount) % frameCount,
+    [frameCount]
+  );
 
-    let ctx = canvas.getContext("2d", { alpha: true });
-    const dpr = Math.min(window.devicePixelRatio, 2);
-    let images = [];
-    let animationId;
+  // Optimized draw function
+  const drawFrame = useCallback(
+    (frameIndex) => {
+      const canvas = canvasRef.current;
+      if (!canvas || frameIndex === lastFrameIndexRef.current) return;
 
-    // Set canvas size
-    const setCanvasSize = () => {
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-    };
-
-    // Load images
-    const loadImages = async () => {
-      const imagePromises = [];
-      for (let i = startFrame; i <= endFrame; i++) {
-        const frameNumber = String(i).padStart(4, "0");
-        const img = new Image();
-        img.src = `${imgPath}${frameNumber}.png`;
-        imagePromises.push(
-          new Promise((resolve) => {
-            img.onload = () => resolve(img);
-            img.onerror = () => resolve(null);
-          })
-        );
-      }
-      return await Promise.all(imagePromises);
-    };
-
-    // Draw frame with optimization
-    const drawFrame = (frameIndex) => {
-      if (!images[frameIndex] || frameIndex === lastFrameIndexRef.current) return;
+      const ctx = canvas.getContext("2d", { alpha: true, willReadFrequently: true });
+      const img = imagesRef.current[frameIndex];
+      if (!img) return;
 
       lastFrameIndexRef.current = frameIndex;
-      const img = images[frameIndex];
+
       const canvasRatio = canvas.width / canvas.height;
       const imgRatio = img.width / img.height;
 
@@ -73,66 +50,151 @@ const VideoLikeCanvasAnimation = ({
         x = 0;
         y = (canvas.height - height) / 2;
       }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, x, y, width, height);
-    };
+    },
+    []
+  );
 
-    // Animation loop
-    const animate = () => {
-      const frameIndex = Math.floor(progressRef.current * frameCount) % frameCount;
+  // Set canvas size with DPR consideration
+  const setCanvasSize = useCallback(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
+    const dpr = Math.min(window.devicePixelRatio, 1.5);
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+  }, []);
+
+  // Load images progressively
+  const loadImages = useCallback(async () => {
+    const images = [];
+    for (let i = startFrame; i <= endFrame; i++) {
+      const frameNumber = String(i).padStart(4, "0");
+      const img = new Image();
+      img.src = `${imgPath}${frameNumber}.png`;
+
+      await new Promise((resolve) => {
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+      });
+
+      if (img) images[i - startFrame] = img;
+    }
+    return images;
+  }, [imgPath, startFrame, endFrame]);
+
+  const animationFrameRef = useRef(null);
+
+
+  // Animation update function for setInterval
+  const updateAnimation = useCallback(() => {
+    if (!isVisibleRef.current) return;
+  
+    const frameDuration = 1000 / fps;
+    const now = performance.now();
+    const elapsed = now - (updateAnimation.lastFrameTime || 0);
+  
+    if (elapsed >= frameDuration) {
+      updateAnimation.lastFrameTime = now;
+  
+      progressRef.current = (progressRef.current + 1 / frameCount) % 1;
+      const frameIndex = getFrameIndex(progressRef.current);
       drawFrame(frameIndex);
-      animationId = requestAnimationFrame(animate);
-    };
+    }
+  
+    animationFrameRef.current = requestAnimationFrame(updateAnimation);
+  }, [drawFrame, getFrameIndex, fps, frameCount]);
+  updateAnimation.lastFrameTime = 0;
 
-    // Initialize
+
+  
+  // Handle resize with debouncing
+  const handleResize = useCallback(() => {
+    let resizeTimeout;
+    return () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        setCanvasSize();
+        const frameIndex = getFrameIndex(progressRef.current);
+        drawFrame(frameIndex);
+      }, 100);
+    };
+  }, [drawFrame, getFrameIndex, setCanvasSize])();
+
+  // Setup Intersection Observer
+  const setupIntersectionObserver = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+        if (!isVisibleRef.current && animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+          animationFrameRef.current = null;
+        } else if (isVisibleRef.current && !animationFrameRef.current && isReady) {
+          updateAnimation.lastFrameTime = performance.now();
+          animationFrameRef.current = requestAnimationFrame(updateAnimation);
+        }
+        
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [isReady, updateAnimation, fps]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
+    let cleanupObserver;
     const init = async () => {
       setCanvasSize();
-      images = await loadImages();
-      images = images.filter((img) => img !== null);
+      const loadedImages = await loadImages();
 
-      if (images.length === 0) {
+      if (loadedImages.length === 0) {
         console.error("No images loaded");
         return;
       }
 
+      imagesRef.current = loadedImages;
       setIsReady(true);
 
-      // GSAP animation
-      gsap.to(progressRef, {
-        value: 1,
-        duration: frameCount / fps,
-        ease: "none",
-        repeat: -1,
-        onUpdate: function () {
-          progressRef.current = this.progress();
-        },
-      });
-
-      animationId = requestAnimationFrame(animate);
+      cleanupObserver = setupIntersectionObserver();
+      if (isVisibleRef.current) {
+        updateAnimation.lastFrameTime = performance.now();
+        animationFrameRef.current = requestAnimationFrame(updateAnimation);
+      }
+      
     };
 
     init();
 
-    // Handle resize with debounce
-    let resizeTimeout;
-    const handleResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        setCanvasSize();
-        const frameIndex = Math.floor(progressRef.current * frameCount) % frameCount;
-        drawFrame(frameIndex);
-      }, 50); // Reduced to 50ms for better responsiveness
-    };
-
     window.addEventListener("resize", handleResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener("resize", handleResize);
-      cancelAnimationFrame(animationId);
-      gsap.killTweensOf(progressRef);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (cleanupObserver) cleanupObserver();
+      imagesRef.current = [];
+      progressRef.current = 0;
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
     };
-  }, [imgPath, fps, startFrame, endFrame, frameCount]);
+  }, [fps, handleResize, loadImages, setCanvasSize, setupIntersectionObserver, updateAnimation]);
 
   return (
     <div
@@ -159,4 +221,4 @@ const VideoLikeCanvasAnimation = ({
   );
 };
 
-export default VideoLikeCanvasAnimation;
+export default React.memo(VideoLikeCanvasAnimation);
