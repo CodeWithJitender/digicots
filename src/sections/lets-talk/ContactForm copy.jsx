@@ -51,24 +51,24 @@ const ContactForm = () => {
       x: -200,
       ease: "power4.inOut",
     })
-    .from(contactRef.current,{
-      duration: 1,
-      opacity: 0,
-      y: 200,
-      ease: "power4.inOut",
-    })
-    .from(tabPRef.current,{
-      duration: 1,
-      opacity: 0,
-      x: 200,
-      ease: "power4.inOut",
-    })
-    .from(formRef.current,{
-      duration: 1,
-      opacity: 0,
-      x: 200,
-      ease: "power4.inOut",
-    })
+      .from(contactRef.current, {
+        duration: 1,
+        opacity: 0,
+        y: 200,
+        ease: "power4.inOut",
+      })
+      .from(tabPRef.current, {
+        duration: 1,
+        opacity: 0,
+        x: 200,
+        ease: "power4.inOut",
+      })
+      .from(formRef.current, {
+        duration: 1,
+        opacity: 0,
+        x: 200,
+        ease: "power4.inOut",
+      });
   }, []);
 
   const indicatorRef = useRef(null);
@@ -85,8 +85,7 @@ const ContactForm = () => {
         ease: "power3.out",
       });
     }
-  }, [activeTab,window.innerWidth]);
-
+  }, [activeTab, window.innerWidth]);
 
   return (
     <div className="bg-[#1a1a1a] overflow-hidden min-h-screen flex flex-col-reverse  md:flex-row items-center justify-center md:px-6 lg:px-20 py-12">
@@ -98,7 +97,10 @@ const ContactForm = () => {
           alt="Fox"
           className="w-full max-w-md hidden md:block"
         />
-        <div ref={contactRef} className="mt-8 text-white grid grid-cols-2 items-center justify-items-center gap-6 w-full">
+        <div
+          ref={contactRef}
+          className="mt-8 text-white grid grid-cols-2 items-center justify-items-center gap-6 w-full"
+        >
           {[
             {
               country: "India",
@@ -169,9 +171,7 @@ const ContactForm = () => {
         />
 
         <h1 className="text-white text-center md:text-start text-4xl sm:text-7xl md:text-8xl font-bold ">
-          <TextAnimation1>
-          Let's Talk
-          </TextAnimation1>
+          <TextAnimation1>Let's Talk</TextAnimation1>
         </h1>
 
         {/* Tabs */}
@@ -195,33 +195,46 @@ const ContactForm = () => {
           ))}
         </div> */}
 
-<div ref={tabPRef} className="relative flex justify-center md:justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3">
-        {/* Indicator */}
         <div
-          ref={indicatorRef}
-          className="absolute left-0 xl:h-[66%] md:h-[76%] h-[66%] bg-orange-500 rounded-md transition-all duration-300"
-        ></div>
+          ref={tabPRef}
+          className="relative flex justify-center md:justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3"
+        >
+          {/* Indicator */}
+          <div
+            ref={indicatorRef}
+            className="absolute left-0 xl:h-[66%] md:h-[76%] h-[66%] bg-orange-500 rounded-md transition-all duration-300"
+          ></div>
 
-        {["dominance", "help", "pack"].map((tab, index) => (
-          <button
-            key={tab}
-            ref={(el) => (tabRef.current[index] = el)}
-            onClick={() => setActiveTab(tab)}
-            className={`relative px-4 py-2 cursor-pointer rounded-md font-semibold text-white z-10`}
-          >
-            {tab === "dominance" ? "Let’s Talk Dominance!" :
-              tab === "help" ? "Howl for Help" :
-                "Join the Pack!"}
-          </button>
-        ))}
-      </div>
+          {["dominance", "help", "pack"].map((tab, index) => (
+            <button
+              key={tab}
+              ref={(el) => (tabRef.current[index] = el)}
+              onClick={() => setActiveTab(tab)}
+              className={`relative px-4 py-2 cursor-pointer rounded-md font-semibold text-white z-10`}
+            >
+              {tab === "dominance"
+                ? "Let’s Talk Dominance!"
+                : tab === "help"
+                ? "Howl for Help"
+                : "Join the Pack!"}
+            </button>
+          ))}
+        </div>
 
         {/* Form Fields - Different for Each Tab */}
-        <form  className="mt-6 space-y-4" action="https://formsubmit.co/jitender@digicots.com" method="POST">
-        {/* <form className="grid grid-cols-1 md:grid-cols-2 gap-4" > */}
-            <input type="hidden" name="_captcha" value="false"/>
-            <input type="hidden" name="_template" value="table"/>
-            <input type="hidden" name="_next" value="http://localhost:5173/thankyou"/>
+        <form
+          className="mt-6 space-y-4"
+          action="https://formsubmit.co/jitender@digicots.com"
+          method="POST"
+        >
+          {/* <form className="grid grid-cols-1 md:grid-cols-2 gap-4" > */}
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="http://localhost:5173/thankyou"
+          />
           {/* Let’s Talk Dominance */}
           {activeTab === "dominance" && (
             <>
