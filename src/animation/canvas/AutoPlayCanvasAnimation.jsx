@@ -3,14 +3,14 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 const VideoLikeCanvasAnimation = ({
   imgPath,
   height = "100vh",
-  fps = 20,
+  fps = 24, // Kept at 24 for balance; adjust as needed
   startFrame = 40,
   endFrame = 80,
 }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const [isReady, setIsReady] = useState(false);
-  const frameCount = endFrame - startFrame + 1;
+  const frameCount = endFrame - startFrame + 1; // 41 frames
   const lastFrameIndexRef = useRef(-1);
   const intervalRef = useRef(null);
   const imagesRef = useRef([]);
@@ -23,7 +23,7 @@ const VideoLikeCanvasAnimation = ({
     [frameCount]
   );
 
-  // Optimized draw function
+  // Optimized draw function with minimal clearing
   const drawFrame = useCallback(
     (frameIndex) => {
       const canvas = canvasRef.current;
@@ -35,23 +35,26 @@ const VideoLikeCanvasAnimation = ({
 
       lastFrameIndexRef.current = frameIndex;
 
-      const canvasRatio = canvas.width / canvas.height;
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+      const canvasRatio = canvasWidth / canvasHeight;
       const imgRatio = img.width / img.height;
 
       let width, height, x, y;
       if (imgRatio > canvasRatio) {
-        height = canvas.height;
+        height = canvasHeight;
         width = height * imgRatio;
-        x = (canvas.width - width) / 2;
+        x = (canvasWidth - width) / 2;
         y = 0;
       } else {
-        width = canvas.width;
+        width = canvasWidth;
         height = width / imgRatio;
         x = 0;
-        y = (canvas.height - height) / 2;
+        y = (canvasHeight - height) / 2;
       }
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Only clear the area that will be redrawn (optimization)
+      ctx.clearRect(x, y, width, height);
       ctx.drawImage(img, x, y, width, height);
     },
     []
@@ -63,7 +66,7 @@ const VideoLikeCanvasAnimation = ({
     const container = containerRef.current;
     if (!canvas || !container) return;
 
-    const dpr = Math.min(window.devicePixelRatio, 1.5);
+    const dpr = Math.min(window.devicePixelRatio, 1.0); // Kept at 1.0; try 0.5 if needed
     const width = container.clientWidth;
     const height = container.clientHeight;
 
@@ -73,49 +76,33 @@ const VideoLikeCanvasAnimation = ({
     canvas.style.height = `${height}px`;
   }, []);
 
-  // Load images progressively
+  // Load images efficiently with Promise.all
   const loadImages = useCallback(async () => {
-    const images = [];
+    const imagePromises = [];
     for (let i = startFrame; i <= endFrame; i++) {
       const frameNumber = String(i).padStart(4, "0");
       const img = new Image();
       img.src = `${imgPath}${frameNumber}.png`;
-
-      await new Promise((resolve) => {
-        img.onload = () => resolve(img);
-        img.onerror = () => resolve(null);
-      });
-
-      if (img) images[i - startFrame] = img;
+      imagePromises.push(
+        new Promise((resolve) => {
+          img.onload = () => resolve(img);
+          img.onerror = () => resolve(null);
+        })
+      );
     }
-    return images;
+    const images = await Promise.all(imagePromises);
+    return images.filter(Boolean); // Remove nulls from failed loads
   }, [imgPath, startFrame, endFrame]);
 
-  const animationFrameRef = useRef(null);
-
-
-  // Animation update function for setInterval
+  // Animation update function with setInterval
   const updateAnimation = useCallback(() => {
     if (!isVisibleRef.current) return;
-  
-    const frameDuration = 1000 / fps;
-    const now = performance.now();
-    const elapsed = now - (updateAnimation.lastFrameTime || 0);
-  
-    if (elapsed >= frameDuration) {
-      updateAnimation.lastFrameTime = now;
-  
-      progressRef.current = (progressRef.current + 1 / frameCount) % 1;
-      const frameIndex = getFrameIndex(progressRef.current);
-      drawFrame(frameIndex);
-    }
-  
-    animationFrameRef.current = requestAnimationFrame(updateAnimation);
-  }, [drawFrame, getFrameIndex, fps, frameCount]);
-  updateAnimation.lastFrameTime = 0;
 
+    progressRef.current = (progressRef.current + 1 / frameCount) % 1;
+    const frameIndex = getFrameIndex(progressRef.current);
+    drawFrame(frameIndex);
+  }, [drawFrame, getFrameIndex, frameCount]);
 
-  
   // Handle resize with debouncing
   const handleResize = useCallback(() => {
     let resizeTimeout;
@@ -137,14 +124,12 @@ const VideoLikeCanvasAnimation = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         isVisibleRef.current = entry.isIntersecting;
-        if (!isVisibleRef.current && animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current);
-          animationFrameRef.current = null;
-        } else if (isVisibleRef.current && !animationFrameRef.current && isReady) {
-          updateAnimation.lastFrameTime = performance.now();
-          animationFrameRef.current = requestAnimationFrame(updateAnimation);
+        if (!isVisibleRef.current && intervalRef.current) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+        } else if (isVisibleRef.current && !intervalRef.current && isReady) {
+          intervalRef.current = setInterval(updateAnimation, 1);
         }
-        
       },
       { threshold: 0 }
     );
@@ -173,10 +158,8 @@ const VideoLikeCanvasAnimation = ({
 
       cleanupObserver = setupIntersectionObserver();
       if (isVisibleRef.current) {
-        updateAnimation.lastFrameTime = performance.now();
-        animationFrameRef.current = requestAnimationFrame(updateAnimation);
+        intervalRef.current = setInterval(updateAnimation, 1);
       }
-      
     };
 
     init();
@@ -189,22 +172,18 @@ const VideoLikeCanvasAnimation = ({
       if (cleanupObserver) cleanupObserver();
       imagesRef.current = [];
       progressRef.current = 0;
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-        animationFrameRef.current = null;
-      }
     };
   }, [fps, handleResize, loadImages, setCanvasSize, setupIntersectionObserver, updateAnimation]);
 
   return (
     <div
       ref={containerRef}
-      className="absolute top-0 left-0 w-full h-full pointer-events-none"
-      style={{ height }}
+      className="absolute bottom-0 z-[99999] left-0 w-full h-full pointer-events-none"
+      style={{ height, willChange: "transform" }} // Added for scroll optimization
     >
       <canvas
         ref={canvasRef}
-        className="w-full h-full"
+        className="w-full h-full relative z-[99999]"
         style={{
           display: "block",
           width: "100%",

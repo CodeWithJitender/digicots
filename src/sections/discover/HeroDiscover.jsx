@@ -3,7 +3,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 function HeroDiscover() {
@@ -11,115 +10,124 @@ function HeroDiscover() {
   const containerRef = useRef(null);
   const screen1TextRef = useRef(null);
   const screen2TextRef = useRef(null);
-  const frameCount = 181; // Total frames from 000 to 180
-  const images = useRef([]); // Store loaded images
+  const images = useRef([]);
+  const frameCount = 181;
 
-  // Preload all images
+  // Load and store images
   useEffect(() => {
+    let isMounted = true;
+
     const loadImages = () => {
       for (let i = 0; i < frameCount; i++) {
         const img = new Image();
-        img.src = `./moon_frame/NewSEQUNCE${i.toString().padStart(3, "0")}.png`;
+        img.src = `/moon_frame/M${i.toString().padStart(3, "0")}.avif`;
         images.current[i] = img;
       }
     };
+
     loadImages();
+
+    return () => {
+      isMounted = false;
+      images.current = [];
+    };
   }, []);
 
-  // Set canvas size once the first image loads
+  // Set canvas size once the image is ready
   useEffect(() => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+    const context = canvas?.getContext("2d");
 
     const setCanvasSize = () => {
-      if (images.current[0] && images.current[0].complete) {
-        canvas.width = images.current[0].naturalWidth;
-        canvas.height = images.current[0].naturalHeight;
-        // Draw the first frame immediately
-        context.drawImage(images.current[0], 0, 0, canvas.width, canvas.height);
+      const firstImage = images.current[0];
+      if (firstImage?.complete && canvas && context) {
+        canvas.width = firstImage.naturalWidth;
+        canvas.height = firstImage.naturalHeight;
+        context.drawImage(firstImage, 0, 0, canvas.width, canvas.height);
       }
     };
 
     if (images.current[0]) {
       images.current[0].onload = setCanvasSize;
-      // If the image is already loaded (cached), trigger manually
-      if (images.current[0].complete) setCanvasSize();
+      if (images.current[0].complete) {
+        setCanvasSize();
+      }
     }
+
+    return () => {
+      // Optional: clear canvas
+      if (context && canvas) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    };
   }, []);
 
   useGSAP(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+    const ctx = gsap.context(() => {
+      const canvas = canvasRef.current;
+      const context = canvas?.getContext("2d");
 
-    // Animation function to draw frames
-    const updateFrame = (frameIndex) => {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      const img = images.current[Math.floor(frameIndex)]; // Keep Math.floor for now
-      if (img && img.complete) {
-        context.drawImage(img, 0, 0, canvas.width, canvas.height);
-      }
-    };
+      if (!canvas || !context) return;
 
-    // GSAP ScrollTrigger animation
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 0",    // Start when top of container hits top of viewport
-        end: `top -200%`, // Scroll distance proportional to frame count (adjustable)
-        scrub: 1,          // Reduced scrub for tighter scroll control
-        // pin: true,           // Re-enabled pinning for sticky effect
-        // markers: true,       // Debugging markers (remove in production)
-      },
-    });
+      const renderFrame = (frameIndex) => {
+        const img = images.current[Math.floor(frameIndex)];
+        if (img?.complete) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+      };
 
-    tl.to(
-      { frame: 0 }, // Object to animate
-      {
-        frame: frameCount - 1, // Animate from frame 0 to 180
-        ease: "none",          // Linear easing for smooth frame change
-        snap: "frame",         // Snap to nearest integer for cleaner frame steps
-        onUpdate: function () {
-          updateFrame(this.targets()[0].frame); // Update canvas on each frame change
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 0",
+          end: "top -200%",
+          scrub: 1,
         },
-      },
-      "a"
-    )
-    .to(
-      screen1TextRef.current,
-      {
-        opacity: 0.5,
-        bottom: "100%",
-      },
-      "a"
-    )
-    .to(
-      screen2TextRef.current,
-      {
-        opacity: 1,
-        bottom: "10%",
-        duration: 0.5,
-      },
-      "a"
-    );
+      });
+
+      tl.to(
+        { frame: 0 },
+        {
+          frame: frameCount - 1,
+          ease: "none",
+          onUpdate: function () {
+            renderFrame(this.targets()[0].frame);
+          },
+        },
+        "start"
+      ).to(
+        screen1TextRef.current,
+        { opacity: 0.5, bottom: "100%" },
+        "start"
+      ).to(
+        screen2TextRef.current,
+        {
+          opacity: 1,
+          bottom: "10%",
+          duration: 0.5,
+        },
+        "start"
+      );
+    }, containerRef);
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <section className="hero-discover bg-amber-50 ">
+    <section className="hero-discover bg-amber-50">
       <div
         ref={containerRef}
-        className="h-screen bg-red-100 fixed top-0 w-full"
-        style={{
-          overflow: "hidden", // Prevent overflow issues
-        }}
+        className="h-screen bg-red-100 fixed top-0 w-full overflow-hidden"
       >
         <canvas
           ref={canvasRef}
-          style={{
-            objectFit: "cover", // Maintain aspect ratio and quality
-          }}
           className="h-full w-full"
+          style={{ objectFit: "cover" }}
         />
-
         <div className="hero-container h-screen w-full absolute top-0 text-center">
           <div
             ref={screen1TextRef}
@@ -147,7 +155,6 @@ function HeroDiscover() {
           </div>
         </div>
       </div>
-      {/* Extra space for scrolling */}
       <div style={{ height: "200vh" }} />
     </section>
   );

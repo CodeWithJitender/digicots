@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Suspense, useEffect } from "react";
 import Hero from "../sections/home/Hero";
-import homeHero from "../assets/home-hero.png"; // Adjust path as needed
+import homeHero from "../assets/home-hero.png";
 import HowItWorks from "../sections/home/HowItWorks";
 import Solutions from "../sections/home/Solutions";
 import OurWork from "../sections/home/OurWork";
@@ -12,26 +12,36 @@ import KeywordsSection from "../sections/home/KeywordsSection";
 import Testimonials from "../sections/home/Testimonials";
 import ReelCanvas from "../animation/canvas/ReelCanvas";
 import HomeHeroCanvas from "../animation/canvas/HomeHeroCanvas";
-import ContentSlider from "../sections/home/ContentSlider";
+// import ContentSlider from "../sections/home/ContentSlider";
 
 function Home() {
+  useEffect(() => {
+    // Optional scroll or other side-effect cleanups
+    return () => {
+      // Clean up all ScrollTriggers on unmount (failsafe)
+      if (window?.ScrollTrigger?.getAll) {
+        window.ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      }
+    };
+  }, []);
+
   return (
     <div className="main contain-paint">
-      {/* <HomeHeroCanvas  /> */}
-      {/* <ReelCanvas /> */} 
-      {/* <Hero img={homeHero} />  */}
-      <HowItWorks/> 
-      {/* <Solutions/> */}
-      <ContentSlider />
-      {/* <OurWork/> */}
-      <Insights/>
-      <KeywordsSection/>
-      <OurJourney/> 
-      <Testimonials/>
+      <Suspense fallback={null}>
+        <HomeHeroCanvas />
+        {/* <ReelCanvas /> */}
+      </Suspense>
 
-      
-
-      <Faq/>
+      {/* <Hero img={homeHero} /> */}
+      <HowItWorks />
+      {/* <Solutions /> */}
+      {/* <ContentSlider /> */}
+      <OurWork />
+      <Insights />
+      <KeywordsSection />
+      <OurJourney />
+      <Testimonials />
+      <Faq />
     </div>
   );
 }
