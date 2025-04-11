@@ -20,8 +20,8 @@ function Home() {
       {/* <ReelCanvas /> */} 
       {/* <Hero img={homeHero} />  */}
       <HowItWorks/> 
-      {/* <Solutions/> */}
-      <OurWork/>
+      <Solutions/>
+      {/* <OurWork/> */}
       <Insights/>
       <KeywordsSection/>
       <OurJourney/> 

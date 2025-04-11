@@ -77,7 +77,7 @@ function HowWeWork() {
         scrollTrigger: {
           trigger: ".how-we-work",
           start: "top 10%",
-          end: "top -100%",
+          end: "top -90%",
           scrub: 1,
         },
       });
@@ -91,7 +91,7 @@ function HowWeWork() {
         scrollTrigger: {
           trigger: ".how-we-work",
           start: "top 10%",
-          end: "top -100%",
+          end: "top -90%",
           scrub: 1,
         },
       });
@@ -119,7 +119,7 @@ function HowWeWork() {
           />
 
           {/* Grid Layout for Cards */}
-          <div className="relative mt-28 w-full flex h-[60vh] flex-col md:flex-row gap-8 ">
+          <div className="relative mt-20 w-full flex h-[60vh] flex-col md:flex-row gap-5 ">
             {cardList.map((card, i) => (
               <WolfCard
                 ref={(el) => (cardsRef.current[i] = el)}
