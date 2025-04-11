@@ -12,6 +12,7 @@ import KeywordsSection from "../sections/home/KeywordsSection";
 import Testimonials from "../sections/home/Testimonials";
 import ReelCanvas from "../animation/canvas/ReelCanvas";
 import HomeHeroCanvas from "../animation/canvas/HomeHeroCanvas";
+import ContentSlider from "../sections/home/ContentSlider";
 
 function Home() {
   return (
@@ -20,7 +21,8 @@ function Home() {
       {/* <ReelCanvas /> */} 
       {/* <Hero img={homeHero} />  */}
       <HowItWorks/> 
-      <Solutions/>
+      {/* <Solutions/> */}
+      <ContentSlider />
       {/* <OurWork/> */}
       <Insights/>
       <KeywordsSection/>
