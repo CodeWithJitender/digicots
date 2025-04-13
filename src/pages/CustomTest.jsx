@@ -5,7 +5,7 @@ import Desktop from '../components/Desktop'
 function CustomTest() {
   return (
     <div>
-      {/* <Desktop/> */}
+      <Desktop/>
     </div>
   )
 }

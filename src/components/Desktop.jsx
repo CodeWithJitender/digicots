@@ -66,7 +66,7 @@ function Desktop() {
     },
   ];
   return (
-    <div className="desktop-header absolute bg-black z-[1000] h-[100vh] w-full flex overflow-hidden  ">
+    <div className="desktop-header fixed bg-black z-[1000] h-[100vh] w-full flex overflow-hidden  ">
       <div className="header-left w-[30%] bg-[#ED510C] h-screen p-8 flex flex-col justify-between">
         <div className="">
           <div className="logo">
@@ -124,8 +124,8 @@ function Desktop() {
       </div>
       <div className="header-right w-[70%] h-screen bg-[#141414] py-10 px-20">
         <p className="font-inter text-3xl font-bold text-white">Work</p>
-        <div className="rounded-3xl  w-full h-full overflow-y-auto">
-          <div className="grid xl:grid-cols-2 pe-6 pt-6">
+        <div className="rounded-3xl  w-full h-full ">
+          <div className="grid xl:grid-cols-2 pe-6 pt-3">
             {data.map((item, index) => (
               <DiscoverItem
                 title={item.title}
