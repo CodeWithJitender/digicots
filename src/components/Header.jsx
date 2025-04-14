@@ -430,7 +430,7 @@ function Header() {
             <ul className="mt-5 flex flex-col gap-4">
               <li>
                 <Link
-                  to={""}
+                  to={"/our-work"}
                   className="font-inter text-3xl font-bold text-white"
                 >
                   Work
@@ -438,7 +438,7 @@ function Header() {
               </li>
               <li>
                 <Link
-                  to={""}
+                  to={"/insights"}
                   className="font-inter text-3xl font-bold text-white"
                 >
                   Insights
@@ -446,7 +446,7 @@ function Header() {
               </li>
               <li>
                 <Link
-                  to={""}
+                  to={"/about"}
                   className="font-inter text-3xl font-bold text-white"
                 >
                   About Us
@@ -454,7 +454,7 @@ function Header() {
               </li>
               <li>
                 <Link
-                  to={""}
+                  to={"/case-study"}
                   className="font-inter text-3xl font-bold text-white"
                 >
                   Case Studies
