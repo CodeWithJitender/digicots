@@ -198,7 +198,7 @@ function Header() {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
   }, [logoRef, letsTalkRef]);
-
+  const [deskToggle, setDeskToggle] = useState(false);
   return (
     <header className="fixed top-[-1px] z-[1000] w-full ">
       {/* <div className="header-wrapper relative flex items-center justify-between bg-[#242424] lg:bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4"> */}
@@ -212,8 +212,8 @@ function Header() {
             />
           </Link>
         </div>
-        <div className="menu hidden border border-zinc-200/[.5] absolute left-1/2 top-1/2 -translate-[50%] lg:block bg-zinc-500/[.1] backdrop-blur-sm  px-10 py-4 rounded-full flex items-center ">
-          <ul className="list-none m-0 p-0 mt-1 flex items-center gap-10">
+        <div className="menu hidden border border-zinc-200/[.5] absolute left-1/2 top-1/2 -translate-[50%] bg-zinc-500/[.1] backdrop-blur-sm  px-10 py-4 rounded-full flex items-center ">
+          {/* <ul className="list-none m-0 p-0 mt-1 flex items-center gap-10">
             <li
               ref={(el) => (linksRef.current[0] = el)}
               className="relative text-white hover:text-[#DF782B] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#DF782B] after:transition-all after:opacity-0 after:duration-300 hover:after:opacity-100 pb-2.5"
@@ -283,7 +283,7 @@ function Header() {
                 Case Stuides
               </Link>
             </li>
-          </ul>
+          </ul> */}
         </div>
         <div
           ref={menuRef}
@@ -401,12 +401,105 @@ function Header() {
             ></span>
             {/* <span className="w-8 bg-black h-0.5 block rounded-3xl mt-1"></span> */}
           </div>
-          <Link
-            className="bg-[#DF782B] max-h-full rounded-[8px] font-bold text-white text-[14px] hidden lg:block font-inter p-3  lg:p-5"
-            to="/contact"
-          >
-            Let's Talk
-          </Link>
+          <div className=" flex gap-4">
+            <Link
+              className="bg-[#DF782B] max-h-full rounded-[50px] font-bold text-white text-[14px] hidden lg:block font-inter p-3  lg:px-5"
+              to="/contact"
+            >
+              Let's Talk
+            </Link>
+            <div
+              className="desk-menu-btn bg-white max-h-full rounded-[50px] font-bold  text-[14px] hidden lg:block font-inter p-3 flex items-center gap-2 lg:px-5"
+              onClick={() => setDeskToggle((prev) => !prev)}
+            >
+             <span> Menu</span> <i class="far fa-bars"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`desktop-header fixed top-0 bg-black z-[1000] h-[100vh] w-full flex overflow-hidden ${
+          deskToggle ? "block" : "hidden"
+        }`}
+      >
+        <div className="header-left w-[30%] bg-[#ED510C] h-screen p-8 flex flex-col justify-between">
+          <div className="">
+            <div className="logo">
+              <img src="logo.png" className="w-full max-w-[249px]" alt="" />
+            </div>
+            <ul className="mt-5 flex flex-col gap-4">
+              <li>
+                <Link
+                  to={""}
+                  className="font-inter text-3xl font-bold text-white"
+                >
+                  Work
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={""}
+                  className="font-inter text-3xl font-bold text-white"
+                >
+                  Insights
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={""}
+                  className="font-inter text-3xl font-bold text-white"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={""}
+                  className="font-inter text-3xl font-bold text-white"
+                >
+                  Case Studies
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="">
+            <p className="font-inter text-2xl font-bold text-white">
+              Got an Idea?
+            </p>
+            <div className="mb-5">
+              <Link to={""} className="font-inter text-3xl font-bold">
+                <span className="text-[#242424]">Let’s Get in Touch</span>{" "}
+                <i class="far fa-arrow-right rotate-[-45deg] text-white"></i>
+              </Link>
+            </div>
+            <p className="text-white font-inter">
+              A <b> Headfield Venture </b>| Want to know more about Headfield{" "}
+            </p>
+          </div>
+        </div>
+        <div className="header-right w-[70%] h-screen bg-[#141414] py-10 px-20">
+          <div className="relative flex justify-end">
+            <div
+              className="desk-menu-btn  text-2xl bg-white max-h-full rounded-[50px] font-bold cursor-pointer text-[14px]  font-inter py-3 flex items-center gap-2 lg:px-5 "
+              onClick={() => setDeskToggle((prev) => !prev)}
+            >
+              <span>Close</span> <span><i class="far fa-times"></i></span>
+            </div>
+          </div>
+          <p className="font-inter text-3xl font-bold text-white">Dicover</p>
+          <div className="rounded-3xl  w-full h-full overflow-y-auto">
+            <div className="grid xl:grid-cols-2 pe-6 pt-3">
+              {data.map((item, index) => (
+                <DiscoverItem
+                  title={item.title}
+                  pera={item.pera}
+                  icon={item.icon}
+                  key={index}
+                  link={item.id}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </header>

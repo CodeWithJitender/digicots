@@ -125,7 +125,7 @@ function Desktop() {
       <div className="header-right w-[70%] h-screen bg-[#141414] py-10 px-20">
         <p className="font-inter text-3xl font-bold text-white">Work</p>
         <div className="rounded-3xl  w-full h-full ">
-          <div className="grid xl:grid-cols-2 pe-6 pt-3">
+          <div className="grid xl:grid-cols-2 pe-6 pt-3 overflow-scroll">
             {data.map((item, index) => (
               <DiscoverItem
                 title={item.title}
