@@ -1,0 +1,300 @@
+@import url("https://fonts.googleapis.com/css2?family=Inder&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+@import "tailwindcss";
+
+* {
+  user-select: none; /* Prevents text selection */
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none; /* For Firefox */
+  -ms-user-select: none; /* For IE/Edge */
+}
+
+/* Hide scrollbar but allow scrolling */
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+.font-inter {
+  font-family: "Inder", sans-serif;
+}
+
+.font-great-vibes {
+  font-family: "Great Vibes", cursive;
+}
+
+.no-scrollBar::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-stroke {
+  -webkit-text-stroke: 0.5px #ed510c;
+  -webkit-text-fill-color: transparent;
+}
+
+.container-xxl {
+    @apply max-w-7xl m-auto px-5 py-10 md:py-24;
+}
+
+.container-xl {
+    @apply max-w-7xl m-auto px-5 md:py-10;
+}
+
+/* How it works section */
+.how-it-works {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.insights-box h1 {
+  font-size: clamp(36px, 20vw, 80px);
+}
+
+.jou-card {
+  height: 400px !important;
+}
+.jou-card * {
+  transition: 0.5s;
+}
+
+.jou-card .jou-card-inner {
+  position: relative;
+  transform: translate(0%, 0%);
+}
+
+.jou-card.active .jou-card-inner {
+  width: 350px !important;
+  height: 100%;
+  left: -50%;
+  transform: scale(1.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.jou-card.active .jou-card-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jou-card.active .jou-text {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  background-color: white;
+  position: absolute;
+  border-radius: 16px;
+  padding: 12px;
+}
+
+/* Dropdown styling */
+/* .dropdown {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+} */
+
+.sub-menu-wrapper {
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+/* .discover-link:hover .dropdown {
+  visibility: visible;
+  opacity: 1;
+} */
+
+/* Scrollbar styling */
+header *::-webkit-scrollbar {
+  width: 8px;
+}
+
+header *::-webkit-scrollbar-track {
+  background: #1d2736;
+  border-radius: 10px;
+}
+
+header *::-webkit-scrollbar-thumb {
+  background: #df782b;
+  border-radius: 10px;
+}
+
+header *::-webkit-scrollbar-thumb:hover {
+  background: #b45e22;
+}
+
+.popup-container::-webkit-scrollbar-track {
+  background: #ebebeb;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.popup-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popup-container::-webkit-scrollbar-thumb {
+  background: #b45e22;
+  border-radius: 10px;
+}
+
+.popup-container::-webkit-scrollbar-thumb:hover {
+  background: #b45e22;
+}
+.blogmodal-img::-webkit-scrollbar-track {
+  background: #ebebeb;
+  overflow: hidden;
+  /* Track color */
+  border-radius: 10px;
+}
+
+.blogmodal-img::-webkit-scrollbar {
+  width: 8px;
+  /* Adjust width */
+  /* height: 8px; */
+}
+
+.blogmodal-img::-webkit-scrollbar-thumb {
+  background: #b45e22;
+  /* Darker on hover */
+  border-radius: 10px;
+}
+
+.blogmodal-img::-webkit-scrollbar-thumb:hover {
+  background: #b45e22;
+  /* Darker on hover */
+}
+
+.service-text::-webkit-scrollbar-track {
+    background: #FFD5B5;
+    border-radius: 10px;
+}
+
+.service-text::-webkit-scrollbar {
+    width: 16px;
+}
+.service-text::-webkit-scrollbar-thumb {
+    background: #b45e22;
+    border-radius: 10px;
+
+}
+
+header .dropdown {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+
+
+/* Cylindrical Animation */
+.banner {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  position: relative;
+  /* overflow-x: hidden; */
+}
+
+.banner .slider {
+  position: absolute;
+  width: 60vw;
+  height: 100vh;
+  bottom: 10%;
+  left: calc(50% - 40vw);
+  transform-style: preserve-3d;
+  /* transform: perspective(2400px); */
+  animation: autoRun 50s linear infinite;
+  z-index: 2;
+  scale: 0.9;
+}
+
+/* Animation Stop on Hover */
+.banner .slider:hover {
+  animation-play-state: paused;
+}
+
+@keyframes autoRun {
+  from {
+    /* transform: perspective(1500px) rotateX(0deg) rotateY(0deg); */
+    transform: perspective(100vw) rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    /* transform: perspective(1500px) rotateX(0deg) rotateY(360deg); */
+    transform: perspective(100vw) rotateX(0deg) rotateY(360deg);
+  }
+}
+
+.banner .slider .item {
+  position: absolute;
+  inset: 0;
+  height: 250vh;
+  width: 2300px;
+  transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+    translateZ(4400px);
+  cursor: pointer;
+  overflow: hidden;
+  /* backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; */
+}
+
+.banner .slider .item .checkout {
+  transition: all ease 0.5s;
+}
+
+.banner .slider .item:hover .checkout {
+  opacity: 1;
+}
+
+.banner .slider .item img {
+  transform: scaleX(-1) translateZ(0.1px);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  will-change: transform;
+}
+
+@media screen and (max-width: 767px) {
+  .banner .slider {
+    position: absolute;
+    width: 200vw;
+    height: 110vh;
+    bottom: 10%;
+    left: calc(50% - 110vw);
+    transform-style: preserve-3d;
+    transform: perspective(5400px);
+    animation: autoRun 50s linear infinite;
+    z-index: 2;
+    scale: 0.9;
+  }
+
+  .banner .slider .item {
+    height: 350vh;
+    width: 750vw;
+    transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(6000px);
+  }
+}
+
+/* For screens larger than 2048px */
+@media screen and (min-width: 2049px) {
+  .banner .slider {
+    width: 50vw;
+    height: 100vh;
+    left: calc(50% - 25vw);
+    transform: perspective(3000px);
+  }
+
+  .banner .slider .item {
+    height: 280vh;
+    width: 220vh;
+    transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+      translateZ(6000px);
+  }
+}
+
+
+
