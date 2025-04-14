@@ -330,7 +330,7 @@ const Scene = () => {
             <button
               // ref={closeButtonRef}
               onClick={handleCloseReel}
-              className="absolute top-20 right-20 text-white text-2xl font-bold bg-zinc-800/[.5] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer z-20"
+              className="absolute top-8 right-8 text-white text-2xl font-bold bg-zinc-800/[.5] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer z-20"
             >
               &times;
             </button>

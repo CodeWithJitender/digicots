@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
 import { Link } from "react-router-dom";
 
-const DiscoverItem = forwardRef(({ title, pera, icon, link }, ref) => {
+const DiscoverItem = forwardRef(({ title, pera, icon, link ,onClick }, ref) => {
   return (
-    <div ref={ref} className="discover-item hover:bg-[#52525233] rounded-3xl transition">
+    <div onClick={onClick} ref={ref} className="discover-item hover:bg-[#52525233] rounded-3xl transition">
       <Link to={link} className="flex items-center gap-3 p-3 md:p-5">
         <div className="discover-icon max-w-20">
           <img src={icon} className="w-full" alt="" />

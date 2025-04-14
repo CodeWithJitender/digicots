@@ -78,7 +78,7 @@ const ContactForm = () => {
         <div className="w-full scale-[1.1] max-w-md hidden md:block absolute top-[4%] left-0">
           <video
             className=" w-full "
-            src="./BREATH.webm"
+            src="./breathing/breath.webm"
             autoPlay
             loop
             muted
@@ -162,7 +162,7 @@ const ContactForm = () => {
         <div className="w-full md:hidden relative">
           <video
             className=" w-full"
-            src="./BREATH.webm"
+            src="./breathing/breath.webm"
             autoPlay
             loop
             muted
