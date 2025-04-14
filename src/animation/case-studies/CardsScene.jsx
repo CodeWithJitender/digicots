@@ -7,36 +7,36 @@ import CaseStudy from "../../sections/case-studies/CaseStudy";
 import { useGSAP } from "@gsap/react";
 
 const textures = [
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
-  "case-study-1.png",
-  "case-study-2.png",
-  "case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
 ];
 
 const textureLoader = new THREE.TextureLoader();
@@ -433,7 +433,7 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
 const Slide = ({ index, onClose, setSelectedIndex }) => {
   const slides = [
     {
-      image: ["case-study-1.png", "case-study-1.png", "case-study-1.png"],
+      image: ["https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png"],
       title: [
         "Product: With Long Heading",
         "Product: With Long Heading",
@@ -447,7 +447,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: ["case-study-2.png", "case-study-2.png", "case-study-2.png"],
+      image: ["https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png"],
       title: [
         "Product: With Long Heading",
         "Product: With Long Heading",
@@ -461,7 +461,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: ["case-study-3.png", "case-study-3.png", "case-study-3.png"],
+      image: ["https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png"],
       title: [
         "Product: With Long Heading",
         "Product: With Long Heading",
