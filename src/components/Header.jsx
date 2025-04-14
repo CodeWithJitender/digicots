@@ -198,7 +198,106 @@ function Header() {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
   }, [logoRef, letsTalkRef]);
+
+
   const [deskToggle, setDeskToggle] = useState(false);
+
+  useGSAP(()=>{
+    if(deskToggle){
+      const tl = gsap.timeline();
+      tl.set(".desktop-header",{
+        display:"flex",
+      })
+      tl.from(
+        ".desktop-header",
+        {
+          // top: "100%",
+          scale:1.2,
+          opacity:0,
+          filter:"blur(10px)",
+          duration: .5,
+          ease: "power1.inOut",
+        },
+        "a"
+      )
+      .from(".left-links",{
+        x: -100,
+        opacity:0,
+        stagger: .1,
+        duration: .5,
+        ease: "power1.inOut",
+      })
+      .from(".discover-grid",{
+          // top: "100%",
+          scale:.9,
+          opacity:0,
+          filter:"blur(10px)",
+          duration: 1,
+          ease: "power1.inOut",
+        
+      })
+      console.log("opened")
+      
+    }else{
+      const tl = gsap.timeline();
+      tl
+      .to(".left-links",{
+        x: -100,
+        opacity:0,
+        stagger: .1,
+        duration: .5,
+        ease: "power1.inOut",
+      },
+      "b"
+    )
+      .to(".discover-grid",{
+          // top: "100%",
+          scale:.9,
+          opacity:0,
+          filter:"blur(10px)",
+          duration: 1,
+          ease: "power1.inOut", 
+      },
+      "b"
+    ).to(
+        ".desktop-header",
+        {
+          // top: "100%",
+          scale:1.2,
+          opacity:0,
+          filter:"blur(10px)",
+          duration: .5,
+          ease: "power1.inOut",
+        },
+        "a"
+      )
+      .set(".desktop-header",{
+        display:"none",
+        scale:1,
+        opacity:1,
+        filter:"blur(0px)",
+        // duration: .5,
+        // ease: "power1.inOut",
+      })
+      .set(".discover-grid",{
+        scale:1,
+          opacity:1,
+          filter:"blur(0px)",
+          // duration: 1,
+          // ease: "power1.inOut",
+      })
+      .set(".left-links",{
+        x: 0,
+        opacity:1,
+      })
+
+      console.log("closed")
+    }
+  },[deskToggle])
+
+
+
+
   return (
     <header className="fixed top-[-1px] z-[1000] w-full ">
       {/* <div className="header-wrapper relative flex items-center justify-between bg-[#242424] lg:bg-gradient-to-r from-black via-gray-900 to-gray-800 px-6 py-4"> */}
@@ -419,7 +518,7 @@ function Header() {
       </div>
       <div
         className={`desktop-header fixed top-0 bg-black z-[1000] h-[100vh] w-full flex overflow-hidden ${
-          deskToggle ? "block" : "hidden"
+          "hidden"
         }`}
       >
         <div className="header-left w-[30%] bg-[#ED510C] h-screen p-8 flex flex-col justify-between">
@@ -431,7 +530,7 @@ function Header() {
               <li>
                 <Link
                   to={"/our-work"}
-                  className="font-inter text-3xl font-bold text-white"
+                  className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   Work
                 </Link>
@@ -439,7 +538,7 @@ function Header() {
               <li>
                 <Link
                   to={"/insights"}
-                  className="font-inter text-3xl font-bold text-white"
+                  className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   Insights
                 </Link>
@@ -447,7 +546,7 @@ function Header() {
               <li>
                 <Link
                   to={"/about"}
-                  className="font-inter text-3xl font-bold text-white"
+                  className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   About Us
                 </Link>
@@ -455,7 +554,7 @@ function Header() {
               <li>
                 <Link
                   to={"/case-study"}
-                  className="font-inter text-3xl font-bold text-white"
+                  className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   Case Studies
                 </Link>
@@ -463,16 +562,16 @@ function Header() {
             </ul>
           </div>
           <div className="">
-            <p className="font-inter text-2xl font-bold text-white">
+            <p className="font-inter left-links inline-block text-2xl font-bold text-white">
               Got an Idea?
             </p>
             <div className="mb-5">
-              <Link to={""} className="font-inter text-3xl font-bold">
+              <Link to={""} className="font-inter left-links inline-block text-3xl font-bold">
                 <span className="text-[#242424]">Let’s Get in Touch</span>{" "}
                 <i class="far fa-arrow-right rotate-[-45deg] text-white"></i>
               </Link>
             </div>
-            <p className="text-white font-inter">
+            <p className="text-white font-inter left-links">
               A <b> Headfield Venture </b>| Want to know more about Headfield{" "}
             </p>
           </div>
@@ -486,9 +585,9 @@ function Header() {
               <span>Close</span> <span><i class="far fa-times"></i></span>
             </div>
           </div>
-          <p className="font-inter text-3xl font-bold text-white">Dicover</p>
-          <div className="rounded-3xl  w-full h-full overflow-y-auto">
-            <div className="grid xl:grid-cols-2 pe-6 pt-3">
+          <p className="font-inter text-3xl font-bold left-links text-white">Dicover</p>
+          <div className="rounded-3xl  w-full h-full overflow-y-auto" data-lenis-prevent >
+            <div className="discover-grid grid xl:grid-cols-2 pe-6 py-3 pb-8">
               {data.map((item, index) => (
                 <DiscoverItem
                   title={item.title}
