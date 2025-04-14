@@ -18,7 +18,7 @@ const WavePlane = ({ opacity, setOpacity }) => {
     height: window.innerHeight,
   });
 
-  const texture = new THREE.TextureLoader().load("./reel-cover.png");
+  const texture = new THREE.TextureLoader().load("https://ik.imagekit.io/x5xessyka/digicots/public/reel-cover.png");
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   const aspect = dimensions.width / dimensions.height;
   texture.repeat.set(1, 1 / aspect);
@@ -314,7 +314,7 @@ const Scene = () => {
             className="reel-video hidden opacity-0 h-full w-full absolute top-0 z-[2]"
           >
             <video
-              src="showreels.mp4"
+              src="https://ik.imagekit.io/x5xessyka/digicots/public/showreels.mp4"
               className="w-full h-full object-cover"
               autoPlay
               loop
@@ -323,7 +323,7 @@ const Scene = () => {
             <div className="h-full w-full backdrop-blur-2xl absolute top-0 bg-zinc-800/[.1]" />
             <video
               ref={videoElementRef}
-              src="showreels.mp4"
+              src="https://ik.imagekit.io/x5xessyka/digicots/public/showreels.mp4"
               className="w-full h-full object-cover absolute top-0"
               controls
             />
