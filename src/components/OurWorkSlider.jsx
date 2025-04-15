@@ -14,9 +14,6 @@ const baseImages = [
 
 const images = Array(2).fill(baseImages).flat();
 
-console.log(images)
-
-
 
 const CylindricalSlider = () => {
   console.log(window.innerWidth);

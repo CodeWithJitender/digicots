@@ -23,7 +23,7 @@ const AppContent = () => {
   return (
     <>
       <ScrollHandler />
-      <Header />
+      <Header location={location} />
       <Routes location={location}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

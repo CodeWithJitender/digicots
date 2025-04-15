@@ -2,12 +2,13 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
 
 // Move constant data outside of component
 const brandingData = [
   {
     id: 1,
-    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-1.png",
+    image: "https://i.pinimg.com/736x/9e/23/db/9e23dbbabdc98b20f11220855881709c.jpg",
     title: "Starbucks Branding",
     tags: ["FOOD", "HOSPITALITY", "BRANDING"],
     description: "Best ideas for branding in the coffee industry.",
@@ -19,7 +20,7 @@ const brandingData = [
   },
   {
     id: 2,
-    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-2.png",
+    image: "https://i.pinimg.com/736x/6d/8e/21/6d8e21dd8384120858933a8b80f2fca5.jpg",
     title: "McDonald's Marketing",
     tags: ["FAST FOOD", "HOSPITALITY", "ADVERTISING"],
     description: "A strategic approach to food marketing.",
@@ -30,8 +31,8 @@ const brandingData = [
     per2: "Lorem ipsum odor amet, consectetuer adipiscing elit..."
   },
   {
-    id: 1,
-    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-1.png",
+    id: 3,
+    image: "https://i.pinimg.com/736x/23/63/9f/23639fdb2bbff1b157dd4f284e5e0f08.jpg",
     title: "Starbucks Branding",
     tags: ["FOOD", "HOSPITALITY", "BRANDING"],
     description: "Best ideas for branding in the coffee industry.",
@@ -42,8 +43,8 @@ const brandingData = [
     per2: "Lorem ipsum odor amet, consectetuer adipiscing elit..."
   },
   {
-    id: 2,
-    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-2.png",
+    id: 4,
+    image: "https://i.pinimg.com/736x/7b/68/ca/7b68cae8ff64417ab3fb2c76c582085b.jpg",
     title: "McDonald's Marketing",
     tags: ["FAST FOOD", "HOSPITALITY", "ADVERTISING"],
     description: "A strategic approach to food marketing.",
@@ -54,8 +55,8 @@ const brandingData = [
     per2: "Lorem ipsum odor amet, consectetuer adipiscing elit..."
   },
   {
-    id: 1,
-    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-1.png",
+    id: 5,
+    image: "https://i.pinimg.com/736x/b0/5e/65/b05e65e027bbc1c590ce4e283666b946.jpg",
     title: "Starbucks Branding",
     tags: ["FOOD", "HOSPITALITY", "BRANDING"],
     description: "Best ideas for branding in the coffee industry.",
@@ -66,8 +67,8 @@ const brandingData = [
     per2: "Lorem ipsum odor amet, consectetuer adipiscing elit..."
   },
   {
-    id: 2,
-    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-2.png",
+    id: 6,
+    image: "https://i.pinimg.com/736x/96/67/5c/96675cf170debb7871754fe2c6358289.jpg",
     title: "McDonald's Marketing",
     tags: ["FAST FOOD", "HOSPITALITY", "ADVERTISING"],
     description: "A strategic approach to food marketing.",
@@ -152,7 +153,7 @@ const BrandingCard = React.memo(({ card, onClick }) => {
       <img 
         src={card.image} 
         alt={card.title} 
-        className="w-full rounded-2xl"
+        className="w-full h-[60vh] object-cover rounded-2xl"
         onLoad={() => setImageLoaded(true)}
         style={{ display: imageLoaded ? 'block' : 'none' }}
       />
@@ -380,18 +381,45 @@ const CardWrapper = React.memo(({ setSelectedCard, from, to }) => {
 });
 
 // Main BrandingGrid component
+
 const BrandingGrid = () => {
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("i");
   const [selectedCard, setSelectedCard] = useState(null);
   const isDesktop = useMemo(() => window.innerWidth > 628, []);
+
+  // 🔁 Refresh the page once when this component mounts
+  useEffect(() => {
+    const hasRefreshed = sessionStorage.getItem("hasRefreshed");
+    if (!hasRefreshed) {
+      sessionStorage.setItem("hasRefreshed", "true");
+      window.location.reload();
+    }
+
+    return()=>{
+      setTimeout(()=>{
+        sessionStorage.removeItem("hasRefreshed")
+      },2000)
+    }
+  }, []);
+
+  useEffect(() => {
+    if (id) {
+      const cardIndex = parseInt(id, 10);
+      if (!isNaN(cardIndex) && brandingData[cardIndex]) {
+        setSelectedCard(brandingData[cardIndex]);
+      }
+    }
+  }, [id]);
 
   const cardWrappers = useMemo(() => {
     if (isDesktop) {
       return [0, 2, 4, 6, 8].map((from) => (
-        <CardWrapper 
+        <CardWrapper
           key={`desktop-${from}`}
-          setSelectedCard={setSelectedCard} 
-          from={from} 
-          to={from + 2} 
+          setSelectedCard={setSelectedCard}
+          from={from}
+          to={from + 2}
         />
       ));
     }

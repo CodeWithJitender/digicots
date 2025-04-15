@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-function Header() {
+function Header({location}) {
   const data = [
     {
       title: "Website Development",
@@ -296,7 +296,7 @@ function Header() {
         <div className="logo">
           <Link to="/">
             <img
-              src="https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png"
+              src={["/case-study"].includes(location.pathname) ? "https://ik.imagekit.io/x5xessyka/digicots/public/logo-black.png" : "https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png" }
               className="max-w-36 md:max-w-40 lg:max-w-52"
               alt=""
             />

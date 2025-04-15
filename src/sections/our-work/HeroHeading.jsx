@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 
 function HeroHeading() {
   const headingRef = useRef(null);
-  let [isLoaded,setIsLoaded] = useState(true);
+  let [isLoaded,setIsLoaded] = useState(false);
   gsap.registerPlugin(ScrollTrigger)
   useGSAP(()=>{
     gsap.to(headingRef.current,{
@@ -18,16 +18,12 @@ function HeroHeading() {
         scrub: 2,
       },
       scale:0.7,
-      delay:2,
+      // delay:2,
       y:"8%",
       opacity:.5,
       ease:"power1.inOut",
     })
   },[])
-
-  setTimeout(() => {
-    setIsLoaded(false);
-  }, 5000);
 
 
   return (

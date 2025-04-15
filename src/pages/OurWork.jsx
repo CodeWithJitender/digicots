@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
 import HeroHeading from "../sections/our-work/HeroHeading";
 import BrandingGrid from "../sections/our-work/BrandingGrid";
+import HowItWorksCanvas from "../animation/canvas/HowItsWorkCanvas";
 
 function OurWork() {
   const [isMobile, setIsMobile] = useState(false);
@@ -84,10 +85,10 @@ function OurWork() {
     const handleWheel = (e) => {
       if (window.scrollY <= window.innerHeight && e.deltaY < 0) {
         e.preventDefault();
-        window.scrollTo({
-          top: window.innerHeight,
-          behavior: "instant",
-        });
+        // window.scrollTo({
+        //   top: window.innerHeight,
+        //   behavior: "instant",
+        // });
       }
     };
 
@@ -126,22 +127,13 @@ function OurWork() {
 
   return (
     <>
-      {/* Full-screen video */}
-      <div className="h-screen bg-black sticky top-0 w-full overflow-hidden">
-        <video
-          ref={videoRef}
-          className="h-full w-full object-cover"
-          id="our-work-video"
-          src="https://ik.imagekit.io/x5xessyka/digicots/public/1.mp4"
-          autoPlay
-          // muted
-          playsInline
-          // loop // Added loop if needed
-        />
-      </div>
 
       {/* Content below video */}
       <div className="w-full min-h-screen overflow-y-auto">
+        <div className="fixed top-0 left-0 w-full h-screen pointer-events-none">
+        <HowItWorksCanvas />
+        </div>
+
         <HeroHeading />
         <BrandingGrid />
       </div>
