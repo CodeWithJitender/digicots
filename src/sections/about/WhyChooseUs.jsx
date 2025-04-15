@@ -69,7 +69,7 @@ const WhyChooseUs = () => {
     {
       id: 1,
       title: "Timely Delivery",
-      image: "why.jpeg",
+      image: "https://ik.imagekit.io/x5xessyka/digicots/public/why.jpeg",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       rotation: "rotate-9",
@@ -77,7 +77,7 @@ const WhyChooseUs = () => {
     {
       id: 2,
       title: "Best Quality",
-      image: "why.jpeg",
+      image: "https://ik.imagekit.io/x5xessyka/digicots/public/why.jpeg",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       rotation: "-rotate-6",
@@ -85,7 +85,7 @@ const WhyChooseUs = () => {
     {
       id: 3,
       title: "Customer Satisfaction",
-      image: "why.jpeg",
+      image: "https://ik.imagekit.io/x5xessyka/digicots/public/why.jpeg",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       rotation: "rotate-6",
@@ -93,7 +93,7 @@ const WhyChooseUs = () => {
     {
       id: 2,
       title: "Best Quality",
-      image: "why.jpeg",
+      image: "https://ik.imagekit.io/x5xessyka/digicots/public/why.jpeg",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       rotation: "-rotate-6",
@@ -101,7 +101,7 @@ const WhyChooseUs = () => {
     {
       id: 3,
       title: "Customer Satisfaction",
-      image: "why.jpeg",
+      image: "https://ik.imagekit.io/x5xessyka/digicots/public/why.jpeg",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       rotation: "rotate-6",

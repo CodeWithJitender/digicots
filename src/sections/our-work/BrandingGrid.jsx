@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState, useMemo, useCallback } from "react"
 const brandingData = [
   {
     id: 1,
-    image: "project-1.png",
+    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-1.png",
     title: "Starbucks Branding",
     tags: ["FOOD", "HOSPITALITY", "BRANDING"],
     description: "Best ideas for branding in the coffee industry.",
@@ -19,7 +19,7 @@ const brandingData = [
   },
   {
     id: 2,
-    image: "project-2.png",
+    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-2.png",
     title: "McDonald's Marketing",
     tags: ["FAST FOOD", "HOSPITALITY", "ADVERTISING"],
     description: "A strategic approach to food marketing.",
@@ -31,7 +31,7 @@ const brandingData = [
   },
   {
     id: 1,
-    image: "project-1.png",
+    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-1.png",
     title: "Starbucks Branding",
     tags: ["FOOD", "HOSPITALITY", "BRANDING"],
     description: "Best ideas for branding in the coffee industry.",
@@ -43,7 +43,7 @@ const brandingData = [
   },
   {
     id: 2,
-    image: "project-2.png",
+    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-2.png",
     title: "McDonald's Marketing",
     tags: ["FAST FOOD", "HOSPITALITY", "ADVERTISING"],
     description: "A strategic approach to food marketing.",
@@ -55,7 +55,7 @@ const brandingData = [
   },
   {
     id: 1,
-    image: "project-1.png",
+    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-1.png",
     title: "Starbucks Branding",
     tags: ["FOOD", "HOSPITALITY", "BRANDING"],
     description: "Best ideas for branding in the coffee industry.",
@@ -67,7 +67,7 @@ const brandingData = [
   },
   {
     id: 2,
-    image: "project-2.png",
+    image: "https://ik.imagekit.io/x5xessyka/digicots/public/project-2.png",
     title: "McDonald's Marketing",
     tags: ["FAST FOOD", "HOSPITALITY", "ADVERTISING"],
     description: "A strategic approach to food marketing.",
@@ -261,7 +261,7 @@ const PopupModal = React.memo(({ card, onClose }) => {
     <div
       ref={popupRef}
       data-lenis-prevent
-      className="fixed inset-0 flex items-end justify-center overflow-hidden bg-black bg-opacity-60 backdrop-blur-md z-50 px-4"
+      className="fixed inset-0 flex items-end bottom-0 z-[1000] justify-center overflow-hidden bg-black bg-opacity-60 backdrop-blur-md px-4"
     >
       <button
         className="absolute sm:top-[15vh] top-[8vh] cursor-pointer right-[50%] translate-x-[50%] text-black text-xl bg-white p-2 rounded-[50%]"
@@ -277,9 +277,9 @@ const PopupModal = React.memo(({ card, onClose }) => {
       >
         ✖
       </button>
-      <div className="bg-white rounded-lg rounded-b-none w-full overflow-hidden max-w-[1400px] p-6 relative shadow-xl">
+      <div className="bg-white rounded-lg rounded-b-none w-full overflow-hidden max-w-[1400px] p-6 relative shadow-xl relative z-50">
         <div className="overflow-hidden">
-          <div ref={popupContainer} className="max-h-[500px] popup-container">
+          <div ref={popupContainer} className="max-h-[400px] popup-container">
             <h2 className="text-2xl font-bold text-center">{card.title}</h2>
             <p className="text-gray-600 text-center">{card.description}</p>
             <div className="grid md:grid-cols-3 md:justify-items-center mt-4 py-10 gap-10 px-3">

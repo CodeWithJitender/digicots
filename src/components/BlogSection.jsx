@@ -13,17 +13,17 @@ export default function BlogSection() {
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
       readTime: "2 Min Read",
-      img: "blog/topic-1.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-1.png",
       imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post2.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post3.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post4.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post5.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post6.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
       ], // Replace with actual images
     },
     {
@@ -32,17 +32,17 @@ export default function BlogSection() {
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
       readTime: "2 Min Read",
-      img: "blog/topic-2.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-2.png",
       imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post2.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post3.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post4.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post5.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post6.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
       ], // Replace with actual images
     },
     {
@@ -51,17 +51,17 @@ export default function BlogSection() {
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
       readTime: "2 Min Read",
-      img: "blog/topic-3.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-3.png",
       imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post2.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post3.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post4.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post5.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post6.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
       ], // Replace with actual images
     },
     {
@@ -70,17 +70,17 @@ export default function BlogSection() {
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
       readTime: "2 Min Read",
-      img: "blog/topic-4.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
       imgArr: [
-        "blog-post1.png",
-        "blog-post2.png",
-        "blog-post3.png",
-        "blog-post4.png",
-        "blog-post5.png",
-        "blog-post6.png",
-        "blog-post7.png",
-        "blog-post8.png",
-        "blog-post9.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post2.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post3.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post4.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post5.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post6.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
       ], // Replace with actual images
     },
   ];
@@ -266,7 +266,7 @@ export default function BlogSection() {
         {/* Right Side - Featured Post */}
         <div className="relative order-1">
           <img
-            src="blog/featured-post.png"
+            src="https://ik.imagekit.io/x5xessyka/digicots/public/blog/featured-post.png"
             alt="Featured Post"
             className="w-full h-80 md:h-full object-cover rounded-lg"
           />

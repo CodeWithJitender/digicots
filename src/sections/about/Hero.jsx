@@ -259,7 +259,7 @@ const Hero = () => {
         </Canvas>
         {/* Scroll Indicator */}
         <div className="absolute pointer-events-none bottom-0 left-1/2 transform -translate-x-1/2  px-6  rounded-full text-black font-medium">
-          <img src="scroll.png" className="max-w-80" alt="" />
+          <img src="https://ik.imagekit.io/x5xessyka/digicots/public/scroll.png" className="max-w-80" alt="" />
         </div>
       </div>
     </div>

@@ -167,7 +167,7 @@ function Insights() {
                 </p>
               </div>
               <img
-                src="insights-img.png"
+                src="https://ik.imagekit.io/x5xessyka/digicots/public/insights-img.png"
                 className="w-full max-w-sm md:max-w-md lg:max-w-xs"
                 alt=""
               />
@@ -200,7 +200,7 @@ function Insights() {
              ref={(el) => (boxsRefs.current[3] = el)}
              className="insights-box relative bg-[#FF6969] p-5 rounded-3xl sm:col-span-2 flex flex-col items-center gap-5">
               <img
-                src="insights-img-2.png"
+                src="https://ik.imagekit.io/x5xessyka/digicots/public/insights-img-2.png"
                 alt=""
                 className="w-full max-w-sm md:max-w-md lg:max-w-xs"
                 />
