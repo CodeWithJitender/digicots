@@ -39,7 +39,7 @@ const TextAnimation1 = ({ children, className = "", animeStart = "50" , animeEnd
         start: `top ${animeStart}%`,
         // end: `top ${animeEnd}%`,
         // scrub:true,
-        // // markers:true
+        // // // markers:true
       },
     })
   }, []);

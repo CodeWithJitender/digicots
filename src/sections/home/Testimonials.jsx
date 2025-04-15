@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import MainHeading from "../../components/MainHeading";
 import TestimonialsSlider from "../../components/TestmonialsSlider";
+import { useGSAP } from "@gsap/react";
 
 function Testimonials() {
   const data = [
@@ -52,8 +53,25 @@ function Testimonials() {
     ...data,
   ]);
 
+  const testimonialsRef = useRef(null);
+   useGSAP(()=>{
+      const moveY = gsap.to(testimonialsRef.current, {
+        y: "40%",
+        duration: 20,
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: testimonialsRef.current,
+          start: "top 0%",
+          end: "top -100%",
+          scrub: 1,
+          // markers:true
+        },
+      });
+    },[testimonialsRef.current])
+
+
   return testimonials.length > 0 && (
-    <section className="testimonial min-h-screen relative py-10 md:px-40">
+    <section ref={testimonialsRef} className="testimonial min-h-screen relative py-10 md:px-40 bg-white">
       <div className="container">
         <MainHeading
           heading="TESTIMONIALS"

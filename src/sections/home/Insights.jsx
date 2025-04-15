@@ -122,6 +122,23 @@ function Insights() {
     }    
   }, []);
 
+
+  useGSAP(()=>{
+    const moveY = gsap.to(parentRef.current, {
+      y: "10%",
+      duration: 20,
+      ease: "power1.inOut",
+      scrollTrigger: {
+        trigger: parentRef.current,
+        start: "top -140%",
+        end: "top -240%",
+        scrub: 1,
+        // markers:true
+      },
+    });
+  },[parentRef.current])
+
+
   // console.log(blackBoxTextRef);
 
   return (

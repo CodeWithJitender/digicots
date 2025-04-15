@@ -77,7 +77,7 @@ const HowItWorksCanvas = () => {
         end: "top -350%",
         scrub: 1,
         // pin: true,
-        // // markers: true,
+        // // // markers: true,
       },
     });
 

@@ -431,3 +431,15 @@ transform: translateZ(calc(var(--index) * 10));
   opacity: 1;
   visibility: visible;
 }
+
+/* Apply grayscale to all images by default */
+.parallax-img.grayscale {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+/* Remove grayscale for the active slide */
+.parallax-img.active-color {
+  filter: none;
+  transition: filter 0.3s ease;
+}

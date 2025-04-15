@@ -46,46 +46,36 @@ export default function TestimonialsSlider({ data }) {
         });
       }
     }, 1000);
-
-    
   }, [activeIndex]);
 
-  useGSAP(()=>{
+  useGSAP(() => {
     // Entry animation with ScrollTrigger
     gsap.fromTo(
       containerRef.current,
       {
         opacity: 0,
-        // y: 50,
         scale: 1.2,
-        filter:"blur(10px)",
+        filter: "blur(10px)",
       },
       {
         opacity: 1,
-        // y: 0,
-        filter:"blur(0px)",
+        filter: "blur(0px)",
         scale: 1,
         duration: 2,
         ease: "power2.out",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%", // Start when top of container hits 80% of viewport
-          end:"top 50%", // End when top of container hits 50% of viewport
-          // markers:"true",
-          // toggleActions: "play none none none", // Play once on enter
-          scrub:1,
-
+          end: "top 50%", // End when top of container hits 50% of viewport
+          scrub: 1,
         },
       }
     );
-  },[])
+  }, []);
 
   const settings = {
     dots: false,
     infinite: true,
-    // autoplay: true,
-    // autoplaySpeed: 3000,
-    // speed: 500,
     slidesToShow: 4.9,
     slidesToScroll: 1,
     centerMode: true,
@@ -133,7 +123,9 @@ export default function TestimonialsSlider({ data }) {
               <div className="relative">
                 <img
                   src={d.img}
-                  className="parallax-img h-[200px] md:h-[350px] w-full rounded-2xl object-cover transition-transform"
+                  className={`parallax-img h-[200px] md:h-[350px] w-full rounded-2xl object-cover transition-transform ${
+                    activeIndex === i ? "active-color" : "grayscale"
+                  }`}
                   alt=""
                 />
                 <div className="testimonial-text cursor-pointer rounded-lg absolute h-[50%] md:h-[40%] w-full bg-[#20202053] backdrop-blur-sm top-full left-0 z-10 opacity-0 p-5 flex flex-col justify-between">

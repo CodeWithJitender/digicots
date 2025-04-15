@@ -148,7 +148,7 @@ function AllService() {
         start: "top 40%", // Start when top of .services is 80% from viewport top
         end: "top -700%", // Extended end point for full animation
         scrub: 1, // Smooth scrubbing (adjustable)
-        // // markers: true, // Debugging // markers (remove in production)
+        // // // markers: true, // Debugging // // markers (remove in production)
       },
     });
 

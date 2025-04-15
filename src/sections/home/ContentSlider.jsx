@@ -284,12 +284,30 @@ const ContentSlider = () => {
           }
         );
       });
+
+
     },
     { scope: containerRef }
   );
 
+  useGSAP(()=>{
+    const moveY = gsap.to(containerRef.current, {
+      y: "40%",
+      duration: 20,
+      ease: "power1.inOut",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top -50%",
+        end: "top -200%",
+        scrub: 1,
+        // markers:true
+      },
+    });
+  },[])
+
+
   return (
-    <div ref={containerRef} className=" bg-white">
+    <div ref={containerRef} className=" bg-white relative z-[2]">
       <div className="container-xxl">
         <div ref={headingRef}>
           <HeadingWithLink

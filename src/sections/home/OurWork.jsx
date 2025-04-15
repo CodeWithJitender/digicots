@@ -6,7 +6,7 @@ import CylinderScene from "../../animation/canvas/CylinderScene";
 
 function OurWork() {
   return (
-    <section className="our-work w-full md:h-screen h-[63vh] bg-black relative">
+    <section className="our-work w-full md:h-screen h-[63vh] bg-black relative z-[3]">
         <CylindricalSlider />
         {/* <CylinderScene /> */}
         <div className="w-[200vw] sm:w-screen pointer-events-none absolute bottom-0 z-[99] -translate-x-1/2 left-1/2 ">

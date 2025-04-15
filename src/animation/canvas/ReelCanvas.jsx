@@ -33,7 +33,7 @@ const WavePlane = ({ opacity, setOpacity }) => {
     return ((width - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
   };
 
-  const mappedValueX = window.innerWidth > 1286 ? mapWidth(dimensions.width, 370, 1286, 4, 13.5) : mapWidth(dimensions.width, 1287, 1440, 13.5, 10);
+  const mappedValueX = window.innerWidth <= 1536 ? mapWidth(dimensions.width, 370, 1536, 2.5, 16.5) : mapWidth(dimensions.width, 1536, 2160, 16.5, 13.5);
   console.log(window.innerWidth + "hhh")
   const x = useRef({ value: mappedValueX });
   const y = useRef({ value: -7.5 });
@@ -187,7 +187,7 @@ const Scene = () => {
         start: "top -50", // Start when .homeCanvas top hits viewport top
         end: "top -51%", // End when .homeCanvas bottom hits viewport top
         scrub: 1,
-        // markers: true, // Keep for debugging, remove in production
+        // // markers: true, // Keep for debugging, remove in production
         onUpdate: (self) => {
           // setOpacity(self.progress); // Update state with progress (0 to 1)
         },

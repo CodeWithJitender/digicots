@@ -191,7 +191,7 @@ const Hero = () => {
         trigger:heroRef.current,
         start: "top 0",
         end: "top -100%",
-        // // markers: true,
+        // // // markers: true,
         scrub:1,
       }
     })

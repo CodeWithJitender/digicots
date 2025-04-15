@@ -109,9 +109,9 @@ function HowItWorks() {
       scrollTrigger: {
         trigger: parentRef.current,
         start: "top -244%",
-        end: "top -268%",
+        end: "top -344%",
         scrub: 1,
-        markers:true
+        // markers:true
       },
     });
   },[])

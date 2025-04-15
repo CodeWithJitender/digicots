@@ -93,7 +93,7 @@ function Solutions() {
           start: "top 70%",
           end: "top -1100%",
           scrub: 1,
-          // markers: true,
+          // // markers: true,
         },
         ease: "linear",
       });
