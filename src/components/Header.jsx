@@ -10,61 +10,61 @@ function Header() {
     {
       title: "Website Development",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-1.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-1.png",
       id: "Website Development",
     },
     {
       title: "Artificial Reality (AR)",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-2.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-2.png",
       id: "artificial-reality",
     },
     {
       title: "Outdoor Advertising",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-3.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-3.png",
       id: "outdoor-advertising",
     },
     {
       title: "Public Relations",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-4.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-4.png",
       id: "public-relations",
     },
     {
       title: "Performance Marketing",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-5.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-5.png",
       id: "performance-marketing",
     },
     {
       title: "Digital Marketing",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-6.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-6.png",
       id: "digital-marketing",
     },
     {
       title: "Creative Designing",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-7.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-7.png",
       id: "creative-designing",
     },
     {
       title: "Outreach Solutions",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-8.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-8.png",
       id: "outreach-solutions",
     },
     {
       title: "Content Production",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-9.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-9.png",
       id: "content-production",
     },
     {
       title: "Performance Marketing",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-5.png",
+      icon: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-5.png",
       id: "performance-marketing",
     },
   ];
@@ -393,7 +393,7 @@ function Header() {
                 </li>
                 <li>
                   <Link
-                    to="/"
+                    to="/case-study"
                     className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                   >
                     <div className="link-t"> Case Studies</div>

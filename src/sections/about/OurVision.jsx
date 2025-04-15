@@ -87,13 +87,13 @@ const OurVision = () => {
   const data = [
     {
       title: "OUR VISION",
-      img: "our-vision.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/our-vision.png",
       p: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curae non
       venenatis magna tellus conubia cras convallis montes in. Nibh consectetur etiam himenaeos mi semper malesuada.`,
     },
     {
       title: "OUR Mission",
-      img: "our-vision.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/our-vision.png",
       p: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curae non
       venenatis magna tellus conubia cras convallis montes in. Nibh consectetur etiam himenaeos mi semper malesuada.`,
     },

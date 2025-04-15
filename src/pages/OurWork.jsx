@@ -132,7 +132,7 @@ function OurWork() {
           ref={videoRef}
           className="h-full w-full object-cover"
           id="our-work-video"
-          src="./1.mp4"
+          src="https://ik.imagekit.io/x5xessyka/digicots/public/1.mp4"
           autoPlay
           // muted
           playsInline

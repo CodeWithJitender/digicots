@@ -184,7 +184,7 @@ export default function BlogModal({ isOpen, onClose, post }) {
                 }}
                 className="text-xl cursor-pointer relative z-[9]"
               >
-                <img src="cross.png" className="max-w-10" alt="" />
+                <img src="https://ik.imagekit.io/x5xessyka/digicots/public/cross.png" className="max-w-10" alt="" />
               </button>
             </div>
             <div className="w-full h-[100%] flex justify-center items-center">

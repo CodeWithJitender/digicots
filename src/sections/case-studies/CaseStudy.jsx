@@ -158,7 +158,7 @@ export default function CaseStudy({ slide, index, setSelectedIndex }) {
               }}
               className="text-xl text-gray-600 hover:text-black cursor-pointer"
             >
-              <img src="cross.png" className="max-w-[40px]" alt="" />
+              <img src="https://ik.imagekit.io/x5xessyka/digicots/public/cross.png" className="max-w-[40px]" alt="" />
             </button>
           </div>
         </header>

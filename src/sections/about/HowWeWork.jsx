@@ -20,7 +20,7 @@ function HowWeWork() {
       quoat: "Only the strongest survive.",
       bgColor: "bg-gray-900",
       textColor: "text-white",
-      img: "/wolf-face.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public//wolf-face.png",
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ function HowWeWork() {
       quoat: "Claim what’s yours and make it unshakable.",
       bgColor: "bg-gray-700",
       textColor: "text-white",
-      img: "/wolf-face.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public//wolf-face.png",
     },
     {
       id: 3,
@@ -50,7 +50,7 @@ function HowWeWork() {
       quoat: "A true leader runs with the pack but leads from the front.",
       bgColor: "bg-orange-500",
       textColor: "text-white",
-      img: "/wolf-face.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public//wolf-face.png",
     },
     {
       id: 4,
@@ -65,7 +65,7 @@ function HowWeWork() {
       quoat: "Survival is only the beginning. Domination is the goal.",
       bgColor: "bg-orange-700",
       textColor: "text-white",
-      img: "/wolf-face.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public//wolf-face.png",
     },
   ];
 

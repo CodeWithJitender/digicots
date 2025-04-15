@@ -10,7 +10,7 @@ function Testimonials() {
       name: "John Doe",
       position: "CEO Ashwary.Design",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-1.jpg",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-1.jpg",
       isCenter: false,
     },
     {
@@ -18,7 +18,7 @@ function Testimonials() {
       name: "Jane Smith",
       position: "CEO Ashwary.Design",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-2.jpg",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-2.jpg",
       isCenter: false,
     },
     {
@@ -26,7 +26,7 @@ function Testimonials() {
       name: "Ashwary Sinha",
       position: "CEO Ashwary.Design",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-3.jpg",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-3.jpg",
       isCenter: false,
     },
     {
@@ -34,7 +34,7 @@ function Testimonials() {
       name: "Ashwary Sinha",
       position: "CEO Ashwary.Design",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-4.jpg",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-4.jpg",
       isCenter: false,
     },
     {
@@ -42,7 +42,7 @@ function Testimonials() {
       name: "Ashwary Sinha",
       position: "CEO Ashwary.Design",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-5.jpg",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-5.jpg",
       isCenter: false,
     },
   ]
