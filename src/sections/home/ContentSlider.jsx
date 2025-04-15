@@ -289,7 +289,7 @@ const ContentSlider = () => {
   );
 
   return (
-    <div ref={containerRef} className="">
+    <div ref={containerRef} className=" bg-white">
       <div className="container-xxl">
         <div ref={headingRef}>
           <HeadingWithLink

@@ -78,6 +78,7 @@ function HowItWorks() {
         stagger: 3,
         ease: "expoScale(0.5,7,none)",
       });
+      
     } else {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -95,7 +96,25 @@ function HowItWorks() {
         ease: "expoScale(0.5,7,none)",
       });
     }
+
+
+
   }, []);
+
+  useGSAP(()=>{
+    const moveY = gsap.to(parentRef.current, {
+      y: "40%",
+      duration: 20,
+      ease: "power1.inOut",
+      scrollTrigger: {
+        trigger: parentRef.current,
+        start: "top -244%",
+        end: "top -268%",
+        scrub: 1,
+        markers:true
+      },
+    });
+  },[])
 
   const [openedIndex, setopenedIndex] = useState(-1);
 

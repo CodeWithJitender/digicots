@@ -38,7 +38,7 @@ export default function TestimonialsSlider({ data }) {
               duration: 0.1,
             });
             gsap.to(".slick-current .testimonial-text", {
-              top: window.innerWidth > 768 ? "70%" : "50%",
+              top: window.innerWidth > 768 ? "60%" : "50%",
               opacity: 1,
               ease: "power2.out",
             });
@@ -136,7 +136,7 @@ export default function TestimonialsSlider({ data }) {
                   className="parallax-img h-[200px] md:h-[350px] w-full rounded-2xl object-cover transition-transform"
                   alt=""
                 />
-                <div className="testimonial-text cursor-pointer rounded-lg absolute h-[50%] md:h-[30%] w-full bg-[#20202053] backdrop-blur-sm top-full left-0 z-10 opacity-0 p-5 flex flex-col justify-between">
+                <div className="testimonial-text cursor-pointer rounded-lg absolute h-[50%] md:h-[40%] w-full bg-[#20202053] backdrop-blur-sm top-full left-0 z-10 opacity-0 p-5 flex flex-col justify-between">
                   <p className="font-inter text-white text-[2vw] md:text-[.7vw]">
                     {d.text}
                   </p>

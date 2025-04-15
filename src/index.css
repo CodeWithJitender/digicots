@@ -10,7 +10,7 @@
 }
 
 :root{
-  --index: calc(1vw + 1vh);
+  --index: calc(.8vw + .8vh);
   --transition: cubic-bezier(.1, .7, 0, 1);
 }
 
@@ -307,7 +307,7 @@ header .dropdown {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70vh;
+  height: 50vh;
 }
 
 .items{
@@ -395,7 +395,7 @@ header .dropdown {
 }
 
 .items .item:active, .items .item:focus {
-width: 28vw;
+width: 20vw;
 filter: grayscale(.8) brightness(.8);
 z-index: 100;
 transform: translateZ(calc(var(--index) * 10));
@@ -405,3 +405,29 @@ transform: translateZ(calc(var(--index) * 10));
 
 
 
+/* Solution */
+
+.solution-box:hover .text-stroke {
+  -webkit-text-fill-color: #ed510c; /* Will override color (regardless of order) */
+}
+.solution-main,
+.solution-tag {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+.slider-thumb .slick-active.slick-current .overflow-hidden.cursor-pointer {
+  background-color: #ed510c26 !important;
+}
+@media screen and (max-width: 992px) {
+  .solution-main,
+  .solution-tag {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+.solution-box:hover .solution-main,
+.solution-box:hover .solution-tag {
+  opacity: 1;
+  visibility: visible;
+}
