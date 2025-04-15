@@ -433,7 +433,51 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
 const Slide = ({ index, onClose, setSelectedIndex }) => {
   const slides = [
     {
-      image: ["https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png"],
+      image: [
+        "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+      ],
+      title: [
+        "Apple Marketing Case Study",
+        "Understanding the Target Market",
+        "4P’s – Product. Price. Place. Promotion.",
+      ],
+      text: [
+        `Did you know that Apple Inc. started in a garage as Apple Computer, Inc. and has market cap of over $3.5 trillion now? It is inspiring how such simple, small dreams turn into overwhelming realities.
+In 1976, Steve Jobs, Steve Wozniak & Ronald Wayne founded the trillion-dollar tech behemoth. It has managed to dominate the global market and sold more than 230 million units in 2024! With its sleek designs, state-of-the-art technologies and a loyal consumer cult, Apple has completely transformed the way people talk, work and relax.
+Apple’s rather minimalistic marketing character perfectly aligns with its brand image and target audience. However, when entering India – a price-conscious market, the challenges were big:
+The Indian consumers needed to be convinced that a higher price translated to real value.
+The market was filled with budget-friendly competitors.
+To everyone’s surprise, they managed to capture the majority of the market. Tim Cook, the CEO of Apple even highlighted that India is an extraordinary market; with the company achieving record-sales in the third quarter of the 2023-24 fiscal year.
+`,
+        `Apple leaves no stone unturned when it comes to understanding their target market and catering products and campaigns to them. Since their early days, they have progressively narrowed down the target audience they want each of their products to reach.
+They have always targeted individuals who are willing to pay more for an innovative product and a quality user experience. The majority of their audiences come from the middle-to-upper classes and are younger to middle-aged. Based mostly in the Americas, Europe or China, these tech-enthusiasts are absolute fans of the Apple Ecosystem. This has been a direct result of Apple’s user-oriented marketing approach, wherein each of their marketing initiatives emphasize on the people using the products; not the products themselves. The global brand recognizability of Apple, aided by its famous bitten-apple logo, has gradually inclined their marketing efforts towards a segmented approach. They consider the nuances and cultural differences in various countries and cater their campaigns to them. This helps them avoid offending consumers and ensure that each campaign is tailored for success.
+`,
+        `Product
+Although Apple's products and marketing are to-the-point, they don’t let their focus go off the innovation radar. They consistently focus on innovating new products and features to craft the ultimate user experience. Innovation is their lifeline – they constantly push boundaries, developing products that redefine entire industries.
+The company offers a curated selection of products, each of which seamlessly integrate with the popular Apple Ecosystem – a well-knitted network of Apple products and services. This focus on an intertwined product portfolio helps them present a unified brand image.
+ 
+Price
+iPhones, among other Apple products, are a sought-after status symbol around the world. India is a price-conscious market; however, the purchasing power of people, especially in tier-1 & tier-2 cities is steadily increasing.
+In order to demonstrate exclusivity and a premium brand image, their products are priced on the higher end of the spectrum. The higher price point translates to a badge of honor among consumers, a symbol of their success and the ability to afford the desired Apple experience. It is a well-calculated, high return risk which has helped them carve out an exclusive niche from the Indian market.
+ 
+Place
+Apple ensures that it is very easy for its customers to find their products, both online and offline. Their products are available directly on Apple stores, authorized resellers, the official website or major e-commerce platforms. The convenience to find the products anywhere and everywhere compels people to buy them.
+ 
+Promotion
+With customers engaging with brands through multiple channels, it’s typically not enough to market products and services with just one channel. Apple employs television and print advertising, website advertisements, social media advertisements and more to lure customers. Advertisements often demonstrate unique capabilities of the newest products, creating immense value for consumers and generating more awareness for these offerings. They make sure to never overwhelm their audiences with technical specifications – they rather try to keep it as simple as possible. 
+
+`,
+      ],
+      tags: ["Design", "Web-Dev", "Product"],
+    },
+    {
+      image: [
+        "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+      ],
       title: [
         "Product: With Long Heading",
         "Product: With Long Heading",
@@ -447,21 +491,11 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: ["https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png"],
-      title: [
-        "Product: With Long Heading",
-        "Product: With Long Heading",
-        "Product: With Long Heading",
+      image: [
+        "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
       ],
-      text: [
-        " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem distinctio qui, natus enim maiores minus veritatis maxime sint vero labore culpa sunt unde minima similique, laboriosam nam vitae ipsa delectus iusto perspiciatis suscipit! Nam quisquam fuga cupiditate temporibus. Nulla laboriosam error voluptas perspiciatis fuga sit officia ipsum quibusdam consectetur provident consequuntur nemo tempore repellendus consequatur aspernatur amet exercitationem harum debitis quae doloremque, maxime velit dolorem eaque. Sequi porro nam vero iusto corporis repellat culpa nemo illum rem voluptatem voluptas, saepe aut laborum eius? Inventore vitae mollitia tenetur ipsam dolor excepturi esse suscipit voluptates ab animi, numquam magnam maiores qui assumenda. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem distinctio qui, natus enim maiores minus veritatis maxime sint vero labore culpa sunt unde minima similique, laboriosam nam vitae ipsa delectus iusto perspiciatis suscipit! Nam quisquam fuga cupiditate temporibus. Nulla laboriosam error voluptas perspiciatis fuga sit officia ipsum quibusdam consectetur provident consequuntur nemo tempore repellendus consequatur aspernatur amet exercitationem harum debitis quae doloremque, maxime velit dolorem eaque. Sequi porro nam vero iusto corporis repellat culpa nemo illum rem voluptatem voluptas, saepe aut laborum eius? Inventore vitae mollitia tenetur ipsam dolor excepturi esse suscipit voluptates ab animi, numquam magnam maiores qui assumenda.",
-        " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem distinctio qui, natus enim maiores minus veritatis maxime sint vero labore culpa sunt unde minima similique, laboriosam nam vitae ipsa delectus iusto perspiciatis suscipit! Nam quisquam fuga cupiditate temporibus. Nulla laboriosam error voluptas perspiciatis fuga sit officia ipsum quibusdam consectetur provident consequuntur nemo tempore repellendus consequatur aspernatur amet exercitationem harum debitis quae doloremque, maxime velit dolorem eaque. Sequi porro nam vero iusto corporis repellat culpa nemo illum rem voluptatem voluptas, saepe aut laborum eius? Inventore vitae mollitia tenetur ipsam dolor excepturi esse suscipit voluptates ab animi, numquam magnam maiores qui assumenda. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem distinctio qui, natus enim maiores minus veritatis maxime sint vero labore culpa sunt unde minima similique, laboriosam nam vitae ipsa delectus iusto perspiciatis suscipit! Nam quisquam fuga cupiditate temporibus. Nulla laboriosam error voluptas perspiciatis fuga sit officia ipsum quibusdam consectetur provident consequuntur nemo tempore repellendus consequatur aspernatur amet exercitationem harum debitis quae doloremque, maxime velit dolorem eaque. Sequi porro nam vero iusto corporis repellat culpa nemo illum rem voluptatem voluptas, saepe aut laborum eius? Inventore vitae mollitia tenetur ipsam dolor excepturi esse suscipit voluptates ab animi, numquam magnam maiores qui assumenda.",
-        " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem distinctio qui, natus enim maiores minus veritatis maxime sint vero labore culpa sunt unde minima similique, laboriosam nam vitae ipsa delectus iusto perspiciatis suscipit! Nam quisquam fuga cupiditate temporibus. Nulla laboriosam error voluptas perspiciatis fuga sit officia ipsum quibusdam consectetur provident consequuntur nemo tempore repellendus consequatur aspernatur amet exercitationem harum debitis quae doloremque, maxime velit dolorem eaque. Sequi porro nam vero iusto corporis repellat culpa nemo illum rem voluptatem voluptas, saepe aut laborum eius? Inventore vitae mollitia tenetur ipsam dolor excepturi esse suscipit voluptates ab animi, numquam magnam maiores qui assumenda. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem distinctio qui, natus enim maiores minus veritatis maxime sint vero labore culpa sunt unde minima similique, laboriosam nam vitae ipsa delectus iusto perspiciatis suscipit! Nam quisquam fuga cupiditate temporibus. Nulla laboriosam error voluptas perspiciatis fuga sit officia ipsum quibusdam consectetur provident consequuntur nemo tempore repellendus consequatur aspernatur amet exercitationem harum debitis quae doloremque, maxime velit dolorem eaque. Sequi porro nam vero iusto corporis repellat culpa nemo illum rem voluptatem voluptas, saepe aut laborum eius? Inventore vitae mollitia tenetur ipsam dolor excepturi esse suscipit voluptates ab animi, numquam magnam maiores qui assumenda.",
-      ],
-      tags: ["Design", "Web-Dev", "Product"],
-    },
-    {
-      image: ["https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png", "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png"],
       title: [
         "Product: With Long Heading",
         "Product: With Long Heading",

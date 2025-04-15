@@ -33,7 +33,8 @@ const WavePlane = ({ opacity, setOpacity }) => {
     return ((width - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
   };
 
-  const mappedValueX = mapWidth(dimensions.width, 370, 1536, 4, 16);
+  const mappedValueX = window.innerWidth > 1286 ? mapWidth(dimensions.width, 370, 1286, 4, 13.5) : mapWidth(dimensions.width, 1287, 1440, 13.5, 10);
+  console.log(window.innerWidth + "hhh")
   const x = useRef({ value: mappedValueX });
   const y = useRef({ value: -7.5 });
   const z = useRef({ value: -3 });
@@ -108,7 +109,7 @@ const WavePlane = ({ opacity, setOpacity }) => {
         "a"
       )
       .to([x.current, y.current], { value: 0, duration: 6 }, "a")
-      .to(z.current, { value: 8, duration: 8 }, "a")
+      .to(z.current, { value: 7.2, duration: 8 }, "a")
       .to(
         materialRef.current.uniforms.uTime,
         { value: "+=5", duration: 10 },
