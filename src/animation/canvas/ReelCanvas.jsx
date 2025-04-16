@@ -4,6 +4,7 @@ import * as THREE from "three";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { cover } from "three/src/extras/TextureUtils.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,12 +30,18 @@ const WavePlane = ({ setOpacity }) => {
 
   const texture = useMemo(() => {
     const tex = new THREE.TextureLoader().load(
-      "https://ik.imagekit.io/x5xessyka/digicots/public/reel-cover.png"
+      "https://ik.imagekit.io/x5xessyka/digicots/public/reel-cover.png",
+      (loadedTexture) => {
+        // Calculate the plane's aspect ratio (width / height)
+        const planeAspect = dimensions.width / dimensions.height;
+
+        // Apply cover function to adjust texture for object-fit: cover
+        cover(loadedTexture, planeAspect);
+      }
     );
-    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-    tex.repeat.set(1, 1 / (dimensions.width / dimensions.height));
+
     return tex;
-  }, []); // Empty dependency array since texture is static
+  }, [dimensions]); // Include dimensions as dependency if it can change
 
   const mapWidth = (
     width,
@@ -48,7 +55,7 @@ const WavePlane = ({ setOpacity }) => {
 
   const mappedValueX =
     window.innerWidth <= 1536
-      ? mapWidth(dimensions.width, 370, 1536, 2.5, 16.5)
+      ? mapWidth(dimensions.width, 370, 1536, 4, 16.5)
       : mapWidth(dimensions.width, 1536, 2160, 16.5, 13.5);
   position.current.x = mappedValueX;
 
@@ -83,12 +90,36 @@ const WavePlane = ({ setOpacity }) => {
   const fragmentShader = useMemo(
     () => `
     varying vec2 vUv;
-    uniform sampler2D uTexture;
+uniform sampler2D uTexture;
+uniform float uTextureAspect;
+uniform float uPlaneAspect;
 
-    void main() {
-      vec2 adjustedUv = vUv;
-      gl_FragColor = texture2D(uTexture, adjustedUv);
-    }
+void main() {
+  // Center the UVs (vUv is in [0, 1], so shift to [-0.5, 0.5] for centering)
+  vec2 centeredUv = vUv - 0.5;
+
+  // Calculate scaling to cover the plane without stretching
+  float textureAspect = uTextureAspect;
+  float planeAspect = uPlaneAspect;
+  float scale = .8;
+
+  if (textureAspect > planeAspect) {
+    // Texture is wider: scale to fit height, crop width
+    scale = planeAspect / textureAspect;
+  } else {
+    // Texture is taller: scale to fit width, crop height
+    scale = 1.0;
+  }
+
+  // Apply scaling to centered UVs
+  centeredUv *= vec2(scale, scale);
+
+  // Shift UVs back to [0, 1] range
+  vec2 adjustedUv = centeredUv + 0.5;
+
+  // Sample texture with adjusted UVs
+  gl_FragColor = texture2D(uTexture, adjustedUv);
+}
   `,
     []
   );
@@ -98,6 +129,8 @@ const WavePlane = ({ setOpacity }) => {
       uTime: { value: 0 },
       uWaveAmplitude: { value: 0 },
       uTexture: { value: texture },
+      uTextureAspect: { value: 1.0 }, // Updated after texture loads
+      uPlaneAspect: { value: dimensions.width / dimensions.height },
     }),
     [texture]
   );
@@ -132,7 +165,7 @@ const WavePlane = ({ setOpacity }) => {
         "a"
       )
       .to([position.current], { x: 0, y: 0, duration: 6 }, "a")
-      .to(position.current, { z: 7.2, duration: 8 }, "a")
+      .to(position.current, { z: 7, duration: 8 }, "a")
       .to(
         materialRef.current.uniforms.uTime,
         { value: "+=5", duration: 10 },
@@ -239,8 +272,9 @@ const Scene = () => {
       opacity: 1,
       display: "initial",
       onComplete: () => {
-        videoElementRef.current.src = "https://ik.imagekit.io/x5xessyka/digicots/public/showreels.mp4";
-        videoElementRef.current.play()
+        videoElementRef.current.src =
+          "https://ik.imagekit.io/x5xessyka/digicots/public/showreels.mp4";
+        videoElementRef.current.play();
       },
     });
   };
