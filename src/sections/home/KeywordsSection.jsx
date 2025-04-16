@@ -28,7 +28,7 @@ function KeywordsSection() {
   return (
     <div
       ref={parentRef}
-      className="relative z-[2] md:h-[60px] md:top-[30px] h-[40px] top-[20px] gap-4 overflow-hidden"
+      className="relative z-[4] md:h-[60px] md:top-[30px] h-[40px] top-[20px] gap-4 overflow-hidden"
     >
       <div ref={marqueeRef}>
         <div className="md:h-[60px] absolute top-0  h-[40px]  overflow-hidden">

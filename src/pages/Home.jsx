@@ -38,7 +38,7 @@ function Home() {
         {/* <Home /> */}
       {/* ) : ( */}
         {/* <Loading onLoadingComplete={handleLoadingComplete} > */}
-          <div className="main contain-paint">
+          <div className="main contain-paint ">
             <Suspense fallback={null}>
               <HomeHeroCanvas />
             </Suspense>

@@ -172,7 +172,7 @@ const ContactForm = () => {
         </div>
 
         <h1 className="text-white overflow-hidden text-center md:text-start text-4xl sm:text-7xl md:text-8xl font-bold ">
-          <TextAnimation1>Let's Talk</TextAnimation1>
+          <h1>Let's Talk</h1>
         </h1>
 
         {/* Tabs */}

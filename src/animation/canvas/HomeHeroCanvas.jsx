@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,57 +12,90 @@ const HomeHeroCanvas = () => {
   const screen2TextRef = useRef(null);
   const frameCount = 180;
   const images = useRef([]);
+  const animationRefs = useRef({
+    timeline: null,
+    moveY: null,
+    imageLoaders: []
+  });
 
-  // Preload images once
+  // Image preloading with cleanup
   useEffect(() => {
-    const imageElements = [];
-    for (let i = 0; i < frameCount; i++) {
-      const img = new Image();
-      img.src = `https://ik.imagekit.io/x5xessyka/digicots/hero_section/H${i.toString().padStart(3, "0")}.avif`;
-      imageElements.push(img);
-    }
-    images.current = imageElements;
+    const loadImages = () => {
+      const imageElements = [];
+      const loaders = [];
+      
+      for (let i = 0; i < frameCount; i++) {
+        const img = new Image();
+        const loader = new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve; // Handle errors gracefully
+        });
+        
+        img.src = `https://ik.imagekit.io/x5xessyka/digicots/hero_section/H${i.toString().padStart(3, "0")}.avif`;
+        imageElements.push(img);
+        loaders.push(loader);
+      }
+      
+      images.current = imageElements;
+      animationRefs.current.imageLoaders = loaders;
+    };
+
+    loadImages();
 
     return () => {
-      // Optional cleanup if needed
+      // Cleanup image references and loaders
       images.current = [];
+      animationRefs.current.imageLoaders = [];
     };
-  }, []);
+  }, [frameCount]);
 
-  // Set canvas dimensions based on first image
-  useEffect(() => {
+  // Canvas setup with cleanup
+  const setupCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
     const firstImage = images.current[0];
 
-    const setCanvasSize = () => {
-      if (firstImage && context) {
+    if (!firstImage || !context) return;
+
+    const handleResize = () => {
+      if (firstImage.complete) {
         canvas.width = firstImage.naturalWidth;
         canvas.height = firstImage.naturalHeight;
         context.drawImage(firstImage, 0, 0, canvas.width, canvas.height);
       }
     };
 
-    if (firstImage) {
-      if (firstImage.complete) {
-        setCanvasSize();
-      } else {
-        firstImage.onload = setCanvasSize;
-      }
+    if (firstImage.complete) {
+      handleResize();
+    } else {
+      firstImage.onload = handleResize;
     }
 
     return () => {
       if (firstImage) {
         firstImage.onload = null;
       }
+      // Clear canvas
+      if (context) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }
     };
   }, []);
 
+  useEffect(() => {
+    return setupCanvas();
+  }, [setupCanvas]);
+
+  // Animation setup with comprehensive cleanup
   useGSAP(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
 
+    if (!canvas || !context) return;
+
     const updateFrame = (frameIndex) => {
+      if (!context || !images.current) return;
+      
       context.clearRect(0, 0, canvas.width, canvas.height);
       const img = images.current[Math.floor(frameIndex)];
       if (img?.complete) {
@@ -70,32 +103,43 @@ const HomeHeroCanvas = () => {
       }
     };
 
-    const timeline = gsap.timeline({
+    // Kill existing animations before creating new ones
+    if (animationRefs.current.timeline) {
+      animationRefs.current.timeline.kill();
+      animationRefs.current.timeline.scrollTrigger?.kill();
+    }
+    if (animationRefs.current.moveY) {
+      animationRefs.current.moveY.kill();
+      animationRefs.current.moveY.scrollTrigger?.kill();
+    }
+
+    // Create new timeline
+    animationRefs.current.timeline = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 0",
         end: "top -350%",
         scrub: 1,
-        // pin: true,
-        // // // markers: true,
+        onRefresh: self => self.progress && self.progress > 0 && self.progress < 1 && self.animation.progress(self.progress),
       },
     });
 
     const animationObject = { frame: 0 };
-    timeline.to(animationObject, {
+    animationRefs.current.timeline.to(animationObject, {
       frame: frameCount - 1,
       ease: "none",
       snap: "frame",
       onUpdate: () => updateFrame(animationObject.frame),
     }, "start");
 
-    timeline.to(screen2TextRef.current, {
+    animationRefs.current.timeline.to(screen2TextRef.current, {
       opacity: 1,
       bottom: "0%",
       duration: 1,
     }, "start");
 
-    const moveY = gsap.to(containerRef.current, {
+    // Create moveY animation
+    animationRefs.current.moveY = gsap.to(containerRef.current, {
       y: "40%",
       duration: 20,
       ease: "power1.inOut",
@@ -108,11 +152,48 @@ const HomeHeroCanvas = () => {
     });
 
     return () => {
-      timeline.scrollTrigger?.kill();
-      moveY.scrollTrigger?.kill();
-      timeline.kill();
-      moveY.kill();
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      // Cleanup function for useGSAP
+      if (animationRefs.current.timeline) {
+        animationRefs.current.timeline.kill();
+        if (animationRefs.current.timeline.scrollTrigger) {
+          animationRefs.current.timeline.scrollTrigger.kill();
+        }
+      }
+      if (animationRefs.current.moveY) {
+        animationRefs.current.moveY.kill();
+        if (animationRefs.current.moveY.scrollTrigger) {
+          animationRefs.current.moveY.scrollTrigger.kill();
+        }
+      }
+    };
+  }, []);
+
+  // Component unmount cleanup
+  useEffect(() => {
+    return () => {
+      // Kill all animations
+      if (animationRefs.current.timeline) {
+        animationRefs.current.timeline.kill();
+        animationRefs.current.timeline.scrollTrigger?.kill();
+      }
+      if (animationRefs.current.moveY) {
+        animationRefs.current.moveY.kill();
+        animationRefs.current.moveY.scrollTrigger?.kill();
+      }
+
+      // Clear canvas
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const context = canvas.getContext("2d");
+        context?.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      // Clear ScrollTriggers
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === containerRef.current) {
+          trigger.kill();
+        }
+      });
     };
   }, []);
 
@@ -142,6 +223,6 @@ const HomeHeroCanvas = () => {
       <div style={{ height: "200vh" }} />
     </section>
   );
-}
+};
 
 export default HomeHeroCanvas;

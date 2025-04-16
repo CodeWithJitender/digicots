@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import MainHeading from "../../components/MainHeading";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import HowItWorksCanvas from "../../animation/canvas/HowItsWorkCanvas";
 
-function HowItWorks() {
+// Register plugins once
+gsap.registerPlugin(ScrollTrigger);
+
+const HowItWorks = () => {
   const data = [
     {
       h1: "STEP 1",
@@ -26,7 +29,7 @@ function HowItWorks() {
     {
       h1: "STEP 3",
       h2: "Set the Pack in Motion",
-      p: "This isn’t execution. This is a movement.",
+      p: "This isn't execution. This is a movement.",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
       h_color: "#F3A265",
       bg_Color: "#515151",
@@ -43,66 +46,56 @@ function HowItWorks() {
 
   const cardRefs = useRef([]);
   const parentRef = useRef(null);
-  // const videoRef = useRef(null);
-  const containerRef = useRef(null); // 👈 New: Ref for card container
+  const containerRef = useRef(null);
   const hasPlayed = useRef(false);
-  gsap.registerPlugin(ScrollTrigger);
+  const animationRefs = useRef({
+    timeline: null,
+    moveY: null,
+    clickAnimations: []
+  });
+  const [openedIndex, setOpenedIndex] = useState(-1);
 
+  // GSAP animations setup
   useGSAP(() => {
-    // const video = videoRef.current;
-
+    // ScrollTrigger for play state
     ScrollTrigger.create({
       trigger: parentRef.current,
       start: "top 30%",
       onEnter: () => {
         if (!hasPlayed.current) {
-          // video.play();
           hasPlayed.current = true;
         }
       },
     });
 
-    if (window.innerWidth > 600) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: parentRef.current,
-          start: "top -100%",
-          end: "top -240%",
-          scrub: 1,
-        },
-      });
-      tl.from(cardRefs.current, {
-        y: 100,
-        duration: 3,
-        opacity: 0,
-        stagger: 3,
-        ease: "expoScale(0.5,7,none)",
-      });
-      
-    } else {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: parentRef.current,
-          start: "top -100%",
-          end: "top -230%",
-          scrub: 1,
-        },
-      });
-      tl.from(cardRefs.current, {
-        top: "50%",
-        duration: 4,
-        opacity: 0,
-        stagger: 5,
-        ease: "expoScale(0.5,7,none)",
-      });
+    // Clear previous animations
+    if (animationRefs.current.timeline) {
+      animationRefs.current.timeline.kill();
+    }
+    if (animationRefs.current.moveY) {
+      animationRefs.current.moveY.kill();
     }
 
+    // Create card entrance animation
+    animationRefs.current.timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: parentRef.current,
+        start: "top -100%",
+        end: window.innerWidth > 600 ? "top -240%" : "top -230%",
+        scrub: 1,
+      },
+    });
 
+    animationRefs.current.timeline.from(cardRefs.current, {
+      y: window.innerWidth > 600 ? 100 : "50%",
+      opacity: 0,
+      duration: window.innerWidth > 600 ? 3 : 4,
+      stagger: window.innerWidth > 600 ? 3 : 5,
+      ease: "expoScale(0.5,7,none)",
+    });
 
-  }, []);
-
-  useGSAP(()=>{
-    const moveY = gsap.to(parentRef.current, {
+    // Create moveY animation
+    animationRefs.current.moveY = gsap.to(parentRef.current, {
       y: "40%",
       duration: 20,
       ease: "power1.inOut",
@@ -111,17 +104,26 @@ function HowItWorks() {
         start: "top -244%",
         end: "top -344%",
         scrub: 1,
-        // markers:true
       },
     });
-  },[])
 
-  const [openedIndex, setopenedIndex] = useState(-1);
+    return () => {
+      // Cleanup GSAP animations
+      if (animationRefs.current.timeline) {
+        animationRefs.current.timeline.kill();
+      }
+      if (animationRefs.current.moveY) {
+        animationRefs.current.moveY.kill();
+      }
+    };
+  }, []);
 
-  const handleClick = (i) => {
+  // Card click handler
+  const handleClick = useCallback((i) => {
     if (i !== openedIndex) {
       handleClose();
-      gsap.to(cardRefs.current[i], {
+      
+      const animation = gsap.to(cardRefs.current[i], {
         left: "50%",
         scale: 1.2,
         zIndex: 2,
@@ -130,36 +132,26 @@ function HowItWorks() {
         duration: 0.8,
         ease: "power4.inOut",
         onStart: () => {
-          const unflipped =
-            cardRefs.current[i].querySelector(".unflipped-text");
+          const unflipped = cardRefs.current[i].querySelector(".unflipped-text");
           const flipped = cardRefs.current[i].querySelector(".flipped-text");
           const tl = gsap.timeline();
-          tl.to(
-            unflipped,
-            {
-              opacity: 0,
-            },
-            "a"
-          );
-          tl.to(
-            flipped,
-            {
-              opacity: 1,
-            }
-            // "a"
-          );
+          tl.to(unflipped, { opacity: 0 }, "a");
+          tl.to(flipped, { opacity: 1 }, "a");
         },
-        onComplete() {
-          setopenedIndex(i);
+        onComplete: () => {
+          setOpenedIndex(i);
+          // Store animation for cleanup
+          animationRefs.current.clickAnimations[i] = animation;
         },
       });
     }
-  };
+  }, [openedIndex]);
 
-  const handleClose = () => {
-    setopenedIndex(-1);
+  // Card close handler
+  const handleClose = useCallback(() => {
+    setOpenedIndex(-1);
     cardRefs.current.forEach((e, i) => {
-      gsap.to(e, {
+      const animation = gsap.to(e, {
         left: 20 * (i * 1.4 + 1) + "%",
         scale: 1,
         zIndex: 1,
@@ -169,26 +161,16 @@ function HowItWorks() {
           const unflipped = e.querySelector(".unflipped-text");
           const flipped = e.querySelector(".flipped-text");
           const tl = gsap.timeline();
-          tl.to(
-            unflipped,
-            {
-              opacity: 1,
-            },
-            "a"
-          );
-          tl.to(
-            flipped,
-            {
-              opacity: 0,
-            },
-            "a"
-          );
+          tl.to(unflipped, { opacity: 1 }, "a");
+          tl.to(flipped, { opacity: 0 }, "a");
         },
       });
+      // Store animation for cleanup
+      animationRefs.current.clickAnimations[i] = animation;
     });
-  };
+  }, []);
 
-  // 👇 Click outside logic
+  // Click outside handler
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
@@ -199,6 +181,36 @@ function HowItWorks() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      // Cleanup click animations
+      animationRefs.current.clickAnimations.forEach(anim => anim?.kill());
+    };
+  }, [handleClose]);
+
+  // Responsive left position calculation
+  const getCardLeftPosition = useCallback((index) => {
+    return window.innerWidth > 600 ? `${8 * (index * 3.5 + 2.5)}%` : "50%";
+  }, []);
+
+  // Component cleanup
+  useEffect(() => {
+    return () => {
+      // Kill all animations and ScrollTriggers
+      if (animationRefs.current.timeline) {
+        animationRefs.current.timeline.kill();
+        animationRefs.current.timeline.scrollTrigger?.kill();
+      }
+      if (animationRefs.current.moveY) {
+        animationRefs.current.moveY.kill();
+        animationRefs.current.moveY.scrollTrigger?.kill();
+      }
+      animationRefs.current.clickAnimations.forEach(anim => anim?.kill());
+      
+      // Kill all related ScrollTriggers
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === parentRef.current) {
+          trigger.kill();
+        }
+      });
     };
   }, []);
 
@@ -209,29 +221,19 @@ function HowItWorks() {
         className="how-it-works min-h-screen sticky top-0 overflow-hidden"
       >
         <div className="absolute w-screen h-screen z-[-1]">
-          {/* <video
-            ref={videoRef}
-            className="w-full h-full object-cover"
-            id="our-work-video"
-            src="./1.mp4"
-            muted
-            autoPlay
-            playsInline
-          /> */}
-
-            <HowItWorksCanvas />
-
+          <HowItWorksCanvas />
         </div>
+        
         <div className="container-xxl absolute top-0 left-0 right-0 bottom-0 h-full w-full">
           <MainHeading
             heading="HOW IT WORKS"
             pera="We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
-            cl={"text-center"}
-            tColor={"text-white"}
+            cl="text-center"
+            tColor="text-white"
           />
 
           <div
-            ref={containerRef} // 👈 Added here
+            ref={containerRef}
             className="wolf-card-container h-[70vh] md:h-fit relative grid md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5 mt-20"
           >
             {data.map((dataChild, index) => (
@@ -241,10 +243,7 @@ function HowItWorks() {
                 style={{
                   background: dataChild.bg_Color,
                   top: 0,
-                  left:
-                    window.innerWidth > 600
-                      ? 20 * (index * 1.4 + 1) + "%"
-                      : "50%",
+                  left: getCardLeftPosition(index),
                 }}
                 key={index}
                 onClick={() => window.innerWidth > 600 && handleClick(index)}
@@ -254,7 +253,8 @@ function HowItWorks() {
                     <img
                       src={dataChild.img}
                       alt="Wolf Icon"
-                      className=" mx-auto w-full"
+                      className="mx-auto w-full"
+                      loading="lazy"
                     />
                   </div>
                   <div className="wolf-text grid gap-1">
@@ -274,7 +274,7 @@ function HowItWorks() {
                       {dataChild.h2}
                     </h4>
                     <p
-                      className=" text-[#EAEAEA]"
+                      className="text-[#EAEAEA]"
                       style={{ fontSize: "clamp(10px, 20vw, 14px)" }}
                     >
                       {dataChild.p}
@@ -300,6 +300,6 @@ function HowItWorks() {
       </section>
     </div>
   );
-}
+};
 
 export default HowItWorks;

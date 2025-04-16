@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import HeadingWithLink from "../../components/HeadingWithLink";
 import WolfCard from "../../components/WolfCards";
 import { useGSAP } from "@gsap/react";
@@ -20,7 +20,7 @@ function HowWeWork() {
       quoat: "Only the strongest survive.",
       bgColor: "bg-gray-900",
       textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public//wolf-face.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ function HowWeWork() {
       quoat: "Claim what’s yours and make it unshakable.",
       bgColor: "bg-gray-700",
       textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public//wolf-face.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
     },
     {
       id: 3,
@@ -50,7 +50,7 @@ function HowWeWork() {
       quoat: "A true leader runs with the pack but leads from the front.",
       bgColor: "bg-orange-500",
       textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public//wolf-face.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
     },
     {
       id: 4,
@@ -65,51 +65,65 @@ function HowWeWork() {
       quoat: "Survival is only the beginning. Domination is the goal.",
       bgColor: "bg-orange-700",
       textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public//wolf-face.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
     },
   ];
 
   const cardsRef = useRef([]);
+  const sectionRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 600);
+
+  // Handle resize to update isDesktop state
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 600);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   gsap.registerPlugin(ScrollTrigger);
+
   useGSAP(() => {
-    if (window.innerWidth > 600) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".how-we-work",
-          start: "top 10%",
-          end: "top -90%",
-          scrub: 1,
-        },
-      });
+    if (!sectionRef.current || !cardsRef.current.length) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 0%", // Adjusted for smoother trigger
+        end: "top -100%",
+        scrub: 1,
+      },
+    });
+
+    if (isDesktop) {
       tl.from(cardsRef.current, {
-        x: "-1000%",
+        x: "-500%", // Changed to percentage for consistency
         duration: 1.5,
+        ease: "power2.out",
         stagger: 0.2,
       });
     } else {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".how-we-work",
-          start: "top 10%",
-          end: "top -90%",
-          scrub: 1,
+      tl.fromTo(
+        cardsRef.current,
+        {
+          top: "100%",
+          opacity: 0,
         },
-      });
-      tl.fromTo(cardsRef.current, {
-        top: "150%",
-        // y: "105%",
-        stagger: 0.3,
-      },{
-        top:"10%",
-        stagger: 0.3,
-      });
+        {
+          top: "0%",
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+          stagger: 1.2,
+        }
+      );
     }
-  }, [cardsRef.current, window.innerWidth]);
-  console.log(cardsRef);
+  }, [isDesktop]);
 
   return (
-    <div className=" relative min-h-[200vh]">
-      <section className="sticky top-0 min-h-screen how-we-work py-10 overflow-hidden">
+    <div className="relative min-h-[200vh]">
+      <section ref={sectionRef} className="sticky top-0 min-h-screen how-we-work py-10 overflow-hidden">
         <div className="min-h-screen container mx-auto px-4">
           {/* Heading Section */}
           <HeadingWithLink
@@ -119,14 +133,13 @@ function HowWeWork() {
           />
 
           {/* Grid Layout for Cards */}
-          <div className="relative mt-20 w-full flex h-[60vh] flex-col md:flex-row gap-5 ">
+          <div className="relative mt-20 w-full flex h-[60vh] flex-col md:flex-row gap-5">
             {cardList.map((card, i) => (
               <WolfCard
                 ref={(el) => (cardsRef.current[i] = el)}
                 key={card.id}
                 {...card}
-                className=""
-                style={{}}
+                className="absolute md:relative"
               />
             ))}
           </div>

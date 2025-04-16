@@ -20,33 +20,41 @@ const Section = ({ title, img, p }) => {
         scrub: true,
       },
     });
-    tl.from(
+    tl.fromTo(
       sectionRef.current,
       {
         scale: 0.65,
         y: "10%",
         borderRadius: "18px",
-        duration: 10,
         ease: "power1.inOut",
+      },{
+        scale: 1,
+        y: "0%",
+        borderRadius: "0px",
+        duration: 10,
       },
       "a"
     );
-    tl.from(
+    tl.fromTo(
       [imgref.current, textRef.current],
       {
         scale: 1.35,
-        duration: 10,
+        // duration: 10,
         ease: "power1.inOut",
+      },{
+        scale: 1,
+        duration: 10,
+        // ease: "power1.inOut",
       },
       "a"
     );
   }, [sectionRef.current, containerRef.current, imgref.current]);
 
   return (
-    <div className="min-h-[200vh] w-full h-full  bg-black relative">
-      <div className=" min-h-screen pt-20 w-full sticky top-0">
+    <div className="min-h-[200vh] w-full h-full bg-black relative">
+      <div className="min-h-screen pt-20 w-full sticky top-0">
         {/* Title */}
-        <h2 className="text-5xl md:text-8xl font-black uppercase  mb-6 relative font-inter text-center">
+        <h2 className="text-5xl md:text-8xl font-black uppercase mb-6 relative font-inter text-center">
           <span className="absolute inset-0 text-black custom-stroke">
             {title}
           </span>
@@ -57,19 +65,22 @@ const Section = ({ title, img, p }) => {
         <div
           ref={sectionRef}
           className="absolute top-0 left-0 h-full w-full overflow-hidden"
+          style={{ willChange: 'transform' }}
         >
           {/* Background Image */}
           <img
             ref={imgref}
-            src={img} // 🔴 Replace with actual image path
+            src={img}
             alt="Our Vision"
-            className=" h-full w-full object-cover"
+            className="h-full w-full object-cover"
+            style={{ willChange: 'transform' }}
           />
 
           {/* Text Overlay */}
           <div
             ref={textRef}
-            className="absolute inset-0 flex items-center justify-center  rounded-lg p-6 font-inter text-center"
+            className="absolute inset-0 flex items-center justify-center rounded-lg p-6 font-inter text-center"
+            style={{ willChange: 'transform' }}
           >
             <p className="text-[#B2B2B2] text-sm md:text-xl font-bold max-w-[250px] md:max-w-[750px]">
               <TextAnimation2 animeStart="20" duration={0.5}>
@@ -84,6 +95,8 @@ const Section = ({ title, img, p }) => {
 };
 
 const OurVision = () => {
+  gsap.ticker.lagSmoothing(1000, 16);
+
   const data = [
     {
       title: "OUR VISION",
@@ -92,14 +105,15 @@ const OurVision = () => {
       venenatis magna tellus conubia cras convallis montes in. Nibh consectetur etiam himenaeos mi semper malesuada.`,
     },
     {
-      title: "OUR Mission",
+      title: "OUR MISSION",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/our-vision.png",
       p: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curae non
       venenatis magna tellus conubia cras convallis montes in. Nibh consectetur etiam himenaeos mi semper malesuada.`,
     },
   ];
+
   return (
-    <section className=" h-full w-full  ">
+    <section className="h-full w-full">
       {data.map((d, i) => (
         <Section title={d.title} img={d.img} p={d.p} key={i} />
       ))}

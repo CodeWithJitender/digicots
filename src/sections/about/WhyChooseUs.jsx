@@ -8,52 +8,21 @@ import TextAnimation2 from "../../animation/text/TextAnimation2";
 const CardComponent = ({ card, index }) => {
   const cardRef = useRef(null);
 
-  // const handleMouseEnter = () => {
-
-  // };
-
   useGSAP(() => {
     gsap.to(cardRef.current, {
-      // x: "random(-5, 5, true)", // Random shake horizontally with snapping
-      // y: "random(-5, 5, true)", // Random shake vertically with snapping
-      rotationZ: index %2? "10deg" : "-10deg", // Slight rotation with snapping
-      duration: 3, // Duration of each shake
-      repeat: -1, // Infinite repeats
-      // yoyo: true, // Back and forth effect
-      // ease: "back.inOut", // Linear easing for a more erratic shake
-      onUpdate: () => {
-        // Add a slight delay between shakes for a more natural feel
-        //   gsap.delayedCall(0.05, () => {
-        //     gsap.set(cardRef.current, {
-        //       x: "random(-5, 5, true)",
-        //       y: "random(-5, 5, true)",
-        //       rotation: "random(-5, 5, true)",
-        //     });
-        //   });
-        // },
-      },
+      rotationZ: index % 2 ? "10deg" : "-10deg",
+      duration: 3,
+      repeat: -1,
+      onUpdate: () => {},
     });
   }, [cardRef.current]);
-
-  // const handleMouseLeave = () => {
-  //   gsap.killTweensOf(cardRef.current); // Stop all ongoing animations
-  //   gsap.to(cardRef.current, {
-  //     x: 0,
-  //     y: 0,
-  //     rotation: card.rotation,
-  //     duration: 0.3,
-  //     ease: "power2.out",
-  //   });
-  // };
 
   return (
     <div
       key={card.id}
       ref={cardRef}
-      // onMouseEnter={handleMouseEnter}
-      // onMouseLeave={handleMouseLeave}
       className={`relative transform ${card.rotation} bg-white p-4 rounded-[14px] shadow-lg max-w-[150px] left-0 sm:w-[300px] sm:max-w-[300px] transition`}
-      style={{ top: index * 20, left: index * 10 }}
+      style={{ top: index * 20, left: index * 10, willChange: 'transform' }}
     >
       <img src={card.image} alt={card.title} className="w-full rounded-lg" />
       <span className="absolute top-3 w-full sm:left-[-10%] bg-white text-[#ED510C] px-3 py-1 rounded-[14px] text-2xl font-bold">
@@ -65,6 +34,8 @@ const CardComponent = ({ card, index }) => {
 };
 
 const WhyChooseUs = () => {
+  gsap.ticker.lagSmoothing(1000, 16);
+
   const cards = [
     {
       id: 1,
@@ -122,16 +93,19 @@ const WhyChooseUs = () => {
         },
       });
 
-      tl.from(sectionRef.current, {
+      tl.fromTo(sectionRef.current, {
         scale: 0.9,
         borderRadius: "19px",
+      },{
+        scale: 1,
+        borderRadius: "0px",
       })
         .to(scrollXRef.current, {
           transform: `translateX(-70%)`,
           duration: 10,
         })
         .to(sectionRef.current, {
-          scale: 0.9,
+          scale: .9,
           borderRadius: "19px",
         });
     } else {
@@ -143,9 +117,12 @@ const WhyChooseUs = () => {
           scrub: 1,
         },
       });
-      tl.from(sectionRef.current, {
+      tl.fromTo(sectionRef.current, {
         scale: 0.9,
         borderRadius: "19px",
+      },{
+        scale: 1,
+        borderRadius: "0px",      
       })
         .to(scrollXRef.current, {
           transform: `translateY(-5%)`,
@@ -157,19 +134,19 @@ const WhyChooseUs = () => {
         });
     }
   }, [scrollXRef.current, window.innerWidth, sectionRef.current]);
-  // console.log(cardsRef)
 
   return (
     <div className="why-choose min-h-[300vh]">
       <section
         ref={sectionRef}
         className="bg-[#ED510C] sticky top-0 min-h-[100vh] flex items-center overflow-hidden no-scrollBar py-20 px-6 md:px-20"
+        style={{ willChange: 'transform' }}
       >
         <div
           ref={scrollXRef}
           className="mx-auto flex flex-col sm:flex-row sm:items-center translate-y-[20%] sm:translate-y-[0%] sm:translate-x-[100%] gap-10 min-w-screen sm:min-w-[400vw]"
+          style={{ willChange: 'transform' }}
         >
-          {/* Left Text Content */}
           <div className="text-white sm:w-fit">
             <h2 className="sm:w-[500px] w-[90vw] text-4xl md:text-5xl font-bold mb-4 overflow-hidden">
               WHY CHOOSE US?
@@ -184,8 +161,6 @@ const WhyChooseUs = () => {
               Scroll To actually know why →
             </p>
           </div>
-
-          {/* Right Cards Content */}
           {cards.map((card, index) => (
             <div className="relative flex sm:justify-end ml-[10%]">
               <CardComponent key={card.id} card={card} index={index} />

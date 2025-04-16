@@ -52,7 +52,7 @@ const Faq = () => {
   },[])
 
   return (
-    <section className="bg-black text-white relative">
+    <section className="bg-black text-white relative z-[6]">
       <div className="container-xxl">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:[grid-template-columns:40%_60%] gap-12">
           {/* Left Side - Heading */}

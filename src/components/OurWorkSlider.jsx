@@ -16,7 +16,6 @@ const images = Array(2).fill(baseImages).flat();
 
 
 const CylindricalSlider = () => {
-  console.log(window.innerWidth);
   const checkoutRef = useRef(null);
   const sliderRef = useRef(null);
   const isInsideItem = useRef(false); // Track if mouse is inside an item

@@ -71,7 +71,7 @@ function Testimonials() {
 
 
   return testimonials.length > 0 && (
-    <section ref={testimonialsRef} className="testimonial min-h-screen relative py-10 md:px-40 bg-white">
+    <section ref={testimonialsRef} className="testimonial min-h-screen relative z-[5] py-10 md:px-40 bg-white">
       <div className="container">
         <MainHeading
           heading="TESTIMONIALS"

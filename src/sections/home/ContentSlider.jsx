@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
+// Register plugins once
 gsap.registerPlugin(ScrollTrigger);
 
 const contentData = [
@@ -129,20 +130,25 @@ const contentData = [
 ];
 
 const ContentSlider = () => {
-  const mainSlider = useRef();
-  const thumbSlider = useRef();
+  const mainSlider = useRef(null);
+  const thumbSlider = useRef(null);
   const containerRef = useRef(null);
   const headingRef = useRef(null);
   const thumbRef = useRef(null);
+  const animationRefs = useRef({
+    animations: [],
+    scrollTriggers: []
+  });
 
+  // Slider settings
   const mainSettings = {
     asNavFor: thumbSlider.current,
     arrows: false,
-    // autoplay: true,
-    // autoplaySpeed: 2000,
     ref: (slider) => (mainSlider.current = slider),
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
     fade: true,
   };
 
@@ -154,17 +160,35 @@ const ContentSlider = () => {
     focusOnSelect: true,
     centerMode: true,
     arrows: false,
-    autoplay: true,
-    autoplaySpeed: 2000,
     responsive: [
       { breakpoint: 768, settings: { slidesToShow: 3 } },
       { breakpoint: 480, settings: { slidesToShow: 2 } },
     ],
   };
 
-  useGSAP(
-    () => {
-      // Heading Animation
+  // Animation cleanup function
+  const cleanupAnimations = useCallback(() => {
+    animationRefs.current.animations.forEach(anim => anim?.kill());
+    animationRefs.current.scrollTriggers.forEach(trigger => trigger?.kill());
+    animationRefs.current.animations = [];
+    animationRefs.current.scrollTriggers = [];
+  }, []);
+
+  // Register animation for cleanup
+  const registerAnimation = useCallback((animation) => {
+    animationRefs.current.animations.push(animation);
+    if (animation.scrollTrigger) {
+      animationRefs.current.scrollTriggers.push(animation.scrollTrigger);
+    }
+    return animation;
+  }, []);
+
+  // GSAP animations
+  useGSAP(() => {
+    cleanupAnimations();
+
+    // Heading Animation
+    registerAnimation(
       gsap.fromTo(
         headingRef.current,
         { opacity: 0, y: -50, scale: 0.9 },
@@ -180,16 +204,18 @@ const ContentSlider = () => {
             toggleActions: "play none none none",
           },
         }
-      );
+      )
+    );
 
-      // Thumbnails Animation
-      gsap.fromTo(
+    // Thumbnails Animation
+    if (thumbRef.current) {
+      const thumbAnimation = gsap.fromTo(
         thumbRef.current.querySelectorAll(".slick-slide"),
-        { opacity: 0, scale:1.2 , filter:"blur(10px)" },
+        { opacity: 0, scale: 1.2, filter: "blur(10px)" },
         {
           opacity: 1,
-          scale:1,
-          filter:"blur(0px)",
+          scale: 1,
+          filter: "blur(0px)",
           duration: 1,
           stagger: 0.1,
           ease: "power2.out",
@@ -200,8 +226,11 @@ const ContentSlider = () => {
           },
         }
       );
+      registerAnimation(thumbAnimation);
+    }
 
-      // Slider Content Animations
+    // Slider Content Animations
+    if (containerRef.current) {
       const slides = containerRef.current.querySelectorAll(".solution-box");
       slides.forEach((slide) => {
         const mainBlock = slide.querySelector(".solution-main");
@@ -210,87 +239,99 @@ const ContentSlider = () => {
         const bgHeading = slide.querySelector(".heading-cot h1");
 
         // Main Content Block
-        gsap.fromTo(
-          mainBlock,
-          { opacity: 0, x: -100 },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: slide,
-              start: "top 80%",
-              end: "top 20%",
-              scrub: 0.5,
-            },
-          }
-        );
+        if (mainBlock) {
+          registerAnimation(
+            gsap.fromTo(
+              mainBlock,
+              { opacity: 0, x: -100 },
+              {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: slide,
+                  start: "top 80%",
+                  end: "top 20%",
+                  scrub: 0.5,
+                },
+              }
+            )
+          );
+        }
 
         // Image
-        gsap.fromTo(
-          imgBlock,
-          { opacity: 0, scale: 0.8 },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: slide,
-              start: "top 80%",
-              end: "top 20%",
-              scrub: 0.5,
-            },
-          }
-        );
+        if (imgBlock) {
+          registerAnimation(
+            gsap.fromTo(
+              imgBlock,
+              { opacity: 0, scale: 0.8 },
+              {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: slide,
+                  start: "top 80%",
+                  end: "top 20%",
+                  scrub: 0.5,
+                },
+              }
+            )
+          );
+        }
 
         // Tags
         if (tagBlock) {
-          gsap.fromTo(
-            tagBlock.querySelectorAll("button"),
-            { opacity: 0, x: 50 },
-            {
-              opacity: 1,
-              x: 0,
-              duration: 0.8,
-              stagger: 0.1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: slide,
-                start: "top 80%",
-                end: "top 20%",
-                scrub: 0.5,
-              },
-            }
+          registerAnimation(
+            gsap.fromTo(
+              tagBlock.querySelectorAll("button"),
+              { opacity: 0, x: 50 },
+              {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: slide,
+                  start: "top 80%",
+                  end: "top 20%",
+                  scrub: 0.5,
+                },
+              }
+            )
           );
         }
 
         // Background Heading
-        gsap.fromTo(
-          bgHeading,
-          { opacity: 0, rotate: 5 },
-          {
-            opacity: 0.3,
-            rotate: 0,
-            duration: 1.5,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: slide,
-              start: "top 80%",
-              end: "top 20%",
-              scrub: 0.5,
-            },
-          }
-        );
+        if (bgHeading) {
+          registerAnimation(
+            gsap.fromTo(
+              bgHeading,
+              { opacity: 0, rotate: 5 },
+              {
+                opacity: 0.3,
+                rotate: 0,
+                duration: 1.5,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: slide,
+                  start: "top 80%",
+                  end: "top 20%",
+                  scrub: 0.5,
+                },
+              }
+            )
+          );
+        }
       });
+    }
+  }, { scope: containerRef, dependencies: [contentData] });
 
-
-    },
-    { scope: containerRef }
-  );
-
-  useGSAP(()=>{
+  // MoveY animation
+  useGSAP(() => {
     const moveY = gsap.to(containerRef.current, {
       y: "40%",
       duration: 20,
@@ -300,21 +341,44 @@ const ContentSlider = () => {
         start: "top -50%",
         end: "top -200%",
         scrub: 1,
-        // markers:true
       },
     });
-  },[])
+    registerAnimation(moveY);
+  }, []);
 
+  // Component cleanup
+  useEffect(() => {
+    return () => {
+      cleanupAnimations();
+      
+      // Cleanup sliders
+      if (mainSlider.current) {
+        mainSlider.current.unslick?.();
+      }
+      if (thumbSlider.current) {
+        thumbSlider.current.unslick?.();
+      }
+
+      // Cleanup all ScrollTriggers
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === containerRef.current || 
+            trigger.trigger === headingRef.current || 
+            trigger.trigger === thumbRef.current) {
+          trigger.kill();
+        }
+      });
+    };
+  }, [cleanupAnimations]);
 
   return (
-    <div ref={containerRef} className=" bg-white relative z-[2]">
+    <div ref={containerRef} className="bg-white relative z-[2]">
       <div className="container-xxl">
         <div ref={headingRef}>
           <HeadingWithLink
             head="SOLUTIONS"
             per="Lorem ipsum dolor sit amet, consectetur adipiscing"
-            link={"/contact"}
-            linkh={"Contact Us"}
+            link="/contact"
+            linkh="Contact Us"
           />
         </div>
       </div>
@@ -323,12 +387,13 @@ const ContentSlider = () => {
         <div className="slider-thumb mb-10" ref={thumbRef}>
           <Slider {...thumbSettings}>
             {contentData.map((item, index) => (
-              <div key={index} className="px-2">
+              <div key={`thumb-${index}`} className="px-2">
                 <div className="border-2 border-[#ED510C] rounded-lg overflow-hidden cursor-pointer">
                   <img
                     src={item.thumbnail}
                     alt={item.heading}
                     className="w-full hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -337,9 +402,9 @@ const ContentSlider = () => {
         </div>
 
         <div className="md:col-start-2 md:col-span-2">
-          <Slider {...mainSettings} className="">
+          <Slider {...mainSettings}>
             {contentData.map((data, index) => (
-              <div key={index}>
+              <div key={`main-${index}`}>
                 <div className="solution-box relative lg:h-[600px] xl:h-[500px]">
                   {/* Background Heading */}
                   <div className="heading-cot absolute w-full h-full flex lg:items-center justify-center text-center z-[-1]">
@@ -363,9 +428,9 @@ const ContentSlider = () => {
                         <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C]"></i>
                       </Link>
                       <div className="flex flex-wrap gap-4 mt-4 lg:hidden">
-                        {data.tag.map((text, index) => (
+                        {data.tag.filter(t => t).map((text, index) => (
                           <button
-                            key={index}
+                            key={`mobile-tag-${index}`}
                             className="border-2 border-[#ED510C] text-[#ED510C] px-4 py-2 rounded-[20px] font-inter font-bold text-start"
                           >
                             <Link>
@@ -382,16 +447,17 @@ const ContentSlider = () => {
                       <img
                         src={data.img}
                         className="w-full max-w-[500px]"
-                        alt=""
+                        alt={data.heading}
+                        loading="lazy"
                       />
                     </div>
 
                     {/* Tags */}
                     <div className="solution-tag bg-[#202020] rounded-[24px] p-6 lg:p-8 hidden lg:block md:col-start-3">
                       <div className="flex flex-wrap gap-4 text-start">
-                        {data.tag.map((text, index) => (
+                        {data.tag.filter(t => t).map((text, index) => (
                           <button
-                            key={index}
+                            key={`desktop-tag-${index}`}
                             className="border-2 border-[#ED510C] text-[#ED510C] px-4 py-2 rounded-[20px] font-inter font-bold"
                           >
                             <Link>

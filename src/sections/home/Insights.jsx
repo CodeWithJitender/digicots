@@ -52,7 +52,7 @@ function Insights() {
       tl =gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
-          start: "top 10%",
+          start: "top 0%",
           end: "top -140%",
           scrub: 1,
           // snap:true
@@ -87,7 +87,7 @@ function Insights() {
       tl =gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
-          start: "top 10%",
+          start: "top 0%",
           end: "top -200%",
           scrub: 1,
           // snap:true
@@ -142,8 +142,8 @@ function Insights() {
   // console.log(blackBoxTextRef);
 
   return (
-    <div className="min-h-[250vh] relative top-[-1px]">
-      <section ref={parentRef} className="insights sticky top-0 overflow-hidden">
+    <div className="min-h-[250vh] relative top-[-1px] z-[3] bg-black">
+      <section ref={parentRef} className="insights sticky top-0 overflow-hidden bg-white">
         <div className="container-xxl">
           <MainHeading
           animeStart="27%"
