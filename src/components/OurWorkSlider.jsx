@@ -95,11 +95,11 @@ const CylindricalSlider = () => {
           click to check out
         </div>
       )}
-      <div className="slider relative" style={{ "--quantity": images.length }}>
+      <div className="slider relative " style={{ "--quantity": images.length }}>
         {images.map((src, i) => (
           <div
             key={i}
-            className="item relative group"
+            className="item relative group bg-white"
             style={{ "--position": i + 1 }}
             onMouseEnter={() => (isInsideItem.current = true)}
             onMouseLeave={() => (isInsideItem.current = false)}

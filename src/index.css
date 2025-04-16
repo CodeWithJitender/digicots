@@ -198,7 +198,6 @@ header .dropdown {
   height: 100vh;
   text-align: center;
   position: relative;
-  /* overflow-x: hidden; */
 }
 
 .banner .slider {
@@ -207,11 +206,12 @@ header .dropdown {
   height: 100vh;
   bottom: 10%;
   left: calc(50% - 40vw);
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  /* transform: perspective(2400px); */
-  animation: autoRun 50s linear infinite;
+  animation: autoRun 20s linear infinite;
   z-index: 2;
   scale: 0.9;
+  will-change: transform;
 }
 
 /* Animation Stop on Hover */
@@ -221,11 +221,9 @@ header .dropdown {
 
 @keyframes autoRun {
   from {
-    /* transform: perspective(1500px) rotateX(0deg) rotateY(0deg); */
     transform: perspective(100vw) rotateX(0deg) rotateY(0deg);
   }
   to {
-    /* transform: perspective(1500px) rotateX(0deg) rotateY(360deg); */
     transform: perspective(100vw) rotateX(0deg) rotateY(360deg);
   }
 }
@@ -236,11 +234,9 @@ header .dropdown {
   height: 250vh;
   width: 2300px;
   transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
-    translateZ(4400px);
+    translateZ(4500px);
   cursor: pointer;
   overflow: hidden;
-  /* backface-visibility: hidden;
-    -webkit-backface-visibility: hidden; */
 }
 
 .banner .slider .item .checkout {
@@ -252,15 +248,12 @@ header .dropdown {
 }
 
 .banner .slider .item img {
-  transform: scaleX(-1) translateZ(0.1px);
+  transform: scaleX(-1);
   width: 100%;
   height: 100%;
   object-fit: cover;
-  image-rendering: crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
   will-change: transform;
 }
-
 @media screen and (max-width: 767px) {
   .banner .slider {
     position: absolute;
