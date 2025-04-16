@@ -400,29 +400,46 @@ transform: translateZ(calc(var(--index) * 10));
 
 /* Solution */
 
-.solution-box:hover .text-stroke {
-  -webkit-text-fill-color: #ed510c; /* Will override color (regardless of order) */
+
+.font-great-vibes {
+  font-family: "Great Vibes", cursive;
+}
+.text-stroke {
+  color: black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #ed510c;
+  font-weight: 900;
+  transition:  -webkit-text-stroke-color  .5s;
+}
+.solution-box:hover .text-stroke{
+  -webkit-text-fill-color:#ed510c; /* Will override color (regardless of order) */
 }
 .solution-main,
-.solution-tag {
+.solution-tag{
   opacity: 0;
   visibility: hidden;
-  transition: all 0.5s;
+  transition: all .5s;
 }
-.slider-thumb .slick-active.slick-current .overflow-hidden.cursor-pointer {
-  background-color: #ed510c26 !important;
+.slider-thumb .slick-active.slick-current .overflow-hidden.cursor-pointer{
+  background-color: #ED510C26 !important;
 }
-@media screen and (max-width: 992px) {
+@media screen and (max-width:992px) {
   .solution-main,
-  .solution-tag {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-.solution-box:hover .solution-main,
-.solution-box:hover .solution-tag {
+.solution-tag{
   opacity: 1;
   visibility: visible;
+}
+}
+.solution-box:hover .solution-main,
+.solution-box:hover .solution-tag{
+  opacity: 1;
+  visibility: visible;
+}
+
+.custom-stroke {
+  -webkit-text-stroke: 0.5px #ed510c;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Apply grayscale to all images by default */
