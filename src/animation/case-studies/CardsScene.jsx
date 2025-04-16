@@ -7,36 +7,36 @@ import CaseStudy from "../../sections/case-studies/CaseStudy";
 import { useGSAP } from "@gsap/react";
 
 const textures = [
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
-  "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
 ];
 
 const textureLoader = new THREE.TextureLoader();
@@ -433,7 +433,7 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
 const Slide = ({ index, onClose, setSelectedIndex }) => {
   const slides = [
     {
-      image: "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-1.png",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
       title: "Apple Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -441,7 +441,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       ],
       section: [
         [
-          { key: "title", value: "Apple Marketing Case Study" },
+          // { key: "title", value: "Apple Marketing Case Study" },
           { key: "p", value: "Did you know that Apple Inc. started in a garage as Apple Computer, Inc. and has market cap of over $3.5 trillion now? It is inspiring how such simple, small dreams turn into overwhelming realities." },
           { key: "p", value: "In 1976, Steve Jobs, Steve Wozniak & Ronald Wayne founded the trillion-dollar tech behemoth. It has managed to dominate the global market and sold more than 230 million units in 2024! With its sleek designs, state-of-the-art technologies and a loyal consumer cult, Apple has completely transformed the way people talk, work and relax." },
           { key: "p", value: "Apple’s rather minimalistic marketing character perfectly aligns with its brand image and target audience. However, when entering India – a price-conscious market, the challenges were big:" },
@@ -491,7 +491,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-2.png",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
       title: "Tropicana Rebranding Failure Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -499,7 +499,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       ],
       section: [
         [
-          { key: "title", value: "Tropicana Rebranding Failure Case Study" },
+          // { key: "title", value: "Tropicana Rebranding Failure Case Study" },
           { key: "p", value: "Tropicana is a brand specializing in fresh fruit juices. It was established in 1947 by Anthony Talamo Rossi in Bradenton, Florida. He wanted everyone to enjoy the kind of fresh orange juice he had growing up. Fast forward to 1952, and they launched 'Tropicana Pure Premium' which was frozen orange juice concentrate. Then, just a couple years later, they came up with this cool flash pasteurization thing. It keeps the juice tasting really fresh because they heat it up slower but for a bit longer than usual." },
           { key: "p", value: "The brand really took off when they ditched frozen concentrate and went all-in on their unique juice. That's when they became Tropicana Products, Inc. in '57 to show how big they were getting. The founder, Rossi, hung it up in '78 and Beatrice bought them out. PepsiCo grabbed Tropicana in '98, but then in 2021 sold most of it to PAI Partners, keeping a chunk for themselves. Tropicana Products, now part of PepsiCo, is still a huge player in the juice business." },
         ],
@@ -544,7 +544,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-3.png",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
       title: "Coca Cola Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -552,7 +552,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       ],
       section: [
         [
-          { key: "title", value: "Coca Cola Marketing Case Study" },
+          // { key: "title", value: "Coca Cola Marketing Case Study" },
           { key: "p", value: "The first glass of Coca Cola was served on May 8, 1886 by Dr John Pemberton as a pharmacist’s elixir. It has now turned into the world’s favorite refreshment drink – a mode of “sharing happiness” as they say." },
           { key: "p", value: "The Coca Cola Company currently averages 1.9 billion servings per day in 200 countries. With a community of over 700,000 employees and over 225 bottling partners, it has turned into a global brand with a market cap of over 273 billion US dollars." },
           { key: "p", value: "The Coca Cola Company had first entered the Indian market in the 1950s when it rapidly gained popularity. Their flagship product ‘Coca-Cola’ became synonymous with the classic red logo in no time. However, due to the Foreign Exchange Regulation Act in 1977, it had to exit the Indian market as it would lose 60% of its stake and the secret formula. Parle seized the opportunity and introduced carbonated beverages like Limca and Thumbs Up filling the vacuum. In 1993, the Coca Cola Company re-entered the Indian market and paved its path to market domination with their exceptional marketing strategy." },
@@ -627,7 +627,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-4.png",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-4.png",
       title: "Liquid Death Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -635,7 +635,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       ],
       section: [
         [
-          { key: "title", value: "Liquid Death Marketing Case Study" },
+          // { key: "title", value: "Liquid Death Marketing Case Study" },
           { key: "p", value: "Just imagine a brand that sells bottled water. Cold winds on a mountain; calm, serene oceans; and a bottle of plastic – that is what comes to mind, right?" },
           { key: "p", value: "Ironically, almost 3.5 million people die because of water each year as per a report by United Nations. Well, Mike Cessario, a former Netflix Creative Director, decided to leverage this violent side of the coin to his advantage." },
           { key: "p", value: "The story of Liquid Death was born during Mike’s travels with the Warped Tour in the early 2000s where he saw the show’s sponsor, Monster Energy struggle to maintain relevance. The performing stars were craving refreshment but not in the form of an energy drink; and it would’ve been a waste of dollars of the crowd watched them down bottles of water instead of their product. Monster came up with a master solution – special canned water for the stars to provide the illusion of punk rock drinking Monster. The result? Kids were lead to believe that monster was the coolest beverage to exist." },
@@ -687,7 +687,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "https://ik.imagekit.io/x5xessyka/digicots/public/case-study-5.png",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
       title: "Oreo Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -695,7 +695,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       ],
       section: [
         [
-          { key: "title", value: "Oreo Marketing Case Study" },
+          // { key: "title", value: "Oreo Marketing Case Study" },
           { key: "p", value: "Did you know that the number of Oreo cookies made every year could circle the earth over 5 times?" },
           { key: "p", value: "The Oreo cookie was first made by the National Biscuit Company in New York in 1912. People are so in love with the cookie that the street where the first cookie was made is literally named Oreo Way. It is now owned by Mondelez International & Cadbury Milka and served in over a hundred countries." },
           { key: "p", value: "The delicious cookie-crème sandwich was first brought to the Indian market in 2011 by Cadbury India as Cadbury Oreo. By leveraging the well-established brand image of Cadbury (a well-established Indian household brand), Oreo overcame the initial hassles of brand awareness & establishing trust with Indian consumers. In the first year after entering the Indian market, Oreo captured 1% of the total market share in the biscuit segment and holds a 6% market share as of today." },
