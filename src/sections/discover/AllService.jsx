@@ -225,7 +225,7 @@ function AllService() {
           p: "We're really good at making awesome user experiences! We use Adobe Figma to create wireframes, prototypes and user flows that are super detailed. Basically, we take what users want and what the business needs and we turn it into designs that are easy to use and look great. Our team works with everyone involved to make sure the final product is a hit with users and helps the business achieve its goals.",
         },
       },
-      id: "Website Development",
+      id: "website-development",
     },
     "Artificial Reality (AR)": {
       i: "Wildly Immersive Experiences",

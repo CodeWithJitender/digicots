@@ -11,7 +11,7 @@ function Header() {
       title: "Website Development",
       pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
       icon: "icon-1.png",
-      id: "Website Development",
+      id: "website-development",
     },
     {
       title: "Artificial Reality (AR)",
@@ -524,7 +524,7 @@ function Header() {
         <div className="header-left w-[30%] bg-[#ED510C] h-screen p-8 flex flex-col justify-between">
           <div className="">
             <div className="logo">
-              <img src="logo.png" className="w-full max-w-[249px]" alt="" />
+             <Link to={'/'}> <img src="logo.png" className="max-w-36 md:max-w-40 lg:max-w-52" alt="" /></Link>
             </div>
             <ul className="mt-5 flex flex-col gap-4">
               <li>
@@ -566,7 +566,7 @@ function Header() {
               Got an Idea?
             </p>
             <div className="mb-5">
-              <Link to={""} className="font-inter left-links inline-block text-3xl font-bold">
+              <Link to={"/contact"} className="font-inter left-links inline-block text-3xl font-bold">
                 <span className="text-[#242424]">Let’s Get in Touch</span>{" "}
                 <i class="far fa-arrow-right rotate-[-45deg] text-white"></i>
               </Link>
