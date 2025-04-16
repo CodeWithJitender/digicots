@@ -41,7 +41,6 @@ const slides = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    tags: ["Design", "Web-Dev", "Product"],
     section: [
       [
         { key: "title", value: "Apple Marketing Case Study" },
@@ -100,7 +99,6 @@ const slides = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    tags: ["Design", "Web-Dev", "Product"],
     section: [
       [
         { key: "title", value: "Tropicana Rebranding Failure Case Study" },
@@ -154,7 +152,6 @@ const slides = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    tags: ["Design", "Web-Dev", "Product"],
     section: [
       [
         { key: "title", value: "Coca Cola Marketing Case Study" },
@@ -238,7 +235,6 @@ const slides = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    tags: ["Design", "Web-Dev", "Product"],
     section: [
       [
         { key: "title", value: "Liquid Death Marketing Case Study" },
@@ -299,7 +295,6 @@ const slides = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    tags: ["Design", "Web-Dev", "Product"],
     section: [
       [
         { key: "title", value: "Oreo Marketing Case Study" },
