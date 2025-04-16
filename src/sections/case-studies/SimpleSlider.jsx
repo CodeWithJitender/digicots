@@ -5,7 +5,7 @@ import CaseStudy from "./CaseStudy";
 
 const slides = [
   {
-    image: "case-study-1.png",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
     title: "Apple Marketing Case Study",
     text: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -63,7 +63,7 @@ const slides = [
     tags: ["Design", "Web-Dev", "Product"],
   },
   {
-    image: "case-study-2.png",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
     title: "Tropicana Rebranding Failure Case Study",
     text: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -116,7 +116,7 @@ const slides = [
     tags: ["Design", "Web-Dev", "Product"],
   },
   {
-    image: "case-study-3.png",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
     title: "Coca Cola Marketing Case Study",
     text: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -199,7 +199,7 @@ const slides = [
     tags: ["Design", "Web-Dev", "Product"],
   },
   {
-    image: "case-study-4.png",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-4.png",
     title: "Liquid Death Marketing Case Study",
     text: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -259,7 +259,7 @@ const slides = [
     tags: ["Design", "Web-Dev", "Product"],
   },
   {
-    image: "case-study-5.png",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
     title: "Oreo Marketing Case Study",
     text: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
