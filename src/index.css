@@ -38,7 +38,7 @@
 }
 
 .container-xxl {
-    @apply max-w-7xl m-auto px-5 py-10 md:py-24;
+    @apply max-w-[1400px] m-auto px-5 py-10 md:py-24;
 }
 
 .container-xl {

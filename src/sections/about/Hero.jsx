@@ -273,7 +273,7 @@ function HeroText() {
     <section className="relative pointer-events-none h-full text-white px-8  flex flex-col md:flex-row items-center justify-between">
       <div className={window.innerWidth > 640 ? "container-xxl" : ""}>
         <div className="flex flex-col justify-center items-center">
-          <h2 className="text-[10vw] mt-[45vh] sm:text-[11vw] overflow-hidden text-zinc-950/[.5] sm:mt-[25vh] font-bold mb-6">
+          <h2 className="text-[10vw] mt-[45vh] sm:text-[10vw] overflow-hidden text-zinc-950/[.5] sm:mt-[25vh] font-bold mb-6">
             <TextAnimation1 animeStart="1000">WHO WE ARE</TextAnimation1>
           </h2>
           <p className="text-[3vw] sm:text-[1.5vw] md:text-[1.2vw] lg:text-[.9vw] relative z-[2] text-zinc-400 md:w-[80vw] lg:w-[60vw] text-center mt-[-4vh] sm:mt-[-9vw] lg:mt-[-12vh] ">
