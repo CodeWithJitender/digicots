@@ -280,11 +280,11 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
       ref={caseStudyRef}
       className="fixed inset-0 bg-opacity-60 bg-black flex h-[100vh] z-[1000] overflow-y-scroll"
     >
-      <div className="bg-[#EBEBEB] w-full grid grid-cols-[40%_60%] relative h-screen overflow-hidden">
+      <div className="bg-[#EBEBEB] w-full grid md:grid-cols-[40%_60%] relative h-screen overflow-hidden">
         {/* Left: Content */}
-        <div className="h-dvh flex flex-col justify-between p-6 overflow-y-auto">
+        <div className="h-dvh flex flex-col justify-between  overflow-y-auto">
           <div data-lenis-prevent >
-            <div className="flex justify-between mb-10">
+            <div className="flex justify-between mb-10 sticky top-0 bg-[#ebebeb] p-4">
               <img
                 src="https://ik.imagekit.io/x5xessyka/digicots/public/logo-black.png"
                 className="max-w-[200px]"
@@ -317,13 +317,16 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
               </button>
             </div>
 
-            <h2 className="text-5xl font-bold text-[#242424] mb-6">
+            <h2 className="text-5xl font-bold text-[#242424] mb-6 px-4">
               {slide.title}
             </h2>
+            <div className="px-4">
+            <img src={slide.image} className="md:hidden w-full mb-5 h-[400px] object-cover" alt="" />
+            </div>
 
             {/* Render section blocks */}
             {slide.section?.map((group, idx) => (
-              <div key={idx} className="mb-10">
+              <div key={idx} className="mb-10 px-4">
                 {group.map((item, i) => {
                   if (item.key === "title") {
                     return (
@@ -364,7 +367,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
             ))}
 
             {/* Tags */}
-            <div className="flex gap-3 flex-wrap mt-6">
+            <div className="flex gap-3 flex-wrap mt-6 px-4">
               {slide.tags.map((text, index) => (
                 <span
                   key={index}
@@ -377,7 +380,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
 
             {/* Footer Navigation */}
             <div className="h-0.5 bg-[#CECECE] my-5"></div>
-            <div className="next flex justify-between items-center">
+            <div className="next flex justify-between items-center p-4 pt-0">
               <p className="font-medium text-sm font-inter">
                 Another Project Name here
               </p>
@@ -408,7 +411,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
         </div>
 
         {/* Right: Image */}
-        <div className="w-full h-full">
+        <div className="w-full md:h-full">
           <img
             src={slide.image}
             alt={slide.title}
