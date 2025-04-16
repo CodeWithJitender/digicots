@@ -66,7 +66,7 @@ const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
 
   void main() {
     // Sample the texture
-    vec4 texColor = texture2D(uTexture, vUv);
+    vec4 texColor = texture2D(uTexture, vec2(vUv.x, 1.0 - vUv.y));
 
     // Fresnel effect for edge shine
     vec3 viewDir = vec3(0.0, 0.0, 1.0); // Assume the view direction is along the Z-axis
