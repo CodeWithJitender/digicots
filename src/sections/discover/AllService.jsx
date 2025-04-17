@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 function AllService() {
   const data = {
     "Content Production": {
-      img: "icon-9.png",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-9.png?updatedAt=1744631768600",
       i: "Crafting your howl in seamless harmony with the consumer’s voice",
       description: [
         "The art of storytelling by transforming ideas into captivating visual narratives that engage, inform and persuade. Content production is the bridge between creativity and commerce – making brands not just visible, but rather unforgettable.",
@@ -41,7 +41,7 @@ function AllService() {
       id: "content-production",
     },
     "Outreach Solutions": {
-      img: "icon-8.png",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-8.png",
       i: "Exploring the Unknown; Making Your Mark.",
       description: [
         "In today's super crowded market, old-school ads just don't cut it anymore. Really connecting with your audience is key and teaming up with influencers is a super effective way to do that. Working with well-known experts makes your brand look way more credible and trustworthy. Their fans really listen to them so if they say your brand is great, people will believe it. Also, you get instant access to their audience which is a huge time-saver.",
@@ -68,7 +68,7 @@ function AllService() {
       id: "outreach-solutions",
     },
     "Public Relations": {
-      img: "icon-4.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png ",
       i: "Making your vision echo across the globe",
       description: [
         "This is the art of shaping and maintaining a brand’s reputation – its most valuable asset. PR strategies go way beyond publicity; they help in establishing credibility, authority and trust. Effective PR creates a wave that turns mere businesses into industry icons.",
@@ -92,7 +92,7 @@ function AllService() {
       id: "public-relations",
     },
     "Digital Marketing": {
-      img: "icon-6.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-6.png ",
       i: "Hunt Smarter. Hunt Harder.",
       description: [
         "We do way more than just post on social media. We build real strategies with data behind them to get your brand noticed online, keep people engaged, and build a loyal following. We're all about mixing creative ideas, number crunching and smart planning to get you real, measurable results and grow your business big time.",
@@ -112,7 +112,7 @@ function AllService() {
       id: "digital-marketing",
     },
     "Performance Marketing": {
-      img: "icon-5.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-5.png ",
       i: "Unmatched Precision. Uncaged Results.",
       description: [
         "We're all about getting you the best returns on your advertising budget. We do this by creating and launching really focused ad campaigns that hit the right people, in the right place, at the right time. We don't just set it and forget it; we keep a close eye on things and tweak as needed to make sure you see real results. Whether you need more website visitors, more leads or more sales, we're here to make it happen.",
@@ -138,7 +138,7 @@ function AllService() {
     },
     "Creative Designing": {
       i: "Visuals that Make the Consumer Stop.",
-      img: "icon-7.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-7.png ",
       description: [
         "Turn concepts into striking visual assets – digital or print. Design is way more than just aesthetics; it is the visual language of a brand. It is the backbone of compelling brand communication ensuring every interaction is simply WOW!",
         "Good design isn't just about looking good. It's about making people feel something. Our talented team knows how to create visuals that really stand out and help your brand shine. We want every interaction with your audience to be something special, something they remember. We sweat the small stuff like colors and fonts, pictures and layouts. Every little detail matters because it all helps tell your story. We're passionate about making sure your story is told in the best way possible whether it's a website, logo or brochure",
@@ -162,7 +162,7 @@ function AllService() {
     },
     Branding: {
       i: "Craft the soul m of your company",
-      img: "icon-4.png",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png",
       description: [
         "We create a killer company identity that hits home with your people and makes them feel something. It's not just about a logo; we figure out what your company is all about, what you stand for, and make sure everyone gets it. That way, customers are sold on your whole vibe. A solid brand makes people remember you, feel good about you, and keep coming back. We nail your message, make you look awesome, and make sure the whole experience is spot-on so you stand out from the crowd.",
         "In this crazy market, a great brand is a must. It builds trust and gets you noticed, even when things are packed. People will choose you because they know you. Let us handle your branding so you can set yourself up for serious growth.",
@@ -185,7 +185,7 @@ function AllService() {
     },
     "Outdoor Advertising - Digicots OOH": {
       i: "Marking Your Territory in the Real World",
-      img: "icon-3.png",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-3.png",
       description: [
         "Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled tool for massive brand visibility. We, at Digicots, ensure that advertising comes across as an experience rather than an interruption. While digital ads can be skipped, outdoor ads remain unmissable and serve as a constant, powerful reminder of a brand’s presence.",
         "Unlike online ads you can just click away from or block, outdoor ads grab attention and stick around. You can't skip or close them and because they're big and out there, you can't really miss them. This means they keep your brand in people's minds, making it a familiar part of their day and that builds trust and eventually, sales.",
@@ -205,7 +205,7 @@ function AllService() {
     },
     "Website Development": {
       i: "Your Digital Swarm",
-      img: "icon-1.png",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-1.png",
       description: [
         "Think of a website like your brand's online home. It's not just a place on the internet, it's how people see you. Building a great website needs a mix of tech smarts, good design and making sure it's easy for people to use. Get these right and you've got an awesome platform that keeps people interested and turns them into customers.",
         "Technically, you need the right coding systems to manage content and hosting so your site runs smoothly, stays safe and can handle lots of visitors. Choose the tools that make a solid, reliable site. Design-wise, make it look good, show off your brand and click with your audience. Colors, fonts, pictures and layout all matter. A well-designed site builds trust and gets your message across.",
@@ -230,7 +230,7 @@ function AllService() {
     },
     "Artificial Reality (AR)": {
       i: "Wildly Immersive Experiences",
-      img: "icon-2.png",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-2.png",
       description: [
         "The future of marketing is immersive. AR brings products to life – allowing consumers to virtually experience near-real manifestations of products before purchasing them. This revolutionizes how brands interact with consumers making experiences richer, more engaging and more impactful. Engage your audience with interactive tools that leave them hooked and coming back for more.",
         "For businesses, it's a chance to really grab attention and get people excited. AR lets them add fun, interactive stuff to their marketing making customers more loyal and boosting sales. We're talking things like virtual product demos, try-ons and even story-driven games. It's all about creating something unique that people will remember and actually connect with.",
