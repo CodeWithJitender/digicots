@@ -65,7 +65,7 @@ function OurJourney() {
     },
     {
       head: " Global Dominance",
-      pera: "Lorem ipsum dolor sit amet...",
+      pera: "Absolute domination.",
       bgImg: "journey-bg-2.png",
       mainImg: "journey-1.png",
     },

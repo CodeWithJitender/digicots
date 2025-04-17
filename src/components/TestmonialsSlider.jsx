@@ -97,9 +97,9 @@ export default function TestimonialsSlider({ data }) {
           <div className="testimonial-text cursor-pointer rounded-lg absolute md:h-[30%] h-[50%] w-full bg-[#20202053] backdrop-blur top-[100%] left-0 z-10 opacity-0 p-5 flex flex-col justify-between">
             <p className="font-inter text-white md:text-[12px] text-[10px]">{d.text}</p>
             <div>
-              <div className="name font-inter text-white md:text-[15px] text-[12px]">
+              {/* <div className="name font-inter text-white md:text-[15px] text-[12px]">
                 {d.name}
-              </div>
+              </div> */}
               <div className="position font-inter font-bold text-white md:text-[12px] text-[10px] ">
                 {d.position}
               </div>
