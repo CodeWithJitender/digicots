@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import TextHoverAnimation from "../animation/text/TextHoverAnimation";
 function Header({location}) {
   const data = [
     {
@@ -456,7 +457,9 @@ function Header({location}) {
                  to={"/our-work"}
                  className="font-inter left-links inline-block text-3xl font-bold text-white"
                >
-                 Work
+                <TextHoverAnimation className={"h-[33px] w-full leading-none overflow-hidden"}>
+                  Work
+                </TextHoverAnimation>
                </Link>
              </li>
              <li>
@@ -464,7 +467,9 @@ function Header({location}) {
                  to={"/insights"}
                  className="font-inter left-links inline-block text-3xl font-bold text-white"
                >
+                <TextHoverAnimation className={"h-[33px] w-full leading-none overflow-hidden"}>
                  Insights
+                </TextHoverAnimation>
                </Link>
              </li>
              <li>
@@ -472,7 +477,9 @@ function Header({location}) {
                  to={"/about"}
                  className="font-inter left-links inline-block text-3xl font-bold text-white"
                >
+                <TextHoverAnimation className={"h-[33px] w-full leading-none overflow-hidden"}>
                  About Us
+                </TextHoverAnimation>
                </Link>
              </li>
              <li>
@@ -480,7 +487,9 @@ function Header({location}) {
                  to={"/case-study"}
                  className="font-inter left-links inline-block text-3xl font-bold text-white"
                >
+                <TextHoverAnimation className={"h-[33px] w-full leading-none overflow-hidden"}>
                  Case Studies
+                </TextHoverAnimation>
                </Link>
              </li>
            </ul>
@@ -490,8 +499,10 @@ function Header({location}) {
              Got an Idea?
            </p>
            <div className="mb-5">
-             <Link onClick={() => setDeskToggle((prev) => !prev)} to={""} className="font-inter left-links inline-block text-3xl font-bold">
-               <span className="text-[#242424]">Let’s Get in Touch</span>{" "}
+             <Link to={"/contact"} onClick={() => setDeskToggle((prev) => !prev)} className="font-inter left-links inline-block text-3xl font-bold">
+               <span className="text-[#242424]">
+                Let’s Get in Touch
+                </span>{" "}
                <i class="far fa-arrow-right rotate-[-45deg] text-white"></i>
              </Link>
            </div>
