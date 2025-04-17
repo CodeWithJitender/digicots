@@ -105,7 +105,7 @@ const CylindricalSlider = () => {
             onMouseLeave={() => (isInsideItem.current = false)}
             onClick={()=>handleClick(i % 6)}
           >
-            <img src={src} alt={`Slide ${i + 1}`} />
+            <img src={src} alt={`Slide ${i + 1}`} className="w-full" />
           </div>
         ))}
       </div>
