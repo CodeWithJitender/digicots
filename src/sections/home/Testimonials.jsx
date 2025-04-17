@@ -9,8 +9,8 @@ function Testimonials() {
       id: 1,
       name: "John Doe",
       position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-1.jpg",
+      text: "Digicots knows how to strike a balance among knowledge, humor & relatability. They really know how to keep our viewers engaged.",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-1.webp",
       isCenter: false,
     },
     {
@@ -18,7 +18,7 @@ function Testimonials() {
       name: "Jane Smith",
       position: "CEO Ashwary.Design",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-2.jpg",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-2.webp",
       isCenter: false,
     },
     {
@@ -26,7 +26,7 @@ function Testimonials() {
       name: "Ashwary Sinha",
       position: "CEO Ashwary.Design",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-3.jpg",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-3.webp",
       isCenter: false,
     },
     {
@@ -34,7 +34,7 @@ function Testimonials() {
       name: "Ashwary Sinha",
       position: "CEO Ashwary.Design",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-4.jpg",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-4.webp",
       isCenter: false,
     },
     {
@@ -42,7 +42,7 @@ function Testimonials() {
       name: "Ashwary Sinha",
       position: "CEO Ashwary.Design",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "testimonial-5.jpg",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-5.webp",
       isCenter: false,
     },
   ]
