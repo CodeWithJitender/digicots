@@ -15,12 +15,12 @@ function BlogHeading({ heading, linkText, link }) {
           return (
             <>
               <div className="flex flex-col">
-                <h3 className="font-bold md:h-[3vw] h-[4.5vw] overflow-hidden text-[3vw] text-center md:text-start md:text-[2vw] text-white max-w-80 flex flex-wrap">
+                <h3 className="font-bold md:h-[3vw] h-[8vw] overflow-hidden text-[5vw] text-center md:text-start md:text-[2vw] text-white max-w-80 flex flex-wrap">
                   <div className="w-full md:w-auto">
                     <TextAnimation1 animeStart="60">{part1}</TextAnimation1>
                   </div>
                 </h3>
-                <h3 className="font-bold md:h-[3vw] h-[4.5vw] overflow-hidden text-[3vw] text-center md:text-start md:text-[2vw] text-white max-w-80 flex flex-wrap">
+                <h3 className="font-bold md:h-[3vw] h-[8vw] overflow-hidden text-[5vw] text-center md:text-start md:text-[2vw] text-white max-w-80 flex flex-wrap">
                   <div className="w-full md:w-auto">
                     <TextAnimation1 animeStart="68">{part2}</TextAnimation1>
                   </div>
