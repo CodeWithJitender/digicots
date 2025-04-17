@@ -7,7 +7,7 @@ function Showreel() {
     <section className="showreel relative h-full w-full z-[10000]">
       {/* Cover Section */}
       <div
-        style={{ backgroundImage: "url('reel-cover.png')" }}
+        style={{ backgroundImage: "url('https://ik.imagekit.io/8mbzq2hdl/digicots/reel-cover.png')" }}
         className="reel-cover absolute top-0 left-0 w-full h-full flex justify-center items-center bg-cover bg-center z-10"
       >
         <div
@@ -16,7 +16,7 @@ function Showreel() {
           onClick={() => setIsOpen(true)}
         >
           <span>PLAY</span>
-          <img src="reelplay.png" alt="Play Icon" />
+          <img src="https://ik.imagekit.io/8mbzq2hdl/digicots/reelplay.png" alt="Play Icon" />
           <span>REEL</span>
         </div>
       </div>
@@ -34,7 +34,8 @@ function Showreel() {
 
           {/* Video Container */}
           <div className="relative w-full max-w-4xl p-5">
-            <video src="showreels.mp4" className="w-full rounded-lg" controls autoPlay></video>
+            <video src="https://ik.imagekit.io/8mbzq2hdl/digicots/showreel.mp4" className="w-full rounded-lg hidden md:block" controls autoPlay></video>
+            <video src="https://ik.imagekit.io/8mbzq2hdl/digicots/showreel-mobile.mp4" className="w-full rounded-lg block md:hidden " controls autoPlay></video>
           </div>
         </div>
       )}
