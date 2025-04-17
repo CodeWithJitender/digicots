@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,7 +9,7 @@ const contentData = [
   {
     heading: "Content Production",
     p: "Crafting your howl in seamless harmony with the consumer’s voice. The art of storytelling by transforming ideas into captivating visual narratives that engage, inform, and persuade. Content production is the bridge between creativity and commerce – making brands not just visible, but rather unforgettable.",
-    link: "/content-production",
+    link: "content-production",
     img: "icon-9.png",
     thumbnail: "icon-9.png",
     tag: [
@@ -24,7 +24,7 @@ const contentData = [
   {
     heading: "Outreach Solutions",
     p: "Exploring the Unknown; Making Your Mark. Extend brand awareness beyond traditional channels by leveraging trusted voices in the industry to authentically engage with niche groups. Reaching the right audience requires more than just good content – it demands strategic outreach that ensures maximum impact.",
-    link: "/marketing-strategy",
+    link: "outreach-solutions",
     img: "icon-8.png",
     thumbnail: "icon-8.png",
     tag: [
@@ -37,7 +37,7 @@ const contentData = [
   {
     heading: "Public Relations",
     p: "Making your vision echo across the globe! This is the art of shaping and maintaining a brand’s reputation – its most valuable asset. PR strategies go way beyond publicity; they help in establishing credibility, authority, and trust. Effective PR creates a wave that turns mere businesses into industry icons.",
-    link: "/web-development",
+    link: "public-relations",
     img: "icon-4.png",
     thumbnail: "icon-4.png",
     tag: [
@@ -49,7 +49,7 @@ const contentData = [
   {
     heading: "Digital Marketing",
     p: "Hunt Smarter. Hunt Harder. It’s not just about posting on social media; it’s about formulating impactful, data-driven strategies. A strong, consistent online presence helps garner engagement and brand loyalty. Digital marketing is the ultimate blend of creativity, analytics, and strategy delivering quantifiable results that drive growth.",
-    link: "/web-development",
+    link: "digital-marketing",
     img: "icon-6.png",
     thumbnail: "icon-6.png",
     tag: [
@@ -60,7 +60,7 @@ const contentData = [
   {
     heading: "Performance Marketing",
     p: "Unmatched Precision. Uncaged Results. Maximize ROI through hyper-targeted advertising and conversion-focused strategies. Every click, every impression, every interaction is counted for to ensure the highest possible return. It isn’t about spending more; it’s about spending smart, leveraging data, and strategizing growth.",
-    link: "/web-development",
+    link: "performance-marketing",
     img: "icon-5.png",
     thumbnail: "icon-5.png",
     tag: [
@@ -72,7 +72,7 @@ const contentData = [
   {
     heading: "Creative Designing",
     p: "Visuals that Make the Consumer Stop. Turn concepts into striking visual assets – digital or print. Design is way more than just aesthetics; it is the visual language of a brand. It is the backbone of compelling brand communication ensuring every interaction is simply WOW!",
-    link: "/web-development",
+    link: "creative-designing",
     img: "icon-7.png",
     thumbnail: "icon-7.png",
     tag: [
@@ -96,7 +96,7 @@ const contentData = [
   {
     heading: "Outdoor Advertising",
     p: "Marking Your Territory in the Real World. Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled tool for massive brand visibility. We, at Digicots, ensure that advertising comes across as an experience rather than an interruption.",
-    link: "/web-development",
+    link: "outdoor-advertising",
     img: "icon-3.png",
     thumbnail: "icon-3.png",
     tag: ["Hoardings & Unipoles", "Kiosks & Outdoor Design"],
@@ -104,7 +104,7 @@ const contentData = [
   {
     heading: "Website Development",
     p: "Your Digital Swarm. A website is more than an online address; it’s a brand’s digital storefront. Website development is a blend of technology, design, and user experience to create seamless, high-converting platforms with every element optimized for performance.",
-    link: "/web-development",
+    link: "website-development",
     img: "icon-1.png",
     thumbnail: "icon-1.png",
     tag: [
@@ -116,7 +116,7 @@ const contentData = [
   {
     heading: "Artificial Reality (AR)",
     p: "Wildly Immersive Experiences. The future of marketing is immersive. AR brings products to life – allowing consumers to virtually experience near-real manifestations of products before purchasing them. This revolutionizes how brands interact with consumers making experiences richer, more engaging, and more impactful.",
-    link: "/web-development",
+    link: "artificial-reality",
     img: "icon-2.png",
     thumbnail: "icon-2.png",
     tag: ["", "", ""],
@@ -126,6 +126,15 @@ const contentData = [
 const ContentSlider = () => {
   const mainSlider = useRef();
   const thumbSlider = useRef();
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   const mainSettings = {
     asNavFor: thumbSlider.current,
@@ -157,12 +166,12 @@ const ContentSlider = () => {
   return (
     <div className="">
       <div className="container-xxl">
-      <HeadingWithLink
-              head="SOLUTIONS"
-              per="Lorem ipsum dolor sit amet, consectetur adipiscing"
-              link={"/contact"}
-              linkh={"Contact Us"}
-            />
+        <HeadingWithLink
+          head="SOLUTIONS"
+          per="The Alpha’s Guide to Absolute Domination"
+          link={"/contact"}
+          linkh={"Contact Us"}
+        />
       </div>
       <div className="flex flex-col lg:flex-col-reverse max-w-[1600px] mx-auto px-5 md:px-10 py-20">
         {/* Thumbnails */}
@@ -204,7 +213,10 @@ const ContentSlider = () => {
                         {data.heading}
                       </h2>
                       <p className="font-inter text-white my-4">{data.p}</p>
-                      <Link to={data.link} className="text-white">
+                      <Link
+                        to={`/discover#${data.link}`}
+                        className="text-white"
+                      >
                         Explore More{" "}
                         <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C]"></i>
                       </Link>

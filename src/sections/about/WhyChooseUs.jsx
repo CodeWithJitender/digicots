@@ -59,7 +59,8 @@ const CardComponent = ({ card, index }) => {
       <span className="absolute top-3 left-[-10%] bg-white text-[#ED510C] px-3 py-1 rounded-[14px] text-2xl font-bold">
         {card.title}
       </span>
-      <p className="text-black mt-4 text-sm">{card.description}</p>
+      <p className="text-black mt-4 text-sm">{card.description1}</p>
+      <p className="text-black mt-2 text-sm">{card.description2}</p>
     </div>
   );
 };
@@ -70,28 +71,44 @@ const WhyChooseUs = () => {
   const cards = [
     {
       id: 1,
-      title: "Timely Delivery",
-      image: "why.jpeg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      title: "Exclusivity",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-1.webp",
+      description1:"We don’t just work with anyone.",
+      description2:"Partnering exclusively with brands ready to dominate the global arena.",
       rotation: "rotate-3",
     },
     {
       id: 2,
-      title: "Best Quality",
-      image: "why.jpeg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      rotation: "-rotate-6",
+      title: "Duality",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-2.webp",
+      description1:"We don’t compromise.",
+      description2:"Every solution strikes the perfect balance between raw instinct & precise strategy.",
+      rotation: "rotate-3",
     },
-    // {
-    //   id: 3,
-    //   title: "Customer Satisfaction",
-    //   image: "why.jpeg",
-    //   description:
-    //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    //   rotation: "rotate-6",
-    // },
+    {
+      id: 3,
+      title: "Boldness",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-3.webp",
+      description1:"We don’t follow.",
+      description2:"Running with brands that crave risk, aim for greatness and are ready to dust their competition.",
+      rotation: "rotate-3",
+    },
+    {
+      id: 4,
+      title: "True Power",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-4.webp",
+      description1:"We fear nothing.",
+      description2:"Tearing into the wild knowing that risk-taking is the only path to true power.",
+      rotation: "rotate-3",
+    },
+    {
+      id: 5,
+      title: "Farsightedness",
+      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-5.webp",
+      description1:"We don’t build for today.",
+      description2:"Forging brands that destroy boundaries, thrive in chaos and master the ever-changing landscape.",
+      rotation: "rotate-3",
+    },
   ];
 
   const scrollXRef = useRef(null);

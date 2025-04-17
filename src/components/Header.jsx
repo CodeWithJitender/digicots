@@ -8,64 +8,64 @@ import gsap from "gsap";
 function Header() {
   const data = [
     {
+      title: "Content Production",
+      pera: "The art of storytelling by transforming ideas into captivating visual narratives that engage...",
+      icon: "icon-9.png",
+      id: "content-production",
+    },
+    {
+      title: "Outreach Solutions",
+      pera: "In today's super crowded market, old-school ads just don't cut it anymore. Really connecting with...",
+      icon: "icon-8.png",
+      id: "outreach-solutions",
+    },
+    {
+      title: "Public Relations",
+      pera: "This is the art of shaping and maintaining a brand’s reputation – its most valuable asset...",
+      icon: "icon-4.png",
+      id: "public-relations",
+    },
+    {
+      title: "Digital Marketing",
+      pera: "We do way more than just post on social media. We build real strategies with data behind...",
+      icon: "icon-6.png",
+      id: "digital-marketing",
+    },
+    {
+      title: "Performance Marketing",
+      pera: "We're all about getting you the best returns on your advertising budget. We do this by creating...",
+      icon: "icon-5.png",
+      id: "performance-marketing",
+    },
+    {
+      title: "Creative Designing",
+      pera: "Turn concepts into striking visual assets – digital or print. Design is way more than just aesthetics...",
+      icon: "icon-7.png",
+      id: "creative-designing",
+    },
+    {
+      title: "Branding",
+      pera: "We're all about getting you the best returns on your advertising budget. We do this by creating...",
+      icon: "icon-4.png",
+      id: "branding",
+    },
+    {
+      title: "Outdoor Advertising",
+      pera: "Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled...",
+      icon: "icon-3.png",
+      id: "outdoor-advertising",
+    }, 
+    {
       title: "Website Development",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+      pera: "Think of a website like your brand's online home. It's not just a place on the internet, it's how people...",
       icon: "icon-1.png",
       id: "website-development",
     },
     {
       title: "Artificial Reality (AR)",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+      pera: "The future of marketing is immersive. AR brings products to life – allowing consumers to virtually...",
       icon: "icon-2.png",
       id: "artificial-reality",
-    },
-    {
-      title: "Outdoor Advertising",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-3.png",
-      id: "outdoor-advertising",
-    },
-    {
-      title: "Public Relations",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-4.png",
-      id: "public-relations",
-    },
-    {
-      title: "Performance Marketing",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-5.png",
-      id: "performance-marketing",
-    },
-    {
-      title: "Digital Marketing",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-6.png",
-      id: "digital-marketing",
-    },
-    {
-      title: "Creative Designing",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-7.png",
-      id: "creative-designing",
-    },
-    {
-      title: "Outreach Solutions",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-8.png",
-      id: "outreach-solutions",
-    },
-    {
-      title: "Content Production",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-9.png",
-      id: "content-production",
-    },
-    {
-      title: "Performance Marketing",
-      pera: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      icon: "icon-5.png",
-      id: "performance-marketing",
     },
   ];
   const [toggle, setToggle] = useState(false);

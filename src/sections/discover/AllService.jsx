@@ -1,5 +1,6 @@
 import { i } from "framer-motion/client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function AllService() {
   const data = {
@@ -238,10 +239,19 @@ function AllService() {
       id: "artificial-reality",
     },
   };
-
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
   // const [selected, setSelected] = useState("Website Development");
 
   return (
+    
     <section className=" bg-[#FFC395]">
       <div className="container-xxl">
         {Object.entries(data).map(([title, service], index) => (
