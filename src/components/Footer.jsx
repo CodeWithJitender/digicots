@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 
 // Animation variants for sections
 const sectionVariants = {
@@ -39,7 +40,10 @@ export default function Footer() {
   const isInView = useInView(footerRef, { once: true, amount: 0.2 }); // Trigger when 20% visible
 
   return (
-    <footer ref={footerRef} className="bg-black backdrop-blur-xl text-white py-16 px-6 relative z-[999] overflow-hidden">
+    <footer
+      ref={footerRef}
+      className="bg-black backdrop-blur-xl text-white py-16 px-6 relative z-[999] overflow-hidden"
+    >
       <div className="container mx-auto max-w-7xl">
         {/* Top Section - Join the Pack */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
@@ -143,7 +147,13 @@ export default function Footer() {
               className="text-4xl font-bold text-[#DF782B]"
               variants={childVariants}
             >
-              DigiCots
+              <Link to={"/"}>
+                <img
+                  src="https://ik.imagekit.io/8mbzq2hdl/digicots/logo-white.png?updatedAt=1744631774835"
+                  className="max-w-[200px]"
+                  alt=""
+                />
+              </Link>
             </motion.h3>
             <motion.div
               className="flex space-x-3 mt-4"
@@ -183,7 +193,8 @@ export default function Footer() {
             className="flex sm:justify-end gap-10 sm:gap-20 text-center justify-around md:text-left"
             variants={containerVariants}
           >
-            {["Header 1", "Header 2"].map((header, idx) => (
+           
+            {["Quick Links"].map((header, idx) => (
               <div key={idx}>
                 <motion.h4 className="font-semibold" variants={childVariants}>
                   {header}
@@ -192,11 +203,71 @@ export default function Footer() {
                   className="text-gray-400 mt-2 space-y-1"
                   variants={containerVariants}
                 >
-                  {["Links", "Links", "Links", "Links"].map((link, i) => (
+                  {["About", "Links", "Links", "Links"].map((link, i) => (
                     <motion.li key={i} variants={childVariants}>
                       <a href="#" className="hover:text-white">
                         {link}
                       </a>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
+            ))}
+             {["Services"].map((header, idx) => (
+              <div key={idx}>
+                <motion.h4 className="font-semibold" variants={childVariants}>
+                  {header}
+                </motion.h4>
+                <motion.ul
+                  className="text-gray-400 mt-2 space-y-1"
+                  variants={containerVariants}
+                >
+                  {[
+                    {
+                      title: "Website Development",
+                      id: "website-development",
+                    },
+                    {
+                      title: "Artificial Reality (AR)",
+                      id: "artificial-reality",
+                    },
+                    {
+                      title: "Outdoor Advertising",
+                      id: "outdoor-advertising",
+                    },
+                    {
+                      title: "Public Relations",
+                      id: "public-relations",
+                    },
+                    {
+                      title: "Performance Marketing",
+                      id: "performance-marketing",
+                    },
+                    {
+                      title: "Digital Marketing",
+                      id: "digital-marketing",
+                    },
+                    {
+                      title: "Creative Designing",
+                      id: "creative-designing",
+                    },
+                    {
+                      title: "Outreach Solutions",
+                      id: "outreach-solutions",
+                    },
+                    {
+                      title: "Content Production",
+                      id: "content-production",
+                    },
+                    {
+                      title: "Performance Marketing",
+                      id: "performance-marketing",
+                    },
+                  ].map((link, i) => (
+                    <motion.li key={i} variants={childVariants}>
+                      <Link to={`discover#${link.id}`} className="hover:text-white">
+                        {link.title}
+                      </Link>
                     </motion.li>
                   ))}
                 </motion.ul>
@@ -222,7 +293,7 @@ export default function Footer() {
           </div>
           <div className="text-center sm:text-end">
             <p className="mt-1">Auuuuu... Created Proudly in India</p>
-            <p className="mt-1">Copywrite 2025 ©</p>
+            <p className="mt-1">Copyright 2025 ©</p>
           </div>
         </motion.div>
       </div>
