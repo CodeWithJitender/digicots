@@ -227,7 +227,7 @@ const HowItWorks = () => {
         <div className="container-xxl absolute top-0 left-0 right-0 bottom-0 h-full w-full">
           <MainHeading
             heading="HOW IT WORKS"
-            pera="We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
+            pera="With us, you don’t just play the game – you own it. The hunt never stops. Absolute domination."
             cl="text-center"
             tColor="text-white"
           />

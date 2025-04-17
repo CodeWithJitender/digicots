@@ -4,12 +4,12 @@ import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
 
 const baseImages = [
-  "https://i.pinimg.com/736x/9e/23/db/9e23dbbabdc98b20f11220855881709c.jpg",
-  "https://i.pinimg.com/736x/6d/8e/21/6d8e21dd8384120858933a8b80f2fca5.jpg",
-  "https://i.pinimg.com/736x/23/63/9f/23639fdb2bbff1b157dd4f284e5e0f08.jpg",
-  "https://i.pinimg.com/736x/7b/68/ca/7b68cae8ff64417ab3fb2c76c582085b.jpg",
-  "https://i.pinimg.com/736x/b0/5e/65/b05e65e027bbc1c590ce4e283666b946.jpg",
-  "https://i.pinimg.com/736x/96/67/5c/96675cf170debb7871754fe2c6358289.jpg"
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-1.webp?updatedAt=1744631783188",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-2.webp?updatedAt=1744631784710",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-3.webp?updatedAt=1744631785525",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-4.webp?updatedAt=1744631786341",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-5.webp?updatedAt=1744631787444",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-6.webp?updatedAt=1744631787845"
 ];
 
 const images = Array(2).fill(baseImages).flat();
@@ -105,7 +105,7 @@ const CylindricalSlider = () => {
             onMouseLeave={() => (isInsideItem.current = false)}
             onClick={()=>handleClick(i % 6)}
           >
-            <img src={src} alt={`Slide ${i + 1}`} />
+            <img src={src} alt={`Slide ${i + 1}`} className="w-full" />
           </div>
         ))}
       </div>
