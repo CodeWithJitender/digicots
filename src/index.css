@@ -14,6 +14,14 @@
   --transition: cubic-bezier(.1, .7, 0, 1);
 }
 
+@media (max-width: 768px) {
+  :root{
+    --index: calc(.5vw + .5vh);
+    --transition: cubic-bezier(.1, .7, 0, 1);
+  }
+  
+}
+
 /* Hide scrollbar but allow scrolling */
 ::-webkit-scrollbar {
   display: none;
@@ -386,6 +394,13 @@ header .dropdown {
   filter: grayscale(.8) brightness(.8);
   transform: translateZ(calc(var(--index) * .6)) rotateY(-15deg);
 }
+
+@media (max-width: 768px) {
+  .items .item:active, .items .item:focus {
+    width: 15vw !important;
+  }
+}
+
 
 .items .item:active, .items .item:focus {
 width: 20vw;

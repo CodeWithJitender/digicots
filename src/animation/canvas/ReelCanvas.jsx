@@ -30,7 +30,9 @@ const WavePlane = ({ setOpacity }) => {
 
   const texture = useMemo(() => {
     const tex = new THREE.TextureLoader().load(
-      "https://ik.imagekit.io/x5xessyka/digicots/public/reel-cover.png",
+      window.innerWidth > 600
+        ? "https://ik.imagekit.io/x5xessyka/digicots/public/reel-cover.png"
+        : "https://ik.imagekit.io/x5xessyka/digicots/public/reel-cover-mobile.jpg",
       (loadedTexture) => {
         // Calculate the plane's aspect ratio (width / height)
         const planeAspect = dimensions.width / dimensions.height;
@@ -55,7 +57,7 @@ const WavePlane = ({ setOpacity }) => {
 
   const mappedValueX =
     window.innerWidth <= 1536
-      ? mapWidth(dimensions.width, 370, 1536, 4, 16.5)
+      ? mapWidth(dimensions.width, 370, 1536, 2.5, 16.5)
       : mapWidth(dimensions.width, 1536, 2160, 16.5, 13.5);
   position.current.x = mappedValueX;
 
@@ -89,40 +91,17 @@ const WavePlane = ({ setOpacity }) => {
 
   const fragmentShader = useMemo(
     () => `
-    varying vec2 vUv;
-uniform sampler2D uTexture;
-uniform float uTextureAspect;
-uniform float uPlaneAspect;
-
-void main() {
-  // Center the UVs (vUv is in [0, 1], so shift to [-0.5, 0.5] for centering)
-  vec2 centeredUv = vUv - 0.5;
-
-  // Calculate scaling to cover the plane without stretching
-  float textureAspect = uTextureAspect;
-  float planeAspect = uPlaneAspect;
-  float scale = .8;
-
-  if (textureAspect > planeAspect) {
-    // Texture is wider: scale to fit height, crop width
-    scale = planeAspect / textureAspect;
-  } else {
-    // Texture is taller: scale to fit width, crop height
-    scale = 1.0;
-  }
-
-  // Apply scaling to centered UVs
-  centeredUv *= vec2(scale, scale);
-
-  // Shift UVs back to [0, 1] range
-  vec2 adjustedUv = centeredUv + 0.5;
-
-  // Sample texture with adjusted UVs
-  gl_FragColor = texture2D(uTexture, adjustedUv);
-}
-  `,
+      varying vec2 vUv;
+      uniform sampler2D uTexture;
+  
+      void main() {
+        // Basic texture mapping using vUv
+        gl_FragColor = texture2D(uTexture, vUv);
+      }
+    `,
     []
   );
+  
 
   const uniforms = useMemo(
     () => ({

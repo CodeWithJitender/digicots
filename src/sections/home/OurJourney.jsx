@@ -100,7 +100,7 @@ const OurJourney = () => {
 
   // Handle click outside cards
   const handleClickOutside = useCallback((e) => {
-    if (!cardContainerRef.current?.contains(e.target)) {
+    // if (!cardContainerRef.current?.contains(e.target)) {
       cardRefs.current.forEach((card, i) => {
         if (card) {
           const anim = gsap.to(card, {
@@ -112,7 +112,7 @@ const OurJourney = () => {
         }
       });
       setActiveIndex(null);
-    }
+    // }
   }, []);
 
   // Handle card click
@@ -136,7 +136,7 @@ const OurJourney = () => {
         opacity: 1,
         duration: 0.5,
         delay: 0.2,
-        onComplete: () => setActiveIndex(index)
+        onStart: () => setActiveIndex(index)
       });
       animationRefs.current.clickAnimations[index] = anim;
     }
@@ -213,7 +213,7 @@ const OurJourney = () => {
               {data.map((card, index) => (
                 <div
                   key={`journey-${index}`}
-                  className="item"
+                  className="item overflow-hidden"
                   tabIndex="0"
                   style={{
                     backgroundImage: `url(${card.bgImg})`,
@@ -233,11 +233,11 @@ const OurJourney = () => {
                       className="h-full w-full object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-[80%] bg-white rounded-md p-3 text-center">
-                      <h5 className="font-bold mb-1 font-inter text-[2vw] md:text-[1vw]">
+                    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-[80%] bg-white rounded-md md:p-3 p-1 text-center">
+                      <h5 className="font-bold mb-1 font-inter text-[1.2vw] md:text-[1vw]">
                         {card.head}
                       </h5>
-                      <p className="text-[1vw] md:text-[.8vw]">
+                      <p className="text-[1.1vw] md:text-[.8vw]">
                         {card.pera}
                       </p>
                     </div>

@@ -88,7 +88,7 @@ function Insights() {
         scrollTrigger: {
           trigger: parentRef.current,
           start: "top 0%",
-          end: "top -200%",
+          end: "top -180%",
           scrub: 1,
           // snap:true
         },
@@ -112,7 +112,7 @@ function Insights() {
         ease: "expoScale(0.5,7,none)",
       },"a")
       .from(boxsRefs.current, {
-        delay:3,
+        // delay:2,
         opacity: 0,
         stagger: 5,
         scale:1.1,
