@@ -132,7 +132,7 @@ function Insights() {
           animeStart="10%"
             heading={"INSIGHTS"}
             pera={
-              "We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
+              "When the landscape shifts, we evolve. Faster, smarter, stronger. Change doesn’t scare us—it fuels us."
             }
             cl={"text-center"}
             tColor={"text-black"}
@@ -144,13 +144,12 @@ function Insights() {
               className="insights-box lg:left-[200vw] md:left-[47vw] relative z-10 bg-black p-5 rounded-3xl"
             >
               <div ref={blackBoxTextRef} className="">
-                <h1 className="font-bold font-inter text-white">29%</h1>
+                <h1 className="font-bold font-inter text-white">XXX</h1>
                 <h4 className="font-bold font-inter text-white text-2xl">
-                  Lorem Ipsum
+                Employees across the Globe
                 </h4>
                 <p className="font-inter text-white text-sm mt-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                No doubt, a lone wolf is strong; but a pack scattered across all terrains is invincible. A pack stretching across the wild owns it all.
                 </p>
               </div>
             </div>
@@ -160,11 +159,13 @@ function Insights() {
              ref={(el) => (boxsRefs.current[0] = el)}
             className="insights-box relative bg-[#93E9FF] p-5 rounded-3xl flex flex-col md:flex-col lg:flex-row pr-0  md:col-span-1 lg:col-span-3 ">
               <div className="flex flex-col justify-between pr-2">
-                <h1 className="font-bold font-inter">512+</h1>
-                <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
+                <h1 className="font-bold font-inter">XXXX</h1>
+               <div className="">
+               <h4 className="font-bold font-inter text-2xl">Global Customers </h4>
                 <p className="font-inter text-sm mt-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                The more businesses run with us; the more we dominate. Every market, every field is our hunting ground. The global energy and momentum keep us undefeated in the face of the competition.
                 </p>
+               </div>
               </div>
               <img
                 src="insights-img.png"
@@ -177,37 +178,42 @@ function Insights() {
               <div
               ref={(el) => (boxsRefs.current[1] = el)}
               className="insights-box relative bg-[#63D863] p-5 rounded-3xl flex flex-col justify-between">
-                <h1 className="font-bold font-inter">196K</h1>
-                <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
+                <h1 className="font-bold font-inter">XXXX</h1>
+                <div className="">
+                <h4 className="font-bold font-inter text-2xl">Industries Served</h4>
                 <p className="font-inter text-sm mt-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                We don’t just survive; we dominate across industries.
                 </p>
+                </div>
               </div>
 
             {/* Box 4 */}
             <div
              ref={(el) => (boxsRefs.current[2] = el)}
              className="insights-box relative bg-[#61A0FF] p-5 rounded-3xl flex flex-col md:flex-col lg:flex-row items-center gap-5 md:col-span-1 lg:col-span-3">
-              <h1 className="font-bold font-inter">91.6M</h1>
-              <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
+              <h1 className="font-bold font-inter">XXXX</h1>
+              <h4 className="font-bold font-inter text-2xl">Repeat Business</h4>
               <p className="font-inter text-sm mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Enduring allegiance is what drives growth– once you’re in the pack, you’re family forever.
               </p>
             </div>
 
             {/* Box 5 */}
             <div
              ref={(el) => (boxsRefs.current[3] = el)}
-             className="insights-box relative bg-[#FF6969] p-5 rounded-3xl sm:col-span-2 flex flex-col items-center gap-5">
-              <img
-                src="insights-img-2.png"
+             className="insights-box relative bg-[#FF6969] p-5 rounded-3xl sm:col-span-2">
+             <Link to={'/insights'} className=" flex flex-col items-center gap-5"> <img
+                src="https://ik.imagekit.io/8mbzq2hdl/digicots/insights-img-2.png?updatedAt=1744631768255"
                 alt=""
-                className="w-full max-w-sm md:max-w-md lg:max-w-xs"
+                className="w-full"
                 />
-              <h4 className="font-bold font-inter text-2xl">Lorem Ipsum</h4>
-              <p className="font-inter text-sm mt-3">
+                <div className="w-full">
+
+              <h4 className="font-bold font-inter text-2xl">Get to Know It All Better</h4>
+              {/* <p className="font-inter text-sm mt-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
+              </p> */}
+                </div></Link>
             </div>
 
             {/* CTA Link */}

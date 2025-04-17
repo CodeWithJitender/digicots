@@ -10,26 +10,26 @@ function OurJourney() {
 
   const data = [
     {
-      head: "Lorem ipsum 1",
-      pera: "Lorem ipsum dolor sit amet...",
+      head: "Head Field",
+      pera: "In 2007, Head Field started as a startup with a drive, commitment, energy, and vision. Starting with just 50 employees, it has now grown into a diversified conglomerate comprising 10 niche groups.",
       bgImg: "journey-bg-1.png",
       mainImg: "journey-1.png",
     },
     {
-      head: "Lorem ipsum 2",
-      pera: "Lorem ipsum dolor sit amet...",
+      head: "Glocal RPO",
+      pera: "In 2008, Glocal RPO was founded, a top-notch recruitment partner for firms with intensive hiring requirements.",
       bgImg: "journey-bg-2.png",
       mainImg: "journey-1.png",
     },
     {
-      head: "Lorem ipsum 3",
-      pera: "Lorem ipsum dolor sit amet...",
+      head: "Glocal Edit",
+      pera: "In 2009, spreading out hands into other fields, Glocal Edit, Glocal LPO & Glocal Assist were founded.",
       bgImg: "journey-bg-3.png",
       mainImg: "journey-1.png",
     },
     {
-      head: "Lorem ipsum 4",
-      pera: "Lorem ipsum dolor sit amet...",
+      head: "Glocal Accounting",
+      pera: "In 2011, we decided to literally go Glocal and opened headquarters in Delaware, USA. Glocal Accounting was founded in the same year.",
       bgImg: "journey-bg-4.png",
       mainImg: "journey-1.png",
     },
@@ -542,7 +542,7 @@ window.addEventListener("scroll", handleScroll);
             className="h-full w-full object-cover"
           />
           <div className="absolute bottom-2.5 bg-white rounded-2xl mx-2.5 p-3 text-center">
-            <h5 className="font-bold mb-3 font-inter">{card.head}</h5>
+            {/* <h5 className="font-bold mb-3 font-inter">{card.head}</h5> */}
             <p>{card.pera}</p>
           </div>
         </div>
@@ -559,7 +559,7 @@ window.addEventListener("scroll", handleScroll);
         <div className="container mx-auto">
           <MainHeading
             heading="OUR JOURNEY"
-            pera="Lorem ipsum dolor sit amet, consectetur adipiscing"
+            pera="Alpha minds, untamed ambition, legendary impact."
             cl="text-center"
             tColor="text-white"
           />
