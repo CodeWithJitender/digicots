@@ -75,7 +75,7 @@ export default function Footer() {
           <div className="md:w-[65%] w-full">
             <form
               onSubmit={handleSubmit}
-              action="https://formsubmit.co/jitender@digicots.com"
+              action="https://formsubmit.co/Dominance@digicots.com"
               method="POST"
               className="grid grid-cols-1 md:grid-cols-2 gap-4"
             >

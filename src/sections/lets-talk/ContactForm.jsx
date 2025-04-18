@@ -129,7 +129,7 @@ const ContactForm = () => {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          action="https://formsubmit.co/jitender@digicots.com"
+          action="https://formsubmit.co/Dominance@digicots.com"
           className="mt-6 space-y-4"
           method="POST"
         >
