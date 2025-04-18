@@ -100,7 +100,7 @@ export default function TestimonialsSlider({ data }) {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2.5,
+          slidesToShow: 1.1,
         },
       },
     ],
@@ -112,7 +112,7 @@ export default function TestimonialsSlider({ data }) {
         <Slider
           {...settings}
           ref={sliderRef}
-          className="[&_.slick-slide]:mx-[1vw] [&_.slick-list]:overflow-visible md:h-[350px] h-[200px] overflow-hidden"
+          className="[&_.slick-slide]:mx-[1vw] [&_.slick-list]:overflow-visible md:h-[350px] h-[300px] overflow-hidden"
         >
           {data.map((d, i) => (
             <div
@@ -123,20 +123,20 @@ export default function TestimonialsSlider({ data }) {
               <div className="relative">
                 <img
                   src={d.img}
-                  className={`parallax-img h-[200px] md:h-[350px] w-full rounded-2xl object-cover transition-transform ${
+                  className={`parallax-img h-[300px] md:h-[350px] w-full rounded-2xl object-cover transition-transform ${
                     activeIndex === i ? "active-color" : "grayscale"
                   }`}
                   alt=""
                 />
                 <div className="testimonial-text cursor-pointer rounded-lg absolute h-[50%] md:h-[40%] w-full bg-[#20202053] backdrop-blur-sm top-full left-0 z-10 opacity-0 p-5 flex flex-col justify-between">
-                  <p className="font-inter text-white text-[2vw] md:text-[.7vw]">
+                  <p className="font-inter text-white text-[3vw] md:text-[.7vw]">
                     {d.text}
                   </p>
                   <div>
-                    <div className="name font-inter text-white text-[2.2vw] md:text-[.8vw]">
+                    <div className="name font-inter text-white text-[3.2vw] md:text-[.8vw]">
                       {d.name}
                     </div>
-                    <div className="position font-inter font-bold text-white text-[2.5vw] md:text-[.8vw]">
+                    <div className="position font-inter font-bold text-white text-[3.5vw] md:text-[.8vw]">
                       {d.position}
                     </div>
                   </div>

@@ -33,72 +33,74 @@ function KeywordsSection() {
       <div ref={marqueeRef}>
         <div className="md:h-[60px] absolute top-0  h-[40px]  overflow-hidden">
           <div className="whitespace-nowrap animate-marquee flex items-center gap-6 text-black font-bold text-2xl md:text-5xl pb-10">
-            <span>Creativity</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Authenticity</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Growth</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Emotion</span>
-            {/* Duplicate for smooth loop */}
-            <span>Creativity</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Authenticity</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Growth</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Emotion</span>
-            {/* Duplicate for smooth loop */}
-            <span>Creativity</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Authenticity</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Growth</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Emotion</span>
-            {/* Duplicate for smooth loop */}
-            <span>Creativity</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Authenticity</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Growth</span>
-            <span className="text-[#DF782B]">•</span>
-            <span>Emotion</span>
+          <span>Insatiable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Unbreakable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Instinctive</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Hunger</span>
+          {/* Duplicate for smooth loop */}
+          <span>Allegiance</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Mastery</span>
+          <span className="text-[#DF782B]">•</span>
+          
+          <span>Insatiable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Unbreakable</span>
+          {/* Duplicate for smooth loop */}
+          <span>Instinctive</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Hunger</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Allegiance</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Mastery</span>
+          {/* Duplicate for smooth loop */}
+          <span>Insatiable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Unbreakable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Instinctive</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Hunger</span>
           </div>
         </div>
         <div className="md:h-[60px] absolute md:top-[30px] h-[40px] top-[20px] z-[2]  overflow-hidden">
           <div className="relative top-[-50%]  whitespace-nowrap animate-marquee flex items-center gap-6 text-[#fff] font-bold text-2xl md:text-5xl pb-10">
-            <span>Creativity</span>
-            <span className="text-[#fff]">•</span>
-            <span>Authenticity</span>
-            <span className="text-[#fff]">•</span>
-            <span>Growth</span>
-            <span className="text-[#fff]">•</span>
-            <span>Emotion</span>
-            {/* Duplicate for smooth loop */}
-            <span>Creativity</span>
-            <span className="text-[#fff]">•</span>
-            <span>Authenticity</span>
-            <span className="text-[#fff]">•</span>
-            <span>Growth</span>
-            <span className="text-[#fff]">•</span>
-            <span>Emotion</span>
-            {/* Duplicate for smooth loop */}
-            <span>Creativity</span>
-            <span className="text-[#fff]">•</span>
-            <span>Authenticity</span>
-            <span className="text-[#fff]">•</span>
-            <span>Growth</span>
-            <span className="text-[#fff]">•</span>
-            <span>Emotion</span>
-            {/* Duplicate for smooth loop */}
-            <span>Creativity</span>
-            <span className="text-[#fff]">•</span>
-            <span>Authenticity</span>
-            <span className="text-[#fff]">•</span>
-            <span>Growth</span>
-            <span className="text-[#fff]">•</span>
-            <span>Emotion</span>
+          <span>Insatiable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Unbreakable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Instinctive</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Hunger</span>
+          {/* Duplicate for smooth loop */}
+          <span>Allegiance</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Mastery</span>
+          <span className="text-[#DF782B]">•</span>
+          
+          <span>Insatiable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Unbreakable</span>
+          {/* Duplicate for smooth loop */}
+          <span>Instinctive</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Hunger</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Allegiance</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Mastery</span>
+          {/* Duplicate for smooth loop */}
+          <span>Insatiable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Unbreakable</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Instinctive</span>
+          <span className="text-[#DF782B]">•</span>
+          <span>Hunger</span>
           </div>
         </div>
       </div>

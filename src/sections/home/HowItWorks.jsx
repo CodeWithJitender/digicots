@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import HowItWorksCanvas from "../../animation/canvas/HowItsWorkCanvas";
+import WolfCard from "../../components/WolfCards";
 
 // Register plugins once
 gsap.registerPlugin(ScrollTrigger);
@@ -44,6 +45,70 @@ const HowItWorks = () => {
     },
   ];
 
+  const cardList = [
+    {
+      id: 1,
+      step: "STEP 1",
+      heading: "Hunt the Weak (Identify & Attack)",
+      pera: "We identify weak points and strike with precision.",
+      list: [
+        "Analyze competition weaknesses.",
+        "Target the most vulnerable spots.",
+        "Strike with a tailored strategy.",
+      ],
+      quoat: "Only the strongest survive.",
+      bgColor: "bg-gray-900",
+      textColor: "text-white",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
+    },
+    {
+      id: 2,
+      step: "STEP 2",
+      heading: "Mark the Territory (Establish & Expand)",
+      pera: "We solidify our presence and dominate the market.",
+      list: [
+        "Build a strong brand foundation.",
+        "Expand into new digital landscapes.",
+        "Dominate through consistency.",
+      ],
+      quoat: "Claim what’s yours and make it unshakable.",
+      bgColor: "bg-gray-700",
+      textColor: "text-white",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
+    },
+    {
+      id: 3,
+      step: "STEP 3",
+      heading: "Lead the Pack (Innovate & Inspire)",
+      pera: "We don’t follow trends, we create them.",
+      list: [
+        "Innovate with cutting-edge strategies.",
+        "Set the industry standard.",
+        "Inspire others to follow your lead.",
+      ],
+      quoat: "A true leader runs with the pack but leads from the front.",
+      bgColor: "bg-orange-500",
+      textColor: "text-white",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
+    },
+    {
+      id: 4,
+      step: "STEP 4",
+      heading: "Guard the Territory (Optimize & Dominate)",
+      pera: "Paranoid. Protective. Ferocious. Always keeping an eye for sudden changes and threats",
+      list: [
+        "We track each metric, knowing exactly when to strike again.",
+        "We strike out weak spots and double down on our maniac side.",
+        "We ensure your brand remains at the peak.",
+      ],
+      quoat: "Survival is only the beginning. Domination is the goal.",
+      bgColor: "bg-orange-700",
+      textColor: "text-white",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
+    },
+  ];
+
+
   const cardRefs = useRef([]);
   const parentRef = useRef(null);
   const containerRef = useRef(null);
@@ -51,7 +116,7 @@ const HowItWorks = () => {
   const animationRefs = useRef({
     timeline: null,
     moveY: null,
-    clickAnimations: []
+    clickAnimations: [],
   });
   const [openedIndex, setOpenedIndex] = useState(-1);
 
@@ -119,33 +184,37 @@ const HowItWorks = () => {
   }, []);
 
   // Card click handler
-  const handleClick = useCallback((i) => {
-    if (i !== openedIndex) {
-      handleClose();
-      
-      const animation = gsap.to(cardRefs.current[i], {
-        left: "50%",
-        scale: 1.2,
-        zIndex: 2,
-        translateX: "-50%",
-        rotateY: "180deg",
-        duration: 0.8,
-        ease: "power4.inOut",
-        onStart: () => {
-          const unflipped = cardRefs.current[i].querySelector(".unflipped-text");
-          const flipped = cardRefs.current[i].querySelector(".flipped-text");
-          const tl = gsap.timeline();
-          tl.to(unflipped, { opacity: 0 }, "a");
-          tl.to(flipped, { opacity: 1 }, "a");
-        },
-        onComplete: () => {
-          setOpenedIndex(i);
-          // Store animation for cleanup
-          animationRefs.current.clickAnimations[i] = animation;
-        },
-      });
-    }
-  }, [openedIndex]);
+  const handleClick = useCallback(
+    (i) => {
+      if (i !== openedIndex) {
+        handleClose();
+
+        const animation = gsap.to(cardRefs.current[i], {
+          left: "50%",
+          scale: 1.2,
+          zIndex: 2,
+          translateX: "-50%",
+          rotateY: "180deg",
+          duration: 0.8,
+          ease: "power4.inOut",
+          onStart: () => {
+            const unflipped =
+              cardRefs.current[i].querySelector(".unflipped-text");
+            const flipped = cardRefs.current[i].querySelector(".flipped-text");
+            const tl = gsap.timeline();
+            tl.to(unflipped, { opacity: 0 }, "a");
+            tl.to(flipped, { opacity: 1 }, "a");
+          },
+          onComplete: () => {
+            setOpenedIndex(i);
+            // Store animation for cleanup
+            animationRefs.current.clickAnimations[i] = animation;
+          },
+        });
+      }
+    },
+    [openedIndex]
+  );
 
   // Card close handler
   const handleClose = useCallback(() => {
@@ -182,14 +251,17 @@ const HowItWorks = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       // Cleanup click animations
-      animationRefs.current.clickAnimations.forEach(anim => anim?.kill());
+      animationRefs.current.clickAnimations.forEach((anim) => anim?.kill());
     };
   }, [handleClose]);
 
   // Responsive left position calculation
-  const getCardLeftPosition = useCallback((index) => {
-    return window.innerWidth > 600 ? `${8 * (index * 3.5 + 2.5)}%` : "50%";
-  }, [window.innerWidth]);
+  const getCardLeftPosition = useCallback(
+    (index) => {
+      return window.innerWidth > 600 ? `${8 * (index * 3.5 + 2.5)}%` : "50%";
+    },
+    [window.innerWidth]
+  );
 
   // Component cleanup
   useEffect(() => {
@@ -203,10 +275,10 @@ const HowItWorks = () => {
         animationRefs.current.moveY.kill();
         animationRefs.current.moveY.scrollTrigger?.kill();
       }
-      animationRefs.current.clickAnimations.forEach(anim => anim?.kill());
-      
+      animationRefs.current.clickAnimations.forEach((anim) => anim?.kill());
+
       // Kill all related ScrollTriggers
-      ScrollTrigger.getAll().forEach(trigger => {
+      ScrollTrigger.getAll().forEach((trigger) => {
         if (trigger.trigger === parentRef.current) {
           trigger.kill();
         }
@@ -223,7 +295,7 @@ const HowItWorks = () => {
         <div className="absolute w-screen h-screen z-[-1]">
           <HowItWorksCanvas />
         </div>
-        
+
         <div className="container-xxl absolute top-0 left-0 right-0 bottom-0 h-full w-full">
           <MainHeading
             heading="HOW IT WORKS"
@@ -234,53 +306,19 @@ const HowItWorks = () => {
 
           <div
             ref={containerRef}
-            className="wolf-card-container h-[70vh] md:h-fit relative grid md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5 mt-20"
+            className="wolf-card-container h-[70vh] md:h-fit relative grid md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5"
           >
-            {data.map((dataChild, index) => (
-              <div
-                ref={(el) => (cardRefs.current[index] = el)}
-                className="wolf-card absolute p-4 rounded-2xl md:-translate-x-[100%] -translate-x-1/2 left-[50%] w-full md:h-[56vh] md:w-[20vw] shadow-lg border-8 border-[#FFFFFF4D]"
-                style={{
-                  background: dataChild.bg_Color,
-                  top: 0,
-                  left: window.innerWidth > 600 ? getCardLeftPosition(index) : "50%",
-                  // transform:window.innerWidth > 600 ? "translateX (-100%)" : "translateX(-50%)"
-                }}
-                key={index}
-                onClick={() => window.innerWidth > 600 && handleClick(index)}
-              >
+            {cardList.map((dataChild, index) => (
+              <>
                 <div className="unflipped-text">
-                  <div className="wolf-img mb-4">
-                    <img
-                      src={dataChild.img}
-                      alt="Wolf Icon"
-                      className="mx-auto w-full"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="wolf-text grid gap-1">
-                    <h6
-                      className="font-bold"
-                      style={{
-                        color: dataChild.h_color,
-                        fontSize: "clamp(8px, 20vw, 11px)",
-                      }}
-                    >
-                      {dataChild.h1}
-                    </h6>
-                    <h4
-                      className="font-semibold text-white"
-                      style={{ fontSize: "clamp(16px, 20vw, 24px)" }}
-                    >
-                      {dataChild.h2}
-                    </h4>
-                    <p
-                      className="text-[#EAEAEA]"
-                      style={{ fontSize: "clamp(10px, 20vw, 14px)" }}
-                    >
-                      {dataChild.p}
-                    </p>
-                  </div>
+                <WolfCard
+                  ref={(el) => (cardRefs.current[index] = el)}
+                  key={index}
+                  {...dataChild}
+                  
+                  onClick={() => window.innerWidth > 600 && handleClick(index)}
+                  className="absolute md:relative"
+                />
                 </div>
 
                 <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-sm text-white">
@@ -294,7 +332,7 @@ const HowItWorks = () => {
                   reiciendis? Commodi, sapiente possimus nostrum impedit
                   deleniti qui obcaecati?
                 </div>
-              </div>
+              </>
             ))}
           </div>
         </div>
@@ -304,3 +342,15 @@ const HowItWorks = () => {
 };
 
 export default HowItWorks;
+
+// <div
+//   ref={(el) => (cardRefs.current[index] = el)}
+//   className="wolf-card absolute p-4 rounded-2xl md:-translate-x-[100%] -translate-x-1/2 left-[50%] w-full md:h-[56vh] md:w-[20vw] shadow-lg border-8 border-[#FFFFFF4D]"
+//   style={{
+//     background: dataChild.bg_Color,
+//     top: 0,
+//     left: window.innerWidth > 600 ? getCardLeftPosition(index) : "50%",
+//     // transform:window.innerWidth > 600 ? "translateX (-100%)" : "translateX(-50%)"
+//   }}
+//   key={index}
+// >

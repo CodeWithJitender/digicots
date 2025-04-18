@@ -9,44 +9,45 @@ function Testimonials() {
     {
       id: 1,
       name: "John Doe",
-      position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-1.jpg",
+      position: "~Glocal Edits",
+      text: "Digicots knows how to strike a balance among knowledge, humor & relatability. They really know how to keep our viewers engaged.",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-1.webp",
       isCenter: false,
     },
     {
       id: 2,
       name: "Jane Smith",
-      position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-2.jpg",
+      position: "~Head Field Solutions",
+      text: "It feels like having a team that can flawlessly harmonize with our vision, mission and values. They thoroughly understand how we want the world to see us; and they make it happen.",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-2.webp",
       isCenter: false,
     },
     {
       id: 3,
       name: "Ashwary Sinha",
-      position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-3.jpg",
+      position: "~Taste & Beyond",
+      text: "The design sense perfectly aligns with the vision we have. Having Digicots is like having a therapist who gets you.",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-3.webp",
       isCenter: false,
     },
     {
       id: 4,
       name: "Ashwary Sinha",
-      position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-4.jpg",
+      position: "~ArtifiQ",
+      text: "They are data-driven and that is where our visions align. Their ability to blend data, tech & creativity is truly exceptional.",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-4.webp",
       isCenter: false,
     },
     {
       id: 5,
       name: "Ashwary Sinha",
-      position: "CEO Ashwary.Design",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/testimonial-5.jpg",
+      position: "~Glocal BPO",
+      text: "It is phenomenal how easily they dive into details and grab the gap. They really do know when, where and how to strike.",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-5.webp",
       isCenter: false,
     },
   ]
+    
   const [testimonials, setTestimonials] = useState([
     ...data,
     ...data,
@@ -71,7 +72,7 @@ function Testimonials() {
 
 
   return testimonials.length > 0 && (
-    <section ref={testimonialsRef} className="testimonial min-h-screen relative z-[5] py-10 md:px-40 bg-white">
+    <section ref={testimonialsRef} className="testimonial min-h-[65vh] relative z-[5] py-10 md:px-40 bg-white">
       <div className="container">
         <MainHeading
           heading="TESTIMONIALS"

@@ -1,8 +1,8 @@
 import React from "react";
 
-const WolfCard = ({ step, heading, pera, list, quoat, bgColor, textColor, img,className,style,ref }) => {
+const WolfCard = ({ step, heading, pera, list, quoat, bgColor, textColor, img,className,style,ref, onClick }) => {
   return (
-    <div ref={ref} style={style} className={` ${className} px-4 py-12 h-[70vh] rounded-xl shadow-lg flex flex-col items-center ${bgColor} ${textColor} w-full`}>
+    <div onClick={onclick} ref={ref} style={style} className={` ${className} px-4 py-12 h-[70vh] rounded-xl shadow-lg flex flex-col items-center ${bgColor} ${textColor} w-full`}>
       {/* Image Section */}
       <div className="max-w-[200px]">
         <img src={img} alt="Wolf" className="max-w" />
