@@ -133,7 +133,7 @@ function HowWeWork() {
           />
 
           {/* Grid Layout for Cards */}
-          <div className="relative mt-20 w-full flex h-[60vh] flex-col md:flex-row gap-5">
+          <div className="relative md:mt-20 w-full flex h-[60vh] flex-col md:flex-row gap-5">
             {cardList.map((card, i) => (
               <WolfCard
                 ref={(el) => (cardsRef.current[i] = el)}
