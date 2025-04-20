@@ -11,7 +11,7 @@ function Member({ member , ref }) {
         <img
           src={member.image}
           alt={member.name}
-          style={{width : (window.innerWidth > 600 ? '100%' : "200px") }}
+          style={{width : (window.innerWidth > 600 ? '350px' : "200px") }}
           className=" h-full transition-[.5s]"
         />
       </div>

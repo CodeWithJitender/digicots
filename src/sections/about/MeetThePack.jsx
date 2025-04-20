@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Member from "../../components/Member";
 import MainHeading from "../../components/MainHeading";
 import { useGSAP } from "@gsap/react";
@@ -7,51 +7,50 @@ import { ScrollTrigger } from "gsap/all";
 
 function MeetThePack() {
   const teamMembers = [
-    { position: window.innerWidth > 600 ? { top: "35%", left: "50%" } : { top: "65%", left: "60%"  }, name: "Sarah Johnson", designation: "Support", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-4.png" },
-    { position: window.innerWidth > 600 ? { top: "30%", left: "25%" } : { top: "55%", left: "-10%" }, name: "Jane Doe", designation: "Designer", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-2.png" },
-    { position: window.innerWidth > 600 ? { top: "30%", left: "40%" } : { top: "45%", left: "20%" }, name: "John Doe", designation: "Developer", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-1.png" },
+    { position: window.innerWidth > 600 ? { top: "40%", left: "53%" } : { top: "65%", left: "60%"  }, name: "Sarah Johnson", designation: "Support", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-4.png" },
+    { position: window.innerWidth > 600 ? { top: "30%", left: "22%" } : { top: "55%", left: "-10%" }, name: "Jane Doe", designation: "Designer", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-2.png" },
+    { position: window.innerWidth > 600 ? { top: "0%", left: "36%" } : { top: "45%", left: "20%" }, name: "John Doe", designation: "Developer", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-1.png" },
   ];
 
   const containerRef = useRef(null);
   const bgRef = useRef(null);
   const memberRef = useRef([]);
 
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
 
   useGSAP(() => {
-    // Ensure refs are available
-    if (!containerRef.current || !bgRef.current || !memberRef.current.length) return;
+    // Reset initial states
+    gsap.set(containerRef.current, { width: 0 });
+    gsap.set(bgRef.current, { opacity: 0 });
+    gsap.set(memberRef.current, { y: "50%", opacity: 0 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 50%", // Adjusted for smoother trigger
+        start: "top 80%",
         end: "top 10%",
         scrub: true,
+        markers: false // Enable this for debugging if needed
       },
     });
 
-    tl.from(containerRef.current, {
-      width: 0,
+    tl.to(containerRef.current, {
+      width: "100%",
       duration: 1,
       ease: "power1.inOut",
     })
-      .to(bgRef.current, {
-        opacity: 1,
-        duration: 0.5,
-      })
-      .from(
-        memberRef.current,
-        {
-          y: "50%",
-          opacity: 0,
-          duration: 1,
-          ease: "power1.inOut",
-          stagger: 0.2, // Reduced stagger for smoother effect
-        },
-        "-=0.5" // Overlap with background animation
-      );
-  }, [containerRef.current, bgRef.current, memberRef.current]);
+    .to(bgRef.current, {
+      opacity: 1,
+      duration: 0.5,
+    }, "-=0.5")
+    .to(memberRef.current, {
+      y: "0%",
+      opacity: 1,
+      duration: 1,
+      ease: "power1.inOut",
+      stagger: 0.2,
+    }, "-=0.5");
+  }, []);
 
   return (
     <section className="meet-the-pack min-h-screen overflow-hidden">
