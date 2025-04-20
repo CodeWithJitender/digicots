@@ -397,7 +397,7 @@ header .dropdown {
 
 @media (max-width: 768px) {
   .items .item:active, .items .item:focus {
-    width: 15vw !important;
+    /* width: 18vw !important; */
   }
 }
 

@@ -30,7 +30,7 @@ const HowItWorks = () => {
     {
       h1: "STEP 3",
       h2: "Set the Pack in Motion",
-      p: "This isn't execution. This is a movement.",
+      p: "This isn’t execution. This is a movement.",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
       h_color: "#F3A265",
       bg_Color: "#515151",
@@ -44,70 +44,6 @@ const HowItWorks = () => {
       bg_Color: "#F3A265",
     },
   ];
-
-  const cardList = [
-    {
-      id: 1,
-      step: "STEP 1",
-      heading: "Hunt the Weak (Identify & Attack)",
-      pera: "We identify weak points and strike with precision.",
-      list: [
-        "Analyze competition weaknesses.",
-        "Target the most vulnerable spots.",
-        "Strike with a tailored strategy.",
-      ],
-      quoat: "Only the strongest survive.",
-      bgColor: "bg-gray-900",
-      textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
-    },
-    {
-      id: 2,
-      step: "STEP 2",
-      heading: "Mark the Territory (Establish & Expand)",
-      pera: "We solidify our presence and dominate the market.",
-      list: [
-        "Build a strong brand foundation.",
-        "Expand into new digital landscapes.",
-        "Dominate through consistency.",
-      ],
-      quoat: "Claim what’s yours and make it unshakable.",
-      bgColor: "bg-gray-700",
-      textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
-    },
-    {
-      id: 3,
-      step: "STEP 3",
-      heading: "Lead the Pack (Innovate & Inspire)",
-      pera: "We don’t follow trends, we create them.",
-      list: [
-        "Innovate with cutting-edge strategies.",
-        "Set the industry standard.",
-        "Inspire others to follow your lead.",
-      ],
-      quoat: "A true leader runs with the pack but leads from the front.",
-      bgColor: "bg-orange-500",
-      textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
-    },
-    {
-      id: 4,
-      step: "STEP 4",
-      heading: "Guard the Territory (Optimize & Dominate)",
-      pera: "Paranoid. Protective. Ferocious. Always keeping an eye for sudden changes and threats",
-      list: [
-        "We track each metric, knowing exactly when to strike again.",
-        "We strike out weak spots and double down on our maniac side.",
-        "We ensure your brand remains at the peak.",
-      ],
-      quoat: "Survival is only the beginning. Domination is the goal.",
-      bgColor: "bg-orange-700",
-      textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
-    },
-  ];
-
 
   const cardRefs = useRef([]);
   const parentRef = useRef(null);
@@ -190,10 +126,10 @@ const HowItWorks = () => {
         handleClose();
 
         const animation = gsap.to(cardRefs.current[i], {
-          left: "50%",
-          scale: 1.2,
+          // left: "50%",
+          scale: 1.1,
           zIndex: 2,
-          translateX: "-50%",
+          // translateX: "-50%",
           rotateY: "180deg",
           duration: 0.8,
           ease: "power4.inOut",
@@ -221,10 +157,10 @@ const HowItWorks = () => {
     setOpenedIndex(-1);
     cardRefs.current.forEach((e, i) => {
       const animation = gsap.to(e, {
-        left: 20 * (i * 1.4 + 1) + "%",
+        // left: 20 * (i * 1.4 + 1) + "%",
         scale: 1,
         zIndex: 1,
-        translateX: "-100%",
+        // translateX: "-100%",
         rotateY: "0deg",
         onStart: () => {
           const unflipped = e.querySelector(".unflipped-text");
@@ -306,50 +242,52 @@ const HowItWorks = () => {
 
           <div
             ref={containerRef}
-            className="wolf-card-container h-[70vh] md:h-fit relative grid md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5"
+            className="wolf-card-container md:mt-6 h-[70vh] md:h-fit relative grid md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5"
           >
-            {cardList.map((dataChild, index) => (
+            {data.map((dataChild, index) => (
               <>
-                <div className="unflipped-text">
                 <div
-                ref={(el) => (cardRefs.current[index] = el)}
-                className="wolf-card absolute md:static p-4 rounded-2xl shadow-lg border-8 border-[#FFFFFF4D]"
-                style={{ background: dataChild.bgColor, top: window.innerWidth > 600 ? 0:index*5 + "%" }}
-                key={index}
-                onClick={() => window.innerWidth > 600 && handleClick(index)}
-              >
-                <div className="wolf-img mb-4">
-                  <img
-                    src={dataChild.img}
-                    alt="Wolf Icon"
-                    className=" mx-auto w-full"
-                  />
-                </div>
-                <div className="wolf-text grid gap-1">
-                  <h6
-                    className="font-bold"
-                    style={{
-                      color: dataChild.h_color,
-                      fontSize: "clamp(8px, 20vw, 11px)",
-                    }}
-                  >
-                    {dataChild.h1}
-                  </h6>
-                  <h4
-                    className="font-semibold text-white"
-                    style={{ fontSize: "clamp(16px, 20vw, 24px)" }}
-                  >
-                    {dataChild.h2}
-                  </h4>
-                  <p
-                    className=" text-[#EAEAEA]"
-                    style={{ fontSize: "clamp(10px, 20vw, 14px)" }}
-                  >
-                    {dataChild.p}
-                  </p>
-                </div>
-              </div>
-                </div>
+                  ref={(el) => (cardRefs.current[index] = el)}
+                  className="wolf-card absolute md:static p-4 rounded-2xl shadow-lg border-8 border-[#FFFFFF4D]"
+                  style={{
+                    background: dataChild.bg_Color,
+                    top: window.innerWidth > 600 ? 0 : index * 5 + "%",
+                  }}
+                  onClick={() => window.innerWidth > 600 && handleClick(index)}
+                  key={index}
+                >
+                  <div className="unflipped-text">
+                    <div className="wolf-img mb-4">
+                      <img
+                        src={dataChild.img}
+                        alt="Wolf Icon"
+                        className=" mx-auto w-full"
+                      />
+                    </div>
+                    <div className="wolf-text grid gap-1">
+                      <h6
+                        className="font-bold"
+                        style={{
+                          color: dataChild.h_color,
+                          fontSize: "clamp(8px, 20vw, 11px)",
+                        }}
+                      >
+                        {dataChild.h1}
+                      </h6>
+                      <h4
+                        className="font-semibold text-white"
+                        style={{ fontSize: "clamp(16px, 20vw, 24px)" }}
+                      >
+                        {dataChild.h2}
+                      </h4>
+                      <p
+                        className=" text-[#EAEAEA]"
+                        style={{ fontSize: "clamp(10px, 15vw, 12px)" }}
+                      >
+                        {dataChild.p}
+                      </p>
+                    </div>
+                  </div>
 
                 <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-sm text-white">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -362,6 +300,8 @@ const HowItWorks = () => {
                   reiciendis? Commodi, sapiente possimus nostrum impedit
                   deleniti qui obcaecati?
                 </div>
+                </div>
+
               </>
             ))}
           </div>
