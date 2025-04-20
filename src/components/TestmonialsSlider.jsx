@@ -26,7 +26,7 @@ export default function TestimonialsSlider({ data }) {
       );
       if (activeSlide) {
         gsap.to(activeSlide, {
-          top: window.innerWidth > 768 ? "70%" : "50%",
+          top: window.innerWidth > 768 ? "70%" : "60%",
           opacity: 1,
           delay: 0.3,
           duration: 0.8,
@@ -38,7 +38,7 @@ export default function TestimonialsSlider({ data }) {
               duration: 0.1,
             });
             gsap.to(".slick-current .testimonial-text", {
-              top: window.innerWidth > 768 ? "60%" : "50%",
+              top: window.innerWidth > 768 ? "60%" : "60%",
               opacity: 1,
               ease: "power2.out",
             });
@@ -128,14 +128,14 @@ export default function TestimonialsSlider({ data }) {
                   }`}
                   alt=""
                 />
-                <div className="testimonial-text cursor-pointer rounded-lg absolute h-[50%] md:h-[40%] w-full bg-[#20202053] backdrop-blur-sm top-full left-0 z-10 opacity-0 p-5 flex flex-col justify-between">
+                <div className="testimonial-text cursor-pointer rounded-lg absolute h-[40%] md:h-[40%] w-full bg-[#20202053] backdrop-blur-sm top-full left-0 z-10 opacity-0 p-5 flex flex-col justify-between">
                   <p className="font-inter text-white text-[3vw] md:text-[.7vw]">
                     {d.text}
                   </p>
                   <div>
-                    <div className="name font-inter text-white text-[3.2vw] md:text-[.8vw]">
+                    {/* <div className="name font-inter text-white text-[3.2vw] md:text-[.8vw]">
                       {d.name}
-                    </div>
+                    </div> */}
                     <div className="position font-inter font-bold text-white text-[3.5vw] md:text-[.8vw]">
                       {d.position}
                     </div>

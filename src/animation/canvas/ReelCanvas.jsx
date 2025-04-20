@@ -356,7 +356,7 @@ const Scene = () => {
             className="reel-text flex items-center gap-3 font-inter font-bold text-white cursor-pointer"
           >
             <span>PLAY</span>
-            <img src="reelplay.png" />
+            <img src="https://ik.imagekit.io/x5xessyka/digicots/public/reelplay.png" />
             <span>REEL</span>
           </div>
 
@@ -395,7 +395,7 @@ const Scene = () => {
                 className="replay-text flex items-center gap-3 font-inter font-bold text-white cursor-pointer"
               >
                 <span>REPLAY</span>
-                <img src="reelplay.png" />
+                <img src="https://ik.imagekit.io/x5xessyka/digicots/public/reelplay.png" />
                 <span>REEL</span>
               </div>
             </div>
