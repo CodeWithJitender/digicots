@@ -3,6 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReelCanvas from "./ReelCanvas";
+import { useLocation } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +13,7 @@ const HowItWorksCanvas = () => {
   const screen2TextRef = useRef(null);
   const frameCount = 71;
   const images = useRef([]);
+  const isHome = useLocation().pathname === "/";
 
   // Preload images once
   useEffect(() => {
@@ -58,6 +60,7 @@ const HowItWorksCanvas = () => {
     };
   }, []);
 
+
   useGSAP(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
@@ -93,36 +96,39 @@ const HowItWorksCanvas = () => {
       "start"
     );
 
-    timeline.to(
-      screen2TextRef.current,
-      {
-        opacity: 1,
-        bottom: "0%",
-        duration: 1,
-      },
-      "start"
-    );
+    // timeline.to(
+    //   screen2TextRef.current,
+    //   {
+    //     opacity: 1,
+    //     bottom: "0%",
+    //     duration: 1,
+    //   },
+    //   "start"
+    // );
 
-    const moveY = gsap.to(containerRef.current, {
-      y: "40%",
-      duration: 20,
-      ease: "power1.inOut",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top -302%",
-        end: "top -400%",
-        scrub: 1,
-      },
-    });
+    let moveY;
+    if(isHome){
+      moveY = gsap.to(containerRef.current, {
+        y: "40%",
+        duration: 20,
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top -302%",
+          end: "top -400%",
+          scrub: 1,
+        },
+      });
+    }
 
     return () => {
       timeline.scrollTrigger?.kill();
-      moveY.scrollTrigger?.kill();
+      if(isHome) moveY?.scrollTrigger?.kill();
       timeline.kill();
-      moveY.kill();
+      moveY?.kill();
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
-  }, []);
+  }, [isHome]);
 
   return (
     <section className="hero-main min-h-[400vh] bg-black">
