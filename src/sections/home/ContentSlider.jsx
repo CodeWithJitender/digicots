@@ -386,7 +386,7 @@ const ContentSlider = () => {
         <div ref={headingRef}>
           <HeadingWithLink
             head="SOLUTIONS"
-            per="Lorem ipsum dolor sit amet, consectetur adipiscing"
+            per="The Alpha’s Guide to Absolute Domination"
             link="/contact"
             linkh="Contact Us"
           />

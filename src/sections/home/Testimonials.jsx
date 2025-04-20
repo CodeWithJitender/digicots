@@ -76,7 +76,7 @@ function Testimonials() {
       <div className="container">
         <MainHeading
           heading="TESTIMONIALS"
-          pera="Lorem ipsum dolor sit amet, consectetur adipiscing"
+          pera="We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
           cl="text-center"
           tColor="black"
         />

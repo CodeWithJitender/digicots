@@ -149,7 +149,7 @@ function Insights() {
           animeStart="27%"
             heading={"INSIGHTS"}
             pera={
-              "We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
+              "When the landscape shifts, we evolve. Faster, smarter, stronger. Change doesn’t scare us—it fuels us."
             }
             cl={"text-center"}
             tColor={"text-black"}

@@ -188,7 +188,7 @@ const OurJourney = () => {
         <div className="container mx-auto">
           <MainHeading
             heading="OUR JOURNEY"
-            pera="Lorem ipsum dolor sit amet, consectetur adipiscing"
+            pera="Alpha minds, untamed ambition, legendary impact."
             cl="text-center"
             tColor="text-white"
           />
