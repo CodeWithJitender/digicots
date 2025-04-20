@@ -311,14 +311,44 @@ const HowItWorks = () => {
             {cardList.map((dataChild, index) => (
               <>
                 <div className="unflipped-text">
-                <WolfCard
-                  ref={(el) => (cardRefs.current[index] = el)}
-                  key={index}
-                  {...dataChild}
-                  
-                  onClick={() => window.innerWidth > 600 && handleClick(index)}
-                  className="absolute md:relative"
-                />
+                <div
+                ref={(el) => (cardRefs.current[index] = el)}
+                className="wolf-card absolute md:static p-4 rounded-2xl shadow-lg border-8 border-[#FFFFFF4D]"
+                style={{ background: dataChild.bgColor, top: window.innerWidth > 600 ? 0:index*5 + "%" }}
+                key={index}
+                onClick={() => window.innerWidth > 600 && handleClick(index)}
+              >
+                <div className="wolf-img mb-4">
+                  <img
+                    src={dataChild.img}
+                    alt="Wolf Icon"
+                    className=" mx-auto w-full"
+                  />
+                </div>
+                <div className="wolf-text grid gap-1">
+                  <h6
+                    className="font-bold"
+                    style={{
+                      color: dataChild.h_color,
+                      fontSize: "clamp(8px, 20vw, 11px)",
+                    }}
+                  >
+                    {dataChild.h1}
+                  </h6>
+                  <h4
+                    className="font-semibold text-white"
+                    style={{ fontSize: "clamp(16px, 20vw, 24px)" }}
+                  >
+                    {dataChild.h2}
+                  </h4>
+                  <p
+                    className=" text-[#EAEAEA]"
+                    style={{ fontSize: "clamp(10px, 20vw, 14px)" }}
+                  >
+                    {dataChild.p}
+                  </p>
+                </div>
+              </div>
                 </div>
 
                 <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-sm text-white">
