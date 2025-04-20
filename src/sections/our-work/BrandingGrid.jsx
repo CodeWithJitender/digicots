@@ -343,32 +343,36 @@ const CardWrapper = React.memo(({ setSelectedCard, from, to }) => {
   const isDesktop = window.innerWidth > 628;
 
   useGSAP(() => {
+    if (!cardWrapperRef.current || !cardRef.current) return;
+  
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: cardWrapperRef.current,
-        start: "top 120%",
+        start: "top 120%" ,
         end: isDesktop ? "top -90%" : "top -40%",
         scrub: 1,
+        markers: true,
       },
     });
-
+  
     tl.fromTo(
       cardRef.current,
       { scale: 1.2, opacity: 0, rotationX: 40 },
       { scale: 0.8, opacity: 1, rotationX: 0, duration: 20, ease: "power1.inOut" }
     ).to(
       cardRef.current,
-      { 
-        scale: isDesktop ? 1.2 : 1.1, 
-        opacity: 0.2, 
-        rotationX: -40, 
-        duration: isDesktop ? 20 : 15, 
+      {
+        scale: isDesktop ? 1.2 : 1.1,
+        opacity: 0.2,
+        rotationX: -40,
+        duration: isDesktop ? 20 : 15,
         ease: "power1.inOut",
-        immediateRender: false 
+        immediateRender: false,
       },
       "-=1"
     );
-  }, [isDesktop]);
+  }, [isDesktop,cardRef.current, cardWrapperRef.current]);
+  
 
   const handleCardClick = useCallback((index) => {
     setSelectedCard(brandingData[from + index]);
@@ -425,7 +429,7 @@ const BrandingGrid = () => {
 
   const cardWrappers = useMemo(() => {
     if (isDesktop) {
-      return [0, 2, 4, 6, 8].map((from) => (
+      return [0, 2, 4, 6].map((from) => (
         <CardWrapper
           key={`desktop-${from}`}
           setSelectedCard={setSelectedCard}

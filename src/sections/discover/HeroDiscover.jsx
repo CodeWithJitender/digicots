@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,36 +12,16 @@ function HeroDiscover() {
   const screen2TextRef = useRef(null);
   const images = useRef([]);
   const frameCount = 181;
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+
+  
 
   // Load and store images
   useEffect(() => {
     let isMounted = true;
-    let loadedCount = 0;
 
     const loadImages = () => {
       for (let i = 0; i < frameCount; i++) {
         const img = new Image();
-        img.onload = () => {
-          if (isMounted) {
-            loadedCount++;
-            const progress = Math.floor((loadedCount / frameCount) * 100);
-            setLoadingProgress(progress);
-            
-            if (loadedCount === frameCount) {
-              setIsLoaded(true);
-            }
-          }
-        };
-        img.onerror = () => {
-          if (isMounted) {
-            loadedCount++; // Count even if error to prevent infinite loading
-            if (loadedCount === frameCount) {
-              setIsLoaded(true);
-            }
-          }
-        };
         img.src = `https://ik.imagekit.io/x5xessyka/digicots/moon_frame/M${i.toString().padStart(3, "0")}.avif`;
         images.current[i] = img;
       }
@@ -57,8 +37,6 @@ function HeroDiscover() {
 
   // Set canvas size once the image is ready
   useEffect(() => {
-    if (!isLoaded) return;
-
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
 
@@ -72,23 +50,21 @@ function HeroDiscover() {
     };
 
     if (images.current[0]) {
+      images.current[0].onload = setCanvasSize;
       if (images.current[0].complete) {
         setCanvasSize();
-      } else {
-        images.current[0].onload = setCanvasSize;
       }
     }
 
     return () => {
+      // Optional: clear canvas
       if (context && canvas) {
         context.clearRect(0, 0, canvas.width, canvas.height);
       }
     };
-  }, [isLoaded]);
+  }, []);
 
   useGSAP(() => {
-    if (!isLoaded) return;
-
     const ctx = gsap.context(() => {
       const canvas = canvasRef.current;
       const context = canvas?.getContext("2d");
@@ -141,23 +117,7 @@ function HeroDiscover() {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       ctx.revert();
     };
-  }, [isLoaded]);
-
-  if (!isLoaded) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-black">
-        <div className="text-white text-center">
-          <div className="w-64 h-2 bg-gray-700 rounded-full overflow-hidden mx-auto mb-4">
-            <div 
-              className="h-full bg-white transition-all duration-300"
-              style={{ width: `${loadingProgress}%` }}
-            ></div>
-          </div>
-          <p>Loading... {loadingProgress}%</p>
-        </div>
-      </div>
-    );
-  }
+  }, []);
 
   return (
     <section className="hero-discover bg-black">
