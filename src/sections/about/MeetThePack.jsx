@@ -7,14 +7,9 @@ import { ScrollTrigger } from "gsap/all";
 
 function MeetThePack() {
   const teamMembers = [
-    { position: window.innerWidth > 600 ? { top: "-18%", left: "50%" } : { top: "-15%", left: "30%" }, name: "John Doe", designation: "Developer", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-1.png" },
-    { position: window.innerWidth > 600 ? { top: "40%", left: "80%" } : { top: "40%", left: "80%" }, name: "Sarah Johnson", designation: "Support", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-8.png" },
-    { position: window.innerWidth > 600 ? { top: "5%", left: "65%" } : { top: "5%", left: "65%" }, name: "Jane Doe", designation: "Designer", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-2.png" },
-    { position: window.innerWidth > 600 ? { top: "40%", left: "65%" } : { top: "40%", left: "65%" }, name: "Mark Smith", designation: "Manager", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-3.png" },
-    { position: window.innerWidth > 600 ? { top: "15%", left: "35%" } : { top: "15%", left: "35%" }, name: "Emily Clark", designation: "Marketing", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-4.png" },
-    { position: window.innerWidth > 600 ? { top: "30%", left: "20%" } : { top: "30%", left: "20%" }, name: "Sarah Johnson", designation: "Support", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-7.png" },
-    { position: window.innerWidth > 600 ? { top: "45%", left: "30%" } : { top: "45%", left: "30%" }, name: "Michael Lee", designation: "Sales", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-6.png" },
-    { position: window.innerWidth > 600 ? { top: "35%", left: "50%" } : { top: "35%", left: "50%" }, name: "Chris Evans", designation: "HR", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-5.png" },
+    { position: window.innerWidth > 600 ? { top: "35%", left: "50%" } : { top: "65%", left: "60%"  }, name: "Sarah Johnson", designation: "Support", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-4.png" },
+    { position: window.innerWidth > 600 ? { top: "30%", left: "25%" } : { top: "55%", left: "-10%" }, name: "Jane Doe", designation: "Designer", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-2.png" },
+    { position: window.innerWidth > 600 ? { top: "30%", left: "40%" } : { top: "45%", left: "20%" }, name: "John Doe", designation: "Developer", image: "https://ik.imagekit.io/x5xessyka/digicots/public/Person-1.png" },
   ];
 
   const containerRef = useRef(null);
@@ -30,8 +25,8 @@ function MeetThePack() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 80%", // Adjusted for smoother trigger
-        end: "top 20%",
+        start: "top 50%", // Adjusted for smoother trigger
+        end: "top 10%",
         scrub: true,
       },
     });
@@ -59,14 +54,14 @@ function MeetThePack() {
   }, [containerRef.current, bgRef.current, memberRef.current]);
 
   return (
-    <section className="meet-the-pack min-h-screen">
+    <section className="meet-the-pack min-h-screen overflow-hidden">
       <div className="container-xxl h-[100vh]">
         <div className="text-center">
           <MainHeading heading="MEET THE PACK" />
         </div>
         <div
           ref={containerRef}
-          className="meet-container relative left-1/2 overflow-hidden -translate-x-1/2 h-full rounded-3xl bg-[#212120] bg-cover bg-no-repeat"
+          className="meet-container relative left-1/2 overflow-hidden -translate-x-1/2 w-full h-full rounded-3xl bg-[#212120] bg-cover bg-no-repeat"
         >
           <img
             ref={bgRef}
