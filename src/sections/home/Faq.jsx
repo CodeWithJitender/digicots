@@ -9,26 +9,32 @@ import { ScrollTrigger } from "gsap/all";
 
 const faqs = [
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    question: "Why use a marketing agency?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "A marketing agency is your team of maestros – hunting success stories, crafting systems and making your voice echo around the globe. They save time, deliver expert knowledge and provide tools & systems for better targeting, creativity and ROI. With our pack of wolves – Digicots – you get precision, agility and otherworldly results.",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    question: "What is the function of a marketing agency?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "A marketing agency knows your brand’s strengths, understands your audience and sets your vision into motion. We, at Digicots, drive growth, build awareness, generate leads and foster loyalty – all while making you leap out from the swarmed locus of your competition.",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    question: "What are the types of marketing?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "There are 8 niches of marketing – branding, digital media marketing, advertising, public relations, performance marketing, print media, charity and promotions. We, at Digicots, have an extensive understanding of all these arenas and craft exceptional strategies in order to make your story echo till eternity.",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    question: "What does STP stand for in marketing?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Segmentation. Targeting. Positioning. Break your audience into segments, target niche groups and position yourself as their go-to service/product. Digicots ensures that your strategy is as precise as a wolf’s bite.",
+  },
+  {
+    question: "What does a branding service include?",
+    answer:
+      "Branding is, in simple words, authoring your own story in order to make your vision, mission and character spread around the globe. It involves logo design, setting the right tone, harmonizing with the consumer’s voice, visual identity and crafting systems that ensure your brand is engraved in everyone’s souls.",
   },
 ];
+
 
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState(0); // Default: first FAQ is open
