@@ -185,7 +185,7 @@ function Insights() {
                </div>
               </div>
               <img
-                src="insights-img.png"
+                src="https://ik.imagekit.io/8mbzq2hdl/digicots/insights-img.png"
                 className="w-full max-w-sm md:max-w-md lg:max-w-xs"
                 alt=""
               />
