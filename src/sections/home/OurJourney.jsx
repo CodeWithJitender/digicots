@@ -219,9 +219,9 @@ const OurJourney = () => {
                       loading="lazy"
                     />
                     <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-[80%] bg-white rounded-md md:p-3 p-1 text-center">
-                      <h5 className="font-bold mb-1 font-inter hidden md:block text-[1.2vw] md:text-[1vw]">
+                      {/* <h5 className="font-bold mb-1 font-inter hidden text-[1.2vw] md:text-[1vw]">
                         {card.head}
-                      </h5>
+                      </h5> */}
                       <p className="text-[1.1vw] md:text-[.8vw] leading-[1.3vw]">
                         {card.pera}
                       </p>
