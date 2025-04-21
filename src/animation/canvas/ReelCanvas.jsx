@@ -403,9 +403,9 @@ const Scene = () => {
         </div>
 
         <div className="h-full w-full absolute top-0">
-          <div className="absolute bottom-5 left-7 text-sm text-white text-left leading-none">
+          {/* <div className="absolute bottom-5 left-7 text-sm text-white text-left leading-none">
             While you imagined creativity, <br /> We established authenticity!
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
