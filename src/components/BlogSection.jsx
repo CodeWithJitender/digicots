@@ -89,7 +89,7 @@ export default function BlogSection() {
       author: "Aishwary Sinha",
       date: "Jan 25, 2025",
       readTime: "2 Min Read",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/featured-post.png",
       imgArr: [
         "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
         "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post2.png",
@@ -103,7 +103,6 @@ export default function BlogSection() {
       ], // Replace with actual images
     },
   ];
-
 
   const [isOpen, setIsOpen] = useState(false);
   const openModal = (post) => {
@@ -237,74 +236,80 @@ export default function BlogSection() {
 
   return (
     <>
-    <section ref={mainImgRef} className=" text-white py-12 px-6 md:px-12">
-      <div className="max-w-6xl relative mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-        {/* Left Side - Blog List */}
-        <div className="relative order-2 md:order-1">
-          {/* <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      <section ref={mainImgRef} className=" text-white py-12 px-6 md:px-12">
+        <div className="max-w-6xl relative mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          {/* Left Side - Blog List */}
+          <div className="relative order-2 md:order-1">
+            {/* <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Changes in the <br /> Marketing Landscape
             </h2> */}
 
-          <div className="">
-            {posts.map((post, index) => (
-              <div
-                onClick={() => openModal(post)}
-                ref={(el) => (hoverDivRef.current[index] = el)}
-                key={index}
-                className=" hoverDiv border-t border-gray-600 border-dotted py-5 md:pt-10 md:pb-5"
-              >
-                <Link>
-                  <h3 className="post-title text-base md:text-2xl font-bold font-inter text-white hover:text-[] pb-2 md:pb-5">
-                    {post.title}
-                  </h3>
-                  <div className="flex text-sm text-gray-400 mt-1 space-x-3">
-                    <span className="font-bold text-white">{post.author}</span>
-                    <span className="text-xs md:text-base">{post.date}</span>
-                    <span className="text-xs md:text-base">{post.readTime}</span>
-                  </div>
-                </Link>
-              </div>
-            ))}
+            <div className="">
+              {posts.map((post, index) => (
+                <div
+                  onClick={() => openModal(post)}
+                  ref={(el) => (hoverDivRef.current[index] = el)}
+                  key={index}
+                  className=" hoverDiv border-t border-gray-600 border-dotted py-5 md:pt-10 md:pb-5"
+                >
+                  <Link>
+                    <h3 className="post-title text-base md:text-2xl font-bold font-inter text-white hover:text-[] pb-2 md:pb-5">
+                      {post.title}
+                    </h3>
+                    <div className="flex text-sm text-gray-400 mt-1 space-x-3">
+                      <span className="font-bold text-white">
+                        {post.author}
+                      </span>
+                      <span className="text-xs md:text-base">{post.date}</span>
+                      <span className="text-xs md:text-base">
+                        {post.readTime}
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {isHovered != -1 && (
+          {isHovered != -1 && (
+            <div
+              ref={imgDivref}
+              className="absolute top-[-10%] left-1/2 -translate-x-1/2  overflow-hidden h-[255px] w-[210px] z-[2] rounded-lg pointer-events-none "
+            >
+              <img
+                ref={imgRef}
+                className="h-full w-full object-cover"
+                src={imgSrc}
+                alt=""
+              />
+            </div>
+          )}
+
+          {/* Right Side - Featured Post */}
           <div
-            ref={imgDivref}
-            className="absolute top-[-10%] left-1/2 -translate-x-1/2  overflow-hidden h-[255px] w-[210px] z-[2] rounded-lg pointer-events-none "
+            onClick={() => openModal(posts[posts.length - 1])}
+            className="relative order-1 cursor-pointer"
           >
             <img
-              ref={imgRef}
-              className="h-full w-full object-cover"
-              src={imgSrc}
-              alt=""
+              src={posts[posts.length - 1].img}
+              alt="Featured Post"
+              className="w-full h-80 md:h-full object-cover rounded-lg"
             />
-          </div>
-        )}
-
-        {/* Right Side - Featured Post */}
-        <div className="relative order-1">
-          <img
-            src="https://ik.imagekit.io/x5xessyka/digicots/public/blog/featured-post.png"
-            alt="Featured Post"
-            className="w-full h-80 md:h-full object-cover rounded-lg"
-          />
-          <div className="absolute bottom-0 left-0 w-full p-6 rounded-b-lg">
-            <h3 className="font-bold text-xl text-white mb-4">
-              Leading heading of the Latest Post
-            </h3>
-            <div className="flex text-sm text-gray-300 mt-1 space-x-7">
-              <span className="font-bold text-white">Aishwary Sinha</span>
-              <span>Jan 25, 2025</span>
-              <span>2 Min Read</span>
+            <div className="absolute bottom-0 left-0 w-full p-6 rounded-b-lg">
+              <h3 className="font-bold text-xl text-white mb-4">
+                Leading heading of the Latest Post
+              </h3>
+              <div className="flex text-sm text-gray-300 mt-1 space-x-7">
+                <span className="font-bold text-white">Aishwary Sinha</span>
+                <span>Jan 25, 2025</span>
+                <span>2 Min Read</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
       <BlogModal isOpen={isOpen} onClose={closeModal} post={selectedPost} />
     </>
-
   );
 }
 
