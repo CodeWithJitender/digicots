@@ -2,8 +2,43 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef, useEffect } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { useLenis } from "../../App";
 
 function AllService() {
+  const [searchParams] = useSearchParams();
+  const lenis = useLenis();
+
+  useEffect(() => {
+    const id = searchParams.get("i"); // for example: "about"
+
+    if (id) {
+      const scrollPositions = [
+        2.5 * window.innerHeight,
+        3 * window.innerHeight,
+        3.8 * window.innerHeight,
+        4.7 * window.innerHeight,
+        5.2 * window.innerHeight,
+        6 * window.innerHeight,
+        6.8 * window.innerHeight,
+        7.5 * window.innerHeight,
+        8.2 * window.innerHeight,
+        9 * window.innerHeight,
+      ]; // Example scroll positions for each section
+
+      const targetScroll = scrollPositions[id];
+
+      if (targetScroll !== undefined) {
+        setTimeout(() => {
+          lenis.scrollTo(targetScroll, {
+            duration: 1.5,
+            easing: (t) => t,
+          });
+        }, 500); // thoda delay for safe mount
+      }
+    }
+  }, [searchParams, lenis]);
+
   const data = {
     "Content Production": {
       img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-9.png?updatedAt=1744631768600",
@@ -269,14 +304,14 @@ function AllService() {
       },
       "a"
     )
-    .to(
-      scrollContainerRef.current,
-      {
-        scrollTop: (i, target) => target.scrollHeight - target.clientHeight, // Scroll to bottom
-        ease: "power2.out", // Smooth scrolling ease
-        duration: 1, // Scroll duration
-        stagger: 3.4, // Stagger scrolling of containers (optional)
-        delay:4.5
+      .to(
+        scrollContainerRef.current,
+        {
+          scrollTop: (i, target) => target.scrollHeight - target.clientHeight, // Scroll to bottom
+          ease: "power2.out", // Smooth scrolling ease
+          duration: 1, // Scroll duration
+          stagger: 3.4, // Stagger scrolling of containers (optional)
+          delay: 4.5,
         },
         "a"
       ) // Start 1s after "a" for sync
@@ -300,6 +335,7 @@ function AllService() {
       <div className="services sticky top-0 min-h-screen w-full  ">
         {Object.entries(data).map(([title, service], index) => (
           <div
+            id={index}
             ref={(el) => (serviceRef.current[index] = el)}
             key={index}
             className="service-box overflow-hidden shadow-2xl shadow-black h-screen absolute top-0 bg-[#FFC395] grid md:grid-cols-2 gap-10 md:gap-20 md:p-30 p-16"
@@ -322,7 +358,7 @@ function AllService() {
             {/* Right Side - Description and Offerings */}
             <div
               ref={(el) => (scrollContainerRef.current[index] = el)}
-              className="service-text  overflow-y-scroll md:pe-10"
+              className="service-text overflow-y-hidden md:overflow-y-scroll md:pe-10"
               // className="service-text md:max-h-[400px] overflow-y-scroll md:pe-10"
             >
               <p className="font-inter text-sm text-black mb-3 italic">

@@ -445,7 +445,7 @@ function Header({ location }) {
                   pera={item.pera}
                   icon={item.icon}
                   key={index}
-                  link={`/discover#${item.id}`}
+                  link={`/discover?i=${index}`}
                   onClick={() => {
                     setSubMenu((togg) => !togg);
                     setToggle((togg) => !togg);
@@ -571,7 +571,7 @@ function Header({ location }) {
                   pera={item.pera}
                   icon={item.icon}
                   key={index}
-                  link={`/discover#${item.id}`}
+                  link={`/discover?i=${index}`}
                 />
               ))}
             </div>
