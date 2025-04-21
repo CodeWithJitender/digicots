@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -39,6 +39,65 @@ export default function Footer() {
   const footerRef = useRef(null);
   const isInView = useInView(footerRef, { once: true, amount: 0.2 }); // Trigger when 20% visible
 
+  const [formData, setFormData] = useState({
+    fullName: "",
+    companyName: "",
+    email: "",
+    countryCode: "+91",
+    contactNumber: "",
+  });
+
+  const [message, setMessage] = useState("");
+
+  const validateForm = () => {
+    const requiredFields = [
+      "fullName",
+      "companyName",
+      "email",
+      "contactNumber",
+    ];
+
+    for (const field of requiredFields) {
+      if (!formData[field] || formData[field].trim() === "") {
+        const formattedField = field
+          .replace(/([A-Z])/g, " $1") // Add space before capital letters
+          .replace("_", " ") // In case there's any underscore
+          .replace(/\b\w/g, (l) => l.toUpperCase()); // Capitalize each word
+        return `❌ Please fill out "${formattedField}"`;
+      }
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return "❌ Please enter a valid email address.";
+    }
+
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(formData.contactNumber)) {
+      return "❌ Contact number must be exactly 10 digits.";
+    }
+
+    return null;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    const error = validateForm();
+    if (error) {
+      e.preventDefault();
+      setMessage(error);
+    } else {
+      setMessage("✅ Submitting...");
+    }
+  };
+
   return (
     <footer
       ref={footerRef}
@@ -71,6 +130,7 @@ export default function Footer() {
             animate={isInView ? "visible" : "hidden"}
           >
             <form
+              onSubmit={handleSubmit}
               className="grid grid-cols-1 md:grid-cols-2 gap-4"
               action="https://formsubmit.co/jitender@digicots.com"
               method="POST"
@@ -83,6 +143,7 @@ export default function Footer() {
                 value="http://localhost:5173/thankyou"
               />
               <motion.input
+                onChange={handleChange}
                 type="text"
                 placeholder="Full Name"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
@@ -90,6 +151,7 @@ export default function Footer() {
                 variants={childVariants}
               />
               <motion.input
+                onChange={handleChange}
                 type="text"
                 placeholder="Company Name"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
@@ -97,6 +159,7 @@ export default function Footer() {
                 variants={childVariants}
               />
               <motion.input
+                onChange={handleChange}
                 type="email"
                 placeholder="Email Address"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
@@ -104,13 +167,17 @@ export default function Footer() {
                 variants={childVariants}
               />
               <motion.div className="flex" variants={childVariants}>
-                <select className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-l-[14px] focus:outline-none">
+                <select
+                  onChange={handleChange}
+                  className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-l-[14px] focus:outline-none"
+                >
                   <option value="+1">+1</option>
                   <option value="+91">+91</option>
                   <option value="+44">+44</option>
                 </select>
                 <input
                   type="text"
+                  onChange={handleChange}
                   placeholder="Contact Number"
                   className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 w-full rounded-r-[14px] focus:outline-none"
                   name="Contact_Number"
@@ -123,6 +190,9 @@ export default function Footer() {
                 Let's Talk about the Future
               </motion.button>
             </form>
+            {message && (
+              <p className="text-sm text-white mt-2 font-semibold">{message}</p>
+            )}
           </motion.div>
         </div>
 
@@ -193,7 +263,6 @@ export default function Footer() {
             className="flex sm:justify-end gap-5 md:gap-10 lg:gap-20  md:justify-around md:text-left"
             variants={containerVariants}
           >
-           
             {["Quick Links"].map((header, idx) => (
               <div key={idx}>
                 <motion.h4 className="font-semibold" variants={childVariants}>
@@ -223,7 +292,7 @@ export default function Footer() {
                     {
                       title: "Let's Talk",
                       id: "contact",
-                    }
+                    },
                   ].map((link, i) => (
                     <motion.li key={i} variants={childVariants}>
                       <Link to={`/${link.id}`} className="hover:text-white">
@@ -234,7 +303,7 @@ export default function Footer() {
                 </motion.ul>
               </div>
             ))}
-             {["Services"].map((header, idx) => (
+            {["Services"].map((header, idx) => (
               <div key={idx}>
                 <motion.h4 className="font-semibold" variants={childVariants}>
                   {header}
@@ -286,7 +355,10 @@ export default function Footer() {
                     },
                   ].map((link, i) => (
                     <motion.li key={i} variants={childVariants}>
-                      <Link to={`discover#${link.id}`} className="hover:text-white">
+                      <Link
+                        to={`discover#${link.id}`}
+                        className="hover:text-white"
+                      >
                         {link.title}
                       </Link>
                     </motion.li>
