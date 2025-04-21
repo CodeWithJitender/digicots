@@ -466,7 +466,7 @@ function Header({ location }) {
             <div className="logo">
               <img
                 src="https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png"
-                className="w-full max-w-[249px]"
+                className="w-full max-w-36 md:max-w-40 lg:max-w-52"
                 alt=""
               />
             </div>
