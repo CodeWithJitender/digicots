@@ -136,7 +136,7 @@ export default function Footer() {
 
         {/* Bottom Section - Footer Content */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -177,7 +177,7 @@ export default function Footer() {
 
           {/* Address */}
           <motion.div
-            className="sm:text-left sm:max-w-[250px]"
+            className="sm:text-left sm:max-w-[250px] col-span-2 sm:col-span-1"
             variants={childVariants}
           >
             <h4 className="text-lg font-semibold">India</h4>
@@ -190,7 +190,7 @@ export default function Footer() {
 
           {/* Links */}
           <motion.div
-            className="flex sm:justify-end gap-10 sm:gap-20 text-center justify-around md:text-left"
+            className="flex sm:justify-end gap-5 md:gap-10 lg:gap-20  md:justify-around md:text-left"
             variants={containerVariants}
           >
            
@@ -203,11 +203,32 @@ export default function Footer() {
                   className="text-gray-400 mt-2 space-y-1"
                   variants={containerVariants}
                 >
-                  {["About", "Links", "Links", "Links"].map((link, i) => (
+                  {[
+                    {
+                      title: "About Us",
+                      id: "about",
+                    },
+                    {
+                      title: "Insights",
+                      id: "insights",
+                    },
+                    {
+                      title: "Our Work",
+                      id: "our-work",
+                    },
+                    {
+                      title: "Case Study",
+                      id: "case-study",
+                    },
+                    {
+                      title: "Let's Talk",
+                      id: "contact",
+                    }
+                  ].map((link, i) => (
                     <motion.li key={i} variants={childVariants}>
-                      <a href="#" className="hover:text-white">
-                        {link}
-                      </a>
+                      <Link to={`/${link.id}`} className="hover:text-white">
+                        {link.title}
+                      </Link>
                     </motion.li>
                   ))}
                 </motion.ul>

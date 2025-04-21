@@ -6,7 +6,7 @@ import React, { useRef, useEffect } from "react";
 function AllService() {
   const data = {
     "Content Production": {
-      img: "icon-9.png",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-9.png",
       description:
         "Crafting your howl in seamless harmony with the consumer’s voice. The art of storytelling by transforming ideas into captivating visual narratives that engage, inform, and persuade. Content production is the bridge between creativity and commerce – making brands not just visible, but rather unforgettable.",
       offerings: {
@@ -25,7 +25,7 @@ function AllService() {
       },
     },
     "Outreach Solutions": {
-      img: "icon-8.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-8.png ",
       description:
         "Exploring the Unknown; Making Your Mark. Extend brand awareness beyond traditional channels by leveraging trusted voices in the industry to authentically engage with niche groups. Reaching the right audience requires more than just good content – it demands strategic outreach that ensures maximum impact.",
       offerings: {
@@ -40,7 +40,7 @@ function AllService() {
       },
     },
     "Public Relations": {
-      img: "icon-4.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png ",
       description:
         "Making your vision echo across the globe! This is the art of shaping and maintaining a brand’s reputation – its most valuable asset. PR strategies go way beyond publicity; they help in establishing credibility, authority, and trust. Effective PR creates a wave that turns mere businesses into industry icons.",
       offerings: {
@@ -53,7 +53,7 @@ function AllService() {
       },
     },
     "Digital Marketing": {
-      img: "icon-6.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-6.png ",
       description:
         "Hunt Smarter. Hunt Harder. It’s not just about posting on social media; it’s about formulating impactful, data-driven strategies. A strong, consistent online presence helps garner engagement and brand loyalty. Digital marketing is the ultimate blend of creativity, analytics, and strategy delivering quantifiable results that drive growth.",
       offerings: {
@@ -64,7 +64,7 @@ function AllService() {
       },
     },
     "Performance Marketing": {
-      img: "icon-5.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-5.png ",
       description:
         "Unmatched Precision. Uncaged Results. Maximize ROI through hyper-targeted advertising and conversion-focused strategies. Every click, every impression, every interaction is counted for to ensure the highest possible return. It isn’t about spending more; it’s about spending smart, leveraging data, and strategizing growth.",
       offerings: {
@@ -77,7 +77,7 @@ function AllService() {
       },
     },
     "Creative Designing": {
-      img: "icon-7.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-7.png ",
       description:
         "Visuals that Make the Consumer Stop. Turn concepts into striking visual assets – digital or print. Design is way more than just aesthetics; it is the visual language of a brand. It is the backbone of compelling brand communication ensuring every interaction is simply WOW!",
       offerings: {
@@ -90,7 +90,7 @@ function AllService() {
       },
     },
     Branding: {
-      img: "icon-4.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png ",
       description:
         "Carving the Alpha Identity. Craft the soul of your company – define an identity, shape user perception, and create an emotional connection. Branding is the art of ensuring that people don’t just buy products; they buy into a vision, a story, an experience.",
       offerings: {
@@ -103,7 +103,7 @@ function AllService() {
       },
     },
     "Outdoor Advertising - Digicots OOH": {
-      img: "icon-3.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-3.png ",
       description:
         "Marking Your Territory in the Real World. Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled tool for massive brand visibility. We, at Digicots, ensure that advertising comes across as an experience rather than an interruption. While digital ads can be skipped, outdoor ads remain unmissable and serve as a constant, powerful reminder of a brand’s presence.",
       offerings: {
@@ -114,7 +114,7 @@ function AllService() {
       },
     },
     "Website Development": {
-      img: "icon-1.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-1.png ",
       description:
         "Your Digital Swarm. A website is more than an online address; it’s a brand’s digital storefront. Website development is a blend of technology, design, and user experience to create seamless, high-converting platforms with every element optimized for performance.",
       offerings: {
@@ -127,7 +127,7 @@ function AllService() {
       },
     },
     "Artificial Reality (AR)": {
-      img: "icon-2.png ",
+      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-2.png ",
       description:
         "Wildly Immersive Experiences. The future of marketing is immersive. AR brings products to life – allowing consumers to virtually experience near-real manifestations of products before purchasing them. This revolutionizes how brands interact with consumers making experiences richer, more engaging, and more impactful. Engage your audience with interactive tools that leave them hooked and coming back for more.",
       offerings: {},
