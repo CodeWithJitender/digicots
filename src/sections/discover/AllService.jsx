@@ -322,7 +322,8 @@ function AllService() {
             {/* Right Side - Description and Offerings */}
             <div
               ref={(el) => (scrollContainerRef.current[index] = el)}
-              className="service-text md:max-h-[400px] overflow-y-scroll md:pe-10"
+              className="service-text  overflow-y-scroll md:pe-10"
+              // className="service-text md:max-h-[400px] overflow-y-scroll md:pe-10"
             >
               <p className="font-inter text-sm text-black mb-3 italic">
                 {service.i}
