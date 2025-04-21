@@ -138,8 +138,8 @@ const HowItWorks = () => {
               cardRefs.current[i].querySelector(".unflipped-text");
             const flipped = cardRefs.current[i].querySelector(".flipped-text");
             const tl = gsap.timeline();
-            tl.to(unflipped, { opacity: 0 }, "a");
-            tl.to(flipped, { opacity: 1 }, "a");
+            tl.to(unflipped, { opacity: 0 });
+            tl.to(flipped, { opacity: 1 });
           },
           onComplete: () => {
             setOpenedIndex(i);

@@ -346,7 +346,7 @@ const PopupModal = React.memo(({ card, onClose }) => {
 });
 
 // Memoized CardWrapper component
-const CardWrapper = React.memo(({ setSelectedCard, from, to }) => {
+const CardWrapperDesktop = React.memo(({ setSelectedCard, from, to }) => {
   const cardRef = useRef(null);
   const cardWrapperRef = useRef(null);
   const isDesktop = window.innerWidth > 628;
@@ -358,7 +358,65 @@ const CardWrapper = React.memo(({ setSelectedCard, from, to }) => {
       scrollTrigger: {
         trigger: cardWrapperRef.current,
         start: "top 120%" ,
-        end: isDesktop ? "top -90%" : "top -40%",
+        end: "top -90%",
+        scrub: 1,
+        // markers: true,
+      },
+    });
+  
+    tl.fromTo(
+      cardRef.current,
+      { scale: 1.2, opacity: 0, rotationX: 40 },
+      { scale: 0.8, opacity: 1, rotationX: 0, duration: 20, ease: "power1.inOut" }
+    ).to(
+      cardRef.current,
+      {
+        scale: 1.2,
+        opacity: 0.2,
+        rotationX: -40,
+        duration: 20,
+        ease: "power1.inOut",
+        immediateRender: false,
+      },
+      "-=1"
+    );
+  }, [isDesktop,cardRef.current, cardWrapperRef.current]);
+  
+
+  const handleCardClick = useCallback((index) => {
+    setSelectedCard(brandingData[from + index]);
+  }, [from, setSelectedCard]);
+
+  return (
+    <div ref={cardWrapperRef} className="card-wrapper flex flex-col gap-10 perspective-[1000px]">
+      <div ref={cardRef} className="w-full bg-cover transform-3d translate-3d rotate-x-[30deg]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-20 perspective-[1000px]">
+          {brandingData.slice(from, to).map((card, index) => (
+            <BrandingCard
+              key={`${card.id}-${index}`}
+              card={card}
+              onClick={() => handleCardClick(index)}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+});
+
+const CardWrapperMobile = React.memo(({ setSelectedCard, from, to }) => {
+  const cardRef = useRef(null);
+  const cardWrapperRef = useRef(null);
+  const isDesktop = window.innerWidth > 628;
+
+  useGSAP(() => {
+    if (!cardWrapperRef.current || !cardRef.current) return;
+  
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: cardWrapperRef.current,
+        start: "top 120%" ,
+        end: "top -40%",
         scrub: 1,
         markers: true,
       },
@@ -371,16 +429,16 @@ const CardWrapper = React.memo(({ setSelectedCard, from, to }) => {
     ).to(
       cardRef.current,
       {
-        scale: isDesktop ? 1.2 : 1.1,
+        scale: 1.1,
         opacity: 0.2,
         rotationX: -40,
-        duration: isDesktop ? 20 : 15,
+        duration: 15,
         ease: "power1.inOut",
-        immediateRender: false,
+        // immediateRender: false,
       },
       "-=1"
     );
-  }, [isDesktop,cardRef.current, cardWrapperRef.current]);
+  }, [isDesktop, cardRef.current, cardWrapperRef.current]);
   
 
   const handleCardClick = useCallback((index) => {
@@ -439,7 +497,7 @@ const BrandingGrid = () => {
   const cardWrappers = useMemo(() => {
     if (isDesktop) {
       return [0, 2, 4, 6].map((from) => (
-        <CardWrapper
+        <CardWrapperDesktop
           key={`desktop-${from}`}
           setSelectedCard={setSelectedCard}
           from={from}
@@ -448,7 +506,7 @@ const BrandingGrid = () => {
       ));
     }
     return brandingData.map((_, i) => (
-      <CardWrapper
+      <CardWrapperMobile
         key={`mobile-${i}`}
         setSelectedCard={setSelectedCard}
         from={i}
