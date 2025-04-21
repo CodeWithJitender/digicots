@@ -166,7 +166,21 @@ export default function BlogModal({ isOpen, onClose, post }) {
           <div className="p-6 flex flex-col space-y-1">
             <div className="flex justify-between items-center px-6 py-4">
               <div className="flex space-x-3">
-                <button className="bg-gray-700 px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-gray-600">
+                <button className="bg-gray-700 px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-gray-600"
+                onClick={() => {
+                  if (navigator.share) {
+                    navigator
+                      .share({
+                        title: post.title,
+                        text: "Check out this blog post!",
+                        url: window.location.href, // or provide a specific post URL if available
+                      })
+                      .then(() => console.log("Shared successfully!"))
+                      .catch((err) => console.error("Share failed:", err));
+                  } else {
+                    alert("Sharing is not supported on this device.");
+                  }
+                }}>
                   <i className="fal fa-share-alt"></i> <span>Share</span>
                 </button>
               </div>
