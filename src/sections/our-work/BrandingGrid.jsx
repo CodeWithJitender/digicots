@@ -290,45 +290,48 @@ const PopupModal = React.memo(({ card, onClose }) => {
         ✖
       </button>
       <div className="bg-white rounded-lg rounded-b-none w-full overflow-hidden max-w-[1400px] p-6 relative shadow-xl relative z-50">
-        <div className="overflow-hidden">
-          <div ref={popupContainer} className="max-h-[400px] popup-container">
-            <h2 className="text-2xl font-bold text-center">{card.title}</h2>
-            <p className="text-gray-600 text-center">{card.description}</p>
-            <div className="grid md:grid-cols-3 md:justify-items-center mt-4 py-10 gap-10 px-3">
-              <div className="text-sm text-[#202020] max-w-[600px] sm:col-span-2 md:col-auto">
-                <p>{card.per1}</p>
-                <p className="mt-3">{card.per2}</p>
-              </div>
-              <div className="h-full flex flex-col justify-between">
-                <p className="text-2xl font-bold">
-                  Complexity: <br />
-                  <span className="text-gray-600 text-[18px]">
-                    {card.complexity}
-                  </span>
-                </p>
-                <p className="text-2xl font-bold">
-                  Time Taken: <br />
-                  <span className="text-gray-600 text-[18px]">
-                    {card.timeTaken}
-                  </span>
-                </p>
-              </div>
+      <div className="max-h-[500px] overflow-y-auto popup-container">
+          <h2 className="text-2xl font-bold text-center">{card?.title}</h2>
+          <p className="text-gray-600 text-center">{card?.description}</p>
+          <div className=" mt-4 py-10 gap-10 px-5">
+            <div className="text-sm text-[#202020] ">
+              <p>{card?.per1}</p>
+              <p className="mt-3">{card?.per2}</p>
+              <p className="mt-3">{card?.per3}</p>
+              <p className="mt-3">{card?.per4}</p>
+            </div>
+            <br />
+            <br />
+            {/* <br /> */}
+            <div className="h-full flex  justify-between ">
+              <p className="text-2xl font-bold">
+                Complexity: <br />
+                <span className="text-gray-600 text-[18px]">
+                  {card?.complexity}
+                </span>
+              </p>
+              <p className="text-2xl font-bold">
+                Time Taken: <br />
+                <span className="text-gray-600 text-[18px]">
+                  {card?.timeTaken}
+                </span>
+              </p>
               <div>
                 <p className="text-2xl font-bold text-end">Services:</p>
                 <ul className="text-gray-600 text-end list-none">
-                  {card.services?.map((service) => (
-                    <li key={service}>{service}</li>
+                  {card?.services.map((service, index) => (
+                    <li key={index}>{service}</li>
                   ))}
                 </ul>
               </div>
             </div>
-            <div className="flex justify-center my-4">
-              <img
-                src={card.image}
-                alt={card.title}
-                className="w-full max-h-96 object-cover rounded-lg"
-              />
-            </div>
+          </div>
+          <div className="flex justify-center mb-4">
+            <img
+              src={card?.image}
+              alt={card?.title}
+              className="w-full max-h-96 object-cover rounded-lg"
+            />
           </div>
         </div>
       </div>
