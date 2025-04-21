@@ -78,6 +78,10 @@ export default function TestimonialsSlider({ data }) {
     infinite: true,
     slidesToShow: 4.9,
     slidesToScroll: 1,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
     centerMode: true,
     centerPadding: "0px",
     beforeChange: (current, next) => {

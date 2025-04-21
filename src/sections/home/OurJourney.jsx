@@ -136,17 +136,17 @@ const OurJourney = () => {
     }
 
     // Create new moveY animation
-    animationRefs.current.moveY = gsap.to(parentRef.current, {
-      y: "40%",
-      duration: 20,
-      ease: "power1.inOut",
-      scrollTrigger: {
-        trigger: parentRef.current,
-        start: "top 20%",
-        end: "top -100%",
-        scrub: 1,
-      },
-    });
+    // animationRefs.current.moveY = gsap.to(parentRef.current, {
+    //   y: "40%",
+    //   duration: 20,
+    //   ease: "power1.inOut",
+    //   scrollTrigger: {
+    //     trigger: parentRef.current,
+    //     start: "top 20%",
+    //     end: "top -100%",
+    //     scrub: 1,
+    //   },
+    // });
 
     return () => {
       // Cleanup animation on unmount

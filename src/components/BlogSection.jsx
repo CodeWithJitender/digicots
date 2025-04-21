@@ -83,6 +83,25 @@ export default function BlogSection() {
         "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
       ], // Replace with actual images
     },
+    {
+      id: "",
+      title: "This is a very long heading with lots of words...",
+      author: "Aishwary Sinha",
+      date: "Jan 25, 2025",
+      readTime: "2 Min Read",
+      img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
+      imgArr: [
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post2.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post3.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post4.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post5.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post6.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
+        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
+      ], // Replace with actual images
+    },
   ];
 
 
