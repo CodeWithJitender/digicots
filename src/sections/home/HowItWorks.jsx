@@ -289,7 +289,7 @@ const HowItWorks = () => {
                     </div>
                   </div>
 
-                <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-sm text-white">
+                <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-[.9vw] leading-[1.1vw] text-white">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Voluptate numquam eaque laudantium, earum repellendus illo
                   accusamus cumque quisquam consequuntur assumenda reprehenderit

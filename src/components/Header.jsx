@@ -296,7 +296,9 @@ function Header({ location }) {
 
         <div className="header-wrapper relative flex items-center justify-between px-6 py-4 bg-zinc-900 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none ">
           <div className="logo">
-            <Link to="/">
+            <Link
+            onClick={()=> setToggle(false)} 
+             to="/">
               <img
                 src={
                   ["/case-study"].includes(location.pathname)
