@@ -1,7 +1,13 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+  useCallback,
+} from "react";
 import { useSearchParams } from "react-router-dom";
 
 // Move constant data outside of component
@@ -9,7 +15,8 @@ const brandingData = [
   {
     id: 1,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-1.webp",
-    internal:"https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/1.webp",
+    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/1.webp",
+    url:"https://www.drinkcharlies.com/",
     title: "Charlie’s Organics",
     tags: ["HTML5", "CSS3", "React.js", "Vue.js", "JQuery"],
     description: "Sparkling Water Brand in Europe",
@@ -23,7 +30,8 @@ const brandingData = [
   {
     id: 2,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-2.webp",
-    internal:"https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/2.webp",
+    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/2.webp",
+    url:"https://www.triplettapizza.com/",
     title: "Tripletta",
     tags: ["HTML5", "CSS3", "GSAP", "React.js", "JQuery"],
     description: "Pizza Brand in France",
@@ -38,7 +46,8 @@ const brandingData = [
   {
     id: 3,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-3.webp",
-    internal:"https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/3.webp",
+    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/3.webp",
+    url:"https://surge.peachworlds.com/",
     title: "Surge",
     tags: ["HTML5", "CSS3", "GSAP,", "React.js", "JQuery"],
     description: "Bicycle Brand Use Case by PeachWorlds",
@@ -53,38 +62,46 @@ const brandingData = [
   {
     id: 4,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-4.webp",
-    internal:"https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/4.webp",
+    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/4.webp",
+    url:"https://isradesign.com/en/",
     title: "ISRA Design",
-    tags: ["HTML5", "CSS3","GSAP", "React.js", "Vue.js", "JQuery"],
+    tags: ["HTML5", "CSS3", "GSAP", "React.js", "Vue.js", "JQuery"],
     description: "Architecture Design Studio",
     complexity: "TAT",
     timeTaken: "6 Months",
     services: ["Sports", "Branding", "E-commerce"],
     per1: "ISRA Design is a sleek and highly professional digital portfolio and design agency website that encapsulates the ethos of creative innovation and modern aesthetics through a carefully crafted user experience and technical implementation.",
     per2: "At its core, the website is designed to serve as both an impressive showcase for the agency’s work and a functional interface for communicating their services to prospective clients, employing a minimalist yet striking design that emphasizes visuals, typography and intuitive navigation. From a developer’s point of view, the website is constructed using the latest web standards and best practices to deliver exceptional performance, accessibility and responsiveness. The foundation is built on HTML5 which provides a semantic structure ensuring that every element is logically organized and easily interpretable by both search engines and assistive technologies. Complementing this structure, CSS3 is extensively utilized to create a visually compelling design that integrates modern features like flexible layouts, CSS Grid and Flexbox. These techniques allow the site to automatically adjust its layout to suit any device or screen resolution, delivering a consistent and engaging user experience whether viewed on a desktop, tablet or smartphone. The stylistic finesse is further enhanced by advanced CSS animations and transitions which add dynamic touches to elements such as hover effects, scrolling animations and content reveals, all of which contribute to a high-end, polished look that captures the essence of creative design.",
-    per3:"JavaScript plays a crucial role in injecting interactivity and dynamic functionality into the site, managing client-side interactions without sacrificing speed or responsiveness. The development team likely leverages modern JavaScript frameworks or libraries to handle complex components and ensure smooth state management throughout the website. Such frameworks facilitate the creation of reusable components, streamline code maintenance and support rapid development cycles, which are essential for a website that frequently showcases new projects and updated content.",
-    per4:"Additionally, the website may employ lightweight libraries for DOM manipulation and animation such as GSAP or jQuery to precisely control interactive elements and provide subtle yet effective user engagement features. A robust backend is implied through the seamless integration of content management systems (CMS) that empower the design team to effortlessly update and manage portfolio pieces, blog posts or case studies without needing extensive technical intervention. This integration not only reduces the time required for content updates but also ensures that the website remains cutting-edge with minimal downtime, thanks to modern hosting solutions and optimized server configurations. Understanding the sophisticated blend of design acumen and technical expertise that powers ISRA Design, we are fully equipped to create similarly outstanding digital experiences for our clients. Our team specializes in harnessing the power of HTML5, CSS3 and JavaScript to build scalable, elegant and high-performing websites. With a proven track record in delivering captivating designs that marry visual appeal with practical functionality, we are ready to translate your vision into a state-of-the-art digital presence that will set you apart in today’s competitive online landscape. Let us bring your ideas to life with a custom website that combines creativity, cutting-edge technology and seamless user experiences that drive business success.",
-    
+    per3: "JavaScript plays a crucial role in injecting interactivity and dynamic functionality into the site, managing client-side interactions without sacrificing speed or responsiveness. The development team likely leverages modern JavaScript frameworks or libraries to handle complex components and ensure smooth state management throughout the website. Such frameworks facilitate the creation of reusable components, streamline code maintenance and support rapid development cycles, which are essential for a website that frequently showcases new projects and updated content.",
+    per4: "Additionally, the website may employ lightweight libraries for DOM manipulation and animation such as GSAP or jQuery to precisely control interactive elements and provide subtle yet effective user engagement features. A robust backend is implied through the seamless integration of content management systems (CMS) that empower the design team to effortlessly update and manage portfolio pieces, blog posts or case studies without needing extensive technical intervention. This integration not only reduces the time required for content updates but also ensures that the website remains cutting-edge with minimal downtime, thanks to modern hosting solutions and optimized server configurations. Understanding the sophisticated blend of design acumen and technical expertise that powers ISRA Design, we are fully equipped to create similarly outstanding digital experiences for our clients. Our team specializes in harnessing the power of HTML5, CSS3 and JavaScript to build scalable, elegant and high-performing websites. With a proven track record in delivering captivating designs that marry visual appeal with practical functionality, we are ready to translate your vision into a state-of-the-art digital presence that will set you apart in today’s competitive online landscape. Let us bring your ideas to life with a custom website that combines creativity, cutting-edge technology and seamless user experiences that drive business success.",
   },
   {
     id: 5,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-5.webp",
-    internal:"https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/5.webp",
+    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/5.webp",
+    url:"https://leoff-paris.com/en/",
     title: "Le OFF Paris",
-    tags: ["HTML5", "CSS3", "Vue.js","React.js", "Third-party APIs / Plugins"],
+    tags: ["HTML5", "CSS3", "Vue.js", "React.js", "Third-party APIs / Plugins"],
     description: "Food Repository",
     complexity: "9/10",
     timeTaken: "8 Months",
-    services: ["HTML5", "CSS3", "Vue.js","React.js", "Third-party APIs / Plugins"],
+    services: [
+      "HTML5",
+      "CSS3",
+      "Vue.js",
+      "React.js",
+      "Third-party APIs / Plugins",
+    ],
     per1: "Le OFF Paris is a sophisticated digital platform and event initiative focusing on the finest selections of bars, restaurants, wines and spirits in the heart of Paris. The website exudes an elegant, artful design that not only showcases curated content but also serves as an interactive guide for gastronomes and connoisseurs looking to explore the capital’s best offerings. From a developer’s perspective, Le OFF Paris has been engineered with a clear focus on performance, visual aesthetics and an engaging user experience. Its clean design is achieved through a combination of modern web technologies starting with HTML5 which creates a semantic structure essential for both search engine optimization and accessible navigation. CSS3 is extensively utilized to implement the site's chic, minimalist design, the subtle yet effective animations, responsive grid layouts and fluid transitions are all indicators of a carefully thought-out stylesheet. Techniques such as media queries, flexbox and grid systems ensure that the site adapts effortlessly to different screen sizes, providing a seamless browsing experience whether on mobile, tablet or desktop devices.",
     per2: "JavaScript augments the user interface by delivering dynamic content updates and interactive components such as smooth scrolling effects, modal popups and real-time filtering of listings. It is likely that the development team leveraged popular JavaScript libraries or frameworks, possibly React or Vue.js to build these features as these tools enable the creation of reusable components, improved state management, and better performance overall. Furthermore, custom scripting appears to be in place to handle animations and interactive maps which enhance the overall navigability of the website directing users toward the event’s curated selections and highlights.",
-    per3:"In addition, the integration of third-party APIs and services, for instance, for social media feeds, interactive maps or real-time updates suggests a highly modular architecture. This modular approach not only improves maintainability but also allows the site to be highly scalable. The use of Content Delivery Networks (CDNs) for image assets and other media further exemplifies a commitment to both speed and reliability ensuring fast load times even during peak user traffic.",
-    per4:"Understanding the technical and aesthetic craftsmanship that powers Le OFF Paris, we have complete confidence in our ability to deliver a similarly stellar web experience for our clients. Our team is proficient in the latest web technologies including HTML5, CSS3 and JavaScript along with cutting-edge frameworks such as React or Vue ensuring that every aspect of design, performance and user engagement is meticulously engineered. We excel at creating high-impact digital platforms that captivate audiences and drive business success. Let us help you transform your vision into a dynamic, visually compelling and fully responsive website that stands as a testament to quality and innovation in the digital arena.",
+    per3: "In addition, the integration of third-party APIs and services, for instance, for social media feeds, interactive maps or real-time updates suggests a highly modular architecture. This modular approach not only improves maintainability but also allows the site to be highly scalable. The use of Content Delivery Networks (CDNs) for image assets and other media further exemplifies a commitment to both speed and reliability ensuring fast load times even during peak user traffic.",
+    per4: "Understanding the technical and aesthetic craftsmanship that powers Le OFF Paris, we have complete confidence in our ability to deliver a similarly stellar web experience for our clients. Our team is proficient in the latest web technologies including HTML5, CSS3 and JavaScript along with cutting-edge frameworks such as React or Vue ensuring that every aspect of design, performance and user engagement is meticulously engineered. We excel at creating high-impact digital platforms that captivate audiences and drive business success. Let us help you transform your vision into a dynamic, visually compelling and fully responsive website that stands as a testament to quality and innovation in the digital arena.",
   },
   {
     id: 6,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-6.webp",
-    internal:"https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/6.webp",
+    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/6.webp",
+    url:"https://kindly-2e8okmvk.peachworlds.com/",
     title: "Anima",
     tags: ["HTML5", "CSS3", "Vue.js", "React.js", "CMS (PeachWorlds)"],
     description: "Therapy Brand Use Case by PeachWorlds",
@@ -93,8 +110,8 @@ const brandingData = [
     services: ["Technology", "Branding", "Retail"],
     per1: "Anima is a beautifully executed digital experience hosted on Peach Worlds that immediately captivates visitors with its modern, clean aesthetic and thoughtful design catering to audiences seeking elegance combined with functionality.",
     per2: "From a developer’s point of view, this website is crafted meticulously using the latest web standards leveraging the power of HTML5 to build a semantic, well-structured layout that ensures both accessibility and search engine friendliness. CSS3 is harnessed to deliver a visually appealing design characterized by smooth transitions, nuanced animations and responsive behaviors that adapt seamlessly across devices, thereby ensuring an optimal user experience regardless of how the website is accessed. JavaScript is integrated into the core of the site to bring interactivity to life, powering dynamic content loading and subtle micro-interactions that engage users without compromising performance. The site’s code is both elegant and efficient, likely utilizing modern frameworks and libraries that could include React or Vue.js to manage interactive components and state, thereby streamlining the development process and ensuring that every element behaves predictably under various conditions.",
-    per3:"Moreover, kindly’s foundation on the Peach Worlds platform indicates that it is built upon a robust and scalable ecosystem designed to handle both rich media content and high user traffic effortlessly. This kind of platform typically supports a modular architecture wherein developers can incorporate custom components alongside out-of-the-box solutions. For instance, while HTML5 and CSS3 form the backbone of the presentation layer, JavaScript libraries facilitate critical aspects of user engagement such as asynchronous data loading and smooth scrolling effects. There is also a strong likelihood that advanced design tools and pre-processing technologies such as SASS or LESS are employed to manage stylesheets in a highly organized manner, reducing code redundancy and improving maintainability. The use of Content Delivery Networks (CDNs) further enhances the performance of the site, ensuring that images, fonts and other static assets load rapidly from geographically dispersed servers, thereby reducing latency and enhancing the user experience across global markets.",
-    per4:"Understanding the intricacies and the high-performance digital architecture that powers kindly, our team stands ready to deliver similarly captivating websites for our clients. We specialize in using top-tier web technologies like HTML5, CSS3 and JavaScript coupled with advanced frameworks like React or Vue.js to build custom, scalable and visually stunning websites. By leveraging the same cutting-edge tools and industry best practices, we ensure that your online presence not only meets modern web standards but also captivates your audience with a sleek, efficient and immersive digital experience. Let us transform your digital vision into a state-of-the-art website that combines design finesse with robust functionality, positioning your brand at the forefront of the online arena.",
+    per3: "Moreover, kindly’s foundation on the Peach Worlds platform indicates that it is built upon a robust and scalable ecosystem designed to handle both rich media content and high user traffic effortlessly. This kind of platform typically supports a modular architecture wherein developers can incorporate custom components alongside out-of-the-box solutions. For instance, while HTML5 and CSS3 form the backbone of the presentation layer, JavaScript libraries facilitate critical aspects of user engagement such as asynchronous data loading and smooth scrolling effects. There is also a strong likelihood that advanced design tools and pre-processing technologies such as SASS or LESS are employed to manage stylesheets in a highly organized manner, reducing code redundancy and improving maintainability. The use of Content Delivery Networks (CDNs) further enhances the performance of the site, ensuring that images, fonts and other static assets load rapidly from geographically dispersed servers, thereby reducing latency and enhancing the user experience across global markets.",
+    per4: "Understanding the intricacies and the high-performance digital architecture that powers kindly, our team stands ready to deliver similarly captivating websites for our clients. We specialize in using top-tier web technologies like HTML5, CSS3 and JavaScript coupled with advanced frameworks like React or Vue.js to build custom, scalable and visually stunning websites. By leveraging the same cutting-edge tools and industry best practices, we ensure that your online presence not only meets modern web standards but also captivates your audience with a sleek, efficient and immersive digital experience. Let us transform your digital vision into a state-of-the-art website that combines design finesse with robust functionality, positioning your brand at the forefront of the online arena.",
   },
 ];
 
@@ -104,36 +121,39 @@ const BrandingCard = React.memo(({ card, onClick }) => {
   const animationRef = useRef(null);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const handleMouseMove = useCallback((e) => {
-    if (!imageLoaded) return;
-    
-    if (animationRef.current) cancelAnimationFrame(animationRef.current);
+  const handleMouseMove = useCallback(
+    (e) => {
+      if (!imageLoaded) return;
 
-    animationRef.current = requestAnimationFrame(() => {
-      const img = imgRef.current;
-      if (!img) return;
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
 
-      const rect = img.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      let x = (e.clientX - centerX) / (rect.width / 2);
-      let y = (e.clientY - centerY) / (rect.height / 2);
+      animationRef.current = requestAnimationFrame(() => {
+        const img = imgRef.current;
+        if (!img) return;
 
-      x = Math.max(-1, Math.min(1, x));
-      y = Math.max(-1, Math.min(1, y));
+        const rect = img.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        let x = (e.clientX - centerX) / (rect.width / 2);
+        let y = (e.clientY - centerY) / (rect.height / 2);
 
-      gsap.to(img, {
-        rotationX: y * 10,
-        rotationY: x * -10,
-        ease: "linear",
-        duration: 0.05,
+        x = Math.max(-1, Math.min(1, x));
+        y = Math.max(-1, Math.min(1, y));
+
+        gsap.to(img, {
+          rotationX: y * 10,
+          rotationY: x * -10,
+          ease: "linear",
+          duration: 0.05,
+        });
       });
-    });
-  }, [imageLoaded]);
+    },
+    [imageLoaded]
+  );
 
   const handleMouseLeave = useCallback(() => {
     if (!imageLoaded) return;
-    
+
     gsap.to(imgRef.current, {
       rotationX: 0,
       rotationY: 0,
@@ -152,7 +172,7 @@ const BrandingCard = React.memo(({ card, onClick }) => {
       img.addEventListener("mouseleave", handleMouseLeave);
     }
 
-    console.log(imageLoaded)
+    console.log(imageLoaded);
 
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
@@ -167,12 +187,12 @@ const BrandingCard = React.memo(({ card, onClick }) => {
       className="text-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform perspective-[1000px]"
       onClick={() => onClick(card)}
     >
-      <img 
-        src={card.image} 
-        alt={card.title} 
+      <img
+        src={card.image}
+        alt={card.title}
         className="w-full  rounded-2xl"
         onLoad={() => setImageLoaded(true)}
-        style={{ display: imageLoaded ? 'block' : 'none' }}
+        style={{ display: imageLoaded ? "block" : "none" }}
       />
       {!imageLoaded && (
         <div className="w-full h-[200px] bg-gray-800 rounded-2xl animate-pulse"></div>
@@ -195,7 +215,6 @@ const BrandingCard = React.memo(({ card, onClick }) => {
     </div>
   );
 });
-
 
 // Memoized PopupModal component
 const PopupModal = React.memo(({ card, onClose }) => {
@@ -223,7 +242,7 @@ const PopupModal = React.memo(({ card, onClose }) => {
     const maxScroll = container.scrollHeight - container.clientHeight + 5;
     scrollY.current -= e.deltaY * 0.5;
     scrollY.current = Math.max(-maxScroll, Math.min(0, scrollY.current));
-    
+
     gsap.to(container, {
       y: scrollY.current,
       duration: 2,
@@ -243,16 +262,16 @@ const PopupModal = React.memo(({ card, onClose }) => {
     const maxScroll = container.scrollHeight - container.clientHeight + 5;
     const touchY = e.touches[0].clientY;
     const deltaY = (touchStartY.current - touchY) * 0.5;
-    
+
     scrollY.current -= deltaY;
     scrollY.current = Math.max(-maxScroll, Math.min(0, scrollY.current));
-    
+
     gsap.to(container, {
       y: scrollY.current,
       duration: 0.5,
       ease: "power2.out",
     });
-    
+
     touchStartY.current = touchY;
   }, []);
 
@@ -263,8 +282,12 @@ const PopupModal = React.memo(({ card, onClose }) => {
     if (!container) return;
 
     window.addEventListener("wheel", handleWheel, { passive: false });
-    container.addEventListener("touchstart", handleTouchStart, { passive: false });
-    container.addEventListener("touchmove", handleTouchMove, { passive: false });
+    container.addEventListener("touchstart", handleTouchStart, {
+      passive: false,
+    });
+    container.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
@@ -296,7 +319,7 @@ const PopupModal = React.memo(({ card, onClose }) => {
         ✖
       </button>
       <div className="bg-white rounded-lg rounded-b-none w-full overflow-hidden max-w-[1400px] py-4 px-2 md:p-6 relative shadow-xl relative z-50">
-      <div className="max-h-[500px] overflow-y-auto popup-container">
+        <div className="max-h-[500px] overflow-y-auto popup-container">
           <h2 className="text-2xl font-bold text-center">{card?.title}</h2>
           <p className="text-gray-600 text-center">{card?.description}</p>
           <div className=" mt-4 md:py-10 md:gap-10 px-5">
@@ -339,6 +362,15 @@ const PopupModal = React.memo(({ card, onClose }) => {
               className="w-full  object-cover rounded-lg"
             />
           </div>
+
+          <div className="flex justify-center relative">
+            <a
+              className="bg-[#ED510C] block text-center rounded-[8px] font-bold text-white text-[14px] font-inter p-3  lg:px-5 md:absolute md:bottom-[80px]"
+              href={card?.url} target="_blank"
+            >
+              Visit Site
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -353,21 +385,27 @@ const CardWrapperDesktop = React.memo(({ setSelectedCard, from, to }) => {
 
   useGSAP(() => {
     if (!cardWrapperRef.current || !cardRef.current) return;
-  
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: cardWrapperRef.current,
-        start: "top 120%" ,
+        start: "top 120%",
         end: "top -90%",
         scrub: 1,
         // markers: true,
       },
     });
-  
+
     tl.fromTo(
       cardRef.current,
       { scale: 1.2, opacity: 0, rotationX: 40 },
-      { scale: 0.8, opacity: 1, rotationX: 0, duration: 20, ease: "power1.inOut" }
+      {
+        scale: 0.8,
+        opacity: 1,
+        rotationX: 0,
+        duration: 20,
+        ease: "power1.inOut",
+      }
     ).to(
       cardRef.current,
       {
@@ -380,16 +418,24 @@ const CardWrapperDesktop = React.memo(({ setSelectedCard, from, to }) => {
       },
       "-=1"
     );
-  }, [isDesktop,cardRef.current, cardWrapperRef.current]);
-  
+  }, [isDesktop, cardRef.current, cardWrapperRef.current]);
 
-  const handleCardClick = useCallback((index) => {
-    setSelectedCard(brandingData[from + index]);
-  }, [from, setSelectedCard]);
+  const handleCardClick = useCallback(
+    (index) => {
+      setSelectedCard(brandingData[from + index]);
+    },
+    [from, setSelectedCard]
+  );
 
   return (
-    <div ref={cardWrapperRef} className="card-wrapper flex flex-col gap-10 perspective-[1000px]">
-      <div ref={cardRef} className="w-full bg-cover transform-3d translate-3d rotate-x-[30deg]">
+    <div
+      ref={cardWrapperRef}
+      className="card-wrapper flex flex-col gap-10 perspective-[1000px]"
+    >
+      <div
+        ref={cardRef}
+        className="w-full bg-cover transform-3d translate-3d rotate-x-[30deg]"
+      >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-20 perspective-[1000px]">
           {brandingData.slice(from, to).map((card, index) => (
             <BrandingCard
@@ -411,21 +457,27 @@ const CardWrapperMobile = React.memo(({ setSelectedCard, from, to }) => {
 
   useGSAP(() => {
     if (!cardWrapperRef.current || !cardRef.current) return;
-  
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: cardWrapperRef.current,
-        start: "top 120%" ,
+        start: "top 120%",
         end: "top -40%",
         scrub: 1,
         markers: true,
       },
     });
-  
+
     tl.fromTo(
       cardRef.current,
       { scale: 1.2, opacity: 0, rotationX: 40 },
-      { scale: 0.8, opacity: 1, rotationX: 0, duration: 20, ease: "power1.inOut" }
+      {
+        scale: 0.8,
+        opacity: 1,
+        rotationX: 0,
+        duration: 20,
+        ease: "power1.inOut",
+      }
     ).to(
       cardRef.current,
       {
@@ -439,15 +491,23 @@ const CardWrapperMobile = React.memo(({ setSelectedCard, from, to }) => {
       "-=1"
     );
   }, [isDesktop, cardRef.current, cardWrapperRef.current]);
-  
 
-  const handleCardClick = useCallback((index) => {
-    setSelectedCard(brandingData[from + index]);
-  }, [from, setSelectedCard]);
+  const handleCardClick = useCallback(
+    (index) => {
+      setSelectedCard(brandingData[from + index]);
+    },
+    [from, setSelectedCard]
+  );
 
   return (
-    <div ref={cardWrapperRef} className="card-wrapper flex flex-col gap-10 perspective-[1000px]">
-      <div ref={cardRef} className="w-full bg-cover transform-3d translate-3d rotate-x-[30deg]">
+    <div
+      ref={cardWrapperRef}
+      className="card-wrapper flex flex-col gap-10 perspective-[1000px]"
+    >
+      <div
+        ref={cardRef}
+        className="w-full bg-cover transform-3d translate-3d rotate-x-[30deg]"
+      >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-20 perspective-[1000px]">
           {brandingData.slice(from, to).map((card, index) => (
             <BrandingCard
@@ -478,11 +538,11 @@ const BrandingGrid = () => {
       window.location.reload();
     }
 
-    return()=>{
-      setTimeout(()=>{
-        sessionStorage.removeItem("hasRefreshed")
-      },2000)
-    }
+    return () => {
+      setTimeout(() => {
+        sessionStorage.removeItem("hasRefreshed");
+      }, 2000);
+    };
   }, []);
 
   useEffect(() => {
