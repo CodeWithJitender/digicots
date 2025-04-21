@@ -9,10 +9,7 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  // Handle input changes dynamically
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -21,6 +18,11 @@ const ContactForm = () => {
     setMessage("");
 
     try {
+      const error = validateForm();
+      if (error) {
+        e.preventDefault();
+        return setMessage(error);
+      }
       const response = await fetch("https://your-api-endpoint.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -71,6 +73,40 @@ const ContactForm = () => {
     }
   }, [activeTab, window.innerWidth]);
 
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const validateForm = () => {
+    let requiredFields = [];
+
+    if (activeTab === "dominance") {
+      requiredFields = ["Full_Name", "Contact_Number", "Email"];
+    } else if (activeTab === "help") {
+      requiredFields = ["Full_Name", "Phone", "Email"];
+    } else if (activeTab === "pack") {
+      requiredFields = ["First_Name", "Last_Name", "Phone", "Email"];
+    }
+
+    for (const field of requiredFields) {
+      if (!formData[field] || formData[field].trim() === "") {
+        return `❌ Please fill out "${field.replace("_", " ")}"`;
+      }
+    }
+
+    if (formData.Email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.Email)) {
+      return "❌ Invalid email address";
+    }
+
+    const phone = formData.Contact_Number || formData.Phone;
+    if (phone && !/^\d{10}$/.test(phone)) {
+      return "❌ Phone number must be exactly 10 digits";
+    }
+
+    return null;
+  };
+
+  
   return (
     <div className="bg-[#1a1a1a] overflow-hidden min-h-screen flex flex-col-reverse  md:flex-row items-center justify-center md:px-6 lg:px-20 py-12">
       {/* Left Section - Fox Image & Addresses */}
