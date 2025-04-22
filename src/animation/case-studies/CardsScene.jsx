@@ -106,7 +106,7 @@ const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
       rotation={rotation}
       ref={cardRef}
     >
-      <planeGeometry args={[2, 2.5, 1, 1]} /> {/* Reduced segments to 1, 1 */}
+      <planeGeometry args={[2.2, 2.4, 1, 1]} /> {/* Reduced segments to 1, 1 */}
       <shaderMaterial
         ref={materialRef}
         uniforms={{

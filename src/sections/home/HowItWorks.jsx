@@ -59,15 +59,15 @@ const HowItWorks = () => {
   // GSAP animations setup
   useGSAP(() => {
     // ScrollTrigger for play state
-    ScrollTrigger.create({
-      trigger: parentRef.current,
-      start: "top 30%",
-      onEnter: () => {
-        if (!hasPlayed.current) {
-          hasPlayed.current = true;
-        }
-      },
-    });
+    // ScrollTrigger.create({
+    //   trigger: parentRef.current,
+    //   start: "top 30%",
+    //   onEnter: () => {
+    //     if (!hasPlayed.current) {
+    //       hasPlayed.current = true;
+    //     }
+    //   },
+    // });
 
     // Clear previous animations
     if (animationRefs.current.timeline) {
@@ -81,7 +81,7 @@ const HowItWorks = () => {
     animationRefs.current.timeline = gsap.timeline({
       scrollTrigger: {
         trigger: parentRef.current,
-        start: "top -100%",
+        start: "top -40%",
         end: window.innerWidth > 600 ? "top -240%" : "top -230%",
         scrub: 1,
       },
@@ -92,7 +92,7 @@ const HowItWorks = () => {
       opacity: 0,
       duration: window.innerWidth > 600 ? 3 : 4,
       stagger: window.innerWidth > 600 ? 3 : 5,
-      ease: "expoScale(0.5,7,none)",
+      ease: "power4.inOut",
     });
 
     // Create moveY animation
@@ -191,13 +191,6 @@ const HowItWorks = () => {
     };
   }, [handleClose]);
 
-  // Responsive left position calculation
-  const getCardLeftPosition = useCallback(
-    (index) => {
-      return window.innerWidth > 600 ? `${8 * (index * 3.5 + 2.5)}%` : "50%";
-    },
-    [window.innerWidth]
-  );
 
   // Component cleanup
   useEffect(() => {
@@ -312,15 +305,3 @@ const HowItWorks = () => {
 };
 
 export default HowItWorks;
-
-// <div
-//   ref={(el) => (cardRefs.current[index] = el)}
-//   className="wolf-card absolute p-4 rounded-2xl md:-translate-x-[100%] -translate-x-1/2 left-[50%] w-full md:h-[56vh] md:w-[20vw] shadow-lg border-8 border-[#FFFFFF4D]"
-//   style={{
-//     background: dataChild.bg_Color,
-//     top: 0,
-//     left: window.innerWidth > 600 ? getCardLeftPosition(index) : "50%",
-//     // transform:window.innerWidth > 600 ? "translateX (-100%)" : "translateX(-50%)"
-//   }}
-//   key={index}
-// >

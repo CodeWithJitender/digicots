@@ -301,7 +301,7 @@ function Header({ location }) {
              to="/">
               <img
                 src={
-                  ["/case-study"].includes(location.pathname)
+                  ["/case-study"].includes(location.pathname) && window.innerWidth > 600
                     ? "https://ik.imagekit.io/x5xessyka/digicots/public/logo-black.png"
                     : "https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png"
                 }

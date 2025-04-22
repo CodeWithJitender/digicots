@@ -11,16 +11,16 @@ const HowItWorksCanvas = () => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const screen2TextRef = useRef(null);
-  const frameCount = 71;
+  const frameCount = 161;
   const images = useRef([]);
   const isHome = useLocation().pathname === "/";
 
   // Preload images once
   useEffect(() => {
     const imageElements = [];
-    for (let i = 50; i < 121; i++) {
+    for (let i = 121; i < 285; i++) {
       const img = new Image();
-      img.src = `https://ik.imagekit.io/x5xessyka/digicots/front_wolf/${i.toString().padStart(4, "0")}.avif`;
+      img.src = `https://ik.imagekit.io/x5xessyka/digicots/front_wolf/output_${i.toString().padStart(4, "0")}.png`;
       imageElements.push(img);
     }
     images.current = imageElements;
@@ -77,8 +77,8 @@ const HowItWorksCanvas = () => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 0",
-        end: "top -350%",
-        scrub: 1,
+        end: "top -240%",
+        scrub: .1,
         // pin: true,
         // // // markers: true,
       },
@@ -116,7 +116,7 @@ const HowItWorksCanvas = () => {
           trigger: containerRef.current,
           start: "top -302%",
           end: "top -400%",
-          scrub: 1,
+          scrub: .2,
         },
       });
     }

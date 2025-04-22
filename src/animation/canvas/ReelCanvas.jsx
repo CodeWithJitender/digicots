@@ -92,17 +92,18 @@ const WavePlane = ({ setOpacity }) => {
   );
 
   const fragmentShader = useMemo(
-    () => `
-      varying vec2 vUv;
+    () => 
+      `varying vec2 vUv;
       uniform sampler2D uTexture;
   
       void main() {
         // Basic texture mapping using vUv
         gl_FragColor = texture2D(uTexture, vUv);
-      }
-    `,
+      }`
+    ,
     []
   );
+  
   
 
   const uniforms = useMemo(
@@ -112,6 +113,7 @@ const WavePlane = ({ setOpacity }) => {
       uTexture: { value: texture },
       uTextureAspect: { value: 1.0 }, // Updated after texture loads
       uPlaneAspect: { value: dimensions.width / dimensions.height },
+      uBlurAmount:{ value: .01 },
     }),
     [texture]
   );
@@ -334,11 +336,32 @@ const Scene = () => {
     };
   }, []);
 
+  const scrollMoreRef = useRef(null);
+
+  useGSAP(()=>{
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: scrollMoreRef.current,
+        start: "top 140%",
+        end: "top 130%",
+        scrub: 1,
+        // markers:true
+      },
+      ease: "power4.inOut",
+    });
+    tl
+    .to(scrollMoreRef.current, { opacity: 0 })
+    
+    return () => {
+      tl.kill();
+    };
+  },[scrollMoreRef.current])
+
   return (
     <div className="relative min-h-[150vh] w-full">
       <div className="sticky top-0" style={{ width: "100vw", height: "100vh" }}>
         <Canvas
-          className="homeCanvas"
+          className="homeCanvas blur-[4px] brightness-[.6]"
           camera={{ position: [0, 0, 10], fov: 75 }}
         >
           <ambientLight intensity={0.5} />
@@ -405,9 +428,9 @@ const Scene = () => {
         </div>
 
         <div className="h-full w-full absolute top-0">
-          {/* <div className="absolute bottom-5 left-7 text-sm text-white text-left leading-none">
-            While you imagined creativity, <br /> We established authenticity!
-          </div> */}
+          <div ref={scrollMoreRef} className="absolute text-[1.5vw] bottom-[30%] left-1/2 -translate-1/2 text-sm text-white text-left leading-none">
+            Scroll To Know More!
+          </div>
         </div>
       </div>
     </div>
