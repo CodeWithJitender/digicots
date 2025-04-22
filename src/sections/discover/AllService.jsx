@@ -338,7 +338,7 @@ function AllService() {
             id={index}
             ref={(el) => (serviceRef.current[index] = el)}
             key={index}
-            className="service-box overflow-hidden shadow-2xl shadow-black h-screen absolute top-0 bg-[#FFC395] grid md:grid-cols-2 gap-10 md:gap-20 md:p-30 p-16"
+            className="service-box overflow-hidden shadow-2xl shadow-black h-screen absolute top-0 bg-[#FFC395] grid md:grid-cols-2 gap-10 md:gap-20 md:p-30 p-8"
           >
             {/* Left Side - Image and Title */}
             <div className="service-img">
