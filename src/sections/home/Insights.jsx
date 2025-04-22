@@ -125,13 +125,13 @@ function Insights() {
 
   useGSAP(()=>{
     const moveY = gsap.to(parentRef.current, {
-      y: "10%",
+      y: "7%",
       duration: 20,
       ease: "power1.inOut",
       scrollTrigger: {
         trigger: parentRef.current,
-        start: "top -140%",
-        end: "top -240%",
+        start: "top -200%",
+        end: "top -300%",
         scrub: 1,
         // markers:true
       },
@@ -143,7 +143,7 @@ function Insights() {
 
   return (
     <div className="min-h-[250vh] relative top-[-1px] z-[2] bg-black">
-      <section ref={parentRef} className="insights sticky top-0 overflow-hidden bg-white">
+      <section ref={parentRef} className="insights sticky pb-20 top-0 overflow-hidden bg-white">
         <div className="container-xxl">
           <MainHeading
           animeStart="27%"
