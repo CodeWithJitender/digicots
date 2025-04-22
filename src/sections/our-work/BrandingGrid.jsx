@@ -16,7 +16,7 @@ const brandingData = [
     id: 1,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-1.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/1.webp",
-    url:"https://www.drinkcharlies.com/",
+    url: "https://www.drinkcharlies.com/",
     title: "Charlie’s Organics",
     tags: ["HTML5", "CSS3", "React.js", "Vue.js", "JQuery"],
     description: "Sparkling Water Brand in Europe",
@@ -31,7 +31,7 @@ const brandingData = [
     id: 2,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-2.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/2.webp",
-    url:"https://www.triplettapizza.com/",
+    url: "https://www.triplettapizza.com/",
     title: "Tripletta",
     tags: ["HTML5", "CSS3", "GSAP", "React.js", "JQuery"],
     description: "Pizza Brand in France",
@@ -47,7 +47,7 @@ const brandingData = [
     id: 3,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-3.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/3.webp",
-    url:"https://surge.peachworlds.com/",
+    url: "https://surge.peachworlds.com/",
     title: "Surge",
     tags: ["HTML5", "CSS3", "GSAP,", "React.js", "JQuery"],
     description: "Bicycle Brand Use Case by PeachWorlds",
@@ -63,7 +63,7 @@ const brandingData = [
     id: 4,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-4.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/4.webp",
-    url:"https://isradesign.com/en/",
+    url: "https://isradesign.com/en/",
     title: "ISRA Design",
     tags: ["HTML5", "CSS3", "GSAP", "React.js", "Vue.js", "JQuery"],
     description: "Architecture Design Studio",
@@ -79,7 +79,7 @@ const brandingData = [
     id: 5,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-5.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/5.webp",
-    url:"https://leoff-paris.com/en/",
+    url: "https://leoff-paris.com/en/",
     title: "Le OFF Paris",
     tags: ["HTML5", "CSS3", "Vue.js", "React.js", "Third-party APIs / Plugins"],
     description: "Food Repository",
@@ -101,7 +101,7 @@ const brandingData = [
     id: 6,
     image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-6.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/6.webp",
-    url:"https://kindly-2e8okmvk.peachworlds.com/",
+    url: "https://kindly-2e8okmvk.peachworlds.com/",
     title: "Anima",
     tags: ["HTML5", "CSS3", "Vue.js", "React.js", "CMS (PeachWorlds)"],
     description: "Therapy Brand Use Case by PeachWorlds",
@@ -332,24 +332,30 @@ const PopupModal = React.memo(({ card, onClose }) => {
             <br />
             <br className="hidden md:block" />
             {/* <br /> */}
-            <div className="h-full flex  flex-col md:flex-row justify-between gap-3 mb-5">
-              <p className="text-2xl font-bold">
-                Complexity: <br />
-                <span className="text-gray-600 text-[18px]">
+            <div className="h-full flex  flex-wrap md:flex-row justify-between gap-3 mb-5">
+              <p className="text-[16px] md:text-2xl ">
+                <span className="font-bold">Complexity:</span>
+                <br />
+                <span className="text-gray-600 text-[16px]">
                   {card?.complexity}
                 </span>
               </p>
-              <p className="text-2xl font-bold">
-                Time Taken: <br />
-                <span className="text-gray-600 text-[18px]">
+              <p className="text-[16px] md:text-2xl ">
+                <span className="font-bold">Time Taken:</span>
+                <br />
+                <span className="text-gray-600 text-[16px]">
                   {card?.timeTaken}
                 </span>
               </p>
               <div>
-                <p className="text-2xl font-bold md:text-end">Services:</p>
-                <ul className="text-gray-600 md:text-end list-none">
+                <p className="text-[16px] md:text-2xl font-bold md:text-end">
+                  Services:
+                </p>
+                <ul className=" md:text-end list-none tex md:text-[16px] ">
                   {card?.services.map((service, index) => (
-                    <li key={index}>{service}</li>
+                    <li key={index} className="text-gray-600">
+                      {service}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -366,7 +372,8 @@ const PopupModal = React.memo(({ card, onClose }) => {
           <div className="flex justify-center relative">
             <a
               className="bg-[#ED510C] block text-center rounded-[8px] font-bold text-white text-[14px] font-inter p-3  lg:px-5 md:absolute md:bottom-[80px]"
-              href={card?.url} target="_blank"
+              href={card?.url}
+              target="_blank"
             >
               Visit Site
             </a>

@@ -310,6 +310,11 @@ header .dropdown {
   justify-content: center;
   height: 50vh;
 }
+@media screen and (max-width:576px) {
+  .wrapper{
+    height: 25vh;
+  }
+}
 
 .items{
   display: flex;
