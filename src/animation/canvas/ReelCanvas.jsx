@@ -29,22 +29,24 @@ const WavePlane = ({ setOpacity }) => {
   });
 
   const texture = useMemo(() => {
-    const tex = new THREE.TextureLoader().load(
-      window.innerWidth > 600
-        ? "https://ik.imagekit.io/x5xessyka/digicots/public/reel-cover.png"
-        : "https://ik.imagekit.io/x5xessyka/digicots/public/reel-cover-mobile.jpg",
-      (loadedTexture) => {
-        // Calculate the plane's aspect ratio (width / height)
-        const planeAspect = dimensions.width / dimensions.height;
-
-        // Apply cover function to adjust texture for object-fit: cover
-        cover(loadedTexture, planeAspect);
-      }
-    );
-
-    return tex;
-  }, [dimensions]); // Include dimensions as dependency if it can change
-
+    const video = document.createElement("video");
+    video.src = "https://ik.imagekit.io/8mbzq2hdl/digicots/showreel.mp4"; // Replace with actual video URL
+    video.crossOrigin = "anonymous";
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.autoplay = true;
+  
+    video.play(); // Start playing video
+  
+    const videoTexture = new THREE.VideoTexture(video);
+    videoTexture.minFilter = THREE.LinearFilter;
+    videoTexture.magFilter = THREE.LinearFilter;
+    videoTexture.format = THREE.RGBFormat;
+  
+    return videoTexture;
+  }, []);
+  
   const mapWidth = (
     width,
     inMin = 390,

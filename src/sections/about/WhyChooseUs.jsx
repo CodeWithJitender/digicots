@@ -8,24 +8,24 @@ import TextAnimation2 from "../../animation/text/TextAnimation2";
 const CardComponent = ({ card, index }) => {
   const cardRef = useRef(null);
 
-  useGSAP(() => {
-    gsap.to(cardRef.current, {
-      rotationZ: index % 2 ? "10deg" : "-10deg",
-      duration: 3,
-      repeat: -1,
-      onUpdate: () => {},
-    });
-  }, [cardRef.current]);
+  // useGSAP(() => {
+  //   gsap.to(cardRef.current, {
+  //     rotationZ: index % 2 ? "10deg" : "-10deg",
+  //     duration: 3,
+  //     repeat: -1,
+  //     onUpdate: () => {},
+  //   });
+  // }, [cardRef.current]);
 
   return (
     <div
       key={card.id}
       ref={cardRef}
-      className={`relative transform ${card.rotation} bg-white p-4 rounded-[14px] shadow-lg max-w-[150px] left-0 sm:w-[300px] sm:max-w-[300px] transition`}
+      className={`relative transform ${card.rotation} bg-white p-4 rounded-[14px] shadow-lg max-w-[150px] left-0 sm:w-[450px] sm:max-w-[450px] transition`}
       style={{ top: index * 20, left: index * 10, willChange: 'transform' }}
     >
       <img src={card.image} alt={card.title} className="w-full rounded-lg" />
-      <span className="absolute top-3 w-full sm:left-[-10%] bg-white text-[#ED510C] px-3 py-1 rounded-[14px] text-2xl font-bold">
+      <span className="absolute top-3 sm:left-[-10%] w-fit bg-white text-[#ED510C] px-3 py-1 rounded-[14px] text-2xl font-bold">
         {card.title}
       </span>
       <p className="text-black mt-4 sm:text-sm text-xs">{card.description}</p>

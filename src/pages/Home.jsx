@@ -38,6 +38,7 @@ function Home() {
         {/* <Home /> */}
       {/* ) : ( */}
         {/* <Loading onLoadingComplete={handleLoadingComplete} > */}
+        {/* <Loading > */}
           <div className="main contain-paint ">
             <Suspense fallback={null}>
               <HomeHeroCanvas />
@@ -52,6 +53,7 @@ function Home() {
             <Testimonials />
             <Faq />
           </div>
+        {/* </Loading> */}
         {/* </Loading> */}
       {/* )} */}
     </div>

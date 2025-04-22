@@ -11,6 +11,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollHandler from "../scroll/ScrollHandler";
 import { setPrevPath } from "../hook/useHistory";
+import Loading from "../components/Loading";
 
 const AppContent = () => {
   const location = useLocation();
@@ -26,6 +27,7 @@ const AppContent = () => {
       <Header location={location} />
       <Routes location={location}>
         <Route path="/" element={<Home />} />
+        <Route path="/loading" element={<Loading />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<LetsTalk />} />
         <Route path="/case-study" element={<CaseStudie />} />

@@ -32,7 +32,7 @@ function KeywordsSection() {
     >
       <div ref={marqueeRef}>
         <div className="md:h-[60px] absolute top-0  h-[40px]  overflow-hidden">
-          <div className="whitespace-nowrap animate-marquee flex items-center gap-6 text-black font-bold text-2xl md:text-5xl pb-10">
+          <div className="whitespace-nowrap animate-marquee flex items-center gap-6 text-[#DF792A] font-bold text-2xl md:text-5xl pb-10">
           <span>Insatiable</span>
           <span className="text-[#DF782B]">•</span>
           <span>Unbreakable</span>
