@@ -9,10 +9,10 @@ export default function BlogSection() {
   const posts = [
     {
       id: "1",
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
-      readTime: "2 Min Read",
+      title: "Local SEO for Healthcare",
+      author: "Admin",
+      date: "April 22, 2025",
+      // readTime: "2 Min Read",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-1.png",
       imgArr: [
         "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
@@ -28,9 +28,9 @@ export default function BlogSection() {
     },
     {
       id: "2",
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
+      title: "Local SEO for Healthcare",
+      author: "Admin",
+      date: "April 22, 2025",
       readTime: "2 Min Read",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-2.png",
       imgArr: [
@@ -47,9 +47,9 @@ export default function BlogSection() {
     },
     {
       id: "",
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
+      title: "Local SEO for Healthcare",
+      author: "Admin",
+      date: "April 22, 2025",
       readTime: "2 Min Read",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-3.png",
       imgArr: [
@@ -66,9 +66,9 @@ export default function BlogSection() {
     },
     {
       id: "",
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
+      title: "Local SEO for Healthcare",
+      author: "Admin",
+      date: "April 22, 2025",
       readTime: "2 Min Read",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
       imgArr: [
@@ -85,9 +85,9 @@ export default function BlogSection() {
     },
     {
       id: "",
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
+      title: "Local SEO for Healthcare",
+      author: "Admin",
+      date: "April 22, 2025",
       readTime: "2 Min Read",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/featured-post.png",
       imgArr: [
@@ -300,8 +300,8 @@ export default function BlogSection() {
                 Leading heading of the Latest Post
               </h3>
               <div className="flex text-sm text-gray-300 mt-1 space-x-7">
-                <span className="font-bold text-white">Aishwary Sinha</span>
-                <span>Jan 25, 2025</span>
+                <span className="font-bold text-white">Admin</span>
+                <span>April 22, 2025</span>
                 <span>2 Min Read</span>
               </div>
             </div>

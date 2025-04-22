@@ -18,6 +18,18 @@ const HowItWorks = () => {
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
       h_color: "#2A2A2A",
       bg_Color: "#F3A265",
+      id: 1,
+      step: "STEP 1",
+      heading: "Hunt the Weak (Identify & Attack)",
+      pera: "We identify weak points and strike with precision.",
+      list: [
+        "Analyze competition weaknesses.",
+        "Target the most vulnerable spots.",
+        "Strike with a tailored strategy.",
+      ],
+      quoat: "Only the strongest survive.",
+      bgColor: "bg-gray-900",
+      textColor: "text-white",
     },
     {
       h1: "STEP 2",
@@ -26,6 +38,18 @@ const HowItWorks = () => {
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
       h_color: "#F3A265",
       bg_Color: "#2A2A2A",
+      id: 2,
+      step: "STEP 2",
+      heading: "Mark the Territory (Establish & Expand)",
+      pera: "We solidify our presence and dominate the market.",
+      list: [
+        "Build a strong brand foundation.",
+        "Expand into new digital landscapes.",
+        "Dominate through consistency.",
+      ],
+      quoat: "Claim what’s yours and make it unshakable.",
+      bgColor: "bg-gray-700",
+      textColor: "text-white",
     },
     {
       h1: "STEP 3",
@@ -34,6 +58,18 @@ const HowItWorks = () => {
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
       h_color: "#F3A265",
       bg_Color: "#515151",
+      id: 3,
+      step: "STEP 3",
+      heading: "Lead the Pack (Innovate & Inspire)",
+      pera: "We don’t follow trends, we create them.",
+      list: [
+        "Innovate with cutting-edge strategies.",
+        "Set the industry standard.",
+        "Inspire others to follow your lead.",
+      ],
+      quoat: "A true leader runs with the pack but leads from the front.",
+      bgColor: "bg-orange-500",
+      textColor: "text-white",
     },
     {
       h1: "STEP 4",
@@ -42,6 +78,18 @@ const HowItWorks = () => {
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
       h_color: "#2A2A2A",
       bg_Color: "#F3A265",
+      id: 4,
+      step: "STEP 4",
+      heading: "Guard the Territory (Optimize & Dominate)",
+      pera: "Paranoid. Protective. Ferocious. Always keeping an eye for sudden changes and threats",
+      list: [
+        "We track each metric, knowing exactly when to strike again.",
+        "We strike out weak spots and double down on our maniac side.",
+        "We ensure your brand remains at the peak.",
+      ],
+      quoat: "Survival is only the beginning. Domination is the goal.",
+      bgColor: "bg-orange-700",
+      textColor: "text-white",
     },
   ];
 
@@ -289,19 +337,26 @@ const HowItWorks = () => {
                     </div>
                   </div>
 
-                <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-[.9vw] leading-[1.1vw] text-white">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptate numquam eaque laudantium, earum repellendus illo
-                  accusamus cumque quisquam consequuntur assumenda reprehenderit
-                  recusandae debitis expedita excepturi voluptatibus nam maxime
-                  blanditiis qui dolores, quasi eum error atque. Similique
-                  aperiam exercitationem illum magnam fugit itaque totam, libero
-                  fuga consequuntur commodi, labore sint culpa quibusdam
-                  reiciendis? Commodi, sapiente possimus nostrum impedit
-                  deleniti qui obcaecati?
+                  <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-[.9vw] leading-[1.1vw] text-white">
+                    <div className="md:ml-6 mt-4 md:mt-0">
+                      <p className="font-inter text-sm text-black font-bold uppercase">
+                        {dataChild.step}
+                      </p>
+                      <h3 className="font-inter text-2xl font-bold">
+                        {dataChild.heading}
+                      </h3>
+                      <p className="font-inter mt-1 font-semibold text-sm">
+                        {dataChild.pera}
+                      </p>
+                      <ul className="font-inter mt-2 list-disc list-inside text-sm">
+                        {dataChild.list.map((item, index) => (
+                          <li key={index}><span>{item}</span></li>
+                        ))}
+                      </ul>
+                      <p className="mt-3 font-semibold italic">{dataChild.quoat}</p>
+                    </div>
+                  </div>
                 </div>
-                </div>
-
               </>
             ))}
           </div>

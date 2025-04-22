@@ -12,7 +12,7 @@ function About() {
   return (
     <div key={location.key}> {/* Add key based on location */}
       <Hero />
-      <MeetThePack />
+      {/* <MeetThePack /> */}
       <HowWeWork />
       <WhyChooseUs />
       <OurVision />

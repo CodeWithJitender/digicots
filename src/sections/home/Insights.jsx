@@ -239,7 +239,7 @@ function Insights() {
                 to={"/insights"}
                 className="font-semibold flex items-center justify-center"
               >
-                Keep them coming{" "}
+                Know More{" "}
                 <i className="fal fa-arrow-up rotate-45 text-[#DF782B] ml-2" />
               </Link>
             </div>

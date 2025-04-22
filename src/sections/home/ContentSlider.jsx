@@ -135,7 +135,7 @@ const contentData = [
     link: "/web-development",
     img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-2.png",
     thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-2.png",
-    tag: ["", "", ""],
+    tag: ["Augmented Reality", "Virtual Reality",],
   },
 ];
 
@@ -158,7 +158,7 @@ const ContentSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
     fade: true,
   };
 
