@@ -392,7 +392,6 @@ const CardWrapperDesktop = React.memo(({ setSelectedCard, from, to }) => {
         start: "top 120%",
         end: "top -90%",
         scrub: 1,
-        // markers: true,
       },
     });
 
@@ -464,7 +463,6 @@ const CardWrapperMobile = React.memo(({ setSelectedCard, from, to }) => {
         start: "top 120%",
         end: "top -40%",
         scrub: 1,
-        markers: true,
       },
     });
 
