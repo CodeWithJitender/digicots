@@ -576,7 +576,7 @@ const BrandingGrid = () => {
   }, [isDesktop]);
 
   return (
-    <div className="container-xxl">
+    <div className="container-xxl overflow-x-hidden">
       {cardWrappers}
       <PopupModal card={selectedCard} onClose={() => setSelectedCard(null)} />
     </div>
