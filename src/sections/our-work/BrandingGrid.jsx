@@ -305,7 +305,7 @@ const PopupModal = React.memo(({ card, onClose }) => {
       className="fixed inset-0 flex items-end bottom-0 z-[1000] justify-center overflow-hidden bg-black bg-opacity-60 backdrop-blur-md px-4"
     >
       <button
-        className="absolute sm:top-[15vh] top-[8vh] cursor-pointer right-[50%] translate-x-[50%] text-black text-xl bg-white p-2 rounded-[50%]"
+        className="cursor-pointer  text-black w-[50px] h-[50px] text-xl bg-white p-2 rounded-[50%] absolute z-[100] bottom-[70vh] md:bottom-[80vh] lg:bottom-[90vh]"
         onClick={() => {
           gsap.to(popupRef.current, {
             duration: 0.3,
@@ -319,7 +319,7 @@ const PopupModal = React.memo(({ card, onClose }) => {
         ✖
       </button>
       <div className="bg-white rounded-lg rounded-b-none w-full overflow-hidden max-w-[1400px] py-4 px-2 md:p-6 relative shadow-xl relative z-50">
-        <div className="max-h-[500px] overflow-y-auto popup-container">
+        <div className="max-h-[60vh] md:max-h-[70vh] lg:max-h-[80vh] overflow-y-auto popup-container">
           <h2 className="text-2xl font-bold text-center">{card?.title}</h2>
           <p className="text-gray-600 text-center">{card?.description}</p>
           <div className=" mt-4 md:py-10 md:gap-10 px-5">

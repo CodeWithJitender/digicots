@@ -21,14 +21,23 @@ const CardComponent = ({ card, index }) => {
     <div
       key={card.id}
       ref={cardRef}
-      className={`relative transform ${card.rotation} bg-white p-4 rounded-[14px] shadow-lg max-w-[150px] left-0 sm:w-[450px] sm:max-w-[450px] transition`}
-      style={{ top: index * 20, left: index * 10, willChange: 'transform' }}
+      className={`relative transform ${card.rotation}  grid grid-cols-[400px_400px] gap-5`}
+      style={{ top: index * 20, left: index * 10, willChange: "transform" }}
     >
-      <img src={card.image} alt={card.title} className="w-full rounded-lg" />
-      <span className="absolute top-3 sm:left-[-10%] w-fit bg-white text-[#ED510C] px-3 py-1 rounded-[14px] text-2xl font-bold">
-        {card.title}
-      </span>
-      <p className="text-black mt-4 sm:text-sm text-xs">{card.description}</p>
+      <div className="w-[400px]  bg-white p-4 rounded-[14px] shadow-lg left-0 transition">
+        <img
+          src={card.image}
+          alt={card.title}
+          className="rounded-lg"
+        />
+        <span className="absolute top-3  sm:left-[-10%] bg-white text-[#ED510C] px-3 py-1 rounded-[14px] text-2xl font-bold">
+          {card.title}
+        </span>
+      </div>
+      <div className="sm:text-2xl text-lg">
+        <p className="text-black ">{card.description1}</p>
+        <p className="text-black mt-2">{card.description2}</p>
+      </div>
     </div>
   );
 };
@@ -41,40 +50,45 @@ const WhyChooseUs = () => {
       id: 1,
       title: "Exclusivity",
       image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-1.webp",
-      description1:"We don’t just work with anyone.",
-      description2:"Partnering exclusively with brands ready to dominate the global arena.",
+      description1: "We don’t just work with anyone.",
+      description2:
+        "Partnering exclusively with brands ready to dominate the global arena.",
       rotation: "rotate-3",
     },
     {
       id: 2,
       title: "Duality",
       image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-2.webp",
-      description1:"We don’t compromise.",
-      description2:"Every solution strikes the perfect balance between raw instinct & precise strategy.",
+      description1: "We don’t compromise.",
+      description2:
+        "Every solution strikes the perfect balance between raw instinct & precise strategy.",
       rotation: "rotate-3",
     },
     {
       id: 3,
       title: "Boldness",
       image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-3.webp",
-      description1:"We don’t follow.",
-      description2:"Running with brands that crave risk, aim for greatness and are ready to dust their competition.",
+      description1: "We don’t follow.",
+      description2:
+        "Running with brands that crave risk, aim for greatness and are ready to dust their competition.",
       rotation: "rotate-3",
     },
     {
       id: 4,
       title: "True Power",
       image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-4.webp",
-      description1:"We fear nothing.",
-      description2:"Tearing into the wild knowing that risk-taking is the only path to true power.",
+      description1: "We fear nothing.",
+      description2:
+        "Tearing into the wild knowing that risk-taking is the only path to true power.",
       rotation: "rotate-3",
     },
     {
       id: 5,
       title: "Farsightedness",
       image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-5.webp",
-      description1:"We don’t build for today.",
-      description2:"Forging brands that destroy boundaries, thrive in chaos and master the ever-changing landscape.",
+      description1: "We don’t build for today.",
+      description2:
+        "Forging brands that destroy boundaries, thrive in chaos and master the ever-changing landscape.",
       rotation: "rotate-3",
     },
   ];
@@ -93,19 +107,23 @@ const WhyChooseUs = () => {
         },
       });
 
-      tl.fromTo(sectionRef.current, {
-        scale: 0.9,
-        borderRadius: "19px",
-      },{
-        scale: 1,
-        borderRadius: "0px",
-      })
+      tl.fromTo(
+        sectionRef.current,
+        {
+          scale: 0.9,
+          borderRadius: "19px",
+        },
+        {
+          scale: 1,
+          borderRadius: "0px",
+        }
+      )
         .to(scrollXRef.current, {
           transform: `translateX(-70%)`,
           duration: 10,
         })
         .to(sectionRef.current, {
-          scale: .9,
+          scale: 0.9,
           borderRadius: "19px",
         });
     } else {
@@ -117,13 +135,17 @@ const WhyChooseUs = () => {
           scrub: 1,
         },
       });
-      tl.fromTo(sectionRef.current, {
-        scale: 0.9,
-        borderRadius: "19px",
-      },{
-        scale: 1,
-        borderRadius: "0px",      
-      })
+      tl.fromTo(
+        sectionRef.current,
+        {
+          scale: 0.9,
+          borderRadius: "19px",
+        },
+        {
+          scale: 1,
+          borderRadius: "0px",
+        }
+      )
         .to(scrollXRef.current, {
           transform: `translateY(-5%)`,
           duration: 10,
@@ -140,12 +162,12 @@ const WhyChooseUs = () => {
       <section
         ref={sectionRef}
         className="bg-[#ED510C] sticky top-0 min-h-[100vh] flex items-center overflow-hidden no-scrollBar py-20 px-6 md:px-20"
-        style={{ willChange: 'transform' }}
+        style={{ willChange: "transform" }}
       >
         <div
           ref={scrollXRef}
           className="mx-auto flex flex-col sm:flex-row sm:items-center translate-y-[20%] sm:translate-y-[0%] sm:translate-x-[100%] gap-10 min-w-screen sm:min-w-[400vw]"
-          style={{ willChange: 'transform' }}
+          style={{ willChange: "transform" }}
         >
           <div className="text-white sm:w-fit">
             <h2 className="sm:w-[500px] w-[90vw] text-4xl md:text-5xl font-bold mb-4 overflow-hidden">

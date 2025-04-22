@@ -9,9 +9,9 @@ import BlogModal from "./BlogModal";
 const slides = [
   {
     image: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/blog-1.png",
-    title: "Leading heading of the Latest Post",
-    author: "Aishwary Sinha",
-    date: "Jan 25, 2025",
+    title: "Local SEO for Healthcare",
+    author: "Admin",
+    date: "April 22, 2025",
     readTime: "2 Min Read",
     thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/thumb-1.png",
     img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
@@ -30,9 +30,9 @@ const slides = [
   },
   {
     image: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/blog-1.png",
-    title: "Another Amazing Post",
-    author: "Jane Doe",
-    date: "Feb 10, 2025",
+    title: "Local SEO for Healthcare",
+    author: "Admin",
+    date: "April 22, 2025",
     readTime: "3 Min Read",
     thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/thumb-1.png",
     img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
@@ -51,9 +51,9 @@ const slides = [
   },
   {
     image: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/blog-1.png",
-    title: "Leading heading of the Latest Post",
-    author: "Aishwary Sinha",
-    date: "Jan 25, 2025",
+    title: "Local SEO for Healthcare",
+    author: "Admin",
+    date: "April 22, 2025",
     readTime: "2 Min Read",
     thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/thumb-1.png",
     img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
@@ -72,9 +72,9 @@ const slides = [
   },
   {
     image: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/blog-1.png",
-    title: "Another Amazing Post",
-    author: "Jane Doe",
-    date: "Feb 10, 2025",
+    title: "Local SEO for Healthcare",
+    author: "Admin",
+    date: "April 22, 2025",
     readTime: "3 Min Read",
     thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/thumb-1.png",
     img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
@@ -159,9 +159,9 @@ export default function ThumbnailSlider() {
                           <i class="fal fa-calendar"></i> {slide.date}
                         </span>
                         <span></span>
-                        <span>
+                        {/* <span>
                           <i class="fal fa-clock"></i> {slide.readTime}
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                   </div>

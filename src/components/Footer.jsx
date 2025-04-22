@@ -380,7 +380,7 @@ export default function Footer() {
             <p className="text-center sm:text-start">
               Designed by{" "}
               <a href="#" className="text-[#DF782B]">
-                Aishwary Sinha
+                {/* Aishwary Sinha */}
               </a>
             </p>
           </div>

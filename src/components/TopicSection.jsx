@@ -17,9 +17,9 @@ export default function TopicSection() {
 
   const posts = [
     {
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
+      title: "Local SEO for Healthcare",
+      author: "Admin",
+      date: "April 22, 2025",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
       imgArr: [
         "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
@@ -34,9 +34,9 @@ export default function TopicSection() {
       ], // Replace with actual images
     },
     {
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
+      title: "Local SEO for Healthcare",
+      author: "Admin",
+      date: "April 22, 2025",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-3.png",
       imgArr: [
         "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
@@ -51,9 +51,9 @@ export default function TopicSection() {
       ],
     },
     {
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
+      title: "Local SEO for Healthcare",
+      author: "Admin",
+      date: "April 22, 2025",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-2.png",
       imgArr: [
         "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
@@ -68,9 +68,9 @@ export default function TopicSection() {
       ],
     },
     {
-      title: "This is a very long heading with lots of words...",
-      author: "Aishwary Sinha",
-      date: "Jan 25, 2025",
+      title: "Local SEO for Healthcare",
+      author: "Admin",
+      date: "April 22, 2025",
       img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-1.png",
       imgArr: [
         "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
