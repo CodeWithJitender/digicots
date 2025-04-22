@@ -36,17 +36,17 @@ const WavePlane = ({ setOpacity }) => {
     video.muted = true;
     video.playsInline = true;
     video.autoplay = true;
-  
+
     video.play(); // Start playing video
-  
+
     const videoTexture = new THREE.VideoTexture(video);
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
     videoTexture.format = THREE.RGBFormat;
-  
+
     return videoTexture;
   }, []);
-  
+
   const mapWidth = (
     width,
     inMin = 390,
@@ -92,19 +92,16 @@ const WavePlane = ({ setOpacity }) => {
   );
 
   const fragmentShader = useMemo(
-    () => 
+    () =>
       `varying vec2 vUv;
       uniform sampler2D uTexture;
   
       void main() {
         // Basic texture mapping using vUv
         gl_FragColor = texture2D(uTexture, vUv);
-      }`
-    ,
+      }`,
     []
   );
-  
-  
 
   const uniforms = useMemo(
     () => ({
@@ -113,7 +110,7 @@ const WavePlane = ({ setOpacity }) => {
       uTexture: { value: texture },
       uTextureAspect: { value: 1.0 }, // Updated after texture loads
       uPlaneAspect: { value: dimensions.width / dimensions.height },
-      uBlurAmount:{ value: .01 },
+      uBlurAmount: { value: 0.01 },
     }),
     [texture]
   );
@@ -336,32 +333,44 @@ const Scene = () => {
     };
   }, []);
 
-  const scrollMoreRef = useRef(null);
+  const scrollMoreRef = useRef([]);
 
-  useGSAP(()=>{
+  useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: scrollMoreRef.current,
-        start: "top 140%",
-        end: "top 130%",
+        start: "top 70%",
+        end: "top 30%",
         scrub: 1,
-        // markers:true
+        // markers: true,
       },
       ease: "power4.inOut",
     });
-    tl
-    .to(scrollMoreRef.current, { opacity: 0 })
-    
+    scrollMoreRef.current.forEach((el) => {
+      const span = el.querySelector("span");
+      tl.fromTo(
+        span,
+        {
+          y: "130%",
+          scaleX: 0.7,
+        },
+        {
+          y: "0%",
+          scaleX: 1,
+        },
+        "a"
+      );
+    });
     return () => {
       tl.kill();
     };
-  },[scrollMoreRef.current])
+  }, [scrollMoreRef.current]);
 
   return (
     <div className="relative min-h-[150vh] w-full">
       <div className="sticky top-0" style={{ width: "100vw", height: "100vh" }}>
         <Canvas
-          className="homeCanvas blur-[4px] brightness-[.6]"
+          className="homeCanvas blur-[4px] brightness-[.6] relative z-[2]"
           camera={{ position: [0, 0, 10], fov: 75 }}
         >
           <ambientLight intensity={0.5} />
@@ -381,7 +390,10 @@ const Scene = () => {
             className="reel-text flex items-center gap-3 font-inter font-bold text-white cursor-pointer"
           >
             <span>PLAY</span>
-            <img src="https://ik.imagekit.io/x5xessyka/digicots/public/reelplay.png" className="w-10 md:w-20" />
+            <img
+              src="https://ik.imagekit.io/x5xessyka/digicots/public/reelplay.png"
+              className="w-10 md:w-20"
+            />
             <span>REEL</span>
           </div>
 
@@ -400,12 +412,12 @@ const Scene = () => {
             <video
               ref={videoElementRef}
               src="https://ik.imagekit.io/8mbzq2hdl/digicots/showreel.mp4"
-              className="w-full h-full object-cover absolute top-0"
+              className="w-full h-full md:object-cover absolute top-0"
               controls
             />
             <button
               onClick={handleCloseReel}
-              className="absolute top-20 right-8 text-white text-2xl font-bold bg-zinc-800/[.5] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer z-20"
+              className="absolute top-20 md:top-8 right-8 text-white text-2xl font-bold bg-zinc-800/[.5] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer z-20"
             >
               ×
             </button>
@@ -420,16 +432,30 @@ const Scene = () => {
                 className="replay-text flex items-center gap-3 font-inter font-bold text-white cursor-pointer"
               >
                 <span>REPLAY</span>
-                <img src="https://ik.imagekit.io/x5xessyka/digicots/public/reelplay.png" className="w-10 md:w-20" />
+                <img
+                  src="https://ik.imagekit.io/x5xessyka/digicots/public/reelplay.png"
+                  className="w-10 md:w-20"
+                />
                 <span>REEL</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="h-full w-full absolute top-0">
-          <div ref={scrollMoreRef} className="absolute text-[1.5vw] bottom-[30%] left-1/2 -translate-1/2 text-sm text-white text-left leading-none">
-            Scroll To Know More!
+        <div className="h-full w-full absolute top-0 z-[1]">
+          <div className="absolute flex flex-col items-end top-[42%] left-1/2 -translate-1/2">
+            <div
+              ref={(el) => (scrollMoreRef.current[0] = el)}
+              className=" overflow-hidden text-[5.5vw] h-[6.5vw] font-bold text-sm text-white text-left leading-none"
+            >
+              <span className="inline-block">Authenticity First</span>
+            </div>
+            <div
+              ref={(el) => (scrollMoreRef.current[1] = el)}
+              className=" overflow-hidden text-[3vw] h-[4vw] italic text-sm text-white text-left leading-none"
+            >
+              <span className="inline-block">Authenticity First</span>
+            </div>
           </div>
         </div>
       </div>

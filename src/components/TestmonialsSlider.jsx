@@ -78,6 +78,7 @@ export default function TestimonialsSlider({ data }) {
     infinite: true,
     slidesToShow: 4.9,
     slidesToScroll: 1,
+    arrow:true,
     // speed: 500,
     // autoplay: true,
     // autoplaySpeed: 2000,

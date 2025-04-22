@@ -10,7 +10,7 @@
 }
 
 :root{
-  --index: calc(.8vw + .8vh);
+  --index: calc(.8vw + 1vh);
   --transition: cubic-bezier(.1, .7, 0, 1);
 }
 

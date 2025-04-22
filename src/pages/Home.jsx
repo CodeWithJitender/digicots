@@ -48,7 +48,7 @@ function Home() {
             <ContentSlider />
             <OurWork />
             <Insights />
-            <KeywordsSection />
+            {/* <KeywordsSection /> */}
             <OurJourney />
             <Testimonials />
             <Faq />
