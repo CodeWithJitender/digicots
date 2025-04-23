@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import React, { useRef } from 'react';
 
-const TextAnimation2 = ({ children, className = "", animeStart = "50", animeEnd = "40", duration = 0.5 }) => {
+const TextAnimation2 = ({ children, className = "", animeStart = "50", animeEnd = "40", duration = 0.5, scrub=false,stagger=20 }) => {
   const parentRef = useRef(null);
   const letterRefs = useRef([]); // Har letter ka reference store karega
 
@@ -16,12 +16,12 @@ const TextAnimation2 = ({ children, className = "", animeStart = "50", animeEnd 
       opacity: 0.3,
       // filter: "blur(10px)",
       duration: duration,
-      stagger: duration / 20, // Har letter thoda delay se animate hoga
+      stagger: duration / stagger, // Har letter thoda delay se animate hoga
       scrollTrigger: {
         trigger: parentRef.current,
         start: `top ${animeStart}%`,
-        // end: `top ${animeEnd}%`,
-        // scrub: true
+        end: `top ${animeEnd}%`,
+        scrub
       },
     });
   }, [letterRefs.current]);
