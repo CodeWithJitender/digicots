@@ -51,6 +51,7 @@ const Section = ({ title, img, p }) => {
       "a"
     );
   }, [sectionRef.current, containerRef.current, imgref.current]);
+  console.log(p.length)
 
   return (
     <div className="min-h-[200vh] w-full h-full bg-black relative">
@@ -84,8 +85,8 @@ const Section = ({ title, img, p }) => {
             className="absolute inset-0 flex items-center justify-center rounded-lg p-6 font-inter text-center"
             style={{ willChange: "transform" }}
           >
-            <p className="text-[#B2B2B2] text-[3vw] md:text-xl font-bold max-w-[320px] md:max-w-[750px]">
-              <TextAnimation2 stagger={50} animeStart="20" animeEnd="-30" scrub={true} duration={5.5}>
+            <p className="text-[#B2B2B2] text-[3vw] md:text-xl font-bold max-w-[320px] md:max-w-[900px]">
+              <TextAnimation2 stagger={p.length < 400 ? 50 : 80} animeStart={p.length < 400 ? "20" : "40"} animeEnd={p.length < 400 ? "-20" : "-50"} scrub={true} duration={p.length < 400 ? 5.5 : 10.5}>
                 {p}
               </TextAnimation2>
             </p>
@@ -115,7 +116,7 @@ const OurVision = () => {
   return (
     <section className="h-full w-full">
       {data.map((d, i) => (
-        <Section title={d.title} img={d.img} p={d.p} key={i} />
+        <Section title={d.title} img={d.img} p={d.p} key={i}  />
       ))}
     </section>
   );

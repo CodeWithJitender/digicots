@@ -8,23 +8,26 @@ import TextAnimation2 from "../../animation/text/TextAnimation2";
 const CardComponent = ({ card, index }) => {
   const cardRef = useRef(null);
 
-  // useGSAP(() => {
-  //   gsap.to(cardRef.current, {
-  //     rotationZ: index % 2 ? "10deg" : "-10deg",
-  //     duration: 3,
-  //     repeat: -1,
-  //     onUpdate: () => {},
-  //   });
-  // }, [cardRef.current]);
+  useGSAP(() => {
+    gsap.to(cardRef.current, {
+      rotationZ: index % 2 ? "10deg" : "-10deg",
+      duration: 3,
+      repeat: -1,
+      yoyo:true,
+      onUpdate: () => {},
+    });
+  }, [cardRef.current]);
 
   return (
     <div
       key={card.id}
-      ref={cardRef}
+      
       className={`relative transform ${card.rotation}  grid grid-cols-[400px_400px] gap-5`}
       style={{ top: index * 20, left: index * 10, willChange: "transform" }}
     >
-      <div className="md:w-[400px] w-[220px]  bg-white p-4 rounded-[14px] shadow-lg left-0 transition">
+      <div
+         ref={cardRef}
+       className="md:w-[400px] w-[220px]  bg-white p-4 rounded-[14px] shadow-lg left-0 transition">
         <img
           src={card.image}
           alt={card.title}
