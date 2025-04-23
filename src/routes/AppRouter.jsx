@@ -12,6 +12,7 @@ import Footer from "../components/Footer";
 import ScrollHandler from "../scroll/ScrollHandler";
 import { setPrevPath } from "../hook/useHistory";
 import Loading from "../components/Loading";
+import ThankYou from "../pages/ThankYou";
 
 const AppContent = () => {
   const location = useLocation();
@@ -34,6 +35,7 @@ const AppContent = () => {
         <Route path="/things-we-do" element={<OurWork />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/insights" element={<Insights />} />
+        <Route path="/thankyou" element={<ThankYou />} />
       </Routes>
       {!["/case-study", "/contact"].includes(location.pathname) && <Footer />}
     </>
