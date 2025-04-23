@@ -81,7 +81,7 @@ const CylindricalSlider = () => {
     <div ref={sliderRef} className="banner overflow-hidden w-full relative">
       <div className="relative z-10">
         <MainHeading
-          heading="OUR WORK"
+          heading="THINGS WE DO"
           pera="We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
           cl="text-center pt-10"
           tColor="text-white"

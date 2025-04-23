@@ -290,8 +290,8 @@ function HeroText() {
           </h2>
           <p className="text-[3vw] sm:text-[1.5vw] md:text-[1.2vw] lg:text-[.9vw] relative z-[2] text-zinc-400 md:w-[80vw] lg:w-[60vw] text-center mt-[-4vh] sm:mt-[-9vw] lg:mt-[-12vh] ">
             <TextAnimation2 animeStart="80" duration={0.5}>
-              We’re not just any other marketing agency – we’re the alpha pack.
-              We are Digicots – fierce, relentless, unapologetically bold. Our
+              We’re not just any other marketing agency – we’re the alpha pack. <br/>
+              We are Digicots – fierce, relentless, unapologetically bold. <br /> Our
               instinctive mastery, data-driven approach and uncaged creativity
               are what makes us prey on nothing but excellence!
             </TextAnimation2>

@@ -30,7 +30,7 @@ const CardComponent = ({ card, index }) => {
           alt={card.title}
           className="rounded-lg"
         />
-        <span className="absolute top-3  sm:left-[-10%] bg-white text-[#ED510C] px-3 py-1 rounded-[14px] text-2xl font-bold">
+        <span className="absolute left-0 sm:left-[-4%] top-0 sm:top-6  bg-white text-[#ED510C] px-3 py-1 rounded-[14px] md:text-2xl font-bold">
           {card.title}
         </span>
       </div>
