@@ -24,7 +24,7 @@ const CardComponent = ({ card, index }) => {
       className={`relative transform ${card.rotation}  grid grid-cols-[400px_400px] gap-5`}
       style={{ top: index * 20, left: index * 10, willChange: "transform" }}
     >
-      <div className="w-[400px]  bg-white p-4 rounded-[14px] shadow-lg left-0 transition">
+      <div className="md:w-[400px] w-[220px]  bg-white p-4 rounded-[14px] shadow-lg left-0 transition">
         <img
           src={card.image}
           alt={card.title}
@@ -34,9 +34,9 @@ const CardComponent = ({ card, index }) => {
           {card.title}
         </span>
       </div>
-      <div className="sm:text-2xl text-lg">
-        <p className="text-black ">{card.description1}</p>
-        <p className="text-black mt-2">{card.description2}</p>
+      <div className="sm:text-2xl hidden sm:block text-lg">
+        <p className="text-white ">{card.description1}</p>
+        <p className="text-white mt-2">{card.description2}</p>
       </div>
     </div>
   );
@@ -102,7 +102,7 @@ const WhyChooseUs = () => {
         scrollTrigger: {
           trigger: ".why-choose",
           start: "top 0%",
-          end: "top -200%",
+          end: "top -400%",
           scrub: 1,
         },
       });
@@ -119,8 +119,9 @@ const WhyChooseUs = () => {
         }
       )
         .to(scrollXRef.current, {
-          transform: `translateX(-70%)`,
+          transform: `translateX(-110%)`,
           duration: 10,
+          ease:"power1.inOut",
         })
         .to(sectionRef.current, {
           scale: 0.9,
@@ -131,7 +132,7 @@ const WhyChooseUs = () => {
         scrollTrigger: {
           trigger: ".why-choose",
           start: "top 0%",
-          end: "top -200%",
+          end: "top -400%",
           scrub: 1,
         },
       });
@@ -147,7 +148,7 @@ const WhyChooseUs = () => {
         }
       )
         .to(scrollXRef.current, {
-          transform: `translateY(-5%)`,
+          transform: `translateY(-12%)`,
           duration: 10,
         })
         .to(sectionRef.current, {
@@ -158,7 +159,7 @@ const WhyChooseUs = () => {
   }, [scrollXRef.current, window.innerWidth, sectionRef.current]);
 
   return (
-    <div className="why-choose min-h-[300vh]">
+    <div className="why-choose min-h-[500vh]">
       <section
         ref={sectionRef}
         className="bg-[#ED510C] sticky top-0 min-h-[100vh] flex items-center overflow-hidden no-scrollBar py-20 px-6 md:px-20"
@@ -166,7 +167,7 @@ const WhyChooseUs = () => {
       >
         <div
           ref={scrollXRef}
-          className="mx-auto flex flex-col sm:flex-row sm:items-center translate-y-[20%] sm:translate-y-[0%] sm:translate-x-[100%] gap-10 min-w-screen sm:min-w-[400vw]"
+          className="mx-auto flex flex-col sm:flex-row sm:items-center translate-y-[20%] sm:translate-y-[0%] sm:translate-x-[15%] gap-10 min-w-screen sm:min-w-[400vw]"
           style={{ willChange: "transform" }}
         >
           <div className="text-white sm:w-fit">
