@@ -22,12 +22,12 @@ const CardComponent = ({ card, index }) => {
     <div
       key={card.id}
       
-      className={`relative transform ${card.rotation}  grid grid-cols-[400px_400px] gap-5`}
+      className={`relative transform ${card.rotation}  grid grid-cols-[500px_500px] gap-8`}
       style={{ top: index * 20, left: index * 10, willChange: "transform" }}
     >
       <div
          ref={cardRef}
-       className="md:w-[400px] w-[220px]  bg-white p-4 rounded-[14px] shadow-lg left-0 transition">
+       className="md:w-full w-[220px]  bg-white p-4 rounded-[14px] shadow-lg left-0 transition">
         <img
           src={card.image}
           alt={card.title}

@@ -161,7 +161,7 @@ function Showreel({ opacity }) {
           className="reel-text flex items-center gap-3 font-inter font-bold text-white cursor-pointer"
         >
           <span>PLAY</span>
-          <img src="reelplay.png" alt="" />
+          <img src="https://ik.imagekit.io/8mbzq2hdl/digicots/reelplay.png" alt="" />
           <span>REEL</span>
         </div>
       </div>
@@ -200,7 +200,7 @@ function Showreel({ opacity }) {
           className="replay-text flex items-center gap-3 font-inter font-bold text-white cursor-pointer"
         >
           <span>REPLAY</span>
-          <img src="https://ik.imagekit.io/8mbzq2hdl/digicots/reelplay.png?updatedAt=1744631790579" alt="" />
+          <img src="https://ik.imagekit.io/8mbzq2hdl/digicots/reelplay.png" alt="" />
           <span>REEL</span>
         </div>
       </div>

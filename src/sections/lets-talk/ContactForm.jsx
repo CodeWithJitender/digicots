@@ -44,7 +44,7 @@ const ContactForm = () => {
   
       const result = await response.json();
       console.log('Success:', result);
-      window.location.href = 'http://localhost:5173/contact?success=true';
+      window.location.href = 'http://localhost:5173/thankyou';
     } catch (error) {
       console.error('Error submitting form:', error);
       setMessage("❌ Error: " + error.message);

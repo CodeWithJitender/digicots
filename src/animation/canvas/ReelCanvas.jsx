@@ -391,7 +391,7 @@ const Scene = () => {
           >
             <span>PLAY</span>
             <img
-              src="https://ik.imagekit.io/x5xessyka/digicots/public/reelplay.png"
+              src="https://ik.imagekit.io/8mbzq2hdl/digicots/reelplay-2.png"
               className="w-10 md:w-20"
             />
             <span>REEL</span>
@@ -433,7 +433,7 @@ const Scene = () => {
               >
                 <span>REPLAY</span>
                 <img
-                  src="https://ik.imagekit.io/x5xessyka/digicots/public/reelplay.png"
+                  src="https://ik.imagekit.io/8mbzq2hdl/digicots/reelplay-2.png"
                   className="w-10 md:w-20"
                 />
                 <span>REEL</span>

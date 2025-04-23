@@ -72,8 +72,8 @@ function Testimonials() {
 
 
   return testimonials.length > 0 && (
-    <section ref={testimonialsRef} className="testimonial min-h-[65vh] relative z-[5] py-10 md:px-40">
-      <div className="container">
+    <section ref={testimonialsRef} className="testimonial min-h-[65vh] relative z-[5] pb-30">
+      <div className="">
         <MainHeading
           heading="TESTIMONIALS"
           pera="We specialize in personalized and conversational marketing, crafting tailored experiences for every business."

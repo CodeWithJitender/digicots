@@ -113,7 +113,7 @@ export default function TestimonialsSlider({ data }) {
 
   return (
     <div ref={containerRef} className="w-full flex justify-center mt-10">
-      <div className="max-w-[1500px] w-full">
+      <div className="w-full">
         <Slider
           {...settings}
           ref={sliderRef}

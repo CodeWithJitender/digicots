@@ -51,18 +51,18 @@ export default function Footer() {
   const [message, setMessage] = useState("");
   const location = useLocation();
   const [popActive, setPopActive] = useState(false);
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const isSuccess = params.get("success") === "true";
-    const validPaths = ["/", "/about", "/insights", "/case-study", "/things-we-do"];
+  // useEffect(() => {
+  //   const params = new URLSearchParams(location.search);
+  //   const isSuccess = params.get("success") === "true";
+  //   const validPaths = ["/", "/about", "/insights", "/case-study", "/things-we-do"];
 
-    if (isSuccess && validPaths.includes(location.pathname)) {
-      setPopActive(true);
-      // Clean the URL without reloading
-      const cleanedURL = location.pathname;
-      window.history.replaceState({}, "", cleanedURL);
-    }
-  }, [location]);
+  //   if (isSuccess && validPaths.includes(location.pathname)) {
+  //     setPopActive(true);
+  //     // Clean the URL without reloading
+  //     const cleanedURL = location.pathname;
+  //     window.history.replaceState({}, "", cleanedURL);
+  //   }
+  // }, [location]);
 
   const validateForm = () => {
     const requiredFields = [
@@ -160,7 +160,7 @@ export default function Footer() {
               <input
                 type="hidden"
                 name="_next"
-                value={`http://localhost:5173${location.pathname}?success=true`}
+                value={`http://localhost:5173/thankyou`}
               />
               <motion.input
                 onChange={handleChange}
@@ -287,8 +287,7 @@ export default function Footer() {
           >
             <h4 className="text-lg font-semibold">India</h4>
             <p className="text-gray-400 mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore.
+            At Digicots, we are a group of seasoned marketers who guide businesses that dare to be different through the ever-changing market landscape. We craft systems tailored to your specific business goals by leveraging a blend of creativity, strategy and statistics. Our data-driven approach helps us juggle calculated risk and bold innovation in order to deliver quantifiable results that speak for themselves.
             </p>
             <p className="mt-2 font-semibold">+91 987 987 5632</p>
           </motion.div>

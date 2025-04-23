@@ -28,7 +28,7 @@ export default function ThankyouPopUp({ popActive, onClose }) {
 
         {/* Description */}
         <p className="text-gray-300 text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-6">
-        We have received your response. <br /> Our DigiCare Team will get back to you within the next 72 hours. Adios✨    
+        We have received your response. <br /> Our DigiCare Team will get back to you within the next 72 hours. <br /> Adios✨    
         </p>
 
         {/* Follow Us */}

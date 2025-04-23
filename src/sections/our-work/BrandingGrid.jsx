@@ -14,7 +14,7 @@ import { useSearchParams } from "react-router-dom";
 const brandingData = [
   {
     id: 1,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-1.webp",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-1-1.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/1.webp",
     url: "https://www.drinkcharlies.com/",
     title: "Charlie’s Organics",
@@ -29,7 +29,7 @@ const brandingData = [
   },
   {
     id: 2,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-2.webp",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-2-1.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/2.webp",
     url: "https://www.triplettapizza.com/",
     title: "Tripletta",
@@ -45,7 +45,7 @@ const brandingData = [
   },
   {
     id: 3,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-3.webp",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-3-1.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/3.webp",
     url: "https://surge.peachworlds.com/",
     title: "Surge",
@@ -61,7 +61,7 @@ const brandingData = [
   },
   {
     id: 4,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-4.webp",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-4-1.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/4.webp",
     url: "https://isradesign.com/en/",
     title: "ISRA Design",
@@ -77,7 +77,7 @@ const brandingData = [
   },
   {
     id: 5,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-5.webp",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-5-1.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/5.webp",
     url: "https://leoff-paris.com/en/",
     title: "Le OFF Paris",
@@ -99,7 +99,7 @@ const brandingData = [
   },
   {
     id: 6,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-6.webp",
+    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-6-1.webp",
     internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/6.webp",
     url: "https://kindly-2e8okmvk.peachworlds.com/",
     title: "Anima",

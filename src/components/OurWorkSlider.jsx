@@ -4,13 +4,15 @@ import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
 
 const baseImages = [
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-1.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-2.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-3.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-4.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-5.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-6.webp",
+  
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-1-1.webp",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-2-1.webp",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-3-1.webp",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-4-1.webp",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-5-1.webp",
+  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-6-1.webp",
 ];
+
 
 const images = Array(2).fill(baseImages).flat();
 
