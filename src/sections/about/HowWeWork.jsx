@@ -90,7 +90,7 @@ function HowWeWork() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 30%", // Adjusted for smoother trigger
+        start: "top 80%", // Adjusted for smoother trigger
         end: "top -200%",
         scrub: 1,
       },
@@ -98,7 +98,7 @@ function HowWeWork() {
 
     if (isDesktop) {
       tl.from(cardsRef.current, {
-        x: (i)=> -(i+1)*110 + "%" , // Changed to percentage for consistency
+        x: (i)=> -(i+1)*150 + "%" , // Changed to percentage for consistency
         duration: 5,
         ease: "power1.inOut",
         stagger: 0.3,
