@@ -2,43 +2,84 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import TextAnimation1 from "../../animation/text/TextAnimation1";
-
+import ThankyouPopUp from "../../components/ThankyouPopUp";
 const ContactForm = () => {
   const [activeTab, setActiveTab] = useState("dominance");
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [popActive, setPopActive] = useState(false);
 
-  
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("success") === "true") {
+      setPopActive(true);
+    }
+  }, []);
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
-
+  
     try {
       const error = validateForm();
       if (error) {
-        e.preventDefault();
         return setMessage(error);
       }
-      const response = await fetch("https://your-api-endpoint.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, type: activeTab }),
+  
+      const response = await fetch('https://formsubmit.co/ajax/jitender@digicots.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(formData)
       });
-
-      if (!response.ok) throw new Error("Failed to submit. Try again!");
-
-      setMessage("✅ Form submitted successfully!");
-      setFormData({});
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const result = await response.json();
+      console.log('Success:', result);
+      window.location.href = 'http://localhost:5173/contact?success=true';
     } catch (error) {
+      console.error('Error submitting form:', error);
       setMessage("❌ Error: " + error.message);
     } finally {
       setLoading(false);
     }
   };
+  
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setMessage("");
+
+  //   try {
+  //     const error = validateForm();
+  //     if (error) {
+  //       e.preventDefault();
+  //       return setMessage(error);
+  //     }
+  //     const response = await fetch("https://your-api-endpoint.com/submit", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ ...formData, type: activeTab }),
+  //     });
+
+  //     if (!response.ok) throw new Error("Failed to submit. Try again!");
+
+  //     setMessage("✅ Form submitted successfully!");
+  //     setFormData({});
+  //   } catch (error) {
+  //     setMessage("❌ Error: " + error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const imgRef = useRef(null);
   const contactRef = useRef(null);
@@ -81,11 +122,16 @@ const ContactForm = () => {
     let requiredFields = [];
 
     if (activeTab === "dominance") {
-      requiredFields = ["Full_Name", "Contact_Number", "Email"];
+      requiredFields = [
+        "Full_Name",
+        "Contact_Number",
+        "email",
+        "Additional_Info",
+      ];
     } else if (activeTab === "help") {
-      requiredFields = ["Full_Name", "Phone", "Email"];
+      requiredFields = ["Full_Name", "phone", "email", "message"];
     } else if (activeTab === "pack") {
-      requiredFields = ["First_Name", "Last_Name", "Phone", "Email"];
+      requiredFields = ["First_Name", "Last_Name", "phone", "email", "message"];
     }
 
     for (const field of requiredFields) {
@@ -106,7 +152,6 @@ const ContactForm = () => {
     return null;
   };
 
-  
   return (
     <div className="bg-[#1a1a1a] overflow-hidden min-h-screen flex flex-col-reverse  md:flex-row items-center justify-center md:px-6 lg:px-20 py-12">
       {/* Left Section - Fox Image & Addresses */}
@@ -234,7 +279,7 @@ const ContactForm = () => {
 
         <div
           ref={tabPRef}
-          className="relative flex justify-center md:justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3"
+          className="relative flex justify-center md:justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3 text-sm sm:text-xl"
         >
           {/* Indicator */}
           <div
@@ -259,29 +304,32 @@ const ContactForm = () => {
         </div>
 
         {/* Form Fields - Different for Each Tab */}
-        <form ref={formRef} className="mt-6 space-y-4" onSubmit={handleSubmit}>
+        <form
+          className="mt-6 space-y-4"
+          onSubmit={handleSubmit}
+          action="https://formsubmit.co/jitender@digicots.com"
+          method="POST"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="http://localhost:5173/?success=true"
+          />
           {/* Let’s Talk Dominance */}
           {activeTab === "dominance" && (
             <>
               <input
-                name="fullName"
+                name="Full_Name"
                 type="text"
                 placeholder="Full Name"
                 onChange={handleChange}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <div className="flex space-x-2">
-                <select
-                  name="countryCode"
-                  onChange={handleChange}
-                  className="bg-[#3A3A3A] font-inter text-white p-3 rounded-md"
-                >
-                  <option>+1</option>
-                  <option>+91</option>
-                  <option>+65</option>
-                </select>
                 <input
-                  name="contactNumber"
+                  name="Contact_Number"
                   type="text"
                   placeholder="Contact Number"
                   onChange={handleChange}
@@ -295,13 +343,16 @@ const ContactForm = () => {
                 onChange={handleChange}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
-              <select className="w-full bg-[#3A3A3A] text-white p-3 rounded-md focus:outline-none pe-2.5">
+              <select
+                className="w-full bg-[#3A3A3A] text-white p-3 rounded-md focus:outline-none pe-2.5"
+                name="Purpose"
+              >
                 <option>Purpose</option>
                 <option>Business Inquiry</option>
                 <option>Collaboration</option>
               </select>
               <textarea
-                name="additionalInfo"
+                name="Additional_Info"
                 placeholder="Additional Information"
                 rows="5"
                 onChange={handleChange}
@@ -314,7 +365,7 @@ const ContactForm = () => {
           {activeTab === "help" && (
             <>
               <input
-                name="fullName"
+                name="Full_Name"
                 type="text"
                 placeholder="Full Name"
                 onChange={handleChange}
@@ -347,14 +398,14 @@ const ContactForm = () => {
           {activeTab === "pack" && (
             <>
               <input
-                name="firstName"
+                name="First_Name"
                 type="text"
                 placeholder="First Name"
                 onChange={handleChange}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <input
-                name="lastName"
+                name="Last_Name"
                 type="text"
                 placeholder="Last Name"
                 onChange={handleChange}
@@ -402,6 +453,9 @@ const ContactForm = () => {
         {/* Success/Error Message */}
         {message && <p className="mt-4 text-white">{message}</p>}
       </div>
+
+      {/* your main content here */}
+      <ThankyouPopUp popActive={popActive} onClose={() => setPopActive(false)} />
     </div>
   );
 };

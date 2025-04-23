@@ -339,7 +339,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
                     return (
                       <h4
                         key={i}
-                        className="text-lg font-semibold mb-2 text-orange-500"
+                        className="text-lg font-semibold mb-2 "
                       >
                         {item.value}
                       </h4>

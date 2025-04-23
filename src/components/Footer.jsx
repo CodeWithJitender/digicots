@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import ThankyouPopUp from "../components/ThankyouPopUp";
 
 // Animation variants for sections
 const sectionVariants = {
@@ -43,18 +44,32 @@ export default function Footer() {
     fullName: "",
     companyName: "",
     email: "",
-    countryCode: "+91",
+    // countryCode: "",
     contactNumber: "",
   });
 
   const [message, setMessage] = useState("");
+  const location = useLocation();
+  const [popActive, setPopActive] = useState(false);
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const isSuccess = params.get("success") === "true";
+    const validPaths = ["/", "/about", "/insights", "/case-study", "/things-we-do"];
+
+    if (isSuccess && validPaths.includes(location.pathname)) {
+      setPopActive(true);
+      // Clean the URL without reloading
+      const cleanedURL = location.pathname;
+      window.history.replaceState({}, "", cleanedURL);
+    }
+  }, [location]);
 
   const validateForm = () => {
     const requiredFields = [
-      "fullName",
-      "companyName",
+      "Full_Name",
+      "Company_Name",
       "email",
-      "contactNumber",
+      "contact_number",
     ];
 
     for (const field of requiredFields) {
@@ -68,14 +83,18 @@ export default function Footer() {
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(formData.email)) {
       return "❌ Please enter a valid email address.";
     }
 
-    const phoneRegex = /^\d{10}$/;
-    if (!phoneRegex.test(formData.contactNumber)) {
-      return "❌ Contact number must be exactly 10 digits.";
-    }
+    // const phone = formData.contactNumber?.trim();
+    // // const phoneRegex = /^\d{10}$/;
+    // const phoneRegex = /^(?:\+91|0)?[6-9]\d{9}$/;
+
+    // if (!phoneRegex.test(phone)) {
+    //   return "❌ Contact number must be exactly 10 digits.";
+    // }
 
     return null;
   };
@@ -137,10 +156,11 @@ export default function Footer() {
             >
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
+
               <input
                 type="hidden"
                 name="_next"
-                value="http://localhost:5173/thankyou"
+                value={`http://localhost:5173${location.pathname}?success=true`}
               />
               <motion.input
                 onChange={handleChange}
@@ -163,24 +183,24 @@ export default function Footer() {
                 type="email"
                 placeholder="Email Address"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
-                name="Email"
+                name="email"
                 variants={childVariants}
               />
               <motion.div className="flex" variants={childVariants}>
-                <select
+                {/* <select
                   onChange={handleChange}
                   className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-l-[14px] focus:outline-none"
                 >
                   <option value="+1">+1</option>
                   <option value="+91">+91</option>
                   <option value="+44">+44</option>
-                </select>
+                </select> */}
                 <input
                   type="text"
                   onChange={handleChange}
                   placeholder="Contact Number"
-                  className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 w-full rounded-r-[14px] focus:outline-none"
-                  name="Contact_Number"
+                  className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 w-full rounded-[14px] focus:outline-none"
+                  name="contact_number"
                 />
               </motion.div>
               <motion.button
@@ -230,7 +250,6 @@ export default function Footer() {
               variants={containerVariants}
             >
               {[
-                
                 {
                   title: "instagram",
                   link: "https://www.instagram.com/digicots_/",
@@ -429,6 +448,11 @@ export default function Footer() {
           </div>
         </motion.div>
       </div>
+      {/* your main content here */}
+      <ThankyouPopUp
+        popActive={popActive}
+        onClose={() => setPopActive(false)}
+      />
     </footer>
   );
 }
