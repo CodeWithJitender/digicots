@@ -142,8 +142,8 @@ function Insights() {
   // console.log(blackBoxTextRef);
 
   return (
-    <div className="min-h-[250vh] relative top-[-1px] z-[2] bg-black">
-      <section ref={parentRef} className="insights sticky top-0 overflow-hidden bg-white">
+    <div className="min-h-[250vh] relative top-[-1px] z-[2] ">
+      <section ref={parentRef} className="insights sticky top-0 overflow-hidden ">
         <div className="container-xxl">
           <MainHeading
           animeStart="27%"

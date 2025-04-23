@@ -190,7 +190,7 @@ const OurJourney = () => {
       }
     })
 
-    tl.to(parentRef.current,{
+    tl.to("body",{
       backgroundColor:"#DF782B",
       ease:"power1.inOut",
     })
@@ -205,7 +205,7 @@ const OurJourney = () => {
       }
     })
 
-    tl2.to(parentRef.current,{
+    tl2.to("body",{
       backgroundColor:"white",
       ease:"power1.inOut",
     })
