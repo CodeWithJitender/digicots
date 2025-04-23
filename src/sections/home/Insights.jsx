@@ -124,18 +124,18 @@ function Insights() {
 
 
   useGSAP(()=>{
-    const moveY = gsap.to(parentRef.current, {
-      y: "7%",
-      duration: 20,
-      ease: "power1.inOut",
-      scrollTrigger: {
-        trigger: parentRef.current,
-        start: "top -200%",
-        end: "top -300%",
-        scrub: 1,
-        // markers:true
-      },
-    });
+    // const moveY = gsap.to(parentRef.current, {
+    //   y: "7%",
+    //   duration: 20,
+    //   ease: "power1.inOut",
+    //   scrollTrigger: {
+    //     trigger: parentRef.current,
+    //     start: "top -200%",
+    //     end: "top -300%",
+    //     scrub: 1,
+    //     // markers:true
+    //   },
+    // });
   },[parentRef.current])
 
 

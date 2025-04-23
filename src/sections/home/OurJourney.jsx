@@ -7,7 +7,6 @@ import { useGSAP } from "@gsap/react";
 // Register plugins once
 gsap.registerPlugin(ScrollTrigger);
 
-
 const data = [
   {
     head: "Head Field",
@@ -71,8 +70,6 @@ const data = [
   },
 ];
 
-
-
 const OurJourney = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const cardRefs = useRef([]);
@@ -80,23 +77,23 @@ const OurJourney = () => {
   const cardContainerRef = useRef(null);
   const animationRefs = useRef({
     moveY: null,
-    clickAnimations: []
+    clickAnimations: [],
   });
 
   // Handle click outside cards
   const handleClickOutside = useCallback((e) => {
     // if (!cardContainerRef.current?.contains(e.target)) {
-      cardRefs.current.forEach((card, i) => {
-        if (card) {
-          const anim = gsap.to(card, {
-            display: "none",
-            opacity: 0,
-            duration: 0.3
-          });
-          animationRefs.current.clickAnimations[i] = anim;
-        }
-      });
-      setActiveIndex(null);
+    cardRefs.current.forEach((card, i) => {
+      if (card) {
+        const anim = gsap.to(card, {
+          display: "none",
+          opacity: 0,
+          duration: 0.3,
+        });
+        animationRefs.current.clickAnimations[i] = anim;
+      }
+    });
+    setActiveIndex(null);
     // }
   }, []);
 
@@ -108,7 +105,7 @@ const OurJourney = () => {
         const anim = gsap.to(card, {
           display: "none",
           opacity: 0,
-          duration: 0.3
+          duration: 0.3,
         });
         animationRefs.current.clickAnimations[i] = anim;
       }
@@ -121,7 +118,7 @@ const OurJourney = () => {
         opacity: 1,
         duration: 0.5,
         delay: 0.2,
-        onStart: () => setActiveIndex(index)
+        onStart: () => setActiveIndex(index),
       });
       animationRefs.current.clickAnimations[index] = anim;
     }
@@ -162,16 +159,16 @@ const OurJourney = () => {
     window.addEventListener("click", handleClickOutside);
     return () => {
       window.removeEventListener("click", handleClickOutside);
-      
+
       // Cleanup all animations
       if (animationRefs.current.moveY) {
         animationRefs.current.moveY.kill();
         animationRefs.current.moveY.scrollTrigger?.kill();
       }
-      animationRefs.current.clickAnimations.forEach(anim => anim?.kill());
-      
+      animationRefs.current.clickAnimations.forEach((anim) => anim?.kill());
+
       // Cleanup ScrollTriggers
-      ScrollTrigger.getAll().forEach(trigger => {
+      ScrollTrigger.getAll().forEach((trigger) => {
         if (trigger.trigger === parentRef.current) {
           trigger.kill();
         }
@@ -179,39 +176,37 @@ const OurJourney = () => {
     };
   }, [handleClickOutside]);
 
-  useGSAP(()=>{
+  useGSAP(() => {
     const tl = gsap.timeline({
-      scrollTrigger:{
+      scrollTrigger: {
         trigger: parentRef.current,
         start: "top 60%",
         end: "top 58%",
         scrub: 1,
         // markers:true
-      }
-    })
+      },
+    });
 
-    tl.to("body",{
-      backgroundColor:"#DF782B",
-      ease:"power1.inOut",
-    })
+    tl.to("body", {
+      backgroundColor: "#DF782B",
+      ease: "power1.inOut",
+    });
 
     const tl2 = gsap.timeline({
-      scrollTrigger:{
+      scrollTrigger: {
         trigger: parentRef.current,
         start: "top -10%",
         end: "top -12%",
         scrub: 1,
         // markers:true
-      }
-    })
+      },
+    });
 
-    tl2.to("body",{
-      backgroundColor:"white",
-      ease:"power1.inOut",
-    })
-
-  },[parentRef.current])
-
+    tl2.to("body", {
+      backgroundColor: "white",
+      ease: "power1.inOut",
+    });
+  }, [parentRef.current]);
 
   return (
     <div className="relative w-full z-[3]">
@@ -230,11 +225,46 @@ const OurJourney = () => {
 
           <div className="wrapper" ref={cardContainerRef}>
             <div className="items">
-              {data.map((card, index) => (
+              {/* {data.map((card, index) => (
                 <div
                   key={`journey-${index}`}
                   className="item overflow-hidden"
                   tabIndex="0"
+                  style={{
+                    backgroundImage: `url(${card.bgImg})`,
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCardClick(index);
+                      }}
+                      >
+                      <div 
+                      ref={(el) => (cardRefs.current[index] = el)}
+                      className="content h-full w-full overflow-hidden hidden opacity-0"
+                      >
+                      <img
+                      src={card.bgImg}
+                      alt={`Journey ${index + 1}`}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                      />
+                      <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-[80%] bg-white rounded-md md:p-3 p-1 text-center">
+                      
+                      <p className="text-[1.1vw] md:text-[.8vw] leading-[1.3vw]">
+                      {card.pera}
+                      </p>
+                      </div>
+                      </div>
+                      </div>
+                      ))} */}
+
+              <div class="items">
+              {data.map((card, index) => (
+
+                <div
+                  class="item"
+                  tabindex="0"
+                  key={`journey-${index}`}
                   style={{
                     backgroundImage: `url(${card.bgImg})`,
                   }}
@@ -243,7 +273,7 @@ const OurJourney = () => {
                     handleCardClick(index);
                   }}
                 >
-                  <div 
+                  <div
                     ref={(el) => (cardRefs.current[index] = el)}
                     className="content h-full w-full overflow-hidden hidden opacity-0"
                   >
@@ -253,17 +283,16 @@ const OurJourney = () => {
                       className="h-full w-full object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-[80%] bg-white rounded-md md:p-3 p-1 text-center">
-                      {/* <h5 className="font-bold mb-1 font-inter hidden text-[1.2vw] md:text-[1vw]">
-                        {card.head}
-                      </h5> */}
+                    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-[80%] max-h-[100%] overflow-hidden bg-white rounded-md md:p-3 p-1 text-center">
                       <p className="text-[1.1vw] md:text-[.8vw] leading-[1.3vw]">
                         {card.pera}
                       </p>
                     </div>
                   </div>
+
                 </div>
               ))}
+              </div>
             </div>
           </div>
         </div>

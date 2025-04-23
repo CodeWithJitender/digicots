@@ -310,11 +310,6 @@ header .dropdown {
   justify-content: center;
   height: 50vh;
 }
-@media screen and (max-width:576px) {
-  .wrapper{
-    height: 25vh;
-  }
-}
 
 .items{
   display: flex;
@@ -329,7 +324,7 @@ header .dropdown {
   background-size: cover;
   background-position: center;
   cursor: pointer;
-  /* filter: grayscale(1) brightness(.5); */
+  filter: grayscale(1) brightness(.5);
   transition: transform 1.25s var(--transition), filter 3s var(--transition), width 1.25s var(--transition);
   will-change: transform, filter, rotateY, width;
 }
@@ -347,32 +342,32 @@ header .dropdown {
 }
 
 .items .item:hover{
-  filter: grayscale(.8) brightness(.8);
+  filter: inherit;
   transform: translateZ(calc(var(--index) * 10));
 }
 
 /*Right*/
 
 .items .item:hover + *{
-  filter: grayscale(.8) brightness(.8);
+  filter: inherit;
   transform: translateZ(calc(var(--index) * 8.5)) rotateY(35deg);
   z-index: -1;
 }
 
 .items .item:hover + * + *{
-  filter: grayscale(.8) brightness(.8);
+  filter: inherit;
   transform: translateZ(calc(var(--index) * 5.6)) rotateY(40deg);
   z-index: -2;
 }
 
 .items .item:hover + * + * + *{
-  filter: grayscale(.8) brightness(.8);
+  filter: inherit;
   transform: translateZ(calc(var(--index) * 2.5)) rotateY(30deg);
   z-index: -3;
 }
 
 .items .item:hover + * + * + * + *{
-  filter: grayscale(.8) brightness(.8);
+  filter: inherit;
   transform: translateZ(calc(var(--index) * .6)) rotateY(15deg);
   z-index: -4;
 }
@@ -381,39 +376,35 @@ header .dropdown {
 /*Left*/
 
 .items .item:has( + :hover){
-  filter: grayscale(.8) brightness(.8);
+  filter: inherit;
   transform: translateZ(calc(var(--index) * 8.5)) rotateY(-35deg);
 }
 
 .items .item:has( + * + :hover){
-  filter: grayscale(.8) brightness(.8);
+  filter: inherit;
   transform: translateZ(calc(var(--index) * 5.6)) rotateY(-40deg);
 }
 
 .items .item:has( + * + * + :hover){
-  filter: grayscale(.8) brightness(.8);
+  filter: inherit;
   transform: translateZ(calc(var(--index) * 2.5)) rotateY(-30deg);
 }
 
 .items .item:has( + * + * + * + :hover){
-  filter: grayscale(.8) brightness(.8);
+  filter: inherit;
   transform: translateZ(calc(var(--index) * .6)) rotateY(-15deg);
 }
 
-@media (max-width: 768px) {
-  .items .item:active, .items .item:focus {
-    /* width: 18vw !important; */
-  }
-}
-
-
 .items .item:active, .items .item:focus {
-width: 20vw;
-filter: grayscale(.8) brightness(.8);
+width: 24vw;
+filter: inherit;
 z-index: 100;
 transform: translateZ(calc(var(--index) * 10));
   margin: 0 .45vw;
 }
+
+
+
 
 
 
