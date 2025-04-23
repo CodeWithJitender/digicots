@@ -179,14 +179,49 @@ const OurJourney = () => {
     };
   }, [handleClickOutside]);
 
+  useGSAP(()=>{
+    const tl = gsap.timeline({
+      scrollTrigger:{
+        trigger: parentRef.current,
+        start: "top 60%",
+        end: "top 58%",
+        scrub: 1,
+        // markers:true
+      }
+    })
+
+    tl.to(parentRef.current,{
+      backgroundColor:"#DF782B",
+      ease:"power1.inOut",
+    })
+
+    const tl2 = gsap.timeline({
+      scrollTrigger:{
+        trigger: parentRef.current,
+        start: "top -10%",
+        end: "top -12%",
+        scrub: 1,
+        // markers:true
+      }
+    })
+
+    tl2.to(parentRef.current,{
+      backgroundColor:"white",
+      ease:"power1.inOut",
+    })
+
+  },[parentRef.current])
+
+
   return (
     <div className="relative w-full z-[3]">
       <section
         ref={parentRef}
-        className="our-journey sticky top-0 bg-[#DF782B] py-10 overflow-hidden"
+        className="our-journey sticky top-0 py-10 overflow-hidden"
       >
         <div className="container mx-auto">
           <MainHeading
+            // animeStart="40"
             heading="OUR JOURNEY"
             pera="Alpha minds, untamed ambition, legendary impact."
             cl="text-center"

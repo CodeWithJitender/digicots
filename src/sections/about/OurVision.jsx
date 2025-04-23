@@ -85,7 +85,7 @@ const Section = ({ title, img, p }) => {
             className="absolute inset-0 flex items-center justify-center rounded-lg p-6 font-inter text-center"
             style={{ willChange: "transform" }}
           >
-            <p className="text-[#B2B2B2] text-[3vw] md:text-xl font-bold max-w-[320px] md:max-w-[750px]">
+            <p className="text-[#B2B2B2] text-[3vw] md:text-xl font-bold max-w-[320px] md:max-w-[900px]">
               <TextAnimation2 stagger={p.length < 400 ? 50 : 80} animeStart={p.length < 400 ? "20" : "40"} animeEnd={p.length < 400 ? "-20" : "-50"} scrub={true} duration={p.length < 400 ? 5.5 : 10.5}>
                 {p}
               </TextAnimation2>

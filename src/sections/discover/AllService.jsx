@@ -14,16 +14,16 @@ function AllService() {
 
     if (id) {
       const scrollPositions = [
-        2.5 * window.innerHeight,
-        3 * window.innerHeight,
-        3.8 * window.innerHeight,
-        4.7 * window.innerHeight,
-        5.2 * window.innerHeight,
-        6 * window.innerHeight,
-        6.8 * window.innerHeight,
-        7.5 * window.innerHeight,
-        8.2 * window.innerHeight,
-        9 * window.innerHeight,
+        2.25 * window.innerHeight,
+        3.25 * window.innerHeight,
+        4.25 * window.innerHeight,
+        5.25 * window.innerHeight,
+        6.25 * window.innerHeight,
+        7.25 * window.innerHeight,
+        8.25 * window.innerHeight,
+        9.25 * window.innerHeight,
+        10.25 * window.innerHeight,
+        11.25 * window.innerHeight,
       ]; // Example scroll positions for each section
 
       const targetScroll = scrollPositions[id];
@@ -196,7 +196,7 @@ function AllService() {
       },
       id: "creative-designing",
     },
-    Branding: {
+    "Branding": {
       i: "Craft the soul m of your company",
       img: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png",
       description: [
@@ -288,7 +288,7 @@ function AllService() {
       scrollTrigger: {
         trigger: ".services", // Trigger element
         start: "top 40%", // Start when top of .services is 80% from viewport top
-        end: "top -700%", // Extended end point for full animation
+        end: "top -1000%", // Extended end point for full animation
         scrub: 1, // Smooth scrubbing (adjustable)
         // // // markers: true, // Debugging // // markers (remove in production)
       },
@@ -300,7 +300,7 @@ function AllService() {
         y: "130%", // Slide in from below
         ease: "power3.inOut",
         duration: 5, // Duration of the slide-in
-        stagger: 3.5, // Stagger between service elements,
+        stagger: 6.5, // Stagger between service elements,
       },
       "a"
     )
@@ -309,9 +309,9 @@ function AllService() {
         {
           scrollTop: (i, target) => target.scrollHeight - target.clientHeight, // Scroll to bottom
           ease: "power2.out", // Smooth scrolling ease
-          duration: 1, // Scroll duration
-          stagger: 3.4, // Stagger scrolling of containers (optional)
-          delay: 4.5,
+          duration: 6, // Scroll duration
+          stagger: 6.4, // Stagger scrolling of containers (optional)
+          delay: 4.4,
         },
         "a"
       ) // Start 1s after "a" for sync
@@ -324,14 +324,14 @@ function AllService() {
           ease: "power3.inOut",
           duration: 5, // Duration of scale animation
           delay: 2, // Delay after scroll
-          stagger: 3.4, // Stagger between service elements
+          stagger: 6.4, // Stagger between service elements
         },
         "a"
       ); // Start 3s after "a" for sync
   }, [serviceRef.current, scrollContainerRef.current]); // Dependencies
 
   return (
-    <section className="relative min-h-[800vh]">
+    <section className="relative min-h-[1100vh]">
       <div className="services sticky top-0 min-h-screen w-full  ">
         {Object.entries(data).map(([title, service], index) => (
           <div
