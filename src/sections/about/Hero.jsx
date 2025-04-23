@@ -78,7 +78,11 @@ function Model({ modelPath }) {
   });
 
   return (
-    <primitive position={[0, window.innerWidth > 640 ? 0.05 : .2  , 0]} object={gltf.scene} ref={modelRef} />
+    <primitive
+      position={[0, window.innerWidth > 640 ? 0.05 : 0.2, 0]}
+      object={gltf.scene}
+      ref={modelRef}
+    />
   );
 }
 
@@ -125,7 +129,7 @@ const RandomBalls = ({ count = 300 }) => {
   useFrame(() => {
     if (!groupRef.current) return;
     const time = clock.getElapsedTime();
-    
+
     // Calculate animation progress (2-second intro)
     const elapsedTime = time - startTime.current;
     const progress = Math.min(elapsedTime / 2, 1);
@@ -181,24 +185,25 @@ const RandomBalls = ({ count = 300 }) => {
 };
 
 const Hero = () => {
-  const modelPath = "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf";
+  const modelPath =
+    "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf";
   const heroRef = useRef(null);
 
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
     const tl = gsap.timeline({
-      scrollTrigger:{
-        trigger:heroRef.current,
+      scrollTrigger: {
+        trigger: heroRef.current,
         start: "top 0",
         end: "top -100%",
         // // // markers: true,
-        scrub:1,
-      }
-    })
-    tl.to(heroRef.current,{
-      y:"30%",
+        scrub: 1,
+      },
+    });
+    tl.to(heroRef.current, {
+      y: "30%",
       // duration: 1,
-    })
+    });
   }, [heroRef.current]);
 
   return (
@@ -207,7 +212,10 @@ const Hero = () => {
         <HeroText />
 
         <Canvas
-          camera={{ position: [0, 0, window.innerWidth > 640 ? 5 : 9 ], fov: 10 }}
+          camera={{
+            position: [0, 0, window.innerWidth > 640 ? 5 : 9],
+            fov: 10,
+          }}
           style={{
             width: "100%",
             height: "100vh",
@@ -259,7 +267,11 @@ const Hero = () => {
         </Canvas>
         {/* Scroll Indicator */}
         <div className="absolute pointer-events-none bottom-0 left-1/2 transform -translate-x-1/2  px-6  rounded-full text-black font-medium">
-          <img src="https://ik.imagekit.io/x5xessyka/digicots/public/scroll.png" className="max-w-80" alt="" />
+          <img
+            src="https://ik.imagekit.io/x5xessyka/digicots/public/scroll.png"
+            className="max-w-80"
+            alt=""
+          />
         </div>
       </div>
     </div>
@@ -278,17 +290,10 @@ function HeroText() {
           </h2>
           <p className="text-[3vw] sm:text-[1.5vw] md:text-[1.2vw] lg:text-[.9vw] relative z-[2] text-zinc-400 md:w-[80vw] lg:w-[60vw] text-center mt-[-4vh] sm:mt-[-9vw] lg:mt-[-12vh] ">
             <TextAnimation2 animeStart="80" duration={0.5}>
-              Digicots is a cutting-edge digital marketing company that
-              specializes in helping businesses thrive in the online landscape.
-              With a team of innovative strategists and creative thinkers,
-              Digicots offers a range of services including SEO, social media
-              management, content creation, and pay-per-click advertising. Their
-              mission is to empower brands by enhancing their online presence
-              and driving targeted traffic to their websites. By leveraging the
-              latest technologies and trends, Digicots crafts tailored marketing
-              solutions that resonate with audiences and deliver measurable
-              results. Partner with Digicots to elevate your brand and achieve
-              your digital marketing goals.
+              We’re not just any other marketing agency – we’re the alpha pack.
+              We are Digicots – fierce, relentless, unapologetically bold. Our
+              instinctive mastery, data-driven approach and uncaged creativity
+              are what makes us prey on nothing but excellence!
             </TextAnimation2>
           </p>
         </div>

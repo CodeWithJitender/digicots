@@ -174,10 +174,10 @@ function Insights() {
             {/* Box 2 */}
             <div 
              ref={(el) => (boxsRefs.current[0] = el)}
-            className="insights-box relative bg-[#93E9FF] p-5 rounded-3xl flex flex-col md:flex-col lg:flex-row pr-0  md:col-span-1 lg:col-span-3 ">
+            className="insights-box relative bg-[#93E9FF] p-5 pb-0 rounded-3xl flex flex-col md:flex-col lg:flex-row pr-0  md:col-span-1 lg:col-span-3 ">
               <div className="flex flex-col justify-between pr-2">
                 <h1 className="font-bold font-inter">XXXX</h1>
-               <div className="">
+               <div className=" pb-5">
                <h4 className="font-bold font-inter text-2xl">Global Customers </h4>
                 <p className="font-inter text-sm mt-3">
                 The more businesses run with us; the more we dominate. Every market, every field is our hunting ground. The global energy and momentum keep us undefeated in the face of the competition.
@@ -218,7 +218,7 @@ function Insights() {
             {/* Box 5 */}
             <div
              ref={(el) => (boxsRefs.current[3] = el)}
-             className="insights-box relative bg-[#FF6969] p-5 rounded-3xl sm:col-span-2">
+             className="insights-box relative bg-[#FF6969] pt-0 p-5 rounded-3xl sm:col-span-2">
              <Link to={'/insights'} className=" flex flex-col items-center gap-5"> <img
                 src="https://ik.imagekit.io/8mbzq2hdl/digicots/insights-img-2.png?updatedAt=1744631768255"
                 alt=""

@@ -20,14 +20,14 @@ const HowItWorks = () => {
       bg_Color: "#F3A265",
       id: 1,
       step: "STEP 1",
-      heading: "Hunt the Weak (Identify & Attack)",
-      pera: "We identify weak points and strike with precision.",
+      heading: " Smell the Wind (Discovery & Vision Alignment)",
+      pera: "We sniff out every detail, dig deep – your goals, your challenges, your hidden opportunities.",
       list: [
-        "Analyze competition weaknesses.",
-        "Target the most vulnerable spots.",
-        "Strike with a tailored strategy.",
+        "What are the obstacles blocking your path to excellence?",
+        "Where is the untapped potential waiting to explode?",
+        "What’s the vision that fuels your fire?",
       ],
-      quoat: "Only the strongest survive.",
+      quoat: "Your vision becomes our obsession.",
       bgColor: "bg-gray-900",
       textColor: "text-white",
     },
@@ -40,14 +40,14 @@ const HowItWorks = () => {
       bg_Color: "#2A2A2A",
       id: 2,
       step: "STEP 2",
-      heading: "Mark the Territory (Establish & Expand)",
-      pera: "We solidify our presence and dominate the market.",
+      heading: "Sharpen the Claws (Strategy Development)",
+      pera: "We craft systems that are precise, powerful and purpose-driven.",
       list: [
-        "Build a strong brand foundation.",
-        "Expand into new digital landscapes.",
-        "Dominate through consistency.",
+        "We design systems that cut through the noise.",
+        "Data-driven actionable insights help us predict the next big opportunity.",
+        "Infuse bold creativity into systems tailored for you.",
       ],
-      quoat: "Claim what’s yours and make it unshakable.",
+      quoat: "Our instinct is your advantage.",
       bgColor: "bg-gray-700",
       textColor: "text-white",
     },
@@ -60,14 +60,14 @@ const HowItWorks = () => {
       bg_Color: "#515151",
       id: 3,
       step: "STEP 3",
-      heading: "Lead the Pack (Innovate & Inspire)",
-      pera: "We don’t follow trends, we create them.",
+      heading: "Set the Pack in Motion (Execution & System Creation – Make it Real!)",
+      pera: "Fast. Fierce. Relentless. ",
       list: [
-        "Innovate with cutting-edge strategies.",
-        "Set the industry standard.",
-        "Inspire others to follow your lead.",
+        "We create systems that adapt, endure and drive momentum.",
+        "We balance creativity with practicality – our duality gives you the edge.",
+        "We dominate the ever-changing trends, industry norms and practices.",
       ],
-      quoat: "A true leader runs with the pack but leads from the front.",
+      quoat: "This isn’t execution. This is a movement.",
       bgColor: "bg-orange-500",
       textColor: "text-white",
     },
@@ -81,10 +81,10 @@ const HowItWorks = () => {
       id: 4,
       step: "STEP 4",
       heading: "Guard the Territory (Optimize & Dominate)",
-      pera: "Paranoid. Protective. Ferocious. Always keeping an eye for sudden changes and threats",
+      pera: "Paranoid. Protective. Ferocious. Always keeping an eye for sudden changes and threats.",
       list: [
         "We track each metric, knowing exactly when to strike again.",
-        "We strike out weak spots and double down on our maniac side.",
+        "We strike out weak spots and double down on our strengths.",
         "We ensure your brand remains at the peak.",
       ],
       quoat: "Survival is only the beginning. Domination is the goal.",
@@ -331,7 +331,8 @@ const HowItWorks = () => {
                   </div>
 
                   <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-[.9vw] leading-[1.1vw] text-white">
-                    <div className="md:ml-6 mt-4 md:mt-0">
+                   <div className="h-full flex items-center">
+                   <div className="md:ml-6 mt-4 md:mt-0">
                       <p className="font-inter text-sm text-black font-bold uppercase">
                         {dataChild.step}
                       </p>
@@ -343,11 +344,13 @@ const HowItWorks = () => {
                       </p>
                       <ul className="font-inter mt-2 list-disc list-inside text-sm">
                         {dataChild.list.map((item, index) => (
-                          <li key={index}><span>{item}</span></li>
+                          // <li key={index}><span>{item}</span></li>
+                          <div key={index} className="flex gap-2"><i class="fas fa-circle mt-2 text-[8px]"></i> {item}</div>
                         ))}
                       </ul>
                       <p className="mt-3 font-semibold italic">{dataChild.quoat}</p>
                     </div>
+                   </div>
                   </div>
                 </div>
               </>

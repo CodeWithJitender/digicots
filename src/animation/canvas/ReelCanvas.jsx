@@ -448,13 +448,13 @@ const Scene = () => {
               ref={(el) => (scrollMoreRef.current[0] = el)}
               className=" overflow-hidden text-[5.5vw] h-[6.5vw] font-bold text-sm text-white text-left leading-none"
             >
-              <span className="inline-block">Authenticity First</span>
+              <span className="inline-block">The hunt begins</span>
             </div>
             <div
               ref={(el) => (scrollMoreRef.current[1] = el)}
               className=" overflow-hidden text-[3vw] h-[4vw] italic text-sm text-white text-left leading-none"
             >
-              <span className="inline-block">Authenticity First</span>
+              <span className="inline-block">where the limit ends</span>
             </div>
           </div>
         </div>

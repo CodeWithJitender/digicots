@@ -116,10 +116,10 @@ export default function Footer() {
             <h2 className="text-5xl sm:text-8xl font-inter font-bold leading-tight text-white">
               Join the Pack
             </h2>
-            <p className="text-gray-400 mt-4">
+            {/* <p className="text-gray-400 mt-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore.
-            </p>
+            </p> */}
           </motion.div>
 
           {/* Right - Form */}
@@ -229,19 +229,35 @@ export default function Footer() {
               className="flex space-x-3 mt-4"
               variants={containerVariants}
             >
-              {["facebook-f", "instagram", "linkedin-in", "twitter"].map(
-                (icon) => (
-                  <motion.div
-                    key={icon}
-                    className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center"
-                    variants={socialIconVariants}
-                  >
-                    <a href="#">
-                      <i className={`fab fa-${icon}`}></i>
-                    </a>
-                  </motion.div>
-                )
-              )}
+              {[
+                
+                {
+                  title: "instagram",
+                  link: "https://www.instagram.com/digicots_/",
+                },
+                {
+                  title: "linkedin-in",
+                  link: "https://www.linkedin.com/company/digicots-interactive-private-limited/",
+                },
+                // {
+                //   title: "facebook-f",
+                //   link: "insights",
+                // },
+                // {
+                //   title: "twitter",
+                //   link: "contact",
+                // },
+              ].map((icon) => (
+                <motion.div
+                  key={icon}
+                  className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center"
+                  variants={socialIconVariants}
+                >
+                  <a href={icon.link} target="_blank">
+                    <i className={`fab fa-${icon.title}`}></i>
+                  </a>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
 
@@ -282,8 +298,8 @@ export default function Footer() {
                       id: "insights",
                     },
                     {
-                      title: "Our Work",
-                      id: "our-work",
+                      title: "Things We Do",
+                      id: "things-we-do",
                     },
                     {
                       title: "Case Study",
@@ -380,13 +396,15 @@ export default function Footer() {
             <p className="text-center sm:text-start">
               Designed by{" "}
               <a href="#" className="text-[#DF782B]">
-                {/* Aishwary Sinha */}
+                Team Digicots
               </a>
             </p>
+            <p className="mt-1">Auuuuu... Created Proudly in India</p>
           </div>
           <div className="text-center sm:text-end">
-            <p className="mt-1">Auuuuu... Created Proudly in India</p>
-            <p className="mt-1">Copyright 2025 ©</p>
+            <p className="mt-1">
+              Copyright 2025 © <br /> All Rights Reserved. All Wrongs Reversed.
+            </p>
           </div>
         </motion.div>
       </div>

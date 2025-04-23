@@ -471,33 +471,20 @@ function Header({ location }) {
               />
             </div>
             <ul className="mt-5 flex flex-col gap-4">
-              <li>
+            <li>
                 <Link
                   onClick={() => setDeskToggle((prev) => !prev)}
-                  to={"/our-work"}
+                  to={"/things-we-do"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   <TextHoverAnimation
                     className={"h-[33px] w-full leading-none overflow-hidden"}
                   >
-                    Work
+                    Things We Do
                   </TextHoverAnimation>
                 </Link>
               </li>
-              <li>
-                <Link
-                  onClick={() => setDeskToggle((prev) => !prev)}
-                  to={"/insights"}
-                  className="font-inter left-links inline-block text-3xl font-bold text-white"
-                >
-                  <TextHoverAnimation
-                    className={"h-[33px] w-full leading-none overflow-hidden"}
-                  >
-                    Insights
-                  </TextHoverAnimation>
-                </Link>
-              </li>
-              <li>
+            <li>
                 <Link
                   onClick={() => setDeskToggle((prev) => !prev)}
                   to={"/about"}
@@ -520,6 +507,19 @@ function Header({ location }) {
                     className={"h-[33px] w-full leading-none overflow-hidden"}
                   >
                     Case Studies
+                  </TextHoverAnimation>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => setDeskToggle((prev) => !prev)}
+                  to={"/insights"}
+                  className="font-inter left-links inline-block text-3xl font-bold text-white"
+                >
+                  <TextHoverAnimation
+                    className={"h-[33px] w-full leading-none overflow-hidden"}
+                  >
+                    Insights
                   </TextHoverAnimation>
                 </Link>
               </li>

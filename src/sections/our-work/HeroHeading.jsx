@@ -32,8 +32,8 @@ function HeroHeading() {
      className="text-center sticky top-0 h-screen flex items-center justify-center">
       {
         !isLoaded ? (<div className="container-xxl">
-          <h1 className="sm:text-6xl overflow-hidden md:text-8xl text-5xl lg:text-9xl font-black text-white font-inter">
-            <TextAnimation1 animeStart="70" duration={2}>OUR WORK</TextAnimation1>
+          <h1 className="sm:text-6xl overflow-hidden md:text-8xl text-5xl lg:text-9xl font-black text-white font-inter uppercase">
+            <TextAnimation1 animeStart="70" duration={2}>Things We Do</TextAnimation1>
           </h1>
           <p className="text-white">
             <TextAnimation2 animeStart="70" duration={1.3}>

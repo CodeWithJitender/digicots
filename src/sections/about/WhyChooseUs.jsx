@@ -174,13 +174,11 @@ const WhyChooseUs = () => {
               WHY CHOOSE US?
             </h2>
             <p className="sm:w-[500px] w-[90vw] text-lg mb-6">
-              Stage requirement gathering is a crucial phase in project
-              development, where stakeholders come together to define the
-              project's goals and needs. This process involves identifying key
-              functionalities.
+            Our approach isn’t just about building systems – it’s about igniting revolutions, forging legacies. We destroy boundaries leaving a trail of dominance. Running with us isn’t about hiring a team; it’s about partnering with a team that blends creativity with precision.
+
             </p>
             <p className="sm:w-[500px] w-[90vw] font-semibold text-lg flex items-center gap-2">
-              Scroll To actually know why →
+              Scroll to know more →
             </p>
           </div>
           {cards.map((card, index) => (

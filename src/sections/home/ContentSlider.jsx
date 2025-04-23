@@ -135,7 +135,7 @@ const contentData = [
     link: "/web-development",
     img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-2.png",
     thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-2.png",
-    tag: ["Augmented Reality", "Virtual Reality",],
+    tag: ["Augmented Reality", "Virtual Reality","Story-driven Games"],
   },
 ];
 
