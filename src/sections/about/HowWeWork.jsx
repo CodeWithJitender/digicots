@@ -90,18 +90,18 @@ function HowWeWork() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 0%", // Adjusted for smoother trigger
-        end: "top -100%",
+        start: "top 30%", // Adjusted for smoother trigger
+        end: "top -200%",
         scrub: 1,
       },
     });
 
     if (isDesktop) {
       tl.from(cardsRef.current, {
-        x: "-500%", // Changed to percentage for consistency
-        duration: 1.5,
-        ease: "power2.out",
-        stagger: 0.2,
+        x: (i)=> -(i+1)*110 + "%" , // Changed to percentage for consistency
+        duration: 5,
+        ease: "power1.inOut",
+        stagger: 0.3,
       });
     } else {
       tl.fromTo(
@@ -122,7 +122,7 @@ function HowWeWork() {
   }, [isDesktop]);
 
   return (
-    <div className="relative min-h-[200vh]">
+    <div className="relative min-h-[300vh]">
       <section ref={sectionRef} className="sticky top-0 min-h-screen how-we-work py-10 overflow-hidden">
         <div className="min-h-screen container mx-auto px-4">
           {/* Heading Section */}

@@ -85,9 +85,9 @@ const Section = ({ title, img, p }) => {
             style={{ willChange: "transform" }}
           >
             <p className="text-[#B2B2B2] text-[3vw] md:text-xl font-bold max-w-[320px] md:max-w-[750px]">
-              <TextAnimation2 animeStart="20" duration={0.5}>
+              {/* <TextAnimation2 animeStart="20" duration={0.5}> */}
                 {p}
-              </TextAnimation2>
+              {/* </TextAnimation2> */}
             </p>
           </div>
         </div>
