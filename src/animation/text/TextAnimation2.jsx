@@ -3,51 +3,63 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import React, { useRef } from 'react';
 
-const TextAnimation2 = ({ children, className = "", animeStart = "50", animeEnd = "40", duration = 0.5, scrub=false,stagger=20 }) => {
+const TextAnimation2 = ({ children, className = "", animeStart = "50", animeEnd = "40", duration = 0.5, scrub = false, stagger = 20 }) => {
   const parentRef = useRef(null);
-  const letterRefs = useRef([]); // Har letter ka reference store karega
+  const letterRefs = useRef([]);
+  // ✅ Don't reset here! Only push valid refs inside rendering
 
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-    if (!letterRefs.current.length) return; // Ensure letters exist
+    if (!letterRefs.current.length) return;
 
-    gsap.from(letterRefs.current, {
-      opacity: 0.3,
-      // filter: "blur(10px)",
-      duration: duration,
-      stagger: duration / stagger, // Har letter thoda delay se animate hoga
-      scrollTrigger: {
-        trigger: parentRef.current,
-        start: `top ${animeStart}%`,
-        end: `top ${animeEnd}%`,
-        scrub
-      },
-    });
-  }, [letterRefs.current]);
+    // ✅ Fix fromTo structure
+    gsap.fromTo(
+      letterRefs.current,
+      { opacity: 0.3 },
+      {
+        opacity: 1,
+        duration: duration,
+        stagger: duration / stagger,
+        ease: "none",
+        scrollTrigger: {
+          trigger: parentRef.current,
+          start: `top ${animeStart}%`,
+          end: `top ${animeEnd}%`,
+          scrub: scrub,
+          toggleActions: scrub ? undefined : "play none none none", // ✅ Prevent reverse when scrub false
+        },
+      }
+    );
+  }, []);
 
-  // Children text ko words mein split karna aur har word ke letters ko animate karna
-  const wrappedText = children
-    .toString()
-    .split(" ") // Words mein split karo
-    .map((word, wordIndex) => (
-      <span key={wordIndex} className="inline-block whitespace-nowrap">
-        {word.split("").map((letter, letterIndex) => {
-          const uniqueIndex = wordIndex * 100 + letterIndex; // Unique index for each letter
-          return (
-            <span
-              key={uniqueIndex}
-              ref={(el) => (letterRefs.current[uniqueIndex] = el)}
-              className="inline-block"
-            >
-              {letter}
-            </span>
-          );
-        })}
-        {/* Word ke baad space add karna */}
-        <span className="inline-block">&nbsp;</span>
-      </span>
-    ));
+  let letterIndexCounter = 0;
+
+  const wrappedText = React.Children.toArray(children).flatMap((child, childIndex) => {
+    if (typeof child === "string") {
+      return child.split(" ").map((word, wordIndex) => (
+        <span key={`${childIndex}-${wordIndex}`} className="inline-block whitespace-nowrap">
+          {word.split("").map((letter, index) => {
+            const refIndex = letterIndexCounter++;
+            return (
+              <span
+                key={refIndex}
+                ref={(el) => {
+                  if (el) letterRefs.current[refIndex] = el;
+                }}
+                className="inline-block"
+              >
+                {letter}
+              </span>
+            );
+          })}
+          <span className="inline-block">&nbsp;</span>
+        </span>
+      ));
+    } else if (React.isValidElement(child) && child.type === "br") {
+      return <br key={`br-${childIndex}`} />;
+    }
+  });
 
   return (
     <div ref={parentRef} className={`${className} w-full`}>
