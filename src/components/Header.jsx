@@ -556,9 +556,12 @@ function Header({ location }) {
               </span>
             </div>
           </div>
-          <p className="font-inter text-3xl font-bold left-links text-white">
-            Dicover
-          </p>
+          <Link
+            onClick={() => setDeskToggle((prev) => !prev)}
+            to={"/discover"}
+           className="font-inter text-3xl font-bold left-links text-white">
+            Discover
+          </Link>
           <div
             className="rounded-3xl  w-full h-full overflow-y-auto"
             data-lenis-prevent
