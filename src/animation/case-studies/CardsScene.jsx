@@ -301,7 +301,7 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
 
     // Shared animation logic for both wheel and touch
     const animateScroll = (delta) => {
-      const newVelocity = delta * 0.0002; // Same multiplier as wheel
+      const newVelocity = delta * 0.00004; // Same multiplier as wheel
       gsap.to(scrollVelocity, {
         current: newVelocity,
         duration: 1,
