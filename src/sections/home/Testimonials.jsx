@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import MainHeading from "../../components/MainHeading";
-import TestimonialsSlider from "../../components/TestmonialsSlider";
+import TestimonialsSlider from "../../components/TestimonialsSliderNew";
 import { useGSAP } from "@gsap/react";
+import TestimonialsSliderNew from "../../components/TestimonialsSliderNew";
 
 function Testimonials() {
   const data = [
@@ -82,7 +83,8 @@ function Testimonials() {
         />
         
 
-        <TestimonialsSlider data={testimonials} />
+        <TestimonialsSliderNew data={testimonials} />
+        {/* <TestimonialsSlider data={testimonials}/> */}
 
 
       </div>

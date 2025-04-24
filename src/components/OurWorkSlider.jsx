@@ -74,7 +74,7 @@ const CylindricalSlider = () => {
 
   const navigate = useNavigate()
   const handleClick = (i)=>{
-    navigate(`/our-work?i=${i}`)
+    navigate(`/things-we-do?i=${i}`)
   }
 
 

@@ -36,21 +36,23 @@ const socialIconVariants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-export default function Footer() {
+export default function Footer({popActive,setPopActive}) {
   const footerRef = useRef(null);
   const isInView = useInView(footerRef, { once: true, amount: 0.2 }); // Trigger when 20% visible
-
-  const [formData, setFormData] = useState({
-    fullName: "",
-    companyName: "",
+  const initFormData = {
+    Full_Name: "",
+    Company_Name: "",
     email: "",
     // countryCode: "",
-    contactNumber: "",
-  });
+    Contact_Number: "",
+  }
+
+  const [formData, setFormData] = useState(initFormData);
 
   const [message, setMessage] = useState("");
   const location = useLocation();
-  const [popActive, setPopActive] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   // useEffect(() => {
   //   const params = new URLSearchParams(location.search);
   //   const isSuccess = params.get("success") === "true";
@@ -69,7 +71,7 @@ export default function Footer() {
       "Full_Name",
       "Company_Name",
       "email",
-      "contact_number",
+      "Contact_Number",
     ];
 
     for (const field of requiredFields) {
@@ -99,21 +101,51 @@ export default function Footer() {
     return null;
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     [name]: value,
+  //   }));
+  // };
 
-  const handleSubmit = (e) => {
-    const error = validateForm();
-    if (error) {
-      e.preventDefault();
-      setMessage(error);
-    } else {
-      setMessage("✅ Submitting...");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
+    setLoading(true);
+
+    try {
+      const error = validateForm();
+      if (error) {
+        setMessage(error);
+        return;
+      }
+
+      const response = await fetch(
+        "https://formsubmit.co/ajax/jitender@digicots.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      if (result) {
+        setPopActive(true);
+        setFormData(initFormData)
+      }
+    } catch (err) {
+      setMessage("❌ Error: " + err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -151,19 +183,12 @@ export default function Footer() {
             <form
               onSubmit={handleSubmit}
               className="grid grid-cols-1 md:grid-cols-2 gap-4"
-              action="https://formsubmit.co/jitender@digicots.com"
-              method="POST"
             >
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
-
-              <input
-                type="hidden"
-                name="_next"
-                value={`http://localhost:5173/thankyou`}
-              />
               <motion.input
-                onChange={handleChange}
+                 value={formData.Full_Name}
+                 onChange={(e) => setFormData(prev => ({ ...prev, Full_Name: e.target.value }))}
                 type="text"
                 placeholder="Full Name"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
@@ -171,7 +196,8 @@ export default function Footer() {
                 variants={childVariants}
               />
               <motion.input
-                onChange={handleChange}
+                  value={formData.Company_Name}
+                  onChange={(e) => setFormData(prev => ({ ...prev, Company_Name: e.target.value }))}
                 type="text"
                 placeholder="Company Name"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
@@ -179,7 +205,10 @@ export default function Footer() {
                 variants={childVariants}
               />
               <motion.input
-                onChange={handleChange}
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, email: e.target.value }))
+                }
                 type="email"
                 placeholder="Email Address"
                 className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
@@ -197,17 +226,23 @@ export default function Footer() {
                 </select> */}
                 <input
                   type="text"
-                  onChange={handleChange}
+                  value={formData.Contact_Number}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      Contact_Number: e.target.value,
+                    }))
+                  }
                   placeholder="Contact Number"
                   className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 w-full rounded-[14px] focus:outline-none"
-                  name="contact_number"
+                  name="Contact_Number"
                 />
               </motion.div>
               <motion.button
                 className="md:col-span-2 bg-[#DF782B] hover:bg-orange-600 transition-all text-white font-bold p-4 sm:p-5 rounded-[14px] cursor-pointer"
                 variants={childVariants}
               >
-                Let's Talk about the Future
+                {loading ? "Submitting..." : "Let's Talk about the Future"}
               </motion.button>
             </form>
             {message && (
@@ -287,7 +322,13 @@ export default function Footer() {
           >
             <h4 className="text-lg font-semibold">India</h4>
             <p className="text-gray-400 mt-2">
-            At Digicots, we are a group of seasoned marketers who guide businesses that dare to be different through the ever-changing market landscape. We craft systems tailored to your specific business goals by leveraging a blend of creativity, strategy and statistics. Our data-driven approach helps us juggle calculated risk and bold innovation in order to deliver quantifiable results that speak for themselves.
+              At Digicots, we are a group of seasoned marketers who guide
+              businesses that dare to be different through the ever-changing
+              market landscape. We craft systems tailored to your specific
+              business goals by leveraging a blend of creativity, strategy and
+              statistics. Our data-driven approach helps us juggle calculated
+              risk and bold innovation in order to deliver quantifiable results
+              that speak for themselves.
             </p>
             <p className="mt-2 font-semibold">+91 987 987 5632</p>
           </motion.div>
@@ -346,8 +387,7 @@ export default function Footer() {
                   className="text-gray-400 mt-2 space-y-1"
                   variants={containerVariants}
                 >
-                  {
-                   [
+                  {[
                     {
                       title: "Content Production",
                       pera: "The art of storytelling by transforming ideas into captivating visual narratives that engage...",
@@ -395,7 +435,7 @@ export default function Footer() {
                       pera: "Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled...",
                       icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-3.png",
                       id: "outdoor-advertising",
-                    }, 
+                    },
                     {
                       title: "Website Development",
                       pera: "Think of a website like your brand's online home. It's not just a place on the internet, it's how people...",
@@ -410,10 +450,7 @@ export default function Footer() {
                     },
                   ].map((link, i) => (
                     <motion.li key={i} variants={childVariants}>
-                      <Link
-                        to={`discover?i=${i}`}
-                        className="hover:text-white"
-                      >
+                      <Link to={`discover?i=${i}`} className="hover:text-white">
                         {link.title}
                       </Link>
                     </motion.li>
@@ -447,11 +484,7 @@ export default function Footer() {
           </div>
         </motion.div>
       </div>
-      {/* your main content here */}
-      <ThankyouPopUp
-        popActive={popActive}
-        onClose={() => setPopActive(false)}
-      />
+      
     </footer>
   );
 }

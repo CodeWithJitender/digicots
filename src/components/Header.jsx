@@ -464,11 +464,13 @@ function Header({ location }) {
         <div className="header-left w-[30%] bg-[#ED510C] h-screen p-8 flex flex-col justify-between">
           <div className="">
             <div className="logo">
+              <Link to='/'>
               <img
                 src="https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png"
                 className="w-full max-w-36 md:max-w-40 lg:max-w-52"
                 alt=""
               />
+              </Link>
             </div>
             <ul className="mt-5 flex flex-col gap-4">
             <li>

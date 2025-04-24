@@ -4,55 +4,76 @@ import React, { useEffect, useRef, useState } from "react";
 import TextAnimation1 from "../../animation/text/TextAnimation1";
 import ThankyouPopUp from "../../components/ThankyouPopUp";
 const ContactForm = () => {
+
+  // 1) initialize _all_ fields
+  const initialForm = {
+    Full_Name: "",
+    Contact_Number: "",
+    email: "",
+    Purpose: "",
+    Additional_Info: "",
+    phone: "",
+    message: "",
+    First_Name: "",
+    Last_Name: "",
+  };
+
   const [activeTab, setActiveTab] = useState("dominance");
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(initialForm);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [popActive, setPopActive] = useState(false);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("success") === "true") {
-      setPopActive(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search);
+  //   if (params.get("success") === "true") {
+  //     setPopActive(true);
+  //   }
+  // }, []);
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
-  
+
     try {
       const error = validateForm();
       if (error) {
         return setMessage(error);
       }
-  
-      const response = await fetch('https://formsubmit.co/ajax/jitender@digicots.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-  
+
+      const response = await fetch(
+        "https://formsubmit.co/ajax/jitender@digicots.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-  
+
       const result = await response.json();
-      console.log('Success:', result);
-      window.location.href = 'http://localhost:5173/thankyou';
+      if (result) {
+        setPopActive(true);
+        setFormData(initialForm);
+      }
+      console.log("Success:", result);
+      // window.location.href = 'http://localhost:5173/contact?success=true';
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
       setMessage("❌ Error: " + error.message);
     } finally {
       setLoading(false);
     }
   };
-  
+
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
   //   setLoading(true);
@@ -114,10 +135,10 @@ const ContactForm = () => {
     }
   }, [activeTab, window.innerWidth]);
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
+  // const handleChange = (e) => {
+  //   setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  // };
+  
   const validateForm = () => {
     let requiredFields = [];
 
@@ -324,7 +345,10 @@ const ContactForm = () => {
                 name="Full_Name"
                 type="text"
                 placeholder="Full Name"
-                onChange={handleChange}
+                value={formData.Full_Name}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, Full_Name: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <div className="flex space-x-2">
@@ -332,7 +356,13 @@ const ContactForm = () => {
                   name="Contact_Number"
                   type="text"
                   placeholder="Contact Number"
-                  onChange={handleChange}
+                  value={formData.Contact_Number}
+                  onChange={(e) =>
+                    setFormData((f) => ({
+                      ...f,
+                      Contact_Number: e.target.value,
+                    }))
+                  }
                   className="flex-1 bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
                 />
               </div>
@@ -340,22 +370,35 @@ const ContactForm = () => {
                 name="email"
                 type="email"
                 placeholder="Email Address"
-                onChange={handleChange}
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, email: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <select
                 className="w-full bg-[#3A3A3A] text-white p-3 rounded-md focus:outline-none pe-2.5"
                 name="Purpose"
+                value={formData.Purpose}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, Purpose: e.target.value }))
+                }
               >
-                <option>Purpose</option>
-                <option>Business Inquiry</option>
-                <option>Collaboration</option>
+                <option value="Purpose">Purpose</option>
+                <option value="Business Inquiry">Business Inquiry</option>
+                <option value="Collaboration">Collaboration</option>
               </select>
               <textarea
                 name="Additional_Info"
                 placeholder="Additional Information"
                 rows="5"
-                onChange={handleChange}
+                value={formData.Additional_Info}
+                onChange={(e) =>
+                  setFormData((f) => ({
+                    ...f,
+                    Additional_Info: e.target.value,
+                  }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
             </>
@@ -368,27 +411,35 @@ const ContactForm = () => {
                 name="Full_Name"
                 type="text"
                 placeholder="Full Name"
-                onChange={handleChange}
+                value={formData.Full_Name}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, Full_Name: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <input
                 name="phone"
                 type="text"
                 placeholder="Phone"
-                onChange={handleChange}
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, phone: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <input
                 name="email"
                 type="email"
                 placeholder="Email"
-                onChange={handleChange}
+                value={formData.email}
+                onChange={e => setFormData(f => ({ ...f, email: e.target.value }))}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <textarea
                 name="message"
                 placeholder="Message"
-                onChange={handleChange}
+                value={formData.message}
+                onChange={e => setFormData(f => ({ ...f, message: e.target.value }))}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
             </>
@@ -401,34 +452,39 @@ const ContactForm = () => {
                 name="First_Name"
                 type="text"
                 placeholder="First Name"
-                onChange={handleChange}
+                value={formData.First_Name}
+                onChange={e => setFormData(f => ({ ...f, First_Name: e.target.value }))}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <input
                 name="Last_Name"
                 type="text"
                 placeholder="Last Name"
-                onChange={handleChange}
+                value={formData.Last_Name}
+                onChange={e => setFormData(f => ({ ...f, Last_Name: e.target.value }))}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <input
                 name="phone"
                 type="text"
                 placeholder="Phone"
-                onChange={handleChange}
+                value={formData.phone}
+                onChange={e => setFormData(f => ({ ...f, phone: e.target.value }))}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <input
                 name="email"
                 type="email"
                 placeholder="Email"
-                onChange={handleChange}
+                value={formData.email}
+                onChange={e => setFormData(f => ({ ...f, email: e.target.value }))}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <textarea
                 name="message"
                 placeholder="Message"
-                onChange={handleChange}
+                value={formData.message}
+        onChange={e => setFormData(f => ({ ...f, message: e.target.value }))}
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
             </>
@@ -455,7 +511,10 @@ const ContactForm = () => {
       </div>
 
       {/* your main content here */}
-      <ThankyouPopUp popActive={popActive} onClose={() => setPopActive(false)} />
+      <ThankyouPopUp
+        popActive={popActive}
+        onClose={() => setPopActive(false)}
+      />
     </div>
   );
 };

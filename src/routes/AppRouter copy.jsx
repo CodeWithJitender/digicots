@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";          // added useState
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -18,12 +18,18 @@ import ThankyouPopUp from "../components/ThankyouPopUp";
 
 const AppContent = () => {
   const location = useLocation();
-  const [popActive, setPopActive] = useState(false);
-
 
   useEffect(() => {
     setPrevPath(location.pathname); // store current route as previous
   }, [location]);
+  const [popActive, setPopActive] = useState(false);
+
+  useEffect(() => {
+    const params = location.search;
+    if (params.get("success") === "true") {
+      setPopActive(true);
+    }
+  }, []);
 
   return (
     <>
@@ -41,15 +47,10 @@ const AppContent = () => {
         <Route path="/thankyou" element={<ThankYou />} />
         <Route path="/test" element={<Test />} />
       </Routes>
+      {!["/case-study", "/contact"].includes(location.pathname) && <Footer />}
 
-      {/* Only show footer on pages other than /case-study and /contact */}
-      {!["/case-study", "/contact"].includes(location.pathname) && <Footer popActive={popActive} setPopActive={setPopActive} />}
-
-      {/* your main content here */}
-      <ThankyouPopUp
-        popActive={popActive}
-        onClose={() => setPopActive(false)}
-      />
+         {/* your main content here */}
+            <ThankyouPopUp popActive={popActive} onClose={() => setPopActive(false)} />
     </>
   );
 };

@@ -460,7 +460,17 @@ transform: translateZ(calc(var(--index) * 10));
 }
 
 /* Remove grayscale for the active slide */
-.parallax-img.active-color {
+.slick-center.slick-current .parallax-img {
   filter: none;
   transition: filter 0.3s ease;
 }
+.testimonial-text {
+  transition: .5s;
+  bottom: -100% ;
+  }
+.slick-center.slick-current .testimonial-text {
+/* top: 0 !important; */
+bottom:   0% ;
+
+}
+
