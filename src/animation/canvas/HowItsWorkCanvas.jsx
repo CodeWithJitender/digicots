@@ -11,14 +11,14 @@ const HowItWorksCanvas = () => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const screen2TextRef = useRef(null);
-  const frameCount = 161;
+  const frameCount = 131;
   const images = useRef([]);
   const isHome = useLocation().pathname === "/";
 
   // Preload images once
   useEffect(() => {
     const imageElements = [];
-    for (let i = 121; i < 285; i++) {
+    for (let i = 151; i < 285; i++) {
       const img = new Image();
       img.src = `https://ik.imagekit.io/x5xessyka/digicots/front_wolf/output_${i.toString().padStart(4, "0")}.png`;
       imageElements.push(img);
