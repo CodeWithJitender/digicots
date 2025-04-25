@@ -8,7 +8,7 @@ function OurWork() {
   return (
     <>
       {/* Content below video */}
-      <div className="w-full min-h-screen overflow-y-auto">
+      <div className="w-full min-h-screen overflow-y-auto overflow-x-hidden">
         <div className="fixed top-0 left-0 w-full h-screen pointer-events-none">
           <HowItWorksCanvas />
         </div>

@@ -464,7 +464,9 @@ function Header({ location }) {
         <div className="header-left w-[30%] bg-[#ED510C] h-screen p-8 flex flex-col justify-between">
           <div className="">
             <div className="logo">
-              <Link to='/'>
+              <Link
+                  onClick={() => setDeskToggle(false)}
+               to='/'>
               <img
                 src="https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png"
                 className="w-full max-w-36 md:max-w-40 lg:max-w-52"
@@ -475,7 +477,7 @@ function Header({ location }) {
             <ul className="mt-5 flex flex-col gap-4">
             <li>
                 <Link
-                  onClick={() => setDeskToggle((prev) => !prev)}
+                  onClick={() => setDeskToggle(false)}
                   to={"/things-we-do"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
@@ -488,7 +490,7 @@ function Header({ location }) {
               </li>
             <li>
                 <Link
-                  onClick={() => setDeskToggle((prev) => !prev)}
+                  onClick={() => setDeskToggle(false)}
                   to={"/about"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
@@ -501,7 +503,7 @@ function Header({ location }) {
               </li>
               <li>
                 <Link
-                  onClick={() => setDeskToggle((prev) => !prev)}
+                  onClick={() => setDeskToggle(false)}
                   to={"/case-study"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
@@ -514,7 +516,7 @@ function Header({ location }) {
               </li>
               <li>
                 <Link
-                  onClick={() => setDeskToggle((prev) => !prev)}
+                  onClick={() => setDeskToggle(false)}
                   to={"/insights"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
@@ -534,7 +536,7 @@ function Header({ location }) {
             <div className="mb-5">
               <Link
                 to={"/contact"}
-                onClick={() => setDeskToggle((prev) => !prev)}
+                onClick={() => setDeskToggle(false)}
                 className="font-inter left-links inline-block text-3xl font-bold"
               >
                 <span className="text-[#242424]">Let’s Get in Touch</span>{" "}
@@ -549,8 +551,8 @@ function Header({ location }) {
         <div className="header-right w-[70%] h-screen bg-[#141414] py-10 px-20">
           <div className="relative flex justify-end">
             <div
-              className="desk-menu-btn text-2xl bg-white max-h-full rounded-[50px] font-bold cursor-pointer text-[14px]  font-inter py-3 flex items-center gap-2 lg:px-5 "
-              onClick={() => setDeskToggle((prev) => !prev)}
+              className="desk-menu-btn  text-2xl bg-white max-h-full rounded-[50px] font-bold cursor-pointer text-[14px]  font-inter py-3 flex items-center gap-2 lg:px-5 "
+              onClick={() => setDeskToggle(false)}
             >
               <span>Close</span>{" "}
               <span>
@@ -559,7 +561,7 @@ function Header({ location }) {
             </div>
           </div>
           <Link
-            onClick={() => setDeskToggle((prev) => !prev)}
+            onClick={() => setDeskToggle(false)}
             to={"/discover"}
            className="font-inter text-3xl font-bold left-links text-white">
             Discover
@@ -571,7 +573,7 @@ function Header({ location }) {
             <div className="discover-grid grid xl:grid-cols-2 pe-6 py-3 pb-8">
               {data.map((item, index) => (
                 <DiscoverItem
-                  onClick={() => setDeskToggle((prev) => !prev)}
+                  onClick={() => setDeskToggle(false)}
                   title={item.title}
                   pera={item.pera}
                   icon={item.icon}
