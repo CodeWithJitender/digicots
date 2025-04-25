@@ -310,7 +310,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
                 className="text-xl text-gray-600 hover:text-black cursor-pointer"
               >
                 <img
-                  src="https://ik.imagekit.io/x5xessyka/digicots/public/cross.png"
+                  src="https://ik.imagekit.io/8mbzq2hdl/digicots/close-2.png"
                   className="max-w-[40px]"
                   alt="Close"
                 />

@@ -55,7 +55,7 @@ function Header({ location }) {
       pera: "Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled...",
       icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-3.png",
       id: "outdoor-advertising",
-    }, 
+    },
     {
       title: "Website Development",
       pera: "Think of a website like your brand's online home. It's not just a place on the internet, it's how people...",
@@ -181,12 +181,12 @@ function Header({ location }) {
       }
     };
 
-    if(window.innerWidth > 600){
+    if (window.innerWidth > 600) {
       window.addEventListener("scroll", handleScroll);
     }
-    
+
     return () => {
-      if(window.innerWidth > 600){
+      if (window.innerWidth > 600) {
         window.removeEventListener("scroll", handleScroll);
       }
     };
@@ -296,12 +296,11 @@ function Header({ location }) {
 
         <div className="header-wrapper relative flex items-center justify-between px-6 py-4 bg-zinc-900 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none ">
           <div className="logo">
-            <Link
-            onClick={()=> setToggle(false)} 
-             to="/">
+            <Link onClick={() => setToggle(false)} to="/">
               <img
                 src={
-                  ["/case-study"].includes(location.pathname) && window.innerWidth > 600
+                  ["/case-study"].includes(location.pathname) &&
+                  window.innerWidth > 600
                     ? "https://ik.imagekit.io/x5xessyka/digicots/public/logo-black.png"
                     : "https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png"
                 }
@@ -328,16 +327,19 @@ function Header({ location }) {
             </div>
             <div className=" flex gap-4">
               <Link
-                className="bg-[#DF782B] max-h-full rounded-[50px] font-bold text-white text-[14px] hidden lg:block font-inter p-3  lg:px-5"
+                className="font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-[#DF782B] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2"
                 to="/contact"
               >
-                Let's Talk
+                <span class="relative z-10">Let's Talk</span>
               </Link>
+
               <div
-                className="desk-menu-btn bg-white max-h-full rounded-[50px] font-bold  text-[14px] hidden lg:block font-inter p-3 flex items-center gap-2 lg:px-5"
+                className="desk-menu-btn font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#DF782B] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2 cursor-pointer"
                 onClick={() => setDeskToggle((prev) => !prev)}
               >
-                <span> Menu</span> <i class="far fa-bars"></i>
+                <div className="relative z-10">
+                  <span> Menu</span> <i class="far fa-bars"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -464,18 +466,16 @@ function Header({ location }) {
         <div className="header-left w-[30%] bg-[#ED510C] h-screen p-8 flex flex-col justify-between">
           <div className="">
             <div className="logo">
-              <Link
-                  onClick={() => setDeskToggle(false)}
-               to='/'>
-              <img
-                src="https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png"
-                className="w-full max-w-36 md:max-w-40 lg:max-w-52"
-                alt=""
-              />
+              <Link onClick={() => setDeskToggle(false)} to="/">
+                <img
+                  src="https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png"
+                  className="w-full max-w-36 md:max-w-40 lg:max-w-52"
+                  alt=""
+                />
               </Link>
             </div>
             <ul className="mt-5 flex flex-col gap-4">
-            <li>
+              <li>
                 <Link
                   onClick={() => setDeskToggle(false)}
                   to={"/things-we-do"}
@@ -488,7 +488,7 @@ function Header({ location }) {
                   </TextHoverAnimation>
                 </Link>
               </li>
-            <li>
+              <li>
                 <Link
                   onClick={() => setDeskToggle(false)}
                   to={"/about"}
@@ -551,19 +551,22 @@ function Header({ location }) {
         <div className="header-right w-[70%] h-screen bg-[#141414] py-10 px-20">
           <div className="relative flex justify-end">
             <div
-              className="desk-menu-btn  text-2xl bg-white max-h-full rounded-[50px] font-bold cursor-pointer text-[14px]  font-inter py-3 flex items-center gap-2 lg:px-5 "
+              className="desk-menu-btn cursor-pointer font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#DF782B] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2 gap-2"
               onClick={() => setDeskToggle(false)}
             >
-              <span>Close</span>{" "}
-              <span>
-                <i class="far fa-times"></i>
-              </span>
+              <div className="relative z-10">
+                <span>Close</span>{" "}
+                <span>
+                  <i class="far fa-times"></i>
+                </span>
+              </div>
             </div>
           </div>
           <Link
             onClick={() => setDeskToggle(false)}
             to={"/discover"}
-           className="font-inter text-3xl font-bold left-links text-white">
+            className="font-inter text-3xl font-bold left-links text-white"
+          >
             Discover
           </Link>
           <div

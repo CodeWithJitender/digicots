@@ -191,7 +191,7 @@ export default function Footer({popActive,setPopActive}) {
                  onChange={(e) => setFormData(prev => ({ ...prev, Full_Name: e.target.value }))}
                 type="text"
                 placeholder="Full Name"
-                className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
+                className="bg-[#3A3A3A]  p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white"
                 name="Full_Name"
                 variants={childVariants}
               />
@@ -200,7 +200,7 @@ export default function Footer({popActive,setPopActive}) {
                   onChange={(e) => setFormData(prev => ({ ...prev, Company_Name: e.target.value }))}
                 type="text"
                 placeholder="Company Name"
-                className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
+                className="bg-[#3A3A3A] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white"
                 name="Company_Name"
                 variants={childVariants}
               />
@@ -211,7 +211,7 @@ export default function Footer({popActive,setPopActive}) {
                 }
                 type="email"
                 placeholder="Email Address"
-                className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
+                className="bg-[#3A3A3A] text-white p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
                 name="email"
                 variants={childVariants}
               />
@@ -234,15 +234,15 @@ export default function Footer({popActive,setPopActive}) {
                     }))
                   }
                   placeholder="Contact Number"
-                  className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 w-full rounded-[14px] focus:outline-none"
+                  className="bg-[#3A3A3A] text-white p-4 sm:p-5 w-full rounded-[14px] focus:outline-none"
                   name="Contact_Number"
                 />
               </motion.div>
               <motion.button
-                className="md:col-span-2 bg-[#DF782B] hover:bg-orange-600 transition-all text-white font-bold p-4 sm:p-5 rounded-[14px] cursor-pointer"
+                className="md:col-span-2 p-4 sm:p-5  font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#DF782B] text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[14px] before:bg-white before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full hidden lg:flex px-5 py-2 cursor-pointer"
                 variants={childVariants}
               >
-                {loading ? "Submitting..." : "Let's Talk about the Future"}
+                <div className="relative z-[11]">{loading ? "Submitting..." : "Let's Talk about the Future"}</div>
               </motion.button>
             </form>
             {message && (
