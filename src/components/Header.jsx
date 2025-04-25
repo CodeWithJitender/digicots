@@ -549,7 +549,7 @@ function Header({ location }) {
         <div className="header-right w-[70%] h-screen bg-[#141414] py-10 px-20">
           <div className="relative flex justify-end">
             <div
-              className="desk-menu-btn  text-2xl bg-white max-h-full rounded-[50px] font-bold cursor-pointer text-[14px]  font-inter py-3 flex items-center gap-2 lg:px-5 "
+              className="desk-menu-btn text-2xl bg-white max-h-full rounded-[50px] font-bold cursor-pointer text-[14px]  font-inter py-3 flex items-center gap-2 lg:px-5 "
               onClick={() => setDeskToggle((prev) => !prev)}
             >
               <span>Close</span>{" "}
