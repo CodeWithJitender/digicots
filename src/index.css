@@ -317,7 +317,7 @@ header .dropdown {
   perspective: calc(var(--index) * 35);
 }
 
-.item{
+.items .item{
   width: calc(var(--index) * 3);
   height: calc(var(--index) * 12);
   background-color: #222;
