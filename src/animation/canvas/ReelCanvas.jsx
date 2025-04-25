@@ -443,18 +443,35 @@ const Scene = () => {
         </div>
 
         <div className="h-full w-full absolute top-0 z-[1]">
-          <div className="absolute flex flex-col items-end top-[42%] left-1/2 -translate-1/2">
+          <div className="absolute flex flex-col items-end top-[40%] translate-x-[100%]">
             <div
               ref={(el) => (scrollMoreRef.current[0] = el)}
-              className=" overflow-hidden text-[5.5vw] h-[6.5vw] font-bold text-sm text-white text-left leading-none"
+              className="overflow-hidden text-[4vw] h-[6.5vw]  text-sm text-white text-left leading-none "
             >
-              <span className="inline-block">The hunt begins</span>
+              <span className="inline-block font-bold font-inter">
+                The
+                <span className="inline-block font-bold font-mrs-saint-delafield-regular ms-3 me-7">
+                  {" "}
+                  hunt{" "}
+                </span>
+                <span className="inline-block font-bold font-inter">
+                  {" "}
+                  begins
+                </span>
+              </span>
             </div>
             <div
               ref={(el) => (scrollMoreRef.current[1] = el)}
-              className=" overflow-hidden text-[3vw] h-[4vw] italic text-sm text-white text-left leading-none"
+              className=" overflow-hidden text-[4vw] h-[6.5vw]  text-sm text-white text-right leading-none "
             >
-              <span className="inline-block">where the limit ends</span>
+              <span className="inline-block font-bold font-inter ml-20">
+                where the{" "}
+              <span className="inline-block font-bold font-mrs-saint-delafield-regular ms-3 me-7">
+                {" "}
+                limit{" "}
+              </span>
+              <span className="inline-block font-bold font-inter"> ends</span>
+              </span>
             </div>
           </div>
         </div>
