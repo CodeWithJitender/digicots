@@ -19,7 +19,7 @@ const WolfCard = ({
       onClick={onclick}
       ref={ref}
       style={style}
-      className={` ${className} px-4 py-4 h-[85vh] md:h-[70vh] rounded-xl shadow-lg flex flex-col items-center ${bgColor} ${textColor} w-full`}
+      className={` ${className} px-4 py-4 h-[75vh] md:h-[70vh] rounded-xl shadow-lg flex flex-col items-center ${bgColor} ${textColor} w-full`}
     >
       {/* Image Section */}
       <div className="max-w-[150px]">

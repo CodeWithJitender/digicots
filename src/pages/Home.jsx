@@ -40,17 +40,17 @@ function Home() {
         {/* <Loading onLoadingComplete={handleLoadingComplete} > */}
         {/* <Loading > */}
           <div className="main contain-paint ">
-            {/* <Suspense fallback={null}> */}
-              {/* <HomeHeroCanvas /> */}
-            {/* </Suspense> */}
+            <Suspense fallback={null}>
+              <HomeHeroCanvas />
+            </Suspense>
 
-            {/* <HowItWorks /> */}
-            {/* <ContentSlider /> */}
+            <HowItWorks />
+            <ContentSlider />
             <OurWork />
-            {/* <Insights /> */}
+            <Insights />
             {/* <KeywordsSection /> */}
-            {/* <OurJourney /> */}
-            {/* <Testimonials /> */}
+            <OurJourney />
+            <Testimonials />
             <Faq />
           </div>
         {/* </Loading> */}
