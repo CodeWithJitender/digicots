@@ -312,5 +312,3 @@ export default function BlogSection() {
     </>
   );
 }
-
-// #DF782B

@@ -119,7 +119,7 @@ const HomeHeroCanvas = () => {
         trigger: containerRef.current,
         start: "top 0",
         end: "top -350%",
-        scrub: 1,
+        scrub: .2,
         onRefresh: self => self.progress && self.progress > 0 && self.progress < 1 && self.animation.progress(self.progress),
       },
     });
