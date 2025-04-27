@@ -317,7 +317,7 @@ const ContactForm = () => {
           {/* Indicator */}
           <div
             ref={indicatorRef}
-            className="absolute left-0 xl:h-[66%] h-[calc(100%_-_24px)] bg-orange-500 rounded-md transition-all duration-300"
+            className="absolute left-0 xl:h-[66%] h-[calc(100%_-_24px)] bg-[#DF782B] rounded-md transition-all duration-300"
           ></div>
 
           {["dominance", "help", "pack"].map((tab, index) => (
@@ -519,9 +519,10 @@ const ContactForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-orange-500 text-white py-3 rounded-md font-semibold hover:bg-orange-600"
+            className="w-full p-4  font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#DF782B] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[14px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full hidden lg:flex cursor-pointer"
             disabled={loading}
           >
+            <div className="relative z-[11]">
             {loading
               ? "Submitting..."
               : activeTab === "dominance"
@@ -529,6 +530,7 @@ const ContactForm = () => {
               : activeTab === "help"
               ? "Request Help"
               : "Join the Pack"}
+            </div>
           </button>
         </form>
 
