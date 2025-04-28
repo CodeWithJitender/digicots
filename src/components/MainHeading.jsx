@@ -7,7 +7,7 @@ function MainHeading({ heading, pera, cl, tColor,animeStart="50", animeEnd="60" 
     <div className="">
       <div className={`main-heading max-w-3xl m-auto ${cl}`}>
           <h2
-            className={`${tColor} font-bold overflow-hidden font-inter mb-4`}
+            className={`${tColor} font-bold overflow-hidden font-inter mb-[.5vh]`}
             style={{ fontSize:  window.innerWidth > 600 ? "clamp(20px, 20vw, 48px)" : "clamp(16px, 6vw, 32px)" }}
           >
         <TextAnimation1 animeStart={animeStart} animeEnd={animeEnd}>

@@ -19,7 +19,7 @@ const WolfCard = ({
       onClick={onclick}
       ref={ref}
       style={style}
-      className={` ${className} px-4 py-4 h-[75vh] md:h-[70vh] rounded-xl shadow-lg flex flex-col items-center ${bgColor} ${textColor} w-full`}
+      className={` ${className} px-4 py-[.8vh] h-[75vh] md:h-[70vh] rounded-xl shadow-lg flex flex-col items-center ${bgColor} ${textColor} w-full`}
     >
       {/* Image Section */}
       <div className="max-w-[150px]">
@@ -28,22 +28,24 @@ const WolfCard = ({
 
       {/* Text Content */}
       <div className="md:ml-6 mt-4 md:mt-0">
-        <p className="font-inter text-sm text-black font-bold uppercase">
+        <p className="font-inter md:text-[1vw] text-xs  text-black font-bold uppercase">
           {step}
         </p>
-        <h3 className="font-inter text-2xl font-bold">
-          {heading.split("(")[0]}
-          <br />
-          {"(" + heading.split("(")[1]}
+        <h3 className="font-inter md:text-[1.5vw] text-sm font-bold">
+          {heading}
         </h3>
-        <p className="font-inter mt-1 font-semibold text-sm">{pera}</p>
-        <ul className="font-inter mt-2 list-disc list-inside text-sm">
-        {list.map((item, index) => (
-                          // <li key={index}><span>{item}</span></li>
-                          <div key={index} className="flex gap-2"><i class="fas fa-circle mt-2 text-[8px]"></i> {item}</div>
-                        ))}
+        <p className="font-inter mt-1 font-semibold md:text-[1vw] text-xs ">
+          {pera}
+        </p>
+        <ul className="font-inter mt-2 list-disc list-inside md:text-[1vw] text-xs ">
+          {list.map((item, index) => (
+            // <li key={index}><span>{item}</span></li>
+            <div key={index} className="flex gap-2">
+              <i class="fas fa-circle mt-2 md:text-[8px]"></i> {item}
+            </div>
+          ))}
         </ul>
-        <p className="mt-3 font-semibold italic">{quoat}</p>
+        <p className="mt-3 font-semibold italic md:text-[1.1vw] text-xs ">{quoat}</p>
       </div>
     </div>
   );

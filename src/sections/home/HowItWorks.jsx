@@ -96,7 +96,6 @@ const HowItWorks = () => {
   const cardRefs = useRef([]);
   const parentRef = useRef(null);
   const containerRef = useRef(null);
-  const hasPlayed = useRef(false);
   const animationRefs = useRef({
     timeline: null,
     moveY: null,
@@ -283,7 +282,7 @@ const HowItWorks = () => {
 
           <div
             ref={containerRef}
-            className="wolf-card-container md:mt-6 h-[70vh] md:h-fit relative grid md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5"
+            className="wolf-card-container md:mt-[5vh] h-[70vh] md:h-fit relative grid md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5"
           >
             {data.map((dataChild, index) => (
               <>
@@ -333,19 +332,19 @@ const HowItWorks = () => {
                   <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-[.9vw] leading-[1.1vw] text-white">
                    <div className="h-full flex items-center">
                    <div className="md:ml-6 mt-4 md:mt-0">
-                      <p className="font-inter text-sm text-black font-bold uppercase">
+                      <p className="font-inter md:text-[1vw] text-xs  text-black font-bold uppercase">
                         {dataChild.step}
                       </p>
-                      <h3 className="font-inter text-2xl font-bold">
+                      <h3 className="font-inter md:text-[1.5vw] text-sm font-bold">
                         {dataChild.heading}
                       </h3>
-                      <p className="font-inter mt-1 font-semibold text-sm">
+                      <p className="font-inter mt-1 font-semibold md:text-[1vw] text-xs ">
                         {dataChild.pera}
                       </p>
-                      <ul className="font-inter mt-2 list-disc list-inside text-sm">
+                      <ul className="font-inter mt-2 list-disc list-inside md:text-[1vw] text-xs ">
                         {dataChild.list.map((item, index) => (
                           // <li key={index}><span>{item}</span></li>
-                          <div key={index} className="flex gap-2"><i class="fas fa-circle mt-2 text-[8px]"></i> {item}</div>
+                          <div key={index} className="flex gap-2"><i class="fas fa-circle mt-2 md:text-[8px]"></i> {item}</div>
                         ))}
                       </ul>
                       <p className="mt-3 font-semibold italic">{dataChild.quoat}</p>

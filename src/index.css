@@ -53,11 +53,11 @@
 }
 
 .container-xxl {
-    @apply max-w-[1400px] m-auto px-5 py-10 md:py-24;
+    @apply max-w-[1400px] m-auto px-5 py-10 md:py-[6vh];
 }
 
 .container-xl {
-    @apply max-w-7xl m-auto px-5 md:py-10;
+    @apply max-w-7xl m-auto px-5 md:py-[3vh];
 }
 
 /* How it works section */
@@ -282,11 +282,11 @@ header .dropdown {
     left: calc(50% - 50vw);
     animation: autoRun 50s linear infinite;
     transform: perspective(4000px) translate3d(0, 0, 0);
-    scale: 0.8; /* Slightly smaller for mobile */
+    scale: 1; /* Slightly smaller for mobile */
   }
 
   .banner .slider .item {
-    height: 250vh; /* Reduced from 350vh */
+    height: 150vh; /* Reduced from 350vh */
     width: 400vw; /* Reduced from 750vw */
     transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
       translateZ(4000px); /* Reduced from 6000px */

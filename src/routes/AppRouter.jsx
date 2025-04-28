@@ -28,10 +28,10 @@ const AppContent = () => {
   return (
     <>
       <ScrollHandler />
-      <Header location={location} />
+      {!["/loading"].includes(location.pathname) && <Header location={location} />}
       <Routes location={location}>
         <Route path="/" element={<Home />} />
-        <Route path="/loading" element={<Loading />} />
+        {/* <Route path="/loading" element={<Loading />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<LetsTalk />} />
         <Route path="/case-study" element={<CaseStudie />} />
@@ -43,7 +43,7 @@ const AppContent = () => {
       </Routes>
 
       {/* Only show footer on pages other than /case-study and /contact */}
-      {!["/case-study", "/contact"].includes(location.pathname) && <Footer popActive={popActive} setPopActive={setPopActive} />}
+      {!["/case-study", "/contact" ,"/loading"].includes(location.pathname) && <Footer popActive={popActive} setPopActive={setPopActive} />}
 
       {/* your main content here */}
       <ThankyouPopUp

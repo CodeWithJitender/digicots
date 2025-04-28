@@ -195,8 +195,8 @@ const OurJourney = () => {
     const tl2 = gsap.timeline({
       scrollTrigger: {
         trigger: parentRef.current,
-        start: "top -10%",
-        end: "top -12%",
+        start: "top -30%",
+        end: "top -32%",
         scrub: 1,
         // markers:true
       },

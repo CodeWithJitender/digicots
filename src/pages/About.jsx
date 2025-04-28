@@ -5,11 +5,14 @@ import HowWeWork from "../sections/about/HowWeWork";
 import WhyChooseUs from "../sections/about/WhyChooseUs";
 import OurVision from "../sections/about/OurVision";
 import MeetThePack from "../sections/about/MeetThePack";
+import Loading from "../components/Loading";
 
 function About() {
   const location = useLocation(); // Get current location object
 
   return (
+    <>
+    <Loading />
     <div key={location.key}> {/* Add key based on location */}
       <Hero />
       {/* <MeetThePack /> */}
@@ -17,6 +20,7 @@ function About() {
       <WhyChooseUs />
       <OurVision />
     </div>
+    </>
   );
 }
 
