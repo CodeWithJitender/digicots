@@ -97,7 +97,7 @@ const CylindricalSlider = () => {
           click to check out
         </div>
       )}
-      <div className="slider relative " style={{ "--quantity": images.length }}>
+      <div className="slider relative z-[2] " style={{ "--quantity": images.length }}>
         {images.map((src, i) => (
           <div
             key={i}

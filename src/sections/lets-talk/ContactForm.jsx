@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import TextAnimation1 from "../../animation/text/TextAnimation1";
 import ThankyouPopUp from "../../components/ThankyouPopUp";
 const ContactForm = () => {
-
   // 1) initialize _all_ fields
   const initialForm = {
     Full_Name: "",
@@ -138,7 +137,7 @@ const ContactForm = () => {
   // const handleChange = (e) => {
   //   setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   // };
-  
+
   const validateForm = () => {
     let requiredFields = [];
 
@@ -179,12 +178,25 @@ const ContactForm = () => {
       <div className="w-full md:w-1/2 flex flex-col items-start">
         <div className="w-full scale-[1.1] max-w-md hidden md:block absolute top-[4%] left-0">
           <video
-            className=" w-full "
+            className="w-full"
             src="./breathing/breath.webm"
             autoPlay
-            loop
             muted
+            ref={(videoRef) => {
+              if (videoRef) {
+                videoRef.currentTime = 0;
+                videoRef.play();
+
+                videoRef.addEventListener("timeupdate", () => {
+                  if (videoRef.currentTime >= 11) {
+                    videoRef.currentTime = 0;
+                    videoRef.play();
+                  }
+                });
+              }
+            }}
           ></video>
+
           <div className="w-full h-[10%] absolute bottom-0 bg-gradient-to-t from-[#1a1a1a] to-transparent"></div>
         </div>
 
@@ -427,14 +439,18 @@ const ContactForm = () => {
                 type="email"
                 placeholder="Email"
                 value={formData.email}
-                onChange={e => setFormData(f => ({ ...f, email: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, email: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <textarea
                 name="message"
                 placeholder="Message"
                 value={formData.message}
-                onChange={e => setFormData(f => ({ ...f, message: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, message: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
             </>
@@ -448,7 +464,9 @@ const ContactForm = () => {
                 type="text"
                 placeholder="First Name"
                 value={formData.First_Name}
-                onChange={e => setFormData(f => ({ ...f, First_Name: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, First_Name: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <input
@@ -456,7 +474,9 @@ const ContactForm = () => {
                 type="text"
                 placeholder="Last Name"
                 value={formData.Last_Name}
-                onChange={e => setFormData(f => ({ ...f, Last_Name: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, Last_Name: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <input
@@ -464,7 +484,9 @@ const ContactForm = () => {
                 type="text"
                 placeholder="Phone"
                 value={formData.phone}
-                onChange={e => setFormData(f => ({ ...f, phone: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, phone: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <input
@@ -472,14 +494,18 @@ const ContactForm = () => {
                 type="email"
                 placeholder="Email"
                 value={formData.email}
-                onChange={e => setFormData(f => ({ ...f, email: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, email: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
               <textarea
                 name="message"
                 placeholder="Message"
                 value={formData.message}
-        onChange={e => setFormData(f => ({ ...f, message: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((f) => ({ ...f, message: e.target.value }))
+                }
                 className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
               />
             </>

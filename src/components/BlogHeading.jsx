@@ -8,21 +8,16 @@ function BlogHeading({ heading, linkText, link }) {
       <div className="blog-heading flex flex-col md:flex-row justify-between items-center gap-4">
         {(() => {
           const words = heading.split(" "); // Split into words
-          const midIndex = Math.ceil(words.length / 2); // Find the middle word index
-          const part1 = words.slice(0, midIndex).join(" "); // First half
-          const part2 = words.slice(midIndex).join(" "); // Second half
+          // const midIndex = Math.ceil(words.length / 2); // Find the middle word index
+          // const part1 = words.slice(0, midIndex).join(" "); // First half
+          // const part2 = words.slice(midIndex).join(" "); // Second half
 
           return (
             <>
               <div className="flex flex-col">
-                <h3 className="font-bold md:h-[3vw] h-[8vw] overflow-hidden text-[5vw] text-center md:text-start md:text-[2vw] text-white max-w-80 flex flex-wrap">
+                <h3 className="font-bold md:h-[3vw] h-[8vw] overflow-hidden text-[5vw] text-center md:text-start md:text-[2vw] text-white  flex flex-wrap">
                   <div className="w-full md:w-auto">
-                    <TextAnimation1 animeStart="60">{part1}</TextAnimation1>
-                  </div>
-                </h3>
-                <h3 className="font-bold md:h-[3vw] h-[8vw] overflow-hidden text-[5vw] text-center md:text-start md:text-[2vw] text-white max-w-80 flex flex-wrap">
-                  <div className="w-full md:w-auto">
-                    <TextAnimation1 animeStart="68">{part2}</TextAnimation1>
+                    <TextAnimation1 animeStart="60">{heading}</TextAnimation1>
                   </div>
                 </h3>
               </div>

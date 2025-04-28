@@ -341,20 +341,20 @@ const ContentSlider = () => {
   }, { scope: containerRef, dependencies: [contentData] });
 
   // MoveY animation
-  useGSAP(() => {
-    const moveY = gsap.to(containerRef.current, {
-      y: "40%",
-      duration: 20,
-      ease: "power1.inOut",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top -50%",
-        end: "top -200%",
-        scrub: 1,
-      },
-    });
-    registerAnimation(moveY);
-  }, []);
+  // useGSAP(() => {
+  //   const moveY = gsap.to(containerRef.current, {
+  //     y: "40%",
+  //     duration: 20,
+  //     ease: "power1.inOut",
+  //     scrollTrigger: {
+  //       trigger: containerRef.current,
+  //       start: "top -50%",
+  //       end: "top -200%",
+  //       scrub: 1,
+  //     },
+  //   });
+  //   registerAnimation(moveY);
+  // }, []);
 
   // Component cleanup
   useEffect(() => {

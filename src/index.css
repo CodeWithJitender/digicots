@@ -269,27 +269,40 @@ header .dropdown {
   object-fit: cover;
   will-change: transform;
 }
+
 @media screen and (max-width: 767px) {
+  .banner {
+    perspective: 1000px;
+  }
+  
   .banner .slider {
-    position: absolute;
-    width: 200vw;
+    width: 100vw;
     height: 110vh;
     bottom: 10%;
-    left: calc(50% - 110vw);
-    transform-style: preserve-3d;
-    transform: perspective(5400px);
+    left: calc(50% - 50vw);
     animation: autoRun 50s linear infinite;
-    z-index: 2;
-    scale: 0.9;
+    transform: perspective(4000px) translate3d(0, 0, 0);
+    scale: 0.8; /* Slightly smaller for mobile */
   }
 
   .banner .slider .item {
-    height: 350vh;
-    width: 750vw;
+    height: 250vh; /* Reduced from 350vh */
+    width: 400vw; /* Reduced from 750vw */
     transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
-      translateZ(6000px);
+      translateZ(4000px); /* Reduced from 6000px */
+  }
+  
+  @keyframes autoRun {
+    from {
+      transform: perspective(400px) rotateX(0deg) rotateY(0deg);
+    }
+    to {
+      transform: perspective(400px) rotateX(0deg) rotateY(360deg);
+    }
   }
 }
+
+
 
 /* For screens larger than 2048px */
 @media screen and (min-width: 2049px) {
