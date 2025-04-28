@@ -208,8 +208,6 @@ const StackedGroup = ({ setIsLoading }) => {
 
 const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
   const groupRef = useRef();
-  const dragState = useRef(0);
-  const isDragging = useRef(false);
   const isAnimating = useRef(false);
   const scrollVelocity = useRef(0);
   const cardsRef = useRef([]);
@@ -243,7 +241,7 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
           delay: 0.5,
           ease: "back.inOut(.8)",
           onComplete() {
-            setSelectedIndex(clickedIndex % 3);
+            setSelectedIndex(clickedIndex % 5);
             gsap.to(cardsRef.current[clickedIndex].scale, {
               x: 1,
               y: 1,
@@ -545,7 +543,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
     },
     {
       image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
-      title: "Coca Cola Marketing Case Study",
+      title: "Oreo Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -688,7 +686,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
     },
     {
       image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
-      title: "Oreo Marketing Case Study",
+      title: "Coca Cola Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
