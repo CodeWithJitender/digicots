@@ -93,7 +93,7 @@ const Faq = () => {
                 </TextAnimation1>
               </h2>
             </div>
-            <div className="mt-10 text-sm">
+            <div className="mt-10 text-xl">
               <p className="font-semibold font-inter">
                 {/* <TextAnimation1 animeStart="90%" duration=".5"> */}
                   Still Seeking help?

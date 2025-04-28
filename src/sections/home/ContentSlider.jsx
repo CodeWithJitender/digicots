@@ -381,9 +381,9 @@ const ContentSlider = () => {
   }, [cleanupAnimations]);
 
   return (
-    <div ref={containerRef} className="bg-white relative z-[2]">
-      <div className="container-xxl">
-        <div ref={headingRef}>
+    <div ref={containerRef} className="bg-white relative z-[2]  py-10 md:py-24">
+      <div className="">
+        <div ref={headingRef} className="max-w-[1400px] m-auto px-5">
           <HeadingWithLink
             head="SOLUTIONS"
             per="The Alpha’s Guide to Absolute Domination"
@@ -392,10 +392,10 @@ const ContentSlider = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col lg:flex-col-reverse max-w-[1600px] mx-auto px-5 md:px-10 py-20">
+      <div className="flex flex-col lg:flex-col-reverse  mx-auto ">
         {/* Thumbnails */}
-        <div className="slider-thumb mb-10" ref={thumbRef}>
-          <Slider {...thumbSettings}>
+        <div className="slider-thumb" ref={thumbRef}>
+          <Slider {...thumbSettings} className="">
             {contentData.map((item, index) => (
               <div key={`thumb-${index}`} className="px-2">
                 <div className="border-2 border-[#ED510C] rounded-lg overflow-hidden cursor-pointer">
@@ -411,7 +411,7 @@ const ContentSlider = () => {
           </Slider>
         </div>
 
-        <div className="md:col-start-2 md:col-span-2">
+        <div className="md:col-start-2 md:col-span-2 max-w-[1600px] w-full mx-auto px-5">
           <Slider {...mainSettings}>
             {contentData.map((data, index) => (
               <div key={`main-${index}`}>

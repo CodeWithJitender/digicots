@@ -209,7 +209,7 @@ const OurJourney = () => {
   }, [parentRef.current]);
 
   return (
-    <div className="relative w-full z-[3]">
+    <div className="relative w-full z-[3] container-xxl">
       <section
         ref={parentRef}
         className="our-journey sticky top-0 py-10 overflow-hidden"
@@ -283,7 +283,7 @@ const OurJourney = () => {
                       className="h-full w-full object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-[80%] max-h-[100%] overflow-hidden bg-white rounded-md md:p-3 p-1 text-center">
+                    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-[80%] max-h-[100%] overflow-hidden text-white rounded-md md:p-3 p-1 text-center bg-[#20202053] backdrop-blur-sm">
                       <p className="text-[1.1vw] md:text-[.8vw] leading-[1.3vw]">
                         {card.pera}
                       </p>

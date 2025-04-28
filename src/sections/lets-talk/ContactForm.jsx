@@ -345,11 +345,6 @@ const ContactForm = () => {
         >
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
-          <input
-            type="hidden"
-            name="_next"
-            value="http://localhost:5173/?success=true"
-          />
           {/* Let’s Talk Dominance */}
           {activeTab === "dominance" && (
             <>

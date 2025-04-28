@@ -305,7 +305,7 @@ const HowItWorks = () => {
                       />
                     </div>
                     <div className="wolf-text grid gap-1">
-                      <h6
+                      {/* <h6
                         className="font-bold"
                         style={{
                           color: dataChild.h_color,
@@ -313,7 +313,7 @@ const HowItWorks = () => {
                         }}
                       >
                         {dataChild.h1}
-                      </h6>
+                      </h6> */}
                       <h4
                         className="font-semibold text-white"
                         style={{ fontSize: "clamp(16px, 20vw, 24px)" }}

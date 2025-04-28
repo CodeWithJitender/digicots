@@ -442,15 +442,18 @@ const Scene = () => {
           </div>
         </div>
 
-        <div className="h-full w-full absolute top-0 z-[1]">
+        <div className="h-full w-full absolute top-0 ms-20 z-[1]">
           <div className="absolute flex flex-col top-[40%] left-1/2 md:left-[60%] w-[65vw] md:w-[45vw] -translate-x-1/2">
             <div
               ref={(el) => (scrollMoreRef.current[0] = el)}
               className="overflow-hidden md:text-[4vw] text-[6vw] h-[6.7vw] md:h-[4.7vw]  text-sm text-white text-left leading-none "
             >
               <span className="inline-block font-bold font-inter">
+                The hunt begins
+              </span>
+              {/* <span className="inline-block font-bold font-inter">
                 The
-                <span className="inline-block font-bold font-mrs-saint-delafield-regular ms-2 me-4 md:ms-3 md:me-7">
+                <span className="inline-block font-bold  ms-2 me-4 md:ms-3 md:me-7">
                   {" "}
                   hunt{" "}
                 </span>
@@ -458,19 +461,22 @@ const Scene = () => {
                   {" "}
                   begins
                 </span>
-              </span>
+              </span> */}
             </div>
             <div
               ref={(el) => (scrollMoreRef.current[1] = el)}
               className=" overflow-hidden md:text-[4vw] text-[6vw] h-[6.7vw] md:h-[4.7vw]  text-sm text-white text-right leading-none "
             >
-              <span className="inline-block font-bold font-inter md:ml-20 ml-[8vw]">
+              {/* <span className="inline-block font-bold font-inter md:ml-20 ml-[8vw]">
                 where the{" "}
               <span className="inline-block font-bold font-mrs-saint-delafield-regular ms-2 me-4 md:ms-3 md:me-7">
                 {" "}
                 limit{" "}
               </span>
               <span className="inline-block font-bold font-inter"> ends</span>
+              </span> */}
+              <span className="inline-block font-bold font-inter md:ml-20 ml-[8vw]">
+                where the limit ends
               </span>
             </div>
           </div>
