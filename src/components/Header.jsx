@@ -362,20 +362,10 @@ function Header({ location }) {
               <li>
                 <Link
                   onClick={() => setToggle((togg) => !togg)}
-                  to="/our-work"
+                  to="/things-we-do"
                   className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                 >
-                  <div className="link-t"> Work </div>
-                  <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  onClick={() => setToggle((togg) => !togg)}
-                  to="/insights"
-                  className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
-                >
-                  <div className="link-t"> Insight </div>
+                  <div className="link-t"> Things We Do </div>
                   <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
                 </Link>
               </li>
@@ -391,6 +381,27 @@ function Header({ location }) {
               </li>
               <li>
                 <Link
+                  onClick={() => setToggle((togg) => !togg)}
+                  to="/case-study"
+                  className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
+                >
+                  <div className="link-t"> Case Studies</div>
+                  <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => setToggle((togg) => !togg)}
+                  to="/insights"
+                  className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
+                >
+                  <div className="link-t"> Insight </div>
+                  <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
+                </Link>
+              </li>
+              
+              <li>
+                <Link
                   className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                   onClick={() => setSubMenu((togg) => !togg)}
                 >
@@ -404,16 +415,7 @@ function Header({ location }) {
                   <i className="fal fa-chevron-right text-white ml-3"></i>
                 </Link>
               </li>
-              <li>
-                <Link
-                  onClick={() => setToggle((togg) => !togg)}
-                  to="/case-study"
-                  className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
-                >
-                  <div className="link-t"> Case Studies</div>
-                  <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
-                </Link>
-              </li>
+              
             </ul>
             <div className="contact-btn">
               <Link
