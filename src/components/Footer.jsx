@@ -239,7 +239,7 @@ export default function Footer({popActive,setPopActive}) {
                 />
               </motion.div>
               <motion.button
-                className="md:col-span-2 p-4 sm:p-5  font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#DF782B] text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[14px] before:bg-white before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full hidden lg:flex px-5 py-2 cursor-pointer"
+                className="md:col-span-2 p-4 sm:p-5 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#DF782B] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[15px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full hidden lg:flex px-5 py-2 cursor-pointer"
                 variants={childVariants}
               >
                 <div className="relative z-[11]">{loading ? "Submitting..." : "Let's Talk about the Future"}</div>

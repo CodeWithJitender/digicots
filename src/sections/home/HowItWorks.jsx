@@ -306,7 +306,7 @@ const HowItWorks = () => {
                       />
                     </div>
                     <div className="wolf-text grid gap-1">
-                      <h6
+                      {/* <h6
                         className="font-bold"
                         style={{
                           color: dataChild.h_color,
@@ -314,7 +314,7 @@ const HowItWorks = () => {
                         }}
                       >
                         {dataChild.h1}
-                      </h6>
+                      </h6> */}
                       <h4
                         className="font-semibold text-white"
                         style={{ fontSize: "clamp(16px, 20vw, 24px)" }}
@@ -333,9 +333,9 @@ const HowItWorks = () => {
                   <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-[.9vw] leading-[1.1vw] text-white">
                    <div className="h-full flex items-center">
                    <div className="md:ml-6 mt-4 md:mt-0">
-                      <p className="font-inter text-sm text-black font-bold uppercase">
+                      {/* <p className="font-inter text-sm text-black font-bold uppercase">
                         {dataChild.step}
-                      </p>
+                      </p> */}
                       <h3 className="font-inter text-2xl font-bold">
                         {dataChild.heading}
                       </h3>

@@ -415,7 +415,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
           <img
             src={slide.image}
             alt={slide.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full "
           />
         </div>
       </div>
