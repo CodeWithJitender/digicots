@@ -290,7 +290,7 @@ const HowItWorks = () => {
                   ref={(el) => (cardRefs.current[index] = el)}
                   className="wolf-card absolute md:static p-4 rounded-2xl shadow-lg border-8 border-[#FFFFFF4D]"
                   style={{
-                    background: dataChild.bg_Color,
+                    background: '#2A2A2A',
                     top: window.innerWidth > 600 ? 0 : index * 5 + "%",
                   }}
                   onClick={() => window.innerWidth > 600 && handleClick(index)}
@@ -322,7 +322,7 @@ const HowItWorks = () => {
                       </h4>
                       <p
                         className=" text-[#EAEAEA]"
-                        style={{ fontSize: "clamp(10px, 15vw, 12px)" }}
+                        style={{ fontSize: "clamp(12px, 20vw, 14px)" }}
                       >
                         {dataChild.p}
                       </p>
@@ -332,16 +332,16 @@ const HowItWorks = () => {
                   <div className="flipped-text absolute top-0 left-0 right-0 h-full w-full rotate-y-180 opacity-0 p-3 text-[.9vw] leading-[1.1vw] text-white">
                    <div className="h-full flex items-center">
                    <div className="md:ml-6 mt-4 md:mt-0">
-                      <p className="font-inter md:text-[1vw] text-xs  text-black font-bold uppercase">
+                      {/* <p className="font-inter md:text-[1vw] text-xs  text-black font-bold uppercase">
                         {dataChild.step}
-                      </p>
-                      <h3 className="font-inter md:text-[1.5vw] text-sm font-bold">
+                      </p> */}
+                      <h3 className="font-inter md:text-[1.4vw] text-sm font-bold">
                         {dataChild.heading}
                       </h3>
-                      <p className="font-inter mt-1 font-semibold md:text-[1vw] text-xs ">
+                      <p className="font-inter mt-1 font-semibold md:text-[.95vw] text-xs ">
                         {dataChild.pera}
                       </p>
-                      <ul className="font-inter mt-2 list-disc list-inside md:text-[1vw] text-xs ">
+                      <ul className="font-inter mt-2 list-disc list-inside md:text-[.95vw] text-xs ">
                         {dataChild.list.map((item, index) => (
                           // <li key={index}><span>{item}</span></li>
                           <div key={index} className="flex gap-2"><i class="fas fa-circle mt-2 md:text-[8px]"></i> {item}</div>

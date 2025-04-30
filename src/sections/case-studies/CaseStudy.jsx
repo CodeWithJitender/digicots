@@ -98,7 +98,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
               </div>
             ))}
 
-            {/* Tags */}
+            {/* Tags
             <div className="flex gap-3 flex-wrap mt-6 px-4">
               {slide.tags.map((text, index) => (
                 <span
@@ -108,12 +108,12 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
                   {text}
                 </span>
               ))}
-            </div>
+            </div> */}
 
             {/* Footer Navigation */}
             <div className="h-0.5 bg-[#CECECE] my-5"></div>
             <div className="next flex justify-between items-center p-4 pt-0">
-              <p className="font-medium text-sm font-inter">
+              <p className="font-medium text-sm font-inter opacity-0">
                 Another Project Name here
               </p>
               <Link

@@ -383,7 +383,7 @@ const ContentSlider = () => {
   return (
     <div ref={containerRef} className="bg-white relative z-[2]  py-10 md:py-24">
       <div className="">
-        <div ref={headingRef} className="max-w-[1400px] m-auto px-5">
+        <div ref={headingRef} className="max-w-[1600px] m-auto px-5">
           <HeadingWithLink
             head="SOLUTIONS"
             per="The Alpha’s Guide to Absolute Domination"

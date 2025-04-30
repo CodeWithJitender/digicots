@@ -53,7 +53,7 @@
 }
 
 .container-xxl {
-    @apply max-w-[1400px] m-auto px-5 py-10 md:py-[6vh];
+    @apply max-w-[1600px] m-auto px-5 py-10 md:py-[6vh];
 }
 
 .container-xl {
