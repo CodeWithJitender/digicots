@@ -270,7 +270,7 @@ function Solutions() {
                         className="font-semibold text-white block"
                       >
                         {d.btn}{" "}
-                        <i className="fal fa-arrow-up rotate-45 text-[#DF782B] ml-2" />
+                        <i className="fal fa-arrow-up rotate-45 text-[#ED510C] ml-2" />
                       </Link>
                     </div>
                   </div>

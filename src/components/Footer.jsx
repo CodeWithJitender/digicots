@@ -122,7 +122,7 @@ export default function Footer({popActive,setPopActive}) {
       }
 
       const response = await fetch(
-        "https://formsubmit.co/ajax/jitender@digicots.com",
+        "https://formsubmit.co/ajax/Dominance@digicots.com",
         {
           method: "POST",
           headers: {
@@ -239,7 +239,7 @@ export default function Footer({popActive,setPopActive}) {
                 />
               </motion.div>
               <motion.button
-                className="md:col-span-2 p-4 sm:p-5 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#DF782B] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[15px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full hidden lg:flex px-5 py-2 cursor-pointer"
+                className="md:col-span-2 p-4 sm:p-5 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[15px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full hidden lg:flex px-5 py-2 cursor-pointer"
                 variants={childVariants}
               >
                 <div className="relative z-[11]">{loading ? "Submitting..." : "Let's Talk about the Future"}</div>
@@ -269,7 +269,7 @@ export default function Footer({popActive,setPopActive}) {
           {/* Branding */}
           <div className="flex flex-col items-center md:items-start col-span-2 md:col-span-1">
             <motion.h3
-              className="text-4xl font-bold text-[#DF782B]"
+              className="text-4xl font-bold text-[#ED510C]"
               variants={childVariants}
             >
               <Link to={"/"}>
@@ -471,7 +471,7 @@ export default function Footer({popActive,setPopActive}) {
           <div>
             <p className="text-center sm:text-start">
               Designed by{" "}
-              <a href="#" className="text-[#DF782B]">
+              <a href="#" className="text-[#ED510C]">
                 Team Digicots
               </a>
             </p>

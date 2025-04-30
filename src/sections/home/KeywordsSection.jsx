@@ -34,72 +34,72 @@ function KeywordsSection() {
         <div className="md:h-[60px] absolute top-0  h-[40px]  overflow-hidden">
           <div className="whitespace-nowrap animate-marquee flex items-center gap-6 text-[#DF792A] font-bold text-2xl md:text-5xl pb-10">
           <span>Insatiable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Unbreakable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Instinctive</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Hunger</span>
           {/* Duplicate for smooth loop */}
           <span>Allegiance</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Mastery</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           
           <span>Insatiable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Unbreakable</span>
           {/* Duplicate for smooth loop */}
           <span>Instinctive</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Hunger</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Allegiance</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Mastery</span>
           {/* Duplicate for smooth loop */}
           <span>Insatiable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Unbreakable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Instinctive</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Hunger</span>
           </div>
         </div>
         <div className="md:h-[60px] absolute md:top-[30px] h-[40px] top-[20px] z-[2]  overflow-hidden">
           <div className="relative top-[-50%]  whitespace-nowrap animate-marquee flex items-center gap-6 text-[#fff] font-bold text-2xl md:text-5xl pb-10">
           <span>Insatiable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Unbreakable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Instinctive</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Hunger</span>
           {/* Duplicate for smooth loop */}
           <span>Allegiance</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Mastery</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           
           <span>Insatiable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Unbreakable</span>
           {/* Duplicate for smooth loop */}
           <span>Instinctive</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Hunger</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Allegiance</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Mastery</span>
           {/* Duplicate for smooth loop */}
           <span>Insatiable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Unbreakable</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Instinctive</span>
-          <span className="text-[#DF782B]">•</span>
+          <span className="text-[#ED510C]">•</span>
           <span>Hunger</span>
           </div>
         </div>

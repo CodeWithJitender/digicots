@@ -342,7 +342,7 @@ function AllService() {
           >
             {/* Left Side - Image and Title */}
             <div className="service-img">
-              <h5 className="font-normal text-sm text-[#DF782B] font-inter">
+              <h5 className="font-normal text-sm text-[#ED510C] font-inter">
                 SOLUTION {index + 1}
               </h5>
               <h2 className="font-black text-4xl md:text-6xl text-black font-inter">

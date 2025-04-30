@@ -317,7 +317,7 @@ const ContactForm = () => {
           {/* Indicator */}
           <div
             ref={indicatorRef}
-            className="absolute left-0 xl:h-[66%] h-[calc(100%_-_24px)] bg-[#DF782B] rounded-md transition-all duration-300"
+            className="absolute left-0 xl:h-[66%] h-[calc(100%_-_24px)] bg-[#ED510C] rounded-md transition-all duration-300"
           ></div>
 
           {["dominance", "help", "pack"].map((tab, index) => (
@@ -340,7 +340,7 @@ const ContactForm = () => {
         <form
           className="mt-6 space-y-4"
           onSubmit={handleSubmit}
-          action="https://formsubmit.co/jitender@digicots.com"
+          action="https://formsubmit.co/Dominance@digicots.com"
           method="POST"
         >
           <input type="hidden" name="_captcha" value="false" />
@@ -514,7 +514,7 @@ const ContactForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full p-4  font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#DF782B] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[14px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full hidden lg:flex cursor-pointer"
+            className="w-full p-4  font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[14px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full hidden lg:flex cursor-pointer"
             disabled={loading}
           >
             <div className="relative z-[11]">

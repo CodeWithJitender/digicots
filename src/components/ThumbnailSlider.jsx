@@ -145,7 +145,7 @@ export default function ThumbnailSlider() {
 
                   {/* Slide Content */}
                   <div className="absolute bottom-6 left-6 flex flex-col justify-between items-start h-[90%] text-white">
-                    <button className="bg-[#DF782B] px-4 py-2 rounded-full text-sm font-bold">
+                    <button className="bg-[#ED510C] px-4 py-2 rounded-full text-sm font-bold">
                       Featured
                     </button>
                     <div className="">

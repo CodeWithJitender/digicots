@@ -15,8 +15,8 @@ function Member({ member , ref }) {
           className=" h-full transition-[.5s]"
         />
       </div>
-      {/* <div className="member-text absolute translate-[-50%] left-[50%] bg-[#DF782B] rounded-2xl p-2 text-center">
-        <i className="fas fa-triangle absolute translate-y-[-20px] translate-x-[-50%] text-[#DF782B]"></i>
+      {/* <div className="member-text absolute translate-[-50%] left-[50%] bg-[#ED510C] rounded-2xl p-2 text-center">
+        <i className="fas fa-triangle absolute translate-y-[-20px] translate-x-[-50%] text-[#ED510C]"></i>
         <h4 className="text-2xl text-white font-bold">{member.name}</h4>
         <p className="text-sm text-white">({member.designation})</p>
       </div> */}

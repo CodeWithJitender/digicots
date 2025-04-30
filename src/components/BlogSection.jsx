@@ -118,7 +118,7 @@ export default function BlogSection() {
       setCurrentImg(POSTS[index].img);
       setHoveredIndex(index);
       gsap.to(hoverDivRefs.current[index].querySelector(".post-title"), {
-        color: "#DF782B",
+        color: "#ED510C",
       });
     };
 

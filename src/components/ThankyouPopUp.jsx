@@ -28,7 +28,7 @@ export default function ThankyouPopUp({ popActive, onClose }) {
             </button>
 
             {/* Thank You Heading */}
-            <h1 className="text-4xl md:text-6xl font-extrabold bg-clip-text bg-gradient-to-r flex items-center text-[#DF782B] mb-6 justify-center">
+            <h1 className="text-4xl md:text-6xl font-extrabold bg-clip-text bg-gradient-to-r flex items-center text-[#ED510C] mb-6 justify-center">
               THANK Y
               <img
                 src="https://ik.imagekit.io/8mbzq2hdl/digicots/wolf.gif"
@@ -46,15 +46,15 @@ export default function ThankyouPopUp({ popActive, onClose }) {
 
             {/* Follow Us */}
             <div className="mt-6">
-              <p className="text-[#DF782B] font-semibold mb-4">Follow us on:</p>
+              <p className="text-[#ED510C] font-semibold mb-4">Follow us on:</p>
               <div className="flex justify-center space-x-4 text-xl">
-                <a href="#" className="hover:text-[#DF782B]">
+                <a href="#" className="hover:text-[#ED510C]">
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="#" className="hover:text-[#DF782B]">
+                <a href="#" className="hover:text-[#ED510C]">
                   <i className="fab fa-facebook"></i>
                 </a>
-                <a href="#" className="hover:text-[#DF782B]">
+                <a href="#" className="hover:text-[#ED510C]">
                   <i className="fab fa-linkedin"></i>
                 </a>
               </div>

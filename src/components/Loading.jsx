@@ -166,7 +166,7 @@ const Loading = () => {
             <div className="relative w-full mx-auto">
               <div className="h-[1px] bg-gray-700 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-[#DF782B] transition-all duration-300 ease-out"
+                  className="h-full bg-[#ED510C] transition-all duration-300 ease-out"
                   style={{ width: `${loadingProgress}%` }}
                 />
               </div>

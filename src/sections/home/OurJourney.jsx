@@ -188,7 +188,7 @@ const OurJourney = () => {
     });
 
     tl.to("body", {
-      backgroundColor: "#DF782B",
+      backgroundColor: "#ED510C",
       ease: "power1.inOut",
     });
 

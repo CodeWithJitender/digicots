@@ -89,7 +89,7 @@ const Faq = () => {
                   className="overflow-hidden"
                 >
                   your questions 
-                <span className="text-[#DF782B] inline-block relative">.</span>
+                <span className="text-[#ED510C] inline-block relative">.</span>
                 </TextAnimation1>
               </h2>
             </div>
@@ -101,7 +101,7 @@ const Faq = () => {
               </p>
               <Link
                 to="/contact"
-                className="text-[#DF782B] font-semibold font-inter"
+                className="text-[#ED510C] font-semibold font-inter"
               >
                 {/* <TextAnimation1 animeStart="90%" duration=".5"> */}
                   Contact Our Representative.

@@ -327,14 +327,14 @@ function Header({ location }) {
             </div>
             <div className=" flex gap-4">
               <Link
-                className="font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-[#DF782B] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2"
+                className="font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2"
                 to="/contact"
               >
                 <span class="relative z-10">Let's Talk</span>
               </Link>
 
               <div
-                className="desk-menu-btn font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#DF782B] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hover:text-white hidden lg:flex px-5 py-2 cursor-pointer"
+                className="desk-menu-btn font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#ED510C] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hover:text-white hidden lg:flex px-5 py-2 cursor-pointer"
                 onClick={() => setDeskToggle((prev) => !prev)}
               >
                 <div className="relative z-10">
@@ -363,7 +363,7 @@ function Header({ location }) {
                 <Link
                   onClick={() => setToggle((togg) => !togg)}
                   to="/things-we-do"
-                  className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
+                  className="flex justify-between hover:text-[#ED510C] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                 >
                   <div className="link-t"> Things We Do </div>
                   <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
@@ -373,7 +373,7 @@ function Header({ location }) {
                 <Link
                   onClick={() => setToggle((togg) => !togg)}
                   to="/about"
-                  className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
+                  className="flex justify-between hover:text-[#ED510C] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                 >
                   <div className="link-t"> About Us </div>
                   <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
@@ -383,7 +383,7 @@ function Header({ location }) {
                 <Link
                   onClick={() => setToggle((togg) => !togg)}
                   to="/case-study"
-                  className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
+                  className="flex justify-between hover:text-[#ED510C] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                 >
                   <div className="link-t"> Case Studies</div>
                   <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
@@ -393,7 +393,7 @@ function Header({ location }) {
                 <Link
                   onClick={() => setToggle((togg) => !togg)}
                   to="/insights"
-                  className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
+                  className="flex justify-between hover:text-[#ED510C] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                 >
                   <div className="link-t"> Insight </div>
                   <i className="fal fa-arrow-up rotate-45 text-white ml-3"></i>
@@ -402,7 +402,7 @@ function Header({ location }) {
               
               <li>
                 <Link
-                  className="flex justify-between hover:text-[#DF782B] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
+                  className="flex justify-between hover:text-[#ED510C] transition-[.5s] py-4 font-bold text-white text-2xl font-inter"
                   onClick={() => setSubMenu((togg) => !togg)}
                 >
                   <div className="link-t">
@@ -553,7 +553,7 @@ function Header({ location }) {
         <div className="header-right w-[70%] h-screen bg-[#141414] py-10 px-20">
           <div className="relative flex justify-end">
             <div
-              className="desk-menu-btn cursor-pointer font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#DF782B] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2 gap-2"
+              className="desk-menu-btn cursor-pointer font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#ED510C] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2 gap-2"
               onClick={() => setDeskToggle(false)}
             >
               <div className="relative z-10">
