@@ -203,13 +203,13 @@ export default function BlogModal({ isOpen, onClose, post }) {
             </div>
             <div className="w-full h-[100%] flex justify-center items-center">
               <div className="blogmodal-img max-w-[650px] w-full h-full">
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden">
                   {post.imgArr.map((img, i) => (
                     <img
                       key={i}
                       ref={(el) => (imgRef.current[i] = el)}
                       src={img}
-                      className="overflow-hidden absolute scale-[1.1] w-[90vw] md:w-[400px] -translate-x-1/2 top-0 left-[200%] h-[75vh] md:[80vh] object-cover rounded-lg"
+                      className="overflow-hidden absolute scale-[1.1] w-[90vw] md:w-[400px] -translate-x-1/2 top-0 left-[200%] h-[75vh] md:[80vh] object-contain rounded-2xl"
                       style={{ left: i === 0 && "50%", scale: i === 0 && 1 }}
                       alt=""
                     />
