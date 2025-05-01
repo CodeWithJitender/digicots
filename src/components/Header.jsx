@@ -421,7 +421,7 @@ function Header({ location }) {
               <Link
                 onClick={() => setToggle((togg) => !togg)}
                 className="bg-[#ED510C] block text-center rounded-[8px] font-bold text-white text-[14px] font-inter p-3  lg:p-5"
-                to="/"
+                to="/contact"
               >
                 Let's Talk
               </Link>

@@ -115,7 +115,7 @@ export default function ThumbnailSlider() {
         transition={{ duration: 1.5, ease: "easeInOut" }}
       >
         <div className="insight-slider container-xxl">
-          <div className="relative w-full max-w-[1200px] mx-auto">
+          <div className="relative w-full max-w-[1600px] mx-auto">
             {/* Swiper Slider */}
             <Swiper
               modules={[Navigation, Autoplay]}

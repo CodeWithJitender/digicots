@@ -294,7 +294,7 @@ function Insights() {
               </Link> */}
               <div className="flex items-center w-full justify-center">
                 <Link
-                  className="font-bold rounded-[50px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2"
+                  className="font-bold rounded-[50px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 flex px-5 py-2"
                   to="/insights"
                 >
                   <span class="relative z-10">

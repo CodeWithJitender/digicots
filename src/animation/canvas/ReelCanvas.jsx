@@ -442,7 +442,7 @@ const Scene = () => {
           </div>
         </div>
 
-        <div className="h-full w-full absolute top-0 ms-20 z-[1]">
+        <div className="h-full w-full absolute top-0 md:ms-20 z-[1]">
           <div className="absolute flex flex-col top-[40%] left-1/2 md:left-[60%] w-[65vw] md:w-[45vw] -translate-x-1/2">
             <div
               ref={(el) => (scrollMoreRef.current[0] = el)}

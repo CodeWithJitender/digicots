@@ -331,6 +331,13 @@ header .dropdown {
   height: 50vh;
 }
 
+@media screen and (max-width:568px) {
+  .wrapper {
+    height: 20vh;
+}
+  
+}
+
 .items{
   display: flex;
   gap: 0.4rem;
@@ -445,6 +452,11 @@ transform: translateZ(calc(var(--index) * 10));
 }
 .solution-box:hover .text-stroke{
   -webkit-text-fill-color:#ed510c; /* Will override color (regardless of order) */
+}
+@media screen and (max-width:576px) {
+  .solution-box .text-stroke{
+    -webkit-text-fill-color:#ed510c !important; /* Will override color (regardless of order) */
+  }
 }
 .solution-main,
 .solution-tag{

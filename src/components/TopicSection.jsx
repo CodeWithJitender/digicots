@@ -89,7 +89,7 @@ export default function TopicSection() {
   return (
     <>
       <section className=" text-white  px-6 ">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           {/* Header Section
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold">Topic</h2>

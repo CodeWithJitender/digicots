@@ -36,7 +36,7 @@ const socialIconVariants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-export default function Footer({popActive,setPopActive}) {
+export default function Footer({ popActive, setPopActive }) {
   const footerRef = useRef(null);
   const isInView = useInView(footerRef, { once: true, amount: 0.2 }); // Trigger when 20% visible
   const initFormData = {
@@ -45,7 +45,7 @@ export default function Footer({popActive,setPopActive}) {
     email: "",
     // countryCode: "",
     Contact_Number: "",
-  }
+  };
 
   const [formData, setFormData] = useState(initFormData);
 
@@ -140,7 +140,7 @@ export default function Footer({popActive,setPopActive}) {
       const result = await response.json();
       if (result) {
         setPopActive(true);
-        setFormData(initFormData)
+        setFormData(initFormData);
       }
     } catch (err) {
       setMessage("❌ Error: " + err.message);
@@ -154,7 +154,7 @@ export default function Footer({popActive,setPopActive}) {
       ref={footerRef}
       className="bg-black backdrop-blur-xl text-white py-16 px-6 relative z-[999] overflow-hidden"
     >
-      <div className="container mx-auto max-w-7xl">
+      <div className="container mx-auto max-w-[1600px]">
         {/* Top Section - Join the Pack */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           {/* Left - Text */}
@@ -187,8 +187,13 @@ export default function Footer({popActive,setPopActive}) {
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
               <motion.input
-                 value={formData.Full_Name}
-                 onChange={(e) => setFormData(prev => ({ ...prev, Full_Name: e.target.value }))}
+                value={formData.Full_Name}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    Full_Name: e.target.value,
+                  }))
+                }
                 type="text"
                 placeholder="Full Name"
                 className="bg-[#3A3A3A]  p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white"
@@ -196,8 +201,13 @@ export default function Footer({popActive,setPopActive}) {
                 variants={childVariants}
               />
               <motion.input
-                  value={formData.Company_Name}
-                  onChange={(e) => setFormData(prev => ({ ...prev, Company_Name: e.target.value }))}
+                value={formData.Company_Name}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    Company_Name: e.target.value,
+                  }))
+                }
                 type="text"
                 placeholder="Company Name"
                 className="bg-[#3A3A3A] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white"
@@ -242,7 +252,9 @@ export default function Footer({popActive,setPopActive}) {
                 className="md:col-span-2 p-4 sm:p-5 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[15px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full flex px-5 py-2 cursor-pointer"
                 variants={childVariants}
               >
-                <div className="relative z-[11]">{loading ? "Submitting..." : "Let's Talk about the Future"}</div>
+                <div className="relative z-[11]">
+                  {loading ? "Submitting..." : "Let's Talk about the Future"}
+                </div>
               </motion.button>
             </form>
             {message && (
@@ -322,15 +334,11 @@ export default function Footer({popActive,setPopActive}) {
           >
             <h4 className="text-lg font-semibold">India</h4>
             <p className="text-gray-400 mt-2">
-              At Digicots, we are a group of seasoned marketers who guide
-              businesses that dare to be different through the ever-changing
-              market landscape. We craft systems tailored to your specific
-              business goals by leveraging a blend of creativity, strategy and
-              statistics. Our data-driven approach helps us juggle calculated
-              risk and bold innovation in order to deliver quantifiable results
-              that speak for themselves.
+              <a href="">
+                B 73, Block B, Sector 57 <br /> Noida, Uttar Pradesh, India
+              </a>
             </p>
-            <p className="mt-2 font-semibold">+91 987 987 5632</p>
+            <p className="mt-2 font-semibold text-gray-400">+91 987 987 5632</p>
           </motion.div>
 
           {/* Links */}
@@ -338,46 +346,6 @@ export default function Footer({popActive,setPopActive}) {
             className="flex sm:justify-end gap-5 md:gap-10 lg:gap-20  md:justify-around md:text-left"
             variants={containerVariants}
           >
-            {["Quick Links"].map((header, idx) => (
-              <div key={idx}>
-                <motion.h4 className="font-semibold" variants={childVariants}>
-                  {header}
-                </motion.h4>
-                <motion.ul
-                  className="text-gray-400 mt-2 space-y-1"
-                  variants={containerVariants}
-                >
-                  {[
-                    {
-                      title: "About Us",
-                      id: "about",
-                    },
-                    {
-                      title: "Insights",
-                      id: "insights",
-                    },
-                    {
-                      title: "Things We Do",
-                      id: "things-we-do",
-                    },
-                    {
-                      title: "Case Study",
-                      id: "case-study",
-                    },
-                    {
-                      title: "Let's Talk",
-                      id: "contact",
-                    },
-                  ].map((link, i) => (
-                    <motion.li key={i} variants={childVariants}>
-                      <Link to={`/${link.id}`} className="hover:text-white">
-                        {link.title}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </div>
-            ))}
             {["Services"].map((header, idx) => (
               <div key={idx}>
                 <motion.h4 className="font-semibold" variants={childVariants}>
@@ -458,6 +426,47 @@ export default function Footer({popActive,setPopActive}) {
                 </motion.ul>
               </div>
             ))}
+
+            {["Quick Links"].map((header, idx) => (
+              <div key={idx}>
+                <motion.h4 className="font-semibold" variants={childVariants}>
+                  {header}
+                </motion.h4>
+                <motion.ul
+                  className="text-gray-400 mt-2 space-y-1"
+                  variants={containerVariants}
+                >
+                  {[
+                    {
+                      title: "About Us",
+                      id: "about",
+                    },
+                    {
+                      title: "Insights",
+                      id: "insights",
+                    },
+                    {
+                      title: "Things We Do",
+                      id: "things-we-do",
+                    },
+                    {
+                      title: "Case Study",
+                      id: "case-study",
+                    },
+                    {
+                      title: "Let's Talk",
+                      id: "contact",
+                    },
+                  ].map((link, i) => (
+                    <motion.li key={i} variants={childVariants}>
+                      <Link to={`/${link.id}`} className="hover:text-white">
+                        {link.title}
+                      </Link>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
 
@@ -475,7 +484,7 @@ export default function Footer({popActive,setPopActive}) {
                 Team Digicots
               </a>
             </p>
-            <p className="mt-1">Auuuuu... Created Proudly in India</p>
+            <p className="mt-1 text-center sm:text-start">Created Proudly in India</p>
           </div>
           <div className="text-center sm:text-end">
             <p className="mt-1">
@@ -484,7 +493,6 @@ export default function Footer({popActive,setPopActive}) {
           </div>
         </motion.div>
       </div>
-      
     </footer>
   );
 }

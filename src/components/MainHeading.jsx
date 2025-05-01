@@ -4,7 +4,7 @@ import TextAnimation2 from "../animation/text/TextAnimation2";
 
 function MainHeading({ heading, pera, cl, tColor,animeStart="50", animeEnd="60" }) {
   return (
-    <div className="pb-5">
+    <div className="pb-5 px-5">
       <div className={`main-heading m-auto ${cl}`}>
           <h2
             className={`${tColor} font-bold overflow-hidden font-inter mb-[.5vh]`}

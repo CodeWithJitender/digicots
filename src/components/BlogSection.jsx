@@ -219,7 +219,7 @@ export default function BlogSection() {
   return (
     <>
       <section ref={mainImgRef} className="text-white py-12 px-6 md:px-12">
-        <div className="max-w-6xl relative mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div className="max-w-[1600px] relative mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div className="relative order-2 md:order-1">
             {POSTS.slice(0, -1).map((post, index) => (
               <div
