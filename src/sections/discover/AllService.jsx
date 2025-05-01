@@ -288,7 +288,7 @@ function AllService() {
       scrollTrigger: {
         trigger: ".services", // Trigger element
         start: "top 40%", // Start when top of .services is 80% from viewport top
-        end: "top -1000%", // Extended end point for full animation
+        end: "top -1400%", // Extended end point for full animation
         scrub: 1, // Smooth scrubbing (adjustable)
         // // // markers: true, // Debugging // // markers (remove in production)
       },
@@ -300,7 +300,7 @@ function AllService() {
         y: "130%", // Slide in from below
         ease: "power3.inOut",
         duration: 5, // Duration of the slide-in
-        stagger: 6.5, // Stagger between service elements,
+        stagger: 8.5, // Stagger between service elements,
       },
       "a"
     )
@@ -309,9 +309,9 @@ function AllService() {
         {
           scrollTop: (i, target) => target.scrollHeight - target.clientHeight, // Scroll to bottom
           ease: "power2.out", // Smooth scrolling ease
-          duration: 6, // Scroll duration
-          stagger: 6.4, // Stagger scrolling of containers (optional)
-          delay: 4.4,
+          duration: 5.5, // Scroll duration
+          stagger: 8.4, // Stagger scrolling of containers (optional)
+          delay: 5.4,
         },
         "a"
       ) // Start 1s after "a" for sync
@@ -324,14 +324,14 @@ function AllService() {
           ease: "power3.inOut",
           duration: 5, // Duration of scale animation
           delay: 2, // Delay after scroll
-          stagger: 6.4, // Stagger between service elements
+          stagger: 9, // Stagger between service elements
         },
         "a"
       ); // Start 3s after "a" for sync
   }, [serviceRef.current, scrollContainerRef.current]); // Dependencies
 
   return (
-    <section className="relative min-h-[1100vh]">
+    <section className="relative min-h-[1500vh]">
       <div className="services sticky top-0 min-h-screen w-full  ">
         {Object.entries(data).map(([title, service], index) => (
           <div

@@ -64,6 +64,12 @@ const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
   uniform float uTime;
   uniform float uOpacity;
 
+  // Function to create rounded rectangle mask
+  float roundedBox(vec2 uv, vec2 size, float radius) {
+    vec2 q = abs(uv * size - size * 0.5) - size * 0.5 + radius;
+    return 1.0 - smoothstep(0.0, 0.01, length(max(q, 0.0)) - radius);
+  }
+
   void main() {
     // Sample the texture
     vec4 texColor = texture2D(uTexture, vec2(vUv.x, 1.0 - vUv.y));
@@ -85,14 +91,20 @@ const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
     float shimmer = sin(uTime * 7.0 + vUv.y * 2.0) * 0.1;
     shinyColor += shimmer;
 
-    // Apply opacity
+    // Apply rounded corners
+    float borderRadius = 0.1; // Adjust border radius here
+    vec2 size = vec2(2.2, 2.4); // Plane dimensions
+    float alpha = roundedBox(vUv, size, borderRadius);
+
+    // Combine texture color, shine, and rounded alpha
     texColor.rgb = shinyColor;
-    texColor.a *= uOpacity;
+    texColor.a = texColor.a * uOpacity * alpha;
 
     // Output the final color
     gl_FragColor = texColor;
   }
 `;
+
   const materialRef = useRef();
 
   return (
@@ -116,7 +128,7 @@ const Card1 = ({ position, rotation, texture, cardRef, onClick }) => {
         }}
         vertexShader={vertexShader1}
         fragmentShader={fragmentShader1}
-        // transparent={true} // Enable transparency
+        transparent={true} // Enable transparency for rounded corners
       />
     </mesh>
   );
@@ -366,7 +378,7 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
     const handleTouchMove = (e) => {
       const touchY = e.touches[0].clientY;
       const deltaY = touchStartY.current - touchY; // Positive = scroll up, Negative = scroll down
-      animateScroll(deltaY * 0.5); // Multiply to match wheel sensitivity
+      animateScroll(deltaY * 3); // Multiply to match wheel sensitivity
       touchStartY.current = touchY; // Update start position for smooth dragging
     };
 
