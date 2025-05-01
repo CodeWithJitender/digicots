@@ -8,6 +8,7 @@ import "lenis/dist/lenis.css";
 import gsap from "gsap";
 
 import AppContent from "./routes/AppRouter";
+import { LoadingProvider } from "./components/Loading";
 
 const LenisContext = createContext(null);
 export const useLenis = () => useContext(LenisContext);
@@ -46,7 +47,9 @@ function App() {
   return (
     <LenisContext.Provider value={lenis}>
       <Router>
+      <LoadingProvider>
         <AppContent /> {/* 👈 Now location and routing work correctly */}
+      </LoadingProvider>
       </Router>
     </LenisContext.Provider>
   );

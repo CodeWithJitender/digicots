@@ -1,10 +1,118 @@
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef, Suspense } from "react";
+import { useLocation } from "react-router-dom";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Loading Context with Progress Tracking
+const LoadingContext = createContext({
+  registerComponent: () => {},
+  unregisterComponent: () => {},
+  updateProgress: () => {},
+  isPageLoaded: false,
+  totalProgress: 0,
+});
+
+export const LoadingProvider = ({ children }) => {
+  const [loadingComponents, setLoadingComponents] = useState(new Map());
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [totalProgress, setTotalProgress] = useState(0);
+  const [animationComplete, setAnimationComplete] = useState(false); // New state for animation
+  const location = useLocation();
+
+  // Reset loading state on page navigation
+  useEffect(() => {
+    setLoadingComponents(new Map());
+    setIsPageLoaded(false);
+    setTotalProgress(0);
+    setAnimationComplete(false);
+  }, [location.pathname]);
+
+  const registerComponent = useCallback((componentId) => {
+    setLoadingComponents((prev) => {
+      const newMap = new Map(prev);
+      newMap.set(componentId, 0); // Initialize progress at 0%
+      return newMap;
+    });
+  }, []);
+
+  const unregisterComponent = useCallback((componentId) => {
+    setLoadingComponents((prev) => {
+      const newMap = new Map(prev);
+      newMap.delete(componentId);
+      if (newMap.size === 0) {
+        // Delay setting isPageLoaded until animation completes
+        setTimeout(() => {
+          setAnimationComplete(true);
+          setIsPageLoaded(true);
+        }, 1500); // 1500ms delay for animation completion
+      }
+      return newMap;
+    });
+  }, []);
+
+  const updateProgress = useCallback((componentId, progress) => {
+    setLoadingComponents((prev) => {
+      const newMap = new Map(prev);
+      newMap.set(componentId, Math.min(progress, 100)); // Cap progress at 100
+      const total = Array.from(newMap.values()).reduce((sum, p) => sum + p, 0);
+      const avgProgress = newMap.size > 0 ? total / newMap.size : 100;
+      setTotalProgress(Math.min(avgProgress, 100));
+      return newMap;
+    });
+  }, []);
+
+  return (
+    <LoadingContext.Provider
+      value={{ registerComponent, unregisterComponent, updateProgress, isPageLoaded, totalProgress }}
+    >
+      {children}
+    </LoadingContext.Provider>
+  );
+};
+
+// Higher-Order Component to handle component loading with progress
+export const withLoading = (WrappedComponent, loadResources) => {
+  return (props) => {
+    const { registerComponent, unregisterComponent, updateProgress, isPageLoaded } = useContext(LoadingContext);
+    const [isComponentLoaded, setIsComponentLoaded] = useState(false);
+    const componentId = useRef(`${WrappedComponent.name}-${Math.random().toString(36).slice(2)}`).current;
+
+    useEffect(() => {
+      registerComponent(componentId);
+
+      const load = async () => {
+        try {
+          await loadResources((progress) => updateProgress(componentId, progress));
+          setIsComponentLoaded(true);
+          updateProgress(componentId, 100);
+          // Only unregister after animation delay (handled in unregisterComponent)
+        } catch (error) {
+          console.error(`Failed to load resources for ${WrappedComponent.name}:`, error);
+          updateProgress(componentId, 100);
+          setIsComponentLoaded(true); // Allow rendering on error
+        }
+      };
+
+      load();
+
+      return () => {
+        unregisterComponent(componentId);
+      };
+    }, [componentId, registerComponent, unregisterComponent, updateProgress]);
+
+    // Render component only after both loading and animation are complete
+    if (!isComponentLoaded || !isPageLoaded) {
+      return null;
+    }
+
+    return <WrappedComponent {...props} />;
+  };
+};
+
+// Modified Loading Component
 export const CameraControls = () => {
   const { camera, gl } = useThree();
   const controlsRef = useRef();
@@ -57,7 +165,7 @@ function Model({ modelPath, loadingVal }) {
 
   useFrame((state, delta) => {
     if (modelRef.current) {
-      modelRef.current.rotation.y += delta * loadingVal * 0.2;
+      modelRef.current.rotation.y += delta * (loadingVal >= 100 ? 1 : loadingVal * 0.2); // Faster rotation at 100%
     }
   });
 
@@ -71,27 +179,29 @@ function Model({ modelPath, loadingVal }) {
 }
 
 const Loading = () => {
-  const modelPath =
-    "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf";
+  const { isPageLoaded, totalProgress } = useContext(LoadingContext);
+  const modelPath = "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf";
   const heroRef = useRef(null);
-  const loadingVal = useRef(1);
-  const [loadingProgress, setLoadingProgress] = useState(loadingVal.current);
-  const [isComplete, setIsComplete] = useState(false);
+  const [displayProgress, setDisplayProgress] = useState(totalProgress);
 
+  // Smoothly animate progress to 100% when resources are loaded
   useEffect(() => {
-    const interval = setInterval(() => {
-      setLoadingProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setIsComplete(true);
-          return 100;
-        }
-        return prev + Math.random() * 2;
-      });
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, []);
+    if (totalProgress >= 100 && displayProgress < 100) {
+      const interval = setInterval(() => {
+        setDisplayProgress((prev) => {
+          const next = prev + (100 - prev) * 0.2; // Exponential smoothing
+          if (next >= 99.9) {
+            clearInterval(interval);
+            return 100;
+          }
+          return next;
+        });
+      }, 50); // Update every 50ms for smooth animation
+      return () => clearInterval(interval);
+    } else if (totalProgress < 100) {
+      setDisplayProgress(totalProgress);
+    }
+  }, [totalProgress, displayProgress]);
 
   // Framer Motion variants for the exit animation
   const containerVariants = {
@@ -106,7 +216,7 @@ const Loading = () => {
 
   return (
     <AnimatePresence>
-      {!isComplete && (
+      {!isPageLoaded && (
         <motion.div
           className="h-screen overflow-hidden fixed z-[1000000] w-full bg-[#171717]"
           variants={containerVariants}
@@ -155,8 +265,9 @@ const Loading = () => {
                 distance={10}
                 decay={1}
               />
+              <CameraControls />
               <Suspense fallback={null}>
-                <Model loadingVal={loadingProgress} modelPath={modelPath} />
+                <Model loadingVal={displayProgress} modelPath={modelPath} />
               </Suspense>
             </Canvas>
           </div>
@@ -167,16 +278,16 @@ const Loading = () => {
               <div className="h-[1px] bg-gray-700 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-[#ED510C] transition-all duration-300 ease-out"
-                  style={{ width: `${loadingProgress}%` }}
+                  style={{ width: `${displayProgress}%` }}
                 />
               </div>
               <span
                 className="absolute flex items-center justify-end top-[-1.5rem] md:top-[-2rem] text-white text-sm md:text-xl font-medium transition-all duration-300 ease-out"
                 style={{
-                  width: `${loadingProgress}%`,
+                  width: `${displayProgress}%`,
                 }}
               >
-                {Math.round(loadingProgress)}%
+                {Math.round(displayProgress)}%
               </span>
             </div>
           </div>

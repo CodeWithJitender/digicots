@@ -5,6 +5,7 @@ import * as THREE from "three";
 import gsap from "gsap";
 import CaseStudy from "../../sections/case-studies/CaseStudy";
 import { useGSAP } from "@gsap/react";
+import {withLoading} from "../../components/Loading";
 
 const textures = [
   "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
@@ -863,6 +864,7 @@ const Bg = ({ bgRef }) => {
   );
 };
 
+
 const Scene = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -875,7 +877,7 @@ const Scene = () => {
         <Canvas
           ref={canvasRef}
           className="h-screen w-full bg-black"
-          style={{ background: "transparent" }}
+          // style={{ background: "transparent" }}
           camera={{ position: [0, 0, 10], fov: 25 }}
         >
           <ambientLight intensity={0.5} />
@@ -899,4 +901,76 @@ const Scene = () => {
   );
 };
 
-export default Scene;
+// Resource Loading for Scene
+const loadSceneResources = async (reportProgress) => {
+  const assets = textures.map((url) => ({
+    type: "image",
+    url,
+  }));
+
+  let loadedBytes = 0;
+  let totalBytes = 0;
+
+  // Fetch total size of all assets
+  const sizePromises = assets.map(async (asset) => {
+    try {
+      const response = await fetch(asset.url, { method: "HEAD" });
+      const size = parseInt(response.headers.get("Content-Length") || 0);
+      return size;
+    } catch {
+      return 0; // Fallback size if HEAD request fails
+    }
+  });
+
+  const sizes = await Promise.all(sizePromises);
+  totalBytes = sizes.reduce((sum, size) => sum + size, 0) || 1; // Avoid division by zero
+
+  // Load textures with THREE.TextureLoader and track progress
+  const loadPromises = assets.map(async (asset, index) => {
+    return new Promise((resolve) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", asset.url, true);
+      xhr.responseType = "blob";
+
+      if (sizes[index] > 0) {
+        xhr.onprogress = (event) => {
+          if (event.lengthComputable) {
+            const prevLoaded = loadedBytes - sizes.slice(0, index).reduce((sum, s) => sum + s, 0);
+            loadedBytes += event.loaded - prevLoaded;
+            const progress = (loadedBytes / totalBytes) * 100;
+            reportProgress(progress);
+          }
+        };
+      }
+
+      xhr.onload = () => {
+        const prevLoaded = loadedBytes - sizes.slice(0, index).reduce((sum, s) => sum + s, 0);
+        loadedBytes += sizes[index] - prevLoaded;
+        const progress = (loadedBytes / totalBytes) * 100;
+        reportProgress(progress);
+        resolve(true);
+      };
+
+      xhr.onerror = () => {
+        const prevLoaded = loadedBytes - sizes.slice(0, index).reduce((sum, s) => sum + s, 0);
+        loadedBytes += sizes[index] - prevLoaded;
+        const progress = (loadedBytes / totalBytes) * 100;
+        reportProgress(progress);
+        resolve(false);
+      };
+
+      xhr.send();
+    });
+  });
+
+  // Wait for all assets to load
+  await Promise.all(loadPromises);
+
+  // Load textures into THREE.TextureLoader
+  const textureLoader = new THREE.TextureLoader();
+  textures.forEach((url, index) => {
+    loadedTextures[index] = textureLoader.load(url);
+  });
+};
+
+export default withLoading(Scene, loadSceneResources);

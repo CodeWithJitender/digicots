@@ -3,8 +3,9 @@ import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import TextAnimation1 from "../../animation/text/TextAnimation1";
 import ThankyouPopUp from "../../components/ThankyouPopUp";
+import { withLoading } from "../../components/Loading.jsx"; // Adjust path as needed
+
 const ContactForm = () => {
-  // 1) initialize _all_ fields
   const initialForm = {
     Full_Name: "",
     Contact_Number: "",
@@ -23,14 +24,6 @@ const ContactForm = () => {
   const [message, setMessage] = useState("");
   const [popActive, setPopActive] = useState(false);
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(window.location.search);
-  //   if (params.get("success") === "true") {
-  //     setPopActive(true);
-  //   }
-  // }, []);
-
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -64,7 +57,6 @@ const ContactForm = () => {
         setFormData(initialForm);
       }
       console.log("Success:", result);
-      // window.location.href = 'http://localhost:5173/contact?success=true';
     } catch (error) {
       console.error("Error submitting form:", error);
       setMessage("❌ Error: " + error.message);
@@ -73,39 +65,12 @@ const ContactForm = () => {
     }
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   setMessage("");
-
-  //   try {
-  //     const error = validateForm();
-  //     if (error) {
-  //       e.preventDefault();
-  //       return setMessage(error);
-  //     }
-  //     const response = await fetch("https://your-api-endpoint.com/submit", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ ...formData, type: activeTab }),
-  //     });
-
-  //     if (!response.ok) throw new Error("Failed to submit. Try again!");
-
-  //     setMessage("✅ Form submitted successfully!");
-  //     setFormData({});
-  //   } catch (error) {
-  //     setMessage("❌ Error: " + error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const imgRef = useRef(null);
   const contactRef = useRef(null);
   const tabRef = useRef([]);
   const tabPRef = useRef(null);
   const formRef = useRef(null);
+
   useGSAP(() => {
     const tl = gsap.timeline();
     tl.from([contactRef.current, tabPRef.current, formRef.current], {
@@ -113,14 +78,12 @@ const ContactForm = () => {
       opacity: 0,
       scale: 1.2,
       filter: "blur(10px)",
-      // y: 200,
       ease: "power1.inOut",
     });
   }, []);
 
   const indicatorRef = useRef(null);
 
-  // Handle Tab Switching Animation
   useEffect(() => {
     const activeIndex = ["dominance", "help", "pack"].indexOf(activeTab);
     if (tabRef.current[activeIndex]) {
@@ -132,11 +95,7 @@ const ContactForm = () => {
         ease: "power1.out",
       });
     }
-  }, [activeTab, window.innerWidth]);
-
-  // const handleChange = (e) => {
-  //   setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  // };
+  }, [activeTab]);
 
   const validateForm = () => {
     let requiredFields = [];
@@ -160,11 +119,11 @@ const ContactForm = () => {
       }
     }
 
-    if (formData.Email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.Email)) {
+    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       return "❌ Invalid email address";
     }
 
-    const phone = formData.Contact_Number || formData.Phone;
+    const phone = formData.Contact_Number || formData.phone;
     if (phone && !/^\d{10}$/.test(phone)) {
       return "❌ Phone number must be exactly 10 digits";
     }
@@ -173,8 +132,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-[#1a1a1a] overflow-hidden min-h-screen flex flex-col-reverse  md:flex-row items-center justify-center md:px-6 lg:px-20 py-12">
-      {/* Left Section - Fox Image & Addresses */}
+    <div className="bg-[#1a1a1a] overflow-hidden min-h-screen flex flex-col-reverse md:flex-row items-center justify-center md:px-6 lg:px-20 py-12">
       <div className="w-full md:w-1/2 flex flex-col items-start">
         <div className="w-full scale-[1.1] max-w-md hidden md:block absolute top-[4%] left-0">
           <video
@@ -186,7 +144,6 @@ const ContactForm = () => {
               if (videoRef) {
                 videoRef.currentTime = 0;
                 videoRef.play();
-
                 videoRef.addEventListener("timeupdate", () => {
                   if (videoRef.currentTime >= 11) {
                     videoRef.currentTime = 0;
@@ -196,7 +153,6 @@ const ContactForm = () => {
               }
             }}
           ></video>
-
           <div className="w-full h-[10%] absolute bottom-0 bg-gradient-to-t from-[#1a1a1a] to-transparent"></div>
         </div>
 
@@ -240,7 +196,6 @@ const ContactForm = () => {
               </h3>
               <div className="h-[100px] lg:h-[60px] flex flex-col justify-between">
                 <p>
-                  {" "}
                   <a
                     href={item.addLink}
                     target="_blank"
@@ -250,7 +205,6 @@ const ContactForm = () => {
                   </a>
                 </p>
                 <p>
-                  {" "}
                   <a
                     href={`tel:${item.phoneLink}`}
                     target="_blank"
@@ -265,17 +219,10 @@ const ContactForm = () => {
         </div>
       </div>
 
-      {/* Right Section - Multi-Tab Form */}
       <div className="w-full md:w-1/2 bg-[#1a1a1a] px-8 py-8">
-        {/* <img
-          src="lets-talk.png"
-          alt="Fox"
-          className="w-full max-w-md block mb-4 md:hidden"
-        /> */}
-
         <div className="w-full md:hidden relative">
           <video
-            className=" w-full"
+            className="w-full"
             src="./breathing/breath.webm"
             autoPlay
             loop
@@ -285,36 +232,14 @@ const ContactForm = () => {
           <div className="w-[10%] h-full absolute top-0 left-0 bg-gradient-to-r from-[#1a1a1a] to-transparent"></div>
         </div>
 
-        <h1 className="text-white overflow-hidden text-center md:text-start text-4xl sm:text-7xl md:text-8xl font-bold ">
+        <h1 className="text-white overflow-hidden text-center md:text-start text-4xl sm:text-7xl md:text-8xl font-bold">
           <h1>Let's Talk</h1>
         </h1>
-
-        {/* Tabs */}
-        {/* <div ref={tabRef} className="flex flex-wrap justify-center  md:justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3">
-          {[
-            { id: "dominance", label: "Let’s Talk Dominance!" },
-            { id: "help", label: "Howl for Help" },
-            { id: "pack", label: "Join the Pack!" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-md font-semibold ${
-                activeTab === tab.id
-                  ? "bg-orange-500 text-white"
-                  : " text-white"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div> */}
 
         <div
           ref={tabPRef}
           className="relative flex justify-center md:justify-between mt-4 bg-[#FFFFFF33] rounded-md p-3 text-sm sm:text-xl"
         >
-          {/* Indicator */}
           <div
             ref={indicatorRef}
             className="absolute left-0 xl:h-[66%] h-[calc(100%_-_24px)] bg-[#ED510C] rounded-md transition-all duration-300"
@@ -336,7 +261,6 @@ const ContactForm = () => {
           ))}
         </div>
 
-        {/* Form Fields - Different for Each Tab */}
         <form
           className="mt-6 space-y-4"
           onSubmit={handleSubmit}
@@ -345,7 +269,6 @@ const ContactForm = () => {
         >
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
-          {/* Let’s Talk Dominance */}
           {activeTab === "dominance" && (
             <>
               <input
@@ -411,7 +334,6 @@ const ContactForm = () => {
             </>
           )}
 
-          {/* Howl for Help */}
           {activeTab === "help" && (
             <>
               <input
@@ -456,7 +378,6 @@ const ContactForm = () => {
             </>
           )}
 
-          {/* Join the Pack */}
           {activeTab === "pack" && (
             <>
               <input
@@ -511,29 +432,26 @@ const ContactForm = () => {
             </>
           )}
 
-          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full p-4  font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[14px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full hidden lg:flex cursor-pointer"
+            className="w-full p-4 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[14px] before:bg-black before:duration-500 before:ease-out hover:before:h-56 hover:before:w-full hidden lg:flex cursor-pointer"
             disabled={loading}
           >
             <div className="relative z-[11]">
-            {loading
-              ? "Submitting..."
-              : activeTab === "dominance"
-              ? "Let’s talk about dominance"
-              : activeTab === "help"
-              ? "Request Help"
-              : "Join the Pack"}
+              {loading
+                ? "Submitting..."
+                : activeTab === "dominance"
+                ? "Let’s talk about dominance"
+                : activeTab === "help"
+                ? "Request Help"
+                : "Join the Pack"}
             </div>
           </button>
         </form>
 
-        {/* Success/Error Message */}
         {message && <p className="mt-4 text-white">{message}</p>}
       </div>
 
-      {/* your main content here */}
       <ThankyouPopUp
         popActive={popActive}
         onClose={() => setPopActive(false)}
@@ -542,4 +460,58 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+// Resource Loading for ContactForm
+const loadContactFormResources = async (reportProgress) => {
+  const videoUrl = "./breathing/breath.webm";
+  let loadedBytes = 0;
+  let totalBytes = 0;
+
+  const video = document.createElement("video");
+  const loadPromise = new Promise((resolve, reject) => {
+    video.src = videoUrl;
+
+    video.addEventListener("canplaythrough", () => {
+      reportProgress(100);
+      resolve(true);
+    });
+
+    video.addEventListener("error", () => {
+      reportProgress(100); // Complete even on error
+      resolve(false);
+    });
+
+    fetch(videoUrl, { method: "HEAD" })
+      .then((response) => {
+        totalBytes = parseInt(response.headers.get("Content-Length") || 0);
+        if (totalBytes > 0) {
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", videoUrl, true);
+          xhr.responseType = "blob";
+          xhr.onprogress = (event) => {
+            if (event.lengthComputable) {
+              loadedBytes = event.loaded;
+              reportProgress((loadedBytes / totalBytes) * 100);
+            }
+          };
+          xhr.onload = () => {
+            reportProgress(100);
+            resolve(true);
+          };
+          xhr.onerror = () => {
+            reportProgress(100);
+            resolve(false);
+          };
+          xhr.send();
+        } else {
+          video.load();
+        }
+      })
+      .catch(() => {
+        video.load();
+      });
+  });
+
+  await loadPromise;
+};
+
+export default withLoading(ContactForm, loadContactFormResources);

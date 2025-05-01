@@ -25,37 +25,21 @@ function Home() {
       }
     };
   }, []);
-
-  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
-
-  const handleLoadingComplete = () => {
-    setIsLoadingComplete(true);
-  };
-
   return (
     <div>
-      {/* {isLoadingComplete ? ( */}
-        {/* <Home /> */}
-      {/* ) : ( */}
-        {/* <Loading onLoadingComplete={handleLoadingComplete} > */}
-         {/* <Loading /> */}
-          <div className="main contain-paint ">
-            <Suspense fallback={null}>
-              <HomeHeroCanvas />
-            </Suspense>
+      <div className="main contain-paint ">
+        <Suspense fallback={null}>
+          <HomeHeroCanvas />
+        </Suspense>
 
-            <HowItWorks />
-            <ContentSlider />
-            <OurWork />
-            <Insights />
-            {/* <KeywordsSection /> */}
-            <OurJourney />
-            <Testimonials />
-            <Faq />
-          </div>
-        {/* </Loading> */}
-        {/* </Loading> */}
-      {/* )} */}
+        <HowItWorks />
+        <ContentSlider />
+        <OurWork />
+        <Insights />
+        <OurJourney />
+        <Testimonials />
+        <Faq />
+      </div>
     </div>
   );
 }
