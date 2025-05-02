@@ -178,14 +178,6 @@ const HomeHeroCanvas = () => {
     };
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className="h-screen flex items-center justify-center bg-black text-white">
-        Loading...
-      </div>
-    );
-  }
-
   return (
     <section className="hero-main min-h-[400vh] bg-black">
       <div ref={containerRef} className="h-screen sticky top-0 w-full overflow-hidden">

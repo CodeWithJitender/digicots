@@ -443,10 +443,10 @@ const Scene = () => {
         </div>
 
         <div className="h-full w-full absolute top-0 md:ms-20 z-[1]">
-          <div className="absolute flex flex-col top-[40%] left-1/2 md:left-[60%] w-[65vw] md:w-[45vw] -translate-x-1/2">
+          <div className="absolute flex flex-col top-[40%] left-1/2 md:left-[60%] w-[85vw] md:w-[55vw] -translate-x-1/2">
             <div
               ref={(el) => (scrollMoreRef.current[0] = el)}
-              className="overflow-hidden md:text-[4vw] text-[vw] h-[6.7vw] md:h-[4.7vw]  text-sm text-white text-left leading-none "
+              className="overflow-hidden md:text-[4vw] text-[6vw] h-[6.7vw] md:h-[4.7vw]  text-sm text-white text-left leading-none "
             >
               <span className="inline-block font-bold audiowide-regular">
                 The <span className="text-[#ED510C]">hunt</span>  begins
@@ -475,7 +475,7 @@ const Scene = () => {
               </span>
               <span className="inline-block font-bold font-inter"> ends</span>
               </span> */}
-              <span className="inline-block font-bold font-inter md:ml-20 ml-[8vw] audiowide-regular">
+              <span className="inline-block font-bold font-inter md:ml-20 ml-[7vw] audiowide-regular">
                 where the <span className="text-[#ED510C]"> limit</span> ends
               </span>
             </div>

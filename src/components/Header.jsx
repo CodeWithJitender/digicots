@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DiscoverItem from "./DiscoverItem";
 import { useState } from "react";
 import { ScrollTrigger } from "gsap/all";
@@ -193,6 +193,8 @@ function Header({ location }) {
   }, [headerRef.current]);
 
   const [deskToggle, setDeskToggle] = useState(false);
+  const navigate = useNavigate();
+
 
   useGSAP(() => {
     if (deskToggle) {
@@ -226,6 +228,9 @@ function Header({ location }) {
           filter: "blur(10px)",
           duration: 1,
           ease: "power1.inOut",
+          onComplete(){
+            navigate();
+          }
         });
       console.log("opened");
     } else {
@@ -468,7 +473,7 @@ function Header({ location }) {
         <div className="header-left w-[30%] bg-[#ED510C] h-screen p-8 flex flex-col justify-between">
           <div className="">
             <div className="logo">
-              <Link onClick={() => setDeskToggle(false)} to="/">
+              <Link onClick={() =>{ setDeskToggle(false, navigate("/")) }}>
                 <img
                   src="https://ik.imagekit.io/8mbzq2hdl/digicots/logo-new.png"
                   className="w-full max-w-36 md:max-w-40 lg:max-w-52"
@@ -479,12 +484,12 @@ function Header({ location }) {
             <ul className="mt-5 flex flex-col gap-4">
               <li>
                 <Link
-                  onClick={() => setDeskToggle(false)}
-                  to={"/things-we-do"}
+                  onClick={() =>{ setDeskToggle(false, navigate("/")) }}
+                  // to={"/things-we-do"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   <TextHoverAnimation
-                    className={"h-[33px] w-full leading-none overflow-hidden"}
+                    className={"h-[32px] w-full leading-none overflow-hidden"}
                   >
                     Things We Do
                   </TextHoverAnimation>
@@ -492,12 +497,12 @@ function Header({ location }) {
               </li>
               <li>
                 <Link
-                  onClick={() => setDeskToggle(false)}
+                  onClick={() =>{ setDeskToggle(false, navigate("/")) }}
                   to={"/about"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   <TextHoverAnimation
-                    className={"h-[33px] w-full leading-none overflow-hidden"}
+                    className={"h-[32px] w-full leading-none overflow-hidden"}
                   >
                     About Us
                   </TextHoverAnimation>
@@ -505,12 +510,12 @@ function Header({ location }) {
               </li>
               <li>
                 <Link
-                  onClick={() => setDeskToggle(false)}
+                  onClick={() =>{ setDeskToggle(false, navigate("/")) }}
                   to={"/case-study"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   <TextHoverAnimation
-                    className={"h-[33px] w-full leading-none overflow-hidden"}
+                    className={"h-[32px] w-full leading-none overflow-hidden"}
                   >
                     Case Studies
                   </TextHoverAnimation>
@@ -518,12 +523,12 @@ function Header({ location }) {
               </li>
               <li>
                 <Link
-                  onClick={() => setDeskToggle(false)}
+                  onClick={() =>{ setDeskToggle(false, navigate("/")) }}
                   to={"/insights"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   <TextHoverAnimation
-                    className={"h-[33px] w-full leading-none overflow-hidden"}
+                    className={"h-[32px] w-full leading-none overflow-hidden"}
                   >
                     Insights
                   </TextHoverAnimation>
@@ -538,7 +543,7 @@ function Header({ location }) {
             <div className="mb-5">
               <Link
                 to={"/contact"}
-                onClick={() => setDeskToggle(false)}
+                onClick={() =>{ setDeskToggle(false, navigate("/")) }}
                 className="font-inter left-links inline-block text-3xl font-bold"
               >
                 <span className="text-[#242424]">Let’s Get in Touch</span>{" "}
