@@ -47,11 +47,11 @@ export default function TestimonialsSliderNew({ data }) {
                 
             </div>
             <div className="testimonial-text cursor-pointer rounded-lg absolute  bg-[#20202053] backdrop-blur-sm p-5">
-              <p className="font-inter text-white text-[3vw] md:text-[.7vw] mb-3">
+              <p className="font-inter text-white text-[3vw] md:text-[.7vw] mb-3 raleway">
                 {d.text}
               </p>
               <div>
-                <div className="position font-inter font-bold text-white text-[3.5vw] md:text-[.8vw]">
+                <div className="position font-inter font-bold text-white text-[3.5vw] md:text-[.8vw] raleway">
                   {d.position}
                 </div>
               </div>

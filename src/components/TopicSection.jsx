@@ -117,8 +117,8 @@ export default function TopicSection() {
 
                 {/* Text Content */}
                 <div className="mt-3">
-                  <h3 className="text-xl font-bold mb-5">{post.title}</h3>
-                  <div className="flex text-sm text-[#A9A9A9] mt-1 space-x-3">
+                  <h3 className="text-xl font-bold mb-5 raleway">{post.title}</h3>
+                  <div className="flex text-sm text-[#A9A9A9] mt-1 space-x-3 raleway">
                     <span className="font-bold">{post.author}</span>
                     <span>{post.date}</span>
                   </div>

@@ -164,7 +164,7 @@ export default function Footer({ popActive, setPopActive }) {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <h2 className="text-5xl sm:text-8xl font-inter font-bold leading-tight text-white">
+            <h2 className="text-5xl sm:text-8xl font-inter font-bold leading-tight text-white audiowide-regular">
               Join the Pack
             </h2>
             {/* <p className="text-gray-400 mt-4">
@@ -196,7 +196,7 @@ export default function Footer({ popActive, setPopActive }) {
                 }
                 type="text"
                 placeholder="Full Name"
-                className="bg-[#3A3A3A]  p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white"
+                className="bg-[#3A3A3A]  p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white raleway"
                 name="Full_Name"
                 variants={childVariants}
               />
@@ -210,7 +210,7 @@ export default function Footer({ popActive, setPopActive }) {
                 }
                 type="text"
                 placeholder="Company Name"
-                className="bg-[#3A3A3A] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white"
+                className="bg-[#3A3A3A] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white raleway"
                 name="Company_Name"
                 variants={childVariants}
               />
@@ -221,7 +221,7 @@ export default function Footer({ popActive, setPopActive }) {
                 }
                 type="email"
                 placeholder="Email Address"
-                className="bg-[#3A3A3A] text-white p-4 sm:p-5 rounded-[14px] w-full focus:outline-none"
+                className="bg-[#3A3A3A] text-white p-4 sm:p-5 rounded-[14px] w-full focus:outline-none raleway"
                 name="email"
                 variants={childVariants}
               />
@@ -244,12 +244,12 @@ export default function Footer({ popActive, setPopActive }) {
                     }))
                   }
                   placeholder="Contact Number"
-                  className="bg-[#3A3A3A] text-white p-4 sm:p-5 w-full rounded-[14px] focus:outline-none"
+                  className="bg-[#3A3A3A] text-white p-4 sm:p-5 w-full rounded-[14px] focus:outline-none raleway"
                   name="Contact_Number"
                 />
               </motion.div>
               <motion.button
-                className="md:col-span-2 p-4 sm:p-5 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[15px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full flex px-5 py-2 cursor-pointer"
+                className="md:col-span-2 p-4 sm:p-5 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[15px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full flex px-5 py-2 cursor-pointer raleway"
                 variants={childVariants}
               >
                 <div className="relative z-[11]">
@@ -265,7 +265,7 @@ export default function Footer({ popActive, setPopActive }) {
 
         {/* Divider */}
         <motion.div
-          className="border-t border-gray-700 my-12"
+          className="border-t border-gray-700 my-12 raleway"
           variants={sectionVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -293,7 +293,7 @@ export default function Footer({ popActive, setPopActive }) {
               </Link>
             </motion.h3>
             <motion.div
-              className="flex space-x-3 mt-4"
+              className="flex space-x-3 mt-4 raleway"
               variants={containerVariants}
             >
               {[
@@ -332,18 +332,18 @@ export default function Footer({ popActive, setPopActive }) {
             className="sm:text-left sm:max-w-[250px] col-span-2 sm:col-span-1"
             variants={childVariants}
           >
-            <h4 className="text-lg font-semibold">India</h4>
-            <p className="text-gray-400 mt-2">
+            <h4 className="text-lg font-semibold raleway">India</h4>
+            <p className="text-gray-400 mt-2  raleway">
               <a href="">
                 B 73, Block B, Sector 57 <br /> Noida, Uttar Pradesh, India
               </a>
             </p>
-            <p className="mt-2 font-semibold text-gray-400">+91 987 987 5632</p>
+            <p className="mt-2  text-gray-400 raleway">+91 987 987 5632</p>
           </motion.div>
 
           {/* Links */}
           <motion.div
-            className="flex sm:justify-end gap-5 md:gap-10 lg:gap-20  md:justify-around md:text-left"
+            className="flex sm:justify-end gap-5 md:gap-10 lg:gap-20  md:justify-around md:text-left raleway"
             variants={containerVariants}
           >
             {["Services"].map((header, idx) => (
@@ -478,15 +478,15 @@ export default function Footer({ popActive, setPopActive }) {
           animate={isInView ? "visible" : "hidden"}
         >
           <div>
-            <p className="text-center sm:text-start">
+            <p className="text-center sm:text-start raleway">
               Designed by{" "}
               <a href="#" className="text-[#ED510C]">
                 Team Digicots
               </a>
             </p>
-            <p className="mt-1 text-center sm:text-start">Created Proudly in India</p>
+            <p className="mt-1 text-center sm:text-start raleway">Created Proudly in India</p>
           </div>
-          <div className="text-center sm:text-end">
+          <div className="text-center sm:text-end raleway">
             <p className="mt-1">
               Copyright 2025 © <br /> All Rights Reserved. All Wrongs Reversed.
             </p>

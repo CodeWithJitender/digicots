@@ -387,7 +387,7 @@ const Scene = () => {
             ref={playReelText}
             style={{ fontSize: "clamp(30px, 5vw, 150px)" }}
             onClick={handlePlayReel}
-            className="reel-text flex items-center gap-3 font-inter font-bold text-white cursor-pointer"
+            className="reel-text flex items-center gap-3 audiowide-regular font-bold text-white cursor-pointer"
           >
             <span>PLAY</span>
             <img
@@ -446,10 +446,10 @@ const Scene = () => {
           <div className="absolute flex flex-col top-[40%] left-1/2 md:left-[60%] w-[65vw] md:w-[45vw] -translate-x-1/2">
             <div
               ref={(el) => (scrollMoreRef.current[0] = el)}
-              className="overflow-hidden md:text-[4vw] text-[6vw] h-[6.7vw] md:h-[4.7vw]  text-sm text-white text-left leading-none "
+              className="overflow-hidden md:text-[4vw] text-[vw] h-[6.7vw] md:h-[4.7vw]  text-sm text-white text-left leading-none "
             >
-              <span className="inline-block font-bold font-inter">
-                The hunt begins
+              <span className="inline-block font-bold audiowide-regular">
+                The <span className="text-[#ED510C]">hunt</span>  begins
               </span>
               {/* <span className="inline-block font-bold font-inter">
                 The
@@ -475,8 +475,8 @@ const Scene = () => {
               </span>
               <span className="inline-block font-bold font-inter"> ends</span>
               </span> */}
-              <span className="inline-block font-bold font-inter md:ml-20 ml-[8vw]">
-                where the limit ends
+              <span className="inline-block font-bold font-inter md:ml-20 ml-[8vw] audiowide-regular">
+                where the <span className="text-[#ED510C]"> limit</span> ends
               </span>
             </div>
           </div>

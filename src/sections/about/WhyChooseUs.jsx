@@ -33,11 +33,11 @@ const CardComponent = ({ card, index }) => {
           alt={card.title}
           className="rounded-lg"
         />
-        <span className="absolute left-0 sm:left-[-4%] top-0 sm:top-6  bg-white text-[#ED510C] px-3 py-1 rounded-[14px] md:text-2xl font-bold">
+        <span className="absolute left-0 sm:left-[-4%] top-0 sm:top-6  bg-white text-[#ED510C] px-3 py-1 rounded-[14px] md:text-2xl font-bold raleway">
           {card.title}
         </span>
       </div>
-      <div className="sm:text-2xl hidden sm:block text-lg">
+      <div className="sm:text-2xl hidden sm:block text-lg raleway">
         <p className="text-white ">{card.description1}</p>
         <p className="text-white mt-2">{card.description2}</p>
       </div>
@@ -174,14 +174,14 @@ const WhyChooseUs = () => {
           style={{ willChange: "transform" }}
         >
           <div className="text-white sm:w-fit">
-            <h2 className="sm:w-[500px] w-[90vw] text-4xl md:text-5xl font-bold mb-4 overflow-hidden">
+            <h2 className="sm:w-[500px] w-[90vw] text-4xl md:text-5xl font-bold mb-4 overflow-hidden audiowide-regular">
               WHY CHOOSE US?
             </h2>
-            <p className="sm:w-[500px] w-[90vw] text-lg mb-6">
+            <p className="sm:w-[500px] w-[90vw] text-lg mb-6 raleway">
             Our approach isn’t just about building systems – it’s about igniting revolutions, forging legacies. We destroy boundaries leaving a trail of dominance. Running with us isn’t about hiring a team; it’s about partnering with a team that blends creativity with precision.
 
             </p>
-            <p className="sm:w-[500px] w-[90vw] font-semibold text-lg flex items-center gap-2">
+            <p className="sm:w-[500px] w-[90vw] font-semibold text-lg flex items-center gap-2 raleway">
               Scroll to know more →
             </p>
           </div>

@@ -63,8 +63,8 @@ const Faq = () => {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:[grid-template-columns:40%_60%] gap-12">
           {/* Left Side - Heading */}
           <div className="flex flex-col h-full justify-between">
-            <div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter overflow-hidden">
+            <div className="">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight audiowide-regular overflow-hidden">
                 <TextAnimation1
                   animeStart="100%"
                   duration="1.5"
@@ -73,7 +73,7 @@ const Faq = () => {
                   We are here to
                 </TextAnimation1>
               </h2>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter overflow-hidden">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight audiowide-regular overflow-hidden">
                 <TextAnimation1
                   animeStart="100%"
                   duration="1.5"
@@ -82,7 +82,7 @@ const Faq = () => {
                   answer all of
                 </TextAnimation1>
               </h2>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-inter overflow-hidden">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight audiowide-regular overflow-hidden">
                 <TextAnimation1
                   animeStart="100%"
                   duration="1.5"
@@ -130,7 +130,7 @@ const Faq = () => {
                   </span>
                 </button>
                 {openIndex === index && faq.answer && (
-                  <p className="text-gray-400 text-sm pb-4">
+                  <p className="text-gray-400 text-sm pb-4 font-inter">
                     <TextAnimation2 animeStart="90%" duration={.6}>
                       {faq.answer}
                     </TextAnimation2>

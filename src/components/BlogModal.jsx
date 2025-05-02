@@ -153,10 +153,10 @@ export default function BlogModal({ isOpen, onClose, post }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent"></div>
             <div className="absolute bottom-0 left-0 p-10">
-              <h2 className="text-5xl font-bold mb-5">{post.title}</h2>
-              <p className="text-gray-300 text-sm">
-                <span className="me-5 font-bold">{post.author}</span>
-                <span>
+              <h2 className="text-5xl font-bold mb-5 audiowide-regular">{post.title}</h2>
+              <p className="text-gray-300 text-sm raleway">
+                <span className="me-5 font-bold raleway">{post.author}</span>
+                <span >
                   <i className="fal fa-calendar"></i> {post.date}
                 </span>
               </p>
@@ -166,7 +166,7 @@ export default function BlogModal({ isOpen, onClose, post }) {
           <div className="p-6 flex flex-col space-y-1">
             <div className="flex justify-between items-center px-6 py-4">
               <div className="flex space-x-3">
-                <button className="bg-gray-700 px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-gray-600"
+                <button className="bg-gray-700 px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-gray-600 raleway"
                 onClick={() => {
                   if (navigator.share) {
                     navigator

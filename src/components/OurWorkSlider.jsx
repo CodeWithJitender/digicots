@@ -92,7 +92,7 @@ const CylindricalSlider = () => {
       {window.innerWidth > 600 && (
         <div
           ref={checkoutRef}
-          className="checkout absolute pointer-events-none opacity-0 min-w-[250px] z-10 uppercase bg-white rounded-full py-2 px-4"
+          className="checkout absolute pointer-events-none opacity-0 min-w-[250px] z-10 uppercase bg-white rounded-full py-2 px-4 raleway"
         >
           click to check out
         </div>

@@ -232,7 +232,7 @@ const ContactForm = () => {
           <div className="w-[10%] h-full absolute top-0 left-0 bg-gradient-to-r from-[#1a1a1a] to-transparent"></div>
         </div>
 
-        <h1 className="text-white overflow-hidden text-center md:text-start text-4xl sm:text-7xl md:text-8xl font-bold">
+        <h1 className="text-white overflow-hidden text-center md:text-start text-4xl sm:text-7xl md:text-8xl font-bold audiowide-regular">
           <h1>Let's Talk</h1>
         </h1>
 
@@ -262,7 +262,7 @@ const ContactForm = () => {
         </div>
 
         <form
-          className="mt-6 space-y-4"
+          className="mt-6 space-y-4 raleway"
           onSubmit={handleSubmit}
           action="https://formsubmit.co/Dominance@digicots.com"
           method="POST"
@@ -279,7 +279,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, Full_Name: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
               <div className="flex space-x-2">
                 <input
@@ -293,7 +293,7 @@ const ContactForm = () => {
                       Contact_Number: e.target.value,
                     }))
                   }
-                  className="flex-1 bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                  className="flex-1 bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
                 />
               </div>
               <input
@@ -304,10 +304,10 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, email: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
               <select
-                className="w-full bg-[#3A3A3A] text-white p-3 rounded-md focus:outline-none pe-2.5"
+                className="w-full bg-[#3A3A3A] text-white p-3 rounded-md focus:outline-none pe-2.5 raleway"
                 name="Purpose"
                 value={formData.Purpose}
                 onChange={(e) =>
@@ -329,7 +329,7 @@ const ContactForm = () => {
                     Additional_Info: e.target.value,
                   }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
             </>
           )}
@@ -344,7 +344,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, Full_Name: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
               <input
                 name="phone"
@@ -354,7 +354,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, phone: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
               <input
                 name="email"
@@ -364,7 +364,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, email: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
               <textarea
                 name="message"
@@ -373,7 +373,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, message: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
             </>
           )}
@@ -388,7 +388,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, First_Name: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
               <input
                 name="Last_Name"
@@ -398,7 +398,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, Last_Name: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
               <input
                 name="phone"
@@ -408,7 +408,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, phone: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
               <input
                 name="email"
@@ -418,7 +418,7 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, email: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
               <textarea
                 name="message"
@@ -427,14 +427,14 @@ const ContactForm = () => {
                 onChange={(e) =>
                   setFormData((f) => ({ ...f, message: e.target.value }))
                 }
-                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none"
+                className="w-full bg-[#3A3A3A] font-inter text-white p-3 rounded-md focus:outline-none raleway"
               />
             </>
           )}
 
           <button
             type="submit"
-            className="w-full p-4 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[14px] before:bg-black before:duration-500 before:ease-out hover:before:h-56 hover:before:w-full hidden lg:flex cursor-pointer"
+            className="w-full p-4 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[14px] before:bg-black before:duration-500 before:ease-out hover:before:h-56 hover:before:w-full hidden lg:flex cursor-pointer raleway"
             disabled={loading}
           >
             <div className="relative z-[11]">
@@ -449,7 +449,7 @@ const ContactForm = () => {
           </button>
         </form>
 
-        {message && <p className="mt-4 text-white">{message}</p>}
+        {message && <p className="mt-4 text-white raleway">{message}</p>}
       </div>
 
       <ThankyouPopUp

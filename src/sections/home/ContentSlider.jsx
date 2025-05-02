@@ -418,7 +418,7 @@ const ContentSlider = () => {
                 <div className="solution-box relative lg:h-[600px] xl:h-[500px]">
                   {/* Background Heading */}
                   <div className="heading-cot absolute w-full h-full flex lg:items-center justify-center text-center z-[-1]">
-                    <h1 className="text-stroke text-transparent max-w-[900px] text-6xl md:text-8xl lg:text-9xl font-black uppercase mt-32 lg:mt-0">
+                    <h1 className="text-stroke text-transparent max-w-[900px] text-6xl md:text-8xl lg:text-9xl font-black uppercase mt-32 lg:mt-0 raleway">
                       {data.heading}
                     </h1>
                   </div>
@@ -465,7 +465,7 @@ const ContentSlider = () => {
 
                     {/* Tags */}
                     <div className="solution-tag bg-[#202020] rounded-[24px] p-6 lg:p-8 hidden lg:block md:col-start-3">
-                      <div className="flex flex-wrap gap-4 text-start">
+                      <div className="flex flex-wrap gap-4 text-start raleway">
                         {data.tag.filter(t => t).map((text, index) => (
                           <button
                             key={`desktop-tag-${index}`}

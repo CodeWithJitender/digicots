@@ -284,7 +284,7 @@ const OurJourney = () => {
                       loading="lazy"
                     />
                     <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-[80%] max-h-[100%] overflow-hidden text-white rounded-md md:p-3 p-1 text-center bg-[#20202053] backdrop-blur-sm">
-                      <p className="text-[1.1vw] md:text-[.8vw] leading-[1.3vw]">
+                      <p className="text-[1.1vw] md:text-[.8vw] leading-[1.3vw] raleway">
                         {card.pera}
                       </p>
                     </div>

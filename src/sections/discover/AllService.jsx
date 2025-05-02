@@ -345,7 +345,7 @@ function AllService() {
               <h5 className="font-normal text-sm text-[#ED510C] font-inter">
                 SOLUTION {index + 1}
               </h5>
-              <h2 className="font-black text-4xl md:text-6xl text-black font-inter">
+              <h2 className="font-black text-4xl md:text-6xl text-black audiowide-regular">
                 {title}
               </h2>
               <img
