@@ -49,7 +49,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
               </button>
             </div>
 
-            <h2 className="text-5xl font-bold text-[#242424] mb-6 px-4">
+            <h2 className="text-5xl font-bold text-[#242424] mb-6 px-4 raleway">
               {slide.title}
             </h2>
             <div className="px-4">
@@ -58,7 +58,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
 
             {/* Render section blocks */}
             {slide.section?.map((group, idx) => (
-              <div key={idx} className="mb-10 px-4">
+              <div key={idx} className="mb-10 px-4 raleway">
                 {group.map((item, i) => {
                   if (item.key === "title") {
                     return (

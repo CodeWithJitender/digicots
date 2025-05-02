@@ -232,14 +232,14 @@ export default function BlogSection() {
                   <h3 className="post-title text-base md:text-2xl font-bold font-inter text-white pb-2 md:pb-5">
                     {post.title}
                   </h3>
-                  <div className="flex text-sm text-gray-400 mt-1 space-x-3">
+                  <div className="flex text-sm text-gray-400 mt-1 space-x-3 raleway">
                     <span className="font-bold text-white">{post.author}</span>
                     <span className="text-xs md:text-base">{post.date}</span>
-                    {post.readTime && (
+                    {/* {post.readTime && (
                       <span className="text-xs md:text-base">
                         {post.readTime}
                       </span>
-                    )}
+                    )} */}
                   </div>
                 </Link>
               </div>
@@ -269,14 +269,14 @@ export default function BlogSection() {
               alt="Featured Post"
               className="w-full h-80 md:h-full object-cover rounded-lg"
             />
-            <div className="absolute bottom-0 left-0 w-full p-6 rounded-b-lg">
+            <div className="absolute bottom-0 left-0 w-full p-6 rounded-b-lg raleway">
               <h3 className="font-bold text-xl text-white mb-4">
                 Leading heading of the Latest Post
               </h3>
               <div className="flex text-sm text-gray-300 mt-1 space-x-7">
                 <span className="font-bold text-white">Admin</span>
                 <span>April 22, 2025</span>
-                <span>2 Min Read</span>
+                {/* <span>2 Min Read</span> */}
               </div>
             </div>
           </div>

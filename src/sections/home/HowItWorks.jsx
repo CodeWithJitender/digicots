@@ -315,7 +315,7 @@ const HowItWorks = () => {
                         {dataChild.h1}
                       </h6> */}
                       <h4
-                        className="font-semibold text-white"
+                        className="font-semibold text-white raleway"
                         style={{ fontSize: "clamp(16px, 20vw, 24px)" }}
                       >
                         {dataChild.h2}

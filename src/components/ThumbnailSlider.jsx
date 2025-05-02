@@ -144,7 +144,7 @@ export default function ThumbnailSlider() {
                   </div>
 
                   {/* Slide Content */}
-                  <div className="absolute bottom-6 left-6 flex flex-col justify-between items-start h-[90%] text-white">
+                  <div className="absolute bottom-6 left-6 flex flex-col justify-between items-start h-[90%] text-white raleway">
                     <button className="bg-[#ED510C] px-4 py-2 rounded-full text-sm font-bold">
                       Featured
                     </button>
@@ -168,7 +168,7 @@ export default function ThumbnailSlider() {
 
                   {/* Floating Thumbnail (Next Slide Preview) */}
                   {index < slides.length - 1 ? (
-                    <div className="absolute bottom-6 right-6 bg-gray-900/80 text-white p-3 rounded-lg  items-center space-x-3 hidden md:flex">
+                    <div className="absolute bottom-6 right-6 bg-gray-900/80 text-white p-3 rounded-lg  items-center space-x-3 hidden md:flex raleway">
                       <img
                         src={slides[index + 1].thumbnail}
                         alt="Next post"
@@ -176,7 +176,7 @@ export default function ThumbnailSlider() {
                       />
                       <div>
                         <span className="text-orange-400 text-xs">NEXT</span>
-                        <h3 className="text-sm font-semibold">
+                        <h3 className="text-sm font-semibold raleway">
                           {slides[index + 1].title}
                         </h3>
                         {/* Progress Bar (Bottom Border) */}

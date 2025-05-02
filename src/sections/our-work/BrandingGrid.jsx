@@ -198,7 +198,7 @@ const BrandingCard = React.memo(({ card, onClick }) => {
         <div className="w-full h-[200px] bg-gray-800 rounded-2xl animate-pulse"></div>
       )}
       <div className="py-4">
-        <div className="text-sm font-semibold mb-2 space-x-2">
+        <div className="text-sm font-semibold mb-2 space-x-2 raleway">
           {card.tags?.map((tag, index) => (
             <React.Fragment key={index}>
               <span className="text-white">{tag}</span>
@@ -208,7 +208,7 @@ const BrandingCard = React.memo(({ card, onClick }) => {
             </React.Fragment>
           ))}
         </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold raleway">
           {card.title}
         </h2>
       </div>
@@ -319,7 +319,7 @@ const PopupModal = React.memo(({ card, onClose }) => {
         ✖
       </button>
       <div className="bg-white rounded-lg rounded-b-none w-full overflow-hidden max-w-[1400px] py-4 px-2 md:p-6 relative shadow-xl relative z-50">
-        <div className="max-h-[60vh] md:max-h-[70vh] lg:max-h-[80vh] overflow-y-auto popup-container">
+        <div className="max-h-[60vh] md:max-h-[70vh] lg:max-h-[80vh] overflow-y-auto popup-container raleway">
           <h2 className="text-2xl font-bold text-center">{card?.title}</h2>
           <p className="text-gray-600 text-center">{card?.description}</p>
           <div className=" mt-4 md:py-10 md:gap-10 px-5">

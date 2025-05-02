@@ -135,23 +135,23 @@ function HeroDiscover() {
             ref={screen1TextRef}
             className="hero-text w-full absolute bottom-0 px-4"
           >
-            <h1 className="font-bold text-inter text-5xl sm:text-7xl lg:text-9xl text-zinc-800 text-center mb-20 md:mb-40">
+            <h1 className="font-bold text-inter text-5xl sm:text-7xl lg:text-9xl text-zinc-800 text-center mb-20 md:mb-40 audiowide-regular">
               DIGICOTS
             </h1>
-            <p className="text-inter text-lg text-center text-white mb-5">
-              SCROLL TO KNOW HOWL CAN WE HELP YOU?
+            <p className="text-inter text-lg text-center text-white mb-5 raleway">
+              SCROLL TO KNOW HOW CAN WE HELP YOU?
             </p>
             <img src="arrow-down.png" alt="" className="w-16 m-auto mb-5" />
           </div>
 
           <div
             ref={screen2TextRef}
-            className="service-text flex flex-col md:flex-row justify-between items-end absolute opacity-0 bottom-[-50%] w-full py-10 md:p-5 px-10 text-center md:text-start gap-5"
+            className="service-text flex flex-col md:flex-row justify-between items-end absolute opacity-0 bottom-[-50%] w-full py-10 md:p-5 px-10 text-center md:text-start gap-5 raleway"
           >
-            <h1 className="m-auto max-w-[500px] font-black text-4xl md:text-6xl text-white">
+            <h1 className="m-auto max-w-[500px] font-black text-4xl md:text-6xl text-white raleway">
               Let's Discover Our Services
             </h1>
-            <h3 className="m-auto max-w-[350px] font-semibold text-xl md:text-4xl md:text-right text-white">
+            <h3 className="m-auto max-w-[350px] font-semibold text-xl md:text-4xl md:text-right text-white raleway">
               We are happy to see you here
             </h3>
           </div>

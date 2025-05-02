@@ -327,14 +327,14 @@ function Header({ location }) {
             </div>
             <div className=" flex gap-4">
               <Link
-                className="font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2"
+                className="font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2 raleway"
                 to="/contact"
               >
                 <span class="relative z-10">Let's Talk</span>
               </Link>
 
               <div
-                className="desk-menu-btn font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#ED510C] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hover:text-white hidden lg:flex px-5 py-2 cursor-pointer"
+                className="desk-menu-btn font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#ED510C] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hover:text-white hidden lg:flex px-5 py-2 cursor-pointer raleway"
                 onClick={() => setDeskToggle((prev) => !prev)}
               >
                 <div className="relative z-10">
@@ -553,7 +553,7 @@ function Header({ location }) {
         <div className="header-right w-[70%] h-screen bg-[#141414] py-10 px-20">
           <div className="relative flex justify-end">
             <div
-              className="desk-menu-btn cursor-pointer font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#ED510C] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2 gap-2"
+              className="desk-menu-btn cursor-pointer font-bold rounded-[50px] relative   w-30 items-center justify-center overflow-hidden bg-white text-black shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-[#ED510C] before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-56 hidden lg:flex px-5 py-2 gap-2 raleway"
               onClick={() => setDeskToggle(false)}
             >
               <div className="relative z-10">

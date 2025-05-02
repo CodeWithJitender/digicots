@@ -57,7 +57,7 @@ const Section = ({ title, img, p }) => {
     <div className="min-h-[200vh] w-full h-full bg-black relative">
       <div className="min-h-screen pt-20 w-full sticky top-0">
         {/* Title */}
-        <h2 className="text-5xl md:text-8xl font-black uppercase mb-6 relative font-inter text-center">
+        <h2 className="text-5xl md:text-8xl font-black uppercase mb-6 relative font-inter text-center audiowide-regular">
           <span className="absolute inset-0 text-black custom-stroke">
             {title}
           </span>
@@ -85,7 +85,7 @@ const Section = ({ title, img, p }) => {
             className="absolute inset-0 flex items-center justify-center rounded-lg p-6 font-inter text-center"
             style={{ willChange: "transform" }}
           >
-            <p className="text-[#B2B2B2] text-[3vw] md:text-xl font-bold max-w-[320px] md:max-w-[900px]">
+            <p className="text-[#B2B2B2] text-[3vw] md:text-xl font-bold max-w-[320px] md:max-w-[900px] raleway">
               <TextAnimation2 stagger={p.length < 400 ? 50 : 80} animeStart={p.length < 400 ? "20" : "40"} animeEnd={p.length < 400 ? "-20" : "-50"} scrub={true} duration={p.length < 400 ? 5.5 : 10.5}>
                 {p}
               </TextAnimation2>

@@ -15,7 +15,7 @@ function BlogHeading({ heading, linkText, link }) {
           return (
             <>
               <div className="flex flex-col">
-                <h3 className="font-bold md:h-[3vw] h-[8vw] overflow-hidden text-[5vw] text-center md:text-start md:text-[2vw] text-white  flex flex-wrap">
+                <h3 className="font-bold md:h-[3vw] h-[8vw] overflow-hidden text-[5vw] text-center md:text-start md:text-[2vw] text-white  flex flex-wrap audiowide-regular">
                   <div className="w-full md:w-auto">
                     <TextAnimation1 animeStart="60">{heading}</TextAnimation1>
                   </div>
