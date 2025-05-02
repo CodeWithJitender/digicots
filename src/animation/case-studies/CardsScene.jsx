@@ -876,7 +876,7 @@ const Scene = () => {
       {selectedIndex == -1 ? (
         <Canvas
           ref={canvasRef}
-          className="h-screen w-full bg-black"
+          className="h-screen w-full"
           // style={{ background: "transparent" }}
           camera={{ position: [0, 0, 10], fov: 25 }}
         >

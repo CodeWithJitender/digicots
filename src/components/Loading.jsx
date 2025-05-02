@@ -7,7 +7,7 @@ import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Loading Context with Progress Tracking
-const LoadingContext = createContext({
+export const LoadingContext = createContext({
   registerComponent: () => {},
   unregisterComponent: () => {},
   updateProgress: () => {},
@@ -19,8 +19,9 @@ export const LoadingProvider = ({ children }) => {
   const [loadingComponents, setLoadingComponents] = useState(new Map());
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const [totalProgress, setTotalProgress] = useState(0);
-  const [animationComplete, setAnimationComplete] = useState(false); // New state for animation
+  const [animationComplete, setAnimationComplete] = useState(false);
   const location = useLocation();
+  const timeoutRef = useRef(null); // Ref to track timeout
 
   // Reset loading state on page navigation
   useEffect(() => {
@@ -28,6 +29,7 @@ export const LoadingProvider = ({ children }) => {
     setIsPageLoaded(false);
     setTotalProgress(0);
     setAnimationComplete(false);
+    clearTimeout(timeoutRef.current); // Clear any existing timeout
   }, [location.pathname]);
 
   const registerComponent = useCallback((componentId) => {
@@ -43,15 +45,18 @@ export const LoadingProvider = ({ children }) => {
       const newMap = new Map(prev);
       newMap.delete(componentId);
       if (newMap.size === 0) {
-        // Delay setting isPageLoaded until animation completes
-        setTimeout(() => {
+        // Ensure minimum 3-second animation if no progress updates
+        const minAnimationTime = 3000; // 3 seconds
+        const delay = animationComplete ? 0 : minAnimationTime;
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
           setAnimationComplete(true);
           setIsPageLoaded(true);
-        }, 1500); // 1500ms delay for animation completion
+        }, delay);
       }
       return newMap;
     });
-  }, []);
+  }, [animationComplete]);
 
   const updateProgress = useCallback((componentId, progress) => {
     setLoadingComponents((prev) => {
@@ -60,6 +65,10 @@ export const LoadingProvider = ({ children }) => {
       const total = Array.from(newMap.values()).reduce((sum, p) => sum + p, 0);
       const avgProgress = newMap.size > 0 ? total / newMap.size : 100;
       setTotalProgress(Math.min(avgProgress, 100));
+      // Mark animation as complete if progress reaches 100
+      if (avgProgress >= 100) {
+        setAnimationComplete(true);
+      }
       return newMap;
     });
   }, []);
@@ -79,16 +88,28 @@ export const withLoading = (WrappedComponent, loadResources) => {
     const { registerComponent, unregisterComponent, updateProgress, isPageLoaded } = useContext(LoadingContext);
     const [isComponentLoaded, setIsComponentLoaded] = useState(false);
     const componentId = useRef(`${WrappedComponent.name}-${Math.random().toString(36).slice(2)}`).current;
+    const hasResponded = useRef(false); // Track if component has provided progress
+    const timeoutRef = useRef(null); // Timeout for no response
 
     useEffect(() => {
       registerComponent(componentId);
 
-      const load = async () => {
-        try {
-          await loadResources((progress) => updateProgress(componentId, progress));
+      // Set a 3-second timeout for no response
+      timeoutRef.current = setTimeout(() => {
+        if (!hasResponded.current) {
           setIsComponentLoaded(true);
           updateProgress(componentId, 100);
-          // Only unregister after animation delay (handled in unregisterComponent)
+        }
+      }, 3000);
+
+      const load = async () => {
+        try {
+          await loadResources((progress) => {
+            hasResponded.current = true; // Mark as responded
+            updateProgress(componentId, progress);
+          });
+          setIsComponentLoaded(true);
+          updateProgress(componentId, 100);
         } catch (error) {
           console.error(`Failed to load resources for ${WrappedComponent.name}:`, error);
           updateProgress(componentId, 100);
@@ -99,6 +120,7 @@ export const withLoading = (WrappedComponent, loadResources) => {
       load();
 
       return () => {
+        clearTimeout(timeoutRef.current); // Cleanup timeout
         unregisterComponent(componentId);
       };
     }, [componentId, registerComponent, unregisterComponent, updateProgress]);
@@ -112,7 +134,7 @@ export const withLoading = (WrappedComponent, loadResources) => {
   };
 };
 
-// Modified Loading Component
+// Camera Controls Component
 export const CameraControls = () => {
   const { camera, gl } = useThree();
   const controlsRef = useRef();
@@ -138,6 +160,7 @@ export const CameraControls = () => {
   return null;
 };
 
+// Model Component
 function Model({ modelPath, loadingVal }) {
   const gltf = useLoader(GLTFLoader, modelPath);
 
@@ -178,6 +201,7 @@ function Model({ modelPath, loadingVal }) {
   );
 }
 
+// Loading Component
 const Loading = () => {
   const { isPageLoaded, totalProgress } = useContext(LoadingContext);
   const modelPath = "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf";
@@ -187,7 +211,9 @@ const Loading = () => {
   // Smoothly animate progress to 100% when resources are loaded
   useEffect(() => {
     if (totalProgress >= 100 && displayProgress < 100) {
-      const interval = setInterval(() => {
+      const interval
+
+ = setInterval(() => {
         setDisplayProgress((prev) => {
           const next = prev + (100 - prev) * 0.2; // Exponential smoothing
           if (next >= 99.9) {
@@ -265,7 +291,6 @@ const Loading = () => {
                 distance={10}
                 decay={1}
               />
-              <CameraControls />
               <Suspense fallback={null}>
                 <Model loadingVal={displayProgress} modelPath={modelPath} />
               </Suspense>

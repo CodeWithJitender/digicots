@@ -29,7 +29,7 @@ const AppContent = () => {
     <>
       {/* <Loading /> */}
       <ScrollHandler />
-      <Loading />
+
       {!["/loading"].includes(location.pathname) && <Header location={location} />}
       <Routes location={location}>
         <Route path="/" element={<Home />} />
