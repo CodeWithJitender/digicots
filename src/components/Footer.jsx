@@ -313,9 +313,9 @@ export default function Footer({ popActive, setPopActive }) {
                 //   title: "twitter",
                 //   link: "contact",
                 // },
-              ].map((icon) => (
+              ].map((icon,i) => (
                 <motion.div
-                  key={icon}
+                  key={i}
                   className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center"
                   variants={socialIconVariants}
                 >

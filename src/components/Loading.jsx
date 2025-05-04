@@ -31,6 +31,7 @@ export const LoadingProvider = ({ children }) => {
   const [animationComplete, setAnimationComplete] = useState(false);
   const location = useLocation();
   const timeoutRef = useRef(null); // Ref to track timeout
+  const startTimeRef = useRef(Date.now());
 
   // Reset loading state on page navigation
   useEffect(() => {
@@ -38,9 +39,20 @@ export const LoadingProvider = ({ children }) => {
     setIsPageLoaded(false);
     setTotalProgress(0);
     setAnimationComplete(false);
-    clearTimeout(timeoutRef.current); // Clear any existing timeout
-    console.log("location changed")
+    clearTimeout(timeoutRef.current);
+    startTimeRef.current = Date.now();
+  
+    // Always show loading for at least 1.5s
+    timeoutRef.current = setTimeout(() => {
+      if (loadingComponents.size === 0) {
+        setAnimationComplete(true);
+        setIsPageLoaded(true);
+      }
+    }, 1500);
+  
+    console.log("location changed");
   }, [location.pathname]);
+  
 
   const registerComponent = useCallback((componentId) => {
     setLoadingComponents((prev) => {
@@ -56,14 +68,14 @@ export const LoadingProvider = ({ children }) => {
         const newMap = new Map(prev);
         newMap.delete(componentId);
         if (newMap.size === 0) {
-          // Ensure minimum 3-second animation if no progress updates
-          const minAnimationTime = 3000; // 3 seconds
-          const delay = animationComplete ? 0 : minAnimationTime;
-          clearTimeout(timeoutRef.current);
+          const minDisplayTime = 1500; // or 2000ms
+          const elapsed = Date.now() - startTimeRef.current;
+          const remaining = Math.max(0, minDisplayTime - elapsed);
+        
           timeoutRef.current = setTimeout(() => {
             setAnimationComplete(true);
             setIsPageLoaded(true);
-          }, delay);
+          }, remaining);
         }
         return newMap;
       });
@@ -102,67 +114,62 @@ export const LoadingProvider = ({ children }) => {
   );
 };
 
-// Higher-Order Component to handle component loading with progress
 export const withLoading = (WrappedComponent, loadResources) => {
   return (props) => {
     const {
       registerComponent,
       unregisterComponent,
       updateProgress,
-      isPageLoaded,
     } = useContext(LoadingContext);
+
     const [isComponentLoaded, setIsComponentLoaded] = useState(false);
     const componentId = useRef(
       `${WrappedComponent.name}-${Math.random().toString(36).slice(2)}`
     ).current;
-    const hasResponded = useRef(false); // Track if component has provided progress
-    const timeoutRef = useRef(null); // Timeout for no response
+    const hasResponded = useRef(false);
+    const timeoutRef = useRef(null);
+    const {pathname} = useLocation();
 
     useEffect(() => {
       registerComponent(componentId);
 
-      // Set a 3-second timeout for no response
       timeoutRef.current = setTimeout(() => {
         if (!hasResponded.current) {
-          setIsComponentLoaded(true);
           updateProgress(componentId, 100);
+          setIsComponentLoaded(true);
         }
       }, 3000);
 
       const load = async () => {
         try {
           await loadResources((progress) => {
-            hasResponded.current = true; // Mark as responded
+            hasResponded.current = true;
             updateProgress(componentId, progress);
           });
+          updateProgress(componentId, 100);
           setIsComponentLoaded(true);
-          updateProgress(componentId, 100);
         } catch (error) {
-          console.error(
-            `Failed to load resources for ${WrappedComponent.name}:`,
-            error
-          );
+          console.error(`Failed to load ${WrappedComponent.name}:`, error);
           updateProgress(componentId, 100);
-          setIsComponentLoaded(true); // Allow rendering on error
+          setIsComponentLoaded(true);
         }
       };
 
       load();
 
       return () => {
-        clearTimeout(timeoutRef.current); // Cleanup timeout
+        clearTimeout(timeoutRef.current);
         unregisterComponent(componentId);
       };
     }, [componentId, registerComponent, unregisterComponent, updateProgress]);
 
-    // Render component only after both loading and animation are complete
-    if (!isComponentLoaded || !isPageLoaded) {
-      return null;
-    }
+    // ✨ Only render component after it’s loaded
+    if (!isComponentLoaded) return null;
 
     return <WrappedComponent {...props} />;
   };
 };
+
 
 // Camera Controls Component
 export const CameraControls = () => {
@@ -271,7 +278,7 @@ const Loading = () => {
   };
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {!isPageLoaded && (
         <motion.div
           className="h-screen overflow-hidden fixed z-[1000000] w-full bg-[#171717]"

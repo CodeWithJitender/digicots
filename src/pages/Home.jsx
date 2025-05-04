@@ -38,6 +38,7 @@ function Home() {
   return (
     <div>
       <div className="main contain-paint">
+
         <Suspense fallback={<Loading />}>
           <HomeHeroCanvas />
         </Suspense>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom"; // Import useLocation
 import Hero from "../sections/about/Hero";
 import HowWeWork from "../sections/about/HowWeWork";
@@ -6,22 +6,96 @@ import WhyChooseUs from "../sections/about/WhyChooseUs";
 import OurVision from "../sections/about/OurVision";
 import MeetThePack from "../sections/about/MeetThePack";
 import Loading from "../components/Loading";
+import { withLoading } from "../components/Loading"; // Adjust path as needed
 
 function About() {
   const location = useLocation(); // Get current location object
 
+  useEffect(() => {
+    // Reset scroll position to top on mount
+    window.scrollTo(0, 0);
+
+    // Debug: Log scroll position and component mount
+    console.log("About mounted, scroll position:", window.scrollY);
+    console.log("Current route:", window.location.pathname);
+    console.log("Location key:", location.key);
+
+    // Debug: Monitor navigation events
+    const handlePopState = () => {
+      console.log("Popstate event, navigated to:", window.location.pathname);
+    };
+    window.addEventListener("popstate", handlePopState);
+
+    // Cleanup on unmount
+    return () => {
+      console.log("About unmounting");
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []); // Empty dependency array to run only on mount/unmount
+
   return (
     <>
-    {/* <Loading /> */}
-    <div key={location.key}> {/* Add key based on location */}
-      <Hero />
-      {/* <MeetThePack /> */}
-      <HowWeWork />
-      <WhyChooseUs />
-      <OurVision />
-    </div>
+      <div> {/* Removed key={location.key} to prevent unexpected unmounts */}
+        <Hero />
+        {/* <MeetThePack /> */}
+        <HowWeWork />
+        <WhyChooseUs />
+        <OurVision />
+      </div>
     </>
   );
 }
 
-export default About;
+// Resource Loading for About
+const loadAboutResources = async (reportProgress) => {
+  // Placeholder for Hero section images
+  const loadHeroResources = async () => {
+    return new Promise((resolve) => {
+      // Simulate loading of images for Hero section (0–50%)
+      // Replace with actual image path or skip if no images are needed
+      const img = new Image();
+      img.src = "/placeholder-hero-image.png"; // Use a valid placeholder or actual image path
+      img.onload = () => {
+        console.log("Hero image loaded");
+        reportProgress(50);
+        resolve(true);
+      };
+      img.onerror = (error) => {
+        console.warn("Failed to load hero image:", error);
+        reportProgress(50);
+        resolve(false);
+      };
+    });
+  };
+
+  // Placeholder for HowWeWork, WhyChooseUs, and OurVision resources
+  const loadOtherResources = async () => {
+    return new Promise((resolve) => {
+      // Simulate loading of assets for other sections (50–100%)
+      // Replace with actual resource loading logic if needed (e.g., images, icons)
+      setTimeout(() => {
+        console.log("HowWeWork, WhyChooseUs, and OurVision resources loaded");
+        reportProgress(100);
+        resolve(true);
+      }, 100); // Minimal delay for smooth progress transition
+    });
+  };
+
+  try {
+    // Debug: Log start of resource loading
+    console.log("Starting loadAboutResources");
+    // Load hero resources (0–50%)
+    await loadHeroResources();
+    // Load other resources (50–100%)
+    await loadOtherResources();
+    console.log("loadAboutResources completed");
+  } catch (error) {
+    // Log any unexpected errors during resource loading
+    console.error("Error in loadAboutResources:", error);
+    // Ensure progress reaches 100% even on error
+    reportProgress(100);
+  }
+};
+
+// Wrap About with withLoading and memoize
+export default withLoading(React.memo(About), loadAboutResources);

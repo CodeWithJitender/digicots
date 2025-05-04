@@ -974,3 +974,4 @@ const loadSceneResources = async (reportProgress) => {
 };
 
 export default withLoading(Scene, loadSceneResources);
+// export default Scene;

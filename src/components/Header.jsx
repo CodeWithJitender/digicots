@@ -485,7 +485,7 @@ function Header({ location }) {
               <li>
                 <Link
                   onClick={() =>{ setDeskToggle(false, navigate("/")) }}
-                  // to={"/things-we-do"}
+                  to={"/things-we-do"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
                   <TextHoverAnimation
