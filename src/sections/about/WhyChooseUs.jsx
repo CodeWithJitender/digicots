@@ -122,7 +122,7 @@ const WhyChooseUs = () => {
         }
       )
         .to(scrollXRef.current, {
-          transform: `translateX(-110%)`,
+          transform: `translateX(-130%)`,
           duration: 10,
           ease:"power1.inOut",
         })

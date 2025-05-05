@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 function Model({ modelPath, loadingVal }) {
   const gltf = useLoader(GLTFLoader, modelPath);
   const modelRef = useRef();
-  const { mouse } = useThree();
 
   // Clone the scene to avoid conflicts
   const scene = useMemo(() => gltf.scene.clone(), [gltf]);
@@ -104,6 +103,7 @@ const Loading = () => {
         >
           <div ref={heroRef} className="h-full w-full">
             <Canvas
+            className="bg-[#171717]"
               key="Loading-canvas"
               camera={{
                 position: [0, 0, window.innerWidth > 640 ? 5 : 9],
@@ -130,9 +130,9 @@ const Loading = () => {
             >
               <ambientLight intensity={0.8} color="#FFA500" />
               <directionalLight position={[5, 5, 5]} intensity={0.6} color="#FFA500" />
-              <Suspense fallback={<mesh><boxGeometry args={[1, 1, 1]} /><meshStandardMaterial color="red" /></mesh>}>
+              {/* <Suspense fallback={<mesh><boxGeometry args={[1, 1, 1]} /><meshStandardMaterial color="#171717" /></mesh>}> */}
                 <Model loadingVal={progress} modelPath={modelPath} />
-              </Suspense>
+              {/* </Suspense> */}
             </Canvas>
           </div>
 

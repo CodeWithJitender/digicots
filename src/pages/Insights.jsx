@@ -26,37 +26,6 @@ function Insights() {
   );
 }
 
-// Resource Loading for Insights
-const loadInsightsResources = async (reportProgress) => {
-  const loadSliderResources = async () => {
-    return new Promise((resolve) => {
-      console.log('Simulating slider resource loading...');
-      reportProgress(50);
-      resolve(true);
-    });
-  };
-
-  const loadOtherResources = async () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log('Simulating BlogList and TopicList resource loading...');
-        reportProgress(100);
-        resolve(true);
-      }, 500);
-    });
-  };
-
-  try {
-    console.log('Starting loadInsightsResources');
-    await loadSliderResources();
-    await loadOtherResources();
-    console.log('loadInsightsResources completed');
-  } catch (error) {
-    console.error('Error in loadInsightsResources:', error);
-    reportProgress(100);
-  }
-};
-
 // Wrap Insights with withLoading and memoize
 // export default withLoading(React.memo(Insights), loadInsightsResources);
 export default Insights;

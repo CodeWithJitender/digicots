@@ -30,7 +30,7 @@ const AppContent = () => {
       {/* <Loading /> */}
       <ScrollHandler />
       {!["/loading"].includes(location.pathname) && <Header location={location} />}
-      <Routes location={location}>
+      <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/loading" element={<Loading />} /> */}
         <Route path="/about" element={<About />} />

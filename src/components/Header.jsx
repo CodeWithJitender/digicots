@@ -229,7 +229,7 @@ function Header({ location }) {
           duration: 1,
           ease: "power1.inOut",
           onComplete(){
-            navigate();
+            // navigate();
           }
         });
       console.log("opened");

@@ -52,56 +52,6 @@ function OurWork() {
   );
 }
 
-// Resource Loading for OurWork
-const loadOurWorkResources = async (reportProgress) => {
-  // Placeholder for BrandingGrid images or other resources
-  const loadBrandingResources = async () => {
-    return new Promise((resolve) => {
-      // Simulate loading of images or assets for BrandingGrid (0–50%)
-      // Replace with actual image loading logic if BrandingGrid uses specific assets
-      const img = new Image();
-      img.src = "/placeholder-branding-image.png"; // Replace with actual image path
-      img.onload = () => {
-        console.log("Branding image loaded");
-        reportProgress(50);
-        resolve(true);
-      };
-      img.onerror = (error) => {
-        console.warn("Failed to load branding image:", error);
-        reportProgress(50);
-        resolve(false);
-      };
-    });
-  };
-
-  // Placeholder for other section resources (HowItWorksCanvas, HeroHeading, etc.)
-  const loadOtherResources = async () => {
-    return new Promise((resolve) => {
-      // Simulate instant or lightweight loading (50–100%)
-      // Replace with actual resource loading logic if needed (e.g., canvas assets)
-      setTimeout(() => {
-        console.log("Other resources loaded");
-        reportProgress(100);
-        resolve(true);
-      }, 100); // Minimal delay for smooth progress transition
-    });
-  };
-
-  try {
-    // Debug: Log start of resource loading
-    console.log("Starting loadOurWorkResources");
-    // Load branding resources (0–50%)
-    await loadBrandingResources();
-    // Load other resources (50–100%)
-    await loadOtherResources();
-    console.log("loadOurWorkResources completed");
-  } catch (error) {
-    // Log any unexpected errors during resource loading
-    console.error("Error in loadOurWorkResources:", error);
-    // Ensure progress reaches 100% even on error
-    reportProgress(100);
-  }
-};
 
 // Wrap OurWork with withLoading and memoize
 // export default withLoading(React.memo(OurWork), loadOurWorkResources);
