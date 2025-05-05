@@ -4,7 +4,7 @@ import HeroHeading from "../sections/our-work/HeroHeading";
 import BrandingGrid from "../sections/our-work/BrandingGrid";
 import HowItWorksCanvas from "../animation/canvas/HowItsWorkCanvas";
 import Loading from "../components/Loading";
-import { withLoading } from "../components/Loading"; // Adjust path as needed
+// import { withLoading } from "../components/Loading"; // Adjust path as needed
 
 function OurWork() {
   useEffect(() => {
@@ -104,4 +104,5 @@ const loadOurWorkResources = async (reportProgress) => {
 };
 
 // Wrap OurWork with withLoading and memoize
-export default withLoading(React.memo(OurWork), loadOurWorkResources);
+// export default withLoading(React.memo(OurWork), loadOurWorkResources);
+export default OurWork;

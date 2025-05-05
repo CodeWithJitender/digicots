@@ -14,7 +14,7 @@ import ReelCanvas from "../animation/canvas/ReelCanvas";
 import HomeHeroCanvas from "../animation/canvas/HomeHeroCanvas";
 import Loading from "../components/Loading";
 import ContentSlider from "../sections/home/ContentSlider";
-import { withLoading } from "../components/Loading"; // Adjust path as needed
+// import { withLoading } from "../components/Loading"; // Adjust path as needed
 
 function Home() {
   useEffect(() => {
@@ -103,4 +103,5 @@ const loadHomeResources = async (reportProgress) => {
 };
 
 // Wrap Home with withLoading 
-export default withLoading(Home, loadHomeResources);
+// export default withLoading(Home, loadHomeResources);
+export default Home;

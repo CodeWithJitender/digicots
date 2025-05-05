@@ -3,7 +3,7 @@ import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import TextAnimation1 from "../../animation/text/TextAnimation1";
 import ThankyouPopUp from "../../components/ThankyouPopUp";
-import { withLoading } from "../../components/Loading.jsx"; // Adjust path as needed
+// import { withLoading } from "../../components/Loading.jsx"; // Adjust path as needed
 
 const ContactForm = () => {
   const initialForm = {
@@ -514,4 +514,5 @@ const loadContactFormResources = async (reportProgress) => {
   await loadPromise;
 };
 
-export default withLoading(ContactForm, loadContactFormResources);
+// export default withLoading(ContactForm, loadContactFormResources);
+export default ContactForm;

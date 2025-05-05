@@ -318,7 +318,7 @@ const PopupModal = React.memo(({ card, onClose }) => {
       >
         ✖
       </button>
-      <div className="bg-white rounded-lg rounded-b-none w-full overflow-hidden max-w-[1400px] py-4 px-2 md:p-6 relative shadow-xl relative z-50">
+      <div className="bg-white rounded-lg rounded-b-none w-full overflow-hidden max-w-[1400px] py-4 px-2 md:p-6 relative shadow-xl z-50">
         <div className="max-h-[60vh] md:max-h-[70vh] lg:max-h-[80vh] overflow-y-auto popup-container raleway">
           <h2 className="text-2xl font-bold text-center">{card?.title}</h2>
           <p className="text-gray-600 text-center">{card?.description}</p>

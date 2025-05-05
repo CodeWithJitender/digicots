@@ -1,208 +1,20 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  Suspense,
-} from "react";
+import React, { useState, useEffect, useRef, Suspense, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
 
-
-// Loading Context with Progress Tracking
-export const LoadingContext = createContext({
-  registerComponent: () => {},
-  unregisterComponent: () => {},
-  updateProgress: () => {},
-  isPageLoaded: false,
-  totalProgress:0
-});
-
-export const LoadingProvider = ({ children }) => {
-  const [loadingComponents, setLoadingComponents] = useState(new Map());
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const [totalProgress, setTotalProgress] = useState(0);
-  const [animationComplete, setAnimationComplete] = useState(false);
-  const location = useLocation();
-  const timeoutRef = useRef(null); // Ref to track timeout
-  const startTimeRef = useRef(Date.now());
-
-  // Reset loading state on page navigation
-  useEffect(() => {
-    setLoadingComponents(new Map());
-    setIsPageLoaded(false);
-    setTotalProgress(0);
-    setAnimationComplete(false);
-    clearTimeout(timeoutRef.current);
-    startTimeRef.current = Date.now();
-  
-    // Always show loading for at least 1.5s
-    timeoutRef.current = setTimeout(() => {
-      if (loadingComponents.size === 0) {
-        setAnimationComplete(true);
-        setIsPageLoaded(true);
-      }
-    }, 1500);
-  
-    console.log("location changed");
-  }, [location.pathname]);
-  
-
-  const registerComponent = useCallback((componentId) => {
-    setLoadingComponents((prev) => {
-      const newMap = new Map(prev);
-      newMap.set(componentId, 0); // Initialize progress at 0%
-      return newMap;
-    });
-  }, []);
-
-  const unregisterComponent = useCallback(
-    (componentId) => {
-      setLoadingComponents((prev) => {
-        const newMap = new Map(prev);
-        newMap.delete(componentId);
-        if (newMap.size === 0) {
-          const minDisplayTime = 1500; // or 2000ms
-          const elapsed = Date.now() - startTimeRef.current;
-          const remaining = Math.max(0, minDisplayTime - elapsed);
-        
-          timeoutRef.current = setTimeout(() => {
-            setAnimationComplete(true);
-            setIsPageLoaded(true);
-          }, remaining);
-        }
-        return newMap;
-      });
-    },
-    [animationComplete]
-  );
-
-  const updateProgress = useCallback((componentId, progress) => {
-    setLoadingComponents((prev) => {
-      const newMap = new Map(prev);
-      newMap.set(componentId, Math.min(progress, 100)); // Cap progress at 100
-      const total = Array.from(newMap.values()).reduce((sum, p) => sum + p, 0);
-      const avgProgress = newMap.size > 0 ? total / newMap.size : 100;
-      setTotalProgress(Math.min(avgProgress, 100));
-      // Mark animation as complete if progress reaches 100
-      if (avgProgress >= 100) {
-        setAnimationComplete(true);
-      }
-      return newMap;
-    });
-  }, []);
-
-  return (
-    <LoadingContext.Provider
-      value={{
-        registerComponent,
-        unregisterComponent,
-        updateProgress,
-        isPageLoaded,
-        totalProgress,
-        setTotalProgress
-      }}
-    >
-      {children}
-    </LoadingContext.Provider>
-  );
-};
-
-export const withLoading = (WrappedComponent, loadResources) => {
-  return (props) => {
-    const {
-      registerComponent,
-      unregisterComponent,
-      updateProgress,
-    } = useContext(LoadingContext);
-
-    const [isComponentLoaded, setIsComponentLoaded] = useState(false);
-    const componentId = useRef(
-      `${WrappedComponent.name}-${Math.random().toString(36).slice(2)}`
-    ).current;
-    const hasResponded = useRef(false);
-    const timeoutRef = useRef(null);
-    const {pathname} = useLocation();
-
-    useEffect(() => {
-      registerComponent(componentId);
-
-      timeoutRef.current = setTimeout(() => {
-        if (!hasResponded.current) {
-          updateProgress(componentId, 100);
-          setIsComponentLoaded(true);
-        }
-      }, 3000);
-
-      const load = async () => {
-        try {
-          await loadResources((progress) => {
-            hasResponded.current = true;
-            updateProgress(componentId, progress);
-          });
-          updateProgress(componentId, 100);
-          setIsComponentLoaded(true);
-        } catch (error) {
-          console.error(`Failed to load ${WrappedComponent.name}:`, error);
-          updateProgress(componentId, 100);
-          setIsComponentLoaded(true);
-        }
-      };
-
-      load();
-
-      return () => {
-        clearTimeout(timeoutRef.current);
-        unregisterComponent(componentId);
-      };
-    }, [componentId, registerComponent, unregisterComponent, updateProgress]);
-
-    // ✨ Only render component after it’s loaded
-    if (!isComponentLoaded) return null;
-
-    return <WrappedComponent {...props} />;
-  };
-};
-
-
-// Camera Controls Component
-export const CameraControls = () => {
-  const { camera, gl } = useThree();
-  const controlsRef = useRef();
-
-  useEffect(() => {
-    const controls = new OrbitControls(camera, gl.domElement);
-    controls.enableZoom = true;
-    controls.enablePan = true;
-    controls.enableRotate = true;
-    controls.zoomSpeed = 0.6;
-    controls.panSpeed = 0.5;
-    controls.rotateSpeed = 0.4;
-    controls.minDistance = 2;
-    controls.maxDistance = 10;
-
-    controlsRef.current = controls;
-
-    return () => controls.dispose();
-  }, [camera, gl]);
-
-  useFrame(() => controlsRef.current?.update());
-
-  return null;
-};
-
-// Model Component
 function Model({ modelPath, loadingVal }) {
   const gltf = useLoader(GLTFLoader, modelPath);
+  const modelRef = useRef();
+  const { mouse } = useThree();
+
+  // Clone the scene to avoid conflicts
+  const scene = useMemo(() => gltf.scene.clone(), [gltf]);
 
   useEffect(() => {
-    gltf.scene.traverse((child) => {
+    scene.traverse((child) => {
       if (child.isMesh) {
         child.material = child.material.clone();
         child.material.envMapIntensity = 0.5;
@@ -218,55 +30,55 @@ function Model({ modelPath, loadingVal }) {
         child.material.metalness = 0.1;
       }
     });
-  }, [gltf]);
-
-  const modelRef = useRef();
-  const { mouse } = useThree();
+  }, [scene]);
 
   useFrame((state, delta) => {
     if (modelRef.current) {
       modelRef.current.rotation.y +=
-        delta * (loadingVal >= 100 ? 1 : loadingVal * 0.2); // Faster rotation at 100%
+        delta * (loadingVal >= 100 ? 1 : loadingVal * 0.2);
+      console.log("Animating model", { loadingVal, rotation: modelRef.current.rotation.y });
+    } else {
+      console.warn("modelRef.current is null");
     }
   });
 
   return (
     <primitive
       position={[0, window.innerWidth > 640 ? 0.05 : 0.2, 0]}
-      object={gltf.scene}
+      object={scene}
       ref={modelRef}
     />
   );
 }
 
-// Loading Component
 const Loading = () => {
-  const { isPageLoaded, totalProgress } = useContext(LoadingContext);
-  const modelPath =
-    "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf";
+  const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
   const heroRef = useRef(null);
-  const [displayProgress, setDisplayProgress] = useState(totalProgress);
+  const modelPath =
+    "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf?loading=true";
 
-  // Smoothly animate progress to 100% when resources are loaded
   useEffect(() => {
-    if (totalProgress >= 100 && displayProgress < 100) {
-      const interval = setInterval(() => {
-        setDisplayProgress((prev) => {
-          const next = prev + (100 - prev) * 0.2; // Exponential smoothing
-          if (next >= 99.9) {
-            clearInterval(interval);
-            return 100;
-          }
-          return next;
-        });
-      }, 50); // Update every 50ms for smooth animation
-      return () => clearInterval(interval);
-    } else if (totalProgress < 100) {
-      setDisplayProgress(totalProgress);
-    }
-  }, [totalProgress, displayProgress]);
+    setProgress(0);
+    setIsLoading(true);
+    const start = performance.now();
+    const duration = 3000;
 
-  // Framer Motion variants for the exit animation
+    const animate = (time) => {
+      const elapsed = time - start;
+      const newProgress = Math.min((elapsed / duration) * 100, 100);
+      setProgress(newProgress);
+      if (newProgress < 100) {
+        requestAnimationFrame(animate);
+      } else {
+        setTimeout(() => setIsLoading(false), 300);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [location.pathname]);
+
   const containerVariants = {
     initial: { opacity: 1, scale: 1 },
     exit: {
@@ -278,9 +90,13 @@ const Loading = () => {
   };
 
   return (
-    <AnimatePresence mode="wait">
-      {!isPageLoaded && (
+    <AnimatePresence
+      mode="wait"
+      onExitComplete={() => console.log("Loading screen unmounted")}
+    >
+      {isLoading && (
         <motion.div
+          key="loading-screen"
           className="h-screen overflow-hidden fixed z-[1000000] w-full bg-[#171717]"
           variants={containerVariants}
           initial="initial"
@@ -288,6 +104,7 @@ const Loading = () => {
         >
           <div ref={heroRef} className="h-full w-full">
             <Canvas
+              key="Loading-canvas"
               camera={{
                 position: [0, 0, window.innerWidth > 640 ? 5 : 9],
                 fov: 10,
@@ -299,57 +116,39 @@ const Loading = () => {
                 position: "absolute",
                 top: 0,
               }}
-              shadows
+              shadows={false}
               gl={{
                 alpha: true,
                 antialias: true,
                 powerPreference: "high-performance",
                 premultipliedAlpha: false,
+                precision: "mediump",
+              }}
+              onCreated={({ gl }) => {
+                gl.disposeOnUnmount = true;
               }}
             >
-              <ambientLight intensity={1.2} color="#FFA500" />
-              <directionalLight
-                position={[5, 5, 5]}
-                intensity={0.8}
-                color="#FFA500"
-                castShadow
-                shadow-mapSize-width={2048}
-                shadow-mapSize-height={2048}
-              />
-              <directionalLight
-                position={[-5, 5, -5]}
-                intensity={0.4}
-                color="#ffffff"
-              />
-              <pointLight
-                position={[0, 3, 0]}
-                intensity={0.5}
-                color="#ffffff"
-                distance={10}
-                decay={1}
-              />
-              <Suspense fallback={null}>
-                <Model loadingVal={displayProgress} modelPath={modelPath} />
+              <ambientLight intensity={0.8} color="#FFA500" />
+              <directionalLight position={[5, 5, 5]} intensity={0.6} color="#FFA500" />
+              <Suspense fallback={<mesh><boxGeometry args={[1, 1, 1]} /><meshStandardMaterial color="red" /></mesh>}>
+                <Model loadingVal={progress} modelPath={modelPath} />
               </Suspense>
             </Canvas>
           </div>
 
-          {/* Loading Bar with Following Text */}
           <div className="absolute bottom-10 w-full px-4">
             <div className="relative w-full mx-auto">
               <div className="h-[1px] bg-gray-700 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-[#ED510C] transition-all duration-300 ease-out"
-                  style={{ width: `${displayProgress}%` }}
+                  className="h-full bg-[#ED510C] transition-all duration-100 ease-out"
+                  style={{ width: `${progress}%` }}
                 />
               </div>
               <span
-                className="absolute flex items-center justify-end top-[-1.5rem] md:top-[-2rem] text-white text-sm md:text-xl font-medium transition-all duration-300 ease-out"
-                style={{
-                  width: `${displayProgress}%`,
-                }}
+                className="absolute flex items-center justify-end top-[-1.5rem] md:top-[-2rem] text-white text-sm md:text-xl font-medium transition-all duration-100 ease-out"
+                style={{ width: `${progress}%` }}
               >
-                {Math.round(displayProgress)}%
+                {Math.round(progress)}%
               </span>
             </div>
           </div>

@@ -484,7 +484,7 @@ function Header({ location }) {
             <ul className="mt-5 flex flex-col gap-4">
               <li>
                 <Link
-                  onClick={() =>{ setDeskToggle(false, navigate("/")) }}
+                  onClick={() =>{ setDeskToggle(false) }}
                   to={"/things-we-do"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
@@ -497,7 +497,7 @@ function Header({ location }) {
               </li>
               <li>
                 <Link
-                  onClick={() =>{ setDeskToggle(false, navigate("/")) }}
+                  onClick={() =>{ setDeskToggle(false) }}
                   to={"/about"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
@@ -510,7 +510,7 @@ function Header({ location }) {
               </li>
               <li>
                 <Link
-                  onClick={() =>{ setDeskToggle(false, navigate("/")) }}
+                  onClick={() =>{ setDeskToggle(false) }}
                   to={"/case-study"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
@@ -523,7 +523,7 @@ function Header({ location }) {
               </li>
               <li>
                 <Link
-                  onClick={() =>{ setDeskToggle(false, navigate("/")) }}
+                  onClick={() =>{ setDeskToggle(false) }}
                   to={"/insights"}
                   className="font-inter left-links inline-block text-3xl font-bold text-white"
                 >
@@ -543,7 +543,7 @@ function Header({ location }) {
             <div className="mb-5">
               <Link
                 to={"/contact"}
-                onClick={() =>{ setDeskToggle(false, navigate("/")) }}
+                onClick={() =>{ setDeskToggle(false) }}
                 className="font-inter left-links inline-block text-3xl font-bold"
               >
                 <span className="text-[#242424]">Let’s Get in Touch</span>{" "}

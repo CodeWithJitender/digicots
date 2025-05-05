@@ -35,7 +35,9 @@ export const CameraControls = () => {
 };
 
 function Model({ modelPath }) {
-  const gltf = useLoader(GLTFLoader, modelPath);
+  const gltf = useLoader(GLTFLoader, modelPath,(loader)=>{
+    // loader.manager.cache.clear();
+  });
 
   // Traverse and enhance all materials in the model
   useEffect(() => {
@@ -216,6 +218,7 @@ const Hero = () => {
             position: [0, 0, window.innerWidth > 640 ? 5 : 9],
             fov: 10,
           }}
+          key={"about-canvas"}
           style={{
             width: "100%",
             height: "100vh",
