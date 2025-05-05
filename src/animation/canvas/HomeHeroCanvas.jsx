@@ -3,6 +3,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReelCanvas from "./ReelCanvas";
+import { FaRegArrowAltCircleDown } from "react-icons/fa";
+import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -216,7 +218,7 @@ const HomeHeroCanvas = () => {
         />
         <div  className="hero-container h-screen w-full absolute top-0 text-center">
           <div ref={scrollText} className="w-full absolute bottom-8 md:text-[1.6vw] ">
-            <h1 className="text-white">Scroll To Explore.</h1>
+            <h1 className="text-white flex items-center  justify-center ">Scroll To Explore. <MdKeyboardDoubleArrowDown /> </h1>
           </div>
           <div
             ref={screen2TextRef}

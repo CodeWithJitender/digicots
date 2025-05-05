@@ -30,22 +30,28 @@ const WavePlane = ({ setOpacity }) => {
 
   const texture = useMemo(() => {
     const video = document.createElement("video");
-    video.src = "https://ik.imagekit.io/8mbzq2hdl/digicots/showreel.mp4"; // Replace with actual video URL
+    video.src = "https://ik.imagekit.io/8mbzq2hdl/digicots/showreel.mp4";
     video.crossOrigin = "anonymous";
     video.loop = true;
     video.muted = true;
     video.playsInline = true;
     video.autoplay = true;
-
-    video.play(); // Start playing video
-
+  
+    // Important: Start playback only after metadata is loaded
+    video.addEventListener("loadeddata", () => {
+      video.play().catch((err) => {
+        console.warn("Video playback failed:", err);
+      });
+    });
+  
     const videoTexture = new THREE.VideoTexture(video);
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
     videoTexture.format = THREE.RGBFormat;
-
+  
     return videoTexture;
   }, []);
+  
 
   const mapWidth = (
     width,
