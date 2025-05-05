@@ -91,7 +91,7 @@ function HowWeWork() {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top 80%", // Adjusted for smoother trigger
-        end: "top -200%",
+        end: "top -300%",
         scrub: 1,
       },
     });
@@ -122,7 +122,7 @@ function HowWeWork() {
   }, [isDesktop]);
 
   return (
-    <div className="relative min-h-[300vh]">
+    <div className="relative min-h-[400vh]">
       <section ref={sectionRef} className="sticky top-0 min-h-screen how-we-work py-10 overflow-hidden">
         <div className="min-h-screen container mx-auto px-4">
           {/* Heading Section */}

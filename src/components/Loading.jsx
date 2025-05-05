@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, Suspense, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,43 +9,34 @@ function Model({ modelPath, loadingVal }) {
   const gltf = useLoader(GLTFLoader, modelPath);
   const modelRef = useRef();
 
-  // Clone the scene to avoid conflicts
-  const scene = useMemo(() => gltf.scene.clone(), [gltf]);
-
-  useEffect(() => {
-    scene.traverse((child) => {
-      if (child.isMesh) {
+  const scene = useMemo(() => {
+    const clonedScene = gltf.scene.clone(true);
+    clonedScene.traverse((child) => {
+      if (child.isMesh && child.material) {
         child.material = child.material.clone();
         child.material.envMapIntensity = 0.5;
-        child.material.needsUpdate = true;
-
-        if (!child.material.emissive) {
-          child.material.emissive = new THREE.Color(0x000000);
-          child.material.emissiveIntensity = 0.1;
-        }
-
         child.material.shininess = 30;
         child.material.roughness = 0.5;
         child.material.metalness = 0.1;
+        child.material.emissive = child.material.emissive || new THREE.Color(0x000000);
+        child.material.emissiveIntensity = 0.1;
+        child.material.needsUpdate = true;
       }
     });
-  }, [scene]);
+    return clonedScene;
+  }, [gltf]);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (modelRef.current) {
-      modelRef.current.rotation.y +=
-        delta * (loadingVal >= 100 ? 1 : loadingVal * 0.2);
-      console.log("Animating model", { loadingVal, rotation: modelRef.current.rotation.y });
-    } else {
-      console.warn("modelRef.current is null");
+      modelRef.current.rotation.y += delta * (loadingVal >= 100 ? 1 : loadingVal * 0.2);
     }
   });
 
   return (
     <primitive
-      position={[0, window.innerWidth > 640 ? 0.05 : 0.2, 0]}
-      object={scene}
       ref={modelRef}
+      object={scene}
+      position={[0, window.innerWidth > 640 ? 0.05 : 0.2, 0]}
     />
   );
 }
@@ -54,7 +45,6 @@ const Loading = () => {
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
-  const heroRef = useRef(null);
   const modelPath =
     "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf?loading=true";
 
@@ -89,10 +79,7 @@ const Loading = () => {
   };
 
   return (
-    <AnimatePresence
-      mode="wait"
-      onExitComplete={() => console.log("Loading screen unmounted")}
-    >
+    <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
           key="loading-screen"
@@ -101,14 +88,15 @@ const Loading = () => {
           initial="initial"
           exit="exit"
         >
-          <div ref={heroRef} className="h-full w-full">
+          <div className="h-full w-full">
             <Canvas
-            className="bg-[#171717]"
+              className="bg-[#171717]"
               key="Loading-canvas"
               camera={{
                 position: [0, 0, window.innerWidth > 640 ? 5 : 9],
                 fov: 10,
               }}
+              dpr={[1, 1.5]}
               style={{
                 width: "100%",
                 height: "100vh",
@@ -124,15 +112,10 @@ const Loading = () => {
                 premultipliedAlpha: false,
                 precision: "mediump",
               }}
-              onCreated={({ gl }) => {
-                gl.disposeOnUnmount = true;
-              }}
             >
               <ambientLight intensity={0.8} color="#FFA500" />
               <directionalLight position={[5, 5, 5]} intensity={0.6} color="#FFA500" />
-              {/* <Suspense fallback={<mesh><boxGeometry args={[1, 1, 1]} /><meshStandardMaterial color="#171717" /></mesh>}> */}
-                <Model loadingVal={progress} modelPath={modelPath} />
-              {/* </Suspense> */}
+              <Model loadingVal={progress} modelPath={modelPath} />
             </Canvas>
           </div>
 

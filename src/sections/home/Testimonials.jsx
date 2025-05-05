@@ -80,6 +80,7 @@ function Testimonials() {
           pera="We specialize in personalized and conversational marketing, crafting tailored experiences for every business."
           cl="text-center"
           tColor="black"
+          animeStart="60"
         />
         
 
