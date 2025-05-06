@@ -139,7 +139,7 @@ function HeroDiscover() {
               DIGICOTS
             </h1>
             <p className="text-inter text-lg text-center text-white mb-5 raleway">
-              SCROLL TO KNOW HOW CAN WE HELP YOU?
+              SCROLL TO KNOW HOW WE CAN HELP YOU
             </p>
             <img src="arrow-down.png" alt="" className="w-16 m-auto mb-5" />
           </div>

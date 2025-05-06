@@ -434,7 +434,7 @@ const ContentSlider = () => {
                       </h2>
                       <p className="font-inter text-white my-4 italic">{data.i}</p>
                       <p className="font-inter text-white my-4">{data.p}</p>
-                      <Link to={data.link} className="text-white">
+                      <Link to={`discover?i=${index}`} className="text-white">
                         Explore More{" "}
                         <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C]"></i>
                       </Link>
