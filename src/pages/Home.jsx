@@ -22,29 +22,27 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   useEffect(() => {
-    // Reset scroll position to top on mount
+    // Scroll to top when component mounts
     window.scrollTo(0, 0);
-
-    // Debug: Log scroll position after mount
     console.log("Home mounted, scroll position:", window.scrollY);
 
-    // Create a GSAP context to scope animations/ScrollTriggers to this component
+    // GSAP context for scoped animations
     const ctx = gsap.context(() => {
-      // Note: If Home itself doesn't create ScrollTriggers, this context will capture those created by child components
-      // Child components like HomeHeroCanvas, HowItWorks, etc., should create their ScrollTriggers within their own useEffect
-    }, document.querySelector(".main.contain-paint")); // Scope to the Home component's main container
+      // Place your GSAP + ScrollTrigger animations here or ensure children use the same context
+      ScrollTrigger.refresh(); // Ensure triggers are updated
+    }, document.querySelector(".main.contain-paint"));
 
-    // Refresh ScrollTrigger to ensure proper initialization
-    ScrollTrigger.refresh();
-
-    // Cleanup on unmount
     return () => {
-      // Revert the GSAP context to kill only ScrollTriggers/animations created within this component
       console.log("Cleaning up Home component ScrollTriggers");
-      ctx.revert(); // This kills all ScrollTriggers and animations scoped to this context
-    };
-  }, []); // Empty dependency array ensures this runs only on mount/unmount
 
+      // Important: Kill all ScrollTriggers first
+      // ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+      // Revert GSAP context (cleans up animations and triggers created inside context)
+      ctx.revert();
+    };
+  }, []);
+  
   return (
     <div>
       <div className="main contain-paint">

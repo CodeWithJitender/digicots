@@ -14,16 +14,16 @@ function AllService() {
 
     if (id) {
       const scrollPositions = [
-        2.25 * window.innerHeight,
         3.25 * window.innerHeight,
         4.25 * window.innerHeight,
-        5.25 * window.innerHeight,
-        6.25 * window.innerHeight,
-        7.25 * window.innerHeight,
-        8.25 * window.innerHeight,
-        9.25 * window.innerHeight,
-        10.25 * window.innerHeight,
-        11.25 * window.innerHeight,
+        5.75 * window.innerHeight,
+        6.90 * window.innerHeight,
+        8.50 * window.innerHeight,
+        9.75 * window.innerHeight,
+        11.50 * window.innerHeight,
+        12.75 * window.innerHeight,
+        13.75 * window.innerHeight,
+        15.75 * window.innerHeight,
       ]; // Example scroll positions for each section
 
       const targetScroll = scrollPositions[id];

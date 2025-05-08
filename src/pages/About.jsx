@@ -7,22 +7,13 @@ import OurVision from "../sections/about/OurVision";
 
 function About() {
   const location = useLocation();
-
-  useEffect(() => {
-    // Reset scroll position to top on mount
-    window.scrollTo(0, 0);
-
-    // Monitor navigation events
-    const handlePopState = () => {
-      console.log("Navigated to:", window.location.pathname);
-    };
-    window.addEventListener("popstate", handlePopState);
-
-    // Cleanup on unmount
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
+  useEffect(()=>{
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 0); // thoda delay zaruri hota hai
+  
+    return () => clearTimeout(timeout);
+  },[])
 
   return (
     <div>

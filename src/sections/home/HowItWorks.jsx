@@ -254,11 +254,11 @@ const HowItWorks = () => {
       animationRefs.current.clickAnimations.forEach((anim) => anim?.kill());
 
       // Kill all related ScrollTriggers
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.trigger === parentRef.current) {
-          trigger.kill();
-        }
-      });
+      // ScrollTrigger.getAll().forEach((trigger) => {
+      //   if (trigger.trigger === parentRef.current) {
+      //     trigger.kill();
+      //   }
+      // });
     };
   }, []);
 

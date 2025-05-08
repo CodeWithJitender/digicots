@@ -48,7 +48,7 @@ function App() {
     <LenisContext.Provider value={lenis}>
       <Router>
       {/* <LoadingProvider> */}
-        <Loading />
+        {/* <Loading /> */}
         <AppContent /> {/* 👈 Now location and routing work correctly */}
       {/* </LoadingProvider> */}
       </Router>

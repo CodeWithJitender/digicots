@@ -130,6 +130,8 @@ export default function BlogModal({ isOpen, onClose, post }) {
     },
   ];
 
+  console.log(post.imgArr)
+
   return (
     <div
       data-lenis-prevent
@@ -201,7 +203,7 @@ export default function BlogModal({ isOpen, onClose, post }) {
                 <img src="https://ik.imagekit.io/x5xessyka/digicots/public/cross.png" className="max-w-10" alt="" />
               </button>
             </div>
-            <div className="w-full h-[100%] flex justify-center items-center">
+            <div className="w-full h-[100vh] flex justify-center items-center">
               <div className="blogmodal-img max-w-[650px] w-full h-full">
                 <div className="relative w-full h-full rounded-2xl overflow-hidden">
                   {post.imgArr.map((img, i) => (

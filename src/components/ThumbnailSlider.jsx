@@ -25,7 +25,6 @@ const slides = [
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
-      "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post0.png",
     ],
   },
   {
@@ -46,7 +45,6 @@ const slides = [
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
-      "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post0.png",
     ],
   },
   {
@@ -67,7 +65,6 @@ const slides = [
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
-      "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post0.png",
     ],
   },
   {
@@ -88,7 +85,6 @@ const slides = [
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
       "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
-      "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post0.png",
     ],
   },
 ];
