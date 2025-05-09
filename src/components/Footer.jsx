@@ -457,6 +457,10 @@ export default function Footer({ popActive, setPopActive }) {
                       title: "Let's Talk",
                       id: "contact",
                     },
+                    {
+                      title: "Discover",
+                      id: "discover",
+                    },
                   ].map((link, i) => (
                     <motion.li key={i} variants={childVariants}>
                       <Link to={`/${link.id}`} className="hover:text-white">

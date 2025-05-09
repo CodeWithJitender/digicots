@@ -32,6 +32,7 @@ const AppContent = () => {
       {!["/loading"].includes(location.pathname) && <Header location={location} />}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         {/* <Route path="/loading" element={<Loading />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<LetsTalk />} />

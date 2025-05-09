@@ -449,7 +449,7 @@ const Scene = () => {
         </div>
 
         <div className="h-full w-full absolute top-0 md:ms-20 z-[1]">
-          <div className="absolute flex flex-col top-[40%] left-1/2 md:left-[60%] w-[85vw] md:w-[55vw] -translate-x-1/2">
+          <div className="absolute flex flex-col top-[40%] left-1/2 md:left-[62%] w-[85vw] md:w-[55vw] -translate-x-1/2">
             <div
               ref={(el) => (scrollMoreRef.current[0] = el)}
               className="overflow-hidden md:text-[4vw] text-[6vw] h-[6.7vw] md:h-[4.7vw]  text-sm text-white text-left leading-none "

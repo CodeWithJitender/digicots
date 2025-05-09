@@ -163,9 +163,9 @@ const ContactForm = () => {
           {[
             {
               country: "India",
-              address: "14, Near Mahavir Pharmacy, Diu",
-              phone: "+91 9876 812 3791",
-              addLink: "https://www.google.com/",
+              address: "B 73, Block B, Sector 57, Noida, Uttar Pradesh 201301",
+              phone: "09871766739",
+              addLink: "https://maps.app.goo.gl/aq6xbXispxRuJzqU8",
               phoneLink: "+91 9876 812 3791",
             },
             {

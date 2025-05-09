@@ -434,7 +434,7 @@ const ContentSlider = () => {
                       </h2>
                       <p className="font-inter text-white my-4 italic">{data.i}</p>
                       <p className="font-inter text-white my-4">{data.p}</p>
-                      <Link to={data.link} className="text-white">
+                      <Link to={`discover?i=${index}`} className="text-white">
                         Explore More{" "}
                         <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C]"></i>
                       </Link>
@@ -444,7 +444,7 @@ const ContentSlider = () => {
                             key={`mobile-tag-${index}`}
                             className="border-2 border-[#ED510C] text-[#ED510C] px-4 py-2 rounded-[20px] font-inter font-bold text-start"
                           >
-                            <Link>
+                            <Link className="text-left">
                               {text}
                               <i className="far fa-arrow-right rotate-[-45deg] text-[#ED510C] ms-2"></i>
                             </Link>

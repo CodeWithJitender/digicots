@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReelCanvas from "./ReelCanvas";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -189,14 +190,16 @@ const HomeHeroCanvas = () => {
           className="h-full w-full"
           style={{ objectFit: "cover" }}
         />
-        <div className="hero-container h-screen w-full absolute top-0 text-center">
-          <div
-            ref={scrollText}
-            className="w-full absolute bottom-8 md:text-[1.6vw]"
-          >
-            <h1 className="text-white flex items-center justify-center">
-              Scroll To Explore. <MdKeyboardDoubleArrowDown />
-            </h1>
+        <div  className="hero-container h-screen w-full absolute top-0 text-center">
+          <div ref={scrollText} className="w-full absolute bottom-8 md:text-[1.2vw] ">
+            <div className="text-white flex items-center  justify-center w-full flex-col ">
+            <p className="text-inter text-lg text-center text-white mb-3 raleway font-semibold">
+              SCROLL TO EXPLORE 
+            </p>
+              {/* <MdKeyboardDoubleArrowDown />  */}
+              <img src="https://ik.imagekit.io/8mbzq2hdl/digicots/scroll-to-explore.gif" className="max-w-10" alt="" />
+              
+            </div>
           </div>
           <div
             ref={screen2TextRef}

@@ -212,10 +212,6 @@ function AllService() {
           i: "Building an identity fortress that no one can trespass",
           p: `Firstly, we'll figure out exactly where you fit in the market, who you're talking to and what really matters to you. Then, we'll nail down a brand voice that's totally you, one that your customers will actually connect with. Think of it as the personality behind your brand, and we'll make sure it shines through everything you do. At last, we'll create some seriously awesome packaging. It's not just about keeping your product safe; it's about telling your story and making people go "wow." We want something that looks great and works perfectly, something that'll grab attention and stick in people's minds.`,
         },
-        "UI Creation (Adobe Figma)": {
-          i: "",
-          p: "",
-        },
       },
       id: "branding",
     },
