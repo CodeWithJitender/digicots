@@ -30,7 +30,7 @@ function AllService() {
 
       if (targetScroll !== undefined) {
         setTimeout(() => {
-          lenis.scrollTo(targetScroll, {
+          lenis?.scrollTo(targetScroll, {
             duration: 1.5,
             easing: (t) => t,
           });

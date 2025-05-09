@@ -4,13 +4,14 @@ import CylindricalSlider from "../../components/OurWorkSlider";
 
 function OurWork() {
   const [videoSrc, setVideoSrc] = useState("./side_walk/side.webm");
+  // const [videoSrc, setVideoSrc] = useState("./side_walk/Final_side.mov");
 
   useEffect(() => {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     console.log(navigator.userAgent)
     if (isSafari) {
-      alert("safari")
-      setVideoSrc("./side_walk/final_side.mov");
+      // alert("safari")
+      // setVideoSrc("./side_walk/Final_side.mov");
     }
   }, []);
 
