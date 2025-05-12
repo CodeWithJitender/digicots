@@ -345,8 +345,8 @@ const Scene = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: scrollMoreRef.current,
-        start: "top 80%",
-        end: "top 40%",
+        start: "top 130%",
+        end: "top 90%",
         scrub: 1,
         // markers: true,
       },
