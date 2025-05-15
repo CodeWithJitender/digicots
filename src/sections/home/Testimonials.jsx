@@ -5,7 +5,7 @@ import TestimonialsSlider from "../../components/TestimonialsSliderNew";
 import { useGSAP } from "@gsap/react";
 import TestimonialsSliderNew from "../../components/TestimonialsSliderNew";
 
-function Testimonials() {
+function Testimonials({setComponentLoaded}) {
   const data = [
     {
       id: 1,
@@ -70,6 +70,10 @@ function Testimonials() {
         },
       });
     },[testimonialsRef.current])
+
+    useEffect(()=>{
+      setComponentLoaded((prev)=> ({...prev, testimonials: true}))
+    },[])
 
 
   return testimonials.length > 0 && (

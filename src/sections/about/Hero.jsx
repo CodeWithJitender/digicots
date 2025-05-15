@@ -35,9 +35,7 @@ export const CameraControls = () => {
 };
 
 function Model({ modelPath }) {
-  const gltf = useLoader(GLTFLoader, modelPath,(loader)=>{
-    // loader.manager.cache.clear();
-  });
+  const gltf = useLoader(GLTFLoader, modelPath);
 
   // Traverse and enhance all materials in the model
   useEffect(() => {
@@ -263,7 +261,7 @@ const Hero = () => {
           />
 
           <Suspense fallback={null}>
-            <Model modelPath={modelPath} />
+            {/* <Model modelPath={modelPath} /> */}
             {/* <CameraControls /> */}
             <RandomBalls /> {/* Add 30 random balls */}
           </Suspense>

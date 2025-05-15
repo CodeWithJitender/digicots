@@ -70,7 +70,7 @@ const data = [
   },
 ];
 
-const OurJourney = () => {
+const OurJourney = ({setComponentLoaded}) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const cardRefs = useRef([]);
   const parentRef = useRef(null);
@@ -126,6 +126,9 @@ const OurJourney = () => {
 
   // GSAP animations
   useGSAP(() => {
+
+
+
     // Cleanup previous animations
     if (animationRefs.current.moveY) {
       animationRefs.current.moveY.kill();
@@ -156,6 +159,7 @@ const OurJourney = () => {
 
   // Event listeners setup and cleanup
   useEffect(() => {
+    setComponentLoaded((prev)=> ({ ...prev, ourJourney: true }));
     window.addEventListener("click", handleClickOutside);
     return () => {
       window.removeEventListener("click", handleClickOutside);

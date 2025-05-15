@@ -1,9 +1,15 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
+
+
+
+
+export const LoadingContext = React.createContext();
+
 
 function Model({ modelPath, loadingVal }) {
   const gltf = useLoader(GLTFLoader, modelPath);
@@ -42,31 +48,50 @@ function Model({ modelPath, loadingVal }) {
 }
 
 const Loading = () => {
+  const { loadingContext } = useContext(LoadingContext);
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const modelPath =
     "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf?loading=true";
 
-  useEffect(() => {
-    setProgress(0);
-    setIsLoading(true);
-    const start = performance.now();
-    const duration = 3000;
+ useEffect(() => {
+  setProgress(0);
+  setIsLoading(true);
+  let animationFrame;
+  const start = performance.now();
+  const duration = 3000;
+  console.log(loadingContext.loading);
+  
+  const animateProgress = (time) => {
+    const elapsed = time - start;
+    const newProgress = Math.min((elapsed / duration) * 90, 90); // Stop at 90%
+    setProgress(newProgress);
 
-    const animate = (time) => {
-      const elapsed = time - start;
-      const newProgress = Math.min((elapsed / duration) * 100, 100);
-      setProgress(newProgress);
-      if (newProgress < 100) {
-        requestAnimationFrame(animate);
-      } else {
-        setTimeout(() => setIsLoading(false), 300);
-      }
-    };
+    if (newProgress < 90) {
+      animationFrame = requestAnimationFrame(animateProgress);
+    } else {
+      // Now wait for loadingContext.loading to become false
+      const waitForContext = setInterval(() => {
+        if (!loadingContext.loading) {
+          clearInterval(waitForContext);
+          console.log("Loading complete");
+          setProgress(100); // Final jump to 100
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 500); // slight delay for final animation
+        }
+      }, 100); // check every 100ms
+    }
+  };
 
-    requestAnimationFrame(animate);
-  }, [location.pathname]);
+  animationFrame = requestAnimationFrame(animateProgress);
+
+  return () => {
+    cancelAnimationFrame(animationFrame);
+  };
+}, [location.pathname, loadingContext]);
+
 
   const containerVariants = {
     initial: { opacity: 1, scale: 1 },

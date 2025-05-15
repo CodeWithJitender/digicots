@@ -24,7 +24,18 @@ const HowItWorksCanvas = () => {
       imageElements.push(img);
     }
     images.current = imageElements;
+    const loadImages = async () => {
+      const promises = imageElements.map((img) => {
+        return new Promise((resolve) => {
+          img.onload = () => resolve(img);
+          img.onerror = () => resolve(null);
+        });
+      });
 
+      const loadedImages = await Promise.all(promises);
+      images.current = loadedImages.filter(Boolean);
+    };
+    loadImages();
     return () => {
       // Optional cleanup if needed
       images.current = [];

@@ -140,7 +140,7 @@ const contentData = [
   },
 ];
 
-const ContentSlider = () => {
+const ContentSlider = ({ setComponentLoaded}) => {
   const mainSlider = useRef(null);
   const thumbSlider = useRef(null);
   const containerRef = useRef(null);
@@ -359,6 +359,11 @@ const ContentSlider = () => {
 
   // Component cleanup
   useEffect(() => {
+    // Set component loaded state
+    setComponentLoaded(prevState => ({
+      ...prevState,
+      contentSlider: true,
+    }));
     return () => {
       cleanupAnimations();
       

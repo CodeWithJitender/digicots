@@ -2,17 +2,22 @@ import React, { useEffect, useState } from "react";
 import MainHeading from "../../components/MainHeading";
 import CylindricalSlider from "../../components/OurWorkSlider";
 
-function OurWork() {
+function OurWork({setComponentLoaded}) {
   const [videoSrc, setVideoSrc] = useState("https://digicots.com/images/side_walk/side.webm");
   // const [videoSrc, setVideoSrc] = useState("./side_walk/Final_side.mov");
 
   useEffect(() => {
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    console.log(navigator.userAgent)
-    if (isSafari) {
+
+    setComponentLoaded((prev)=> ({ ...prev, ourWork: true }));
+
+
+    // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    // console.log(navigator.userAgent)
+
+    // if (isSafari) {
       // alert("safari")
       // setVideoSrc("./side_walk/Final_side.mov");
-    }
+    // }
   }, []);
 
   return (

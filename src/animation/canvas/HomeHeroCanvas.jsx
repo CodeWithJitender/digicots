@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HomeHeroCanvas = () => {
+const HomeHeroCanvas = ({ setComponentLoaded }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const screen2TextRef = useRef(null);
@@ -36,6 +36,7 @@ const HomeHeroCanvas = () => {
       if (isMounted) {
         images.current = loadedImages.filter(Boolean);
         setIsLoading(false);
+        setComponentLoaded((prev) => ({ ...prev, homeHero: true }));
       }
     };
 

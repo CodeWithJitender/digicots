@@ -5,6 +5,7 @@ import HowWeWork from "../sections/about/HowWeWork";
 import WhyChooseUs from "../sections/about/WhyChooseUs";
 import OurVision from "../sections/about/OurVision";
 import { Helmet } from "react-helmet";
+import { ScrollTrigger } from "gsap/all";
 
 function About() {
   const location = useLocation();

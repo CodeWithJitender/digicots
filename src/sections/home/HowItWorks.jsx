@@ -9,7 +9,7 @@ import WolfCard from "../../components/WolfCards";
 // Register plugins once
 gsap.registerPlugin(ScrollTrigger);
 
-const HowItWorks = () => {
+const HowItWorks = ({ setComponentLoaded }) => {
   const data = [
     {
       h1: "STEP 1",
@@ -105,17 +105,7 @@ const HowItWorks = () => {
 
   // GSAP animations setup
   useGSAP(() => {
-    // ScrollTrigger for play state
-    // ScrollTrigger.create({
-    //   trigger: parentRef.current,
-    //   start: "top 30%",
-    //   onEnter: () => {
-    //     if (!hasPlayed.current) {
-    //       hasPlayed.current = true;
-    //     }
-    //   },
-    // });
-
+   
     // Clear previous animations
     if (animationRefs.current.timeline) {
       animationRefs.current.timeline.kill();
@@ -241,6 +231,11 @@ const HowItWorks = () => {
 
   // Component cleanup
   useEffect(() => {
+    // Set component as loaded
+    setComponentLoaded((prev) => ({
+      ...prev,
+      howItWorks: true,
+    }));
     return () => {
       // Kill all animations and ScrollTriggers
       if (animationRefs.current.timeline) {

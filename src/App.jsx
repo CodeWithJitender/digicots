@@ -9,6 +9,7 @@ import gsap from "gsap";
 
 import AppContent from "./routes/AppRouter";
 import Loading from "./components/Loading";
+import { LoadingContext } from "./components/Loading";
 
 const LenisContext = createContext(null);
 export const useLenis = () => useContext(LenisContext);
@@ -44,13 +45,21 @@ function App() {
     return () => lenisInstance.destroy();
   }, []);
 
+  const loadingContext = {
+    loading: true,
+    setIsLoading: (value) => {
+      loadingContext.loading = value;
+    }
+  }
+
+
   return (
     <LenisContext.Provider value={lenis}>
       <Router>
-      {/* <LoadingProvider> */}
+      <LoadingContext.Provider value={{loadingContext}}>
         <Loading />
         <AppContent /> {/* 👈 Now location and routing work correctly */}
-      {/* </LoadingProvider> */}
+      </LoadingContext.Provider>
       </Router>
     </LenisContext.Provider>
   );

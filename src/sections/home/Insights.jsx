@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import MainHeading from "../../components/MainHeading";
 import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
-function Insights() {
+function Insights({setComponentLoaded}) {
   const blackBoxRef = useRef(null);
   const blackBoxTextRef = useRef(null);
   const parentRef = useRef(null);
@@ -165,7 +165,12 @@ function Insights() {
     // });
   }, [parentRef.current]);
 
-  // console.log(blackBoxTextRef);
+  useEffect(()=>{
+    setComponentLoaded((prev) => ({
+      ...prev,
+      insights: true,
+    }));
+  }, []);
 
   return (
     <div className="min-h-[250vh] relative top-[-1px] z-[2] ">

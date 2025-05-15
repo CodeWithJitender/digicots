@@ -30,7 +30,7 @@ const WavePlane = ({ setOpacity }) => {
 
   const texture = useMemo(() => {
     const video = document.createElement("video");
-    video.src = "https://digicots.com/images/showreel/desktop.mp4";
+    video.src = "./public/desktop.mp4";
     video.crossOrigin = "anonymous";
     video.loop = true;
     video.muted = true;

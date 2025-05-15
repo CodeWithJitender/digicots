@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
 
 const baseImages = [
-  
   "https://digicots.com/images/things-we-do/cover/1.webp",
   "https://digicots.com/images/things-we-do/cover/2.webp",
   "https://digicots.com/images/things-we-do/cover/3.webp",

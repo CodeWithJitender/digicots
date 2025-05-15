@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import TextAnimation1 from "../../animation/text/TextAnimation1";
 import TextAnimation2 from "../../animation/text/TextAnimation2";
@@ -36,7 +36,7 @@ const faqs = [
 ];
 
 
-const Faq = () => {
+const Faq = ({setComponentLoaded}) => {
   const [openIndex, setOpenIndex] = useState(0); // Default: first FAQ is open
 
   const toggleFAQ = (index) => {
@@ -55,6 +55,10 @@ const Faq = () => {
       },
     });
     tl.from(blockRefs.current, { opacity: 0, y: 100, duration: 1,stagger:.3 },"a")
+  },[])
+
+  useEffect(()=>{
+    setComponentLoaded((prev)=> ({...prev, faq: true}))
   },[])
 
   return (
