@@ -30,7 +30,7 @@ const WavePlane = ({ setOpacity }) => {
 
   const texture = useMemo(() => {
     const video = document.createElement("video");
-    video.src = "https://ik.imagekit.io/8mbzq2hdl/digicots/showreel.mp4";
+    video.src = "https://digicots.com/images/showreel/desktop.mp4";
     video.crossOrigin = "anonymous";
     video.loop = true;
     video.muted = true;
@@ -259,7 +259,7 @@ const Scene = () => {
       display: "initial",
       onComplete: () => {
         videoElementRef.current.src =
-          "https://ik.imagekit.io/8mbzq2hdl/digicots/showreel.mp4";
+          "https://digicots.com/images/showreel/desktop.mp4";
         videoElementRef.current.play();
       },
     });
@@ -397,7 +397,7 @@ const Scene = () => {
           >
             <span>PLAY</span>
             <img
-              src="https://ik.imagekit.io/8mbzq2hdl/digicots/reelplay-2.png"
+              src="https://digicots.com/images/play.png"
               className="w-10 md:w-20"
             />
             <span>REEL</span>
@@ -408,7 +408,7 @@ const Scene = () => {
             className="reel-video hidden opacity-0 h-full w-full absolute top-0 z-[2]"
           >
             <video
-              src="https://ik.imagekit.io/8mbzq2hdl/digicots/showreel.mp4"
+              src="https://digicots.com/images/showreel/desktop.mp4"
               className="w-full h-full object-cover"
               autoPlay
               loop
@@ -417,7 +417,7 @@ const Scene = () => {
             <div className="h-full w-full backdrop-blur-2xl absolute top-0 bg-zinc-800/[.1]" />
             <video
               ref={videoElementRef}
-              src="https://ik.imagekit.io/8mbzq2hdl/digicots/showreel.mp4"
+              src="https://digicots.com/images/showreel/desktop.mp4"
               className="w-full h-full md:object-cover absolute top-0"
               controls
             />
@@ -439,7 +439,7 @@ const Scene = () => {
               >
                 <span>REPLAY</span>
                 <img
-                  src="https://ik.imagekit.io/8mbzq2hdl/digicots/reelplay-2.png"
+                  src="https://digicots.com/images/play.png"
                   className="w-10 md:w-20"
                 />
                 <span>REEL</span>

@@ -103,12 +103,12 @@ const OurVision = () => {
   const data = [
     {
       title: "OUR VISION",
-      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/vision.webp",
+      img: "https://digicots.com/images/vision.webp",
       p: ` To lead as the apex pack of creative individuals, penetrating through unexplored gaps, unventured industries with courage, instinct and wisdom – transforming bold visions into success stories imprinted in people’s minds while thriving in the constantly changing world.`,
     },
     {
       title: "OUR MISSION",
-      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/mission.webp",
+      img: "https://digicots.com/images/mission.webp",
       p: `Our mission is to guide businesses that dare to be different through the unknown with sharp vision, adaptability and loyalty. We don’t prioritize superficial outcomes; we juggle calculated risk & bold innovation in order to create legacies. We are picky as sh*t! We don’t want to be your average outsourcing agency. We want to know you, delve into your story, know your vision and philosophies. With a blend of data-backed insights, tech-savvy approach and creative finesse; we craft bespoke systems unlocking abundance. With us, it will never just be marketing. We want to be the answer to all your problems – a central hub you can rely on for recognizing gaps in any process; and trustworthy, worthwhile consultancy in all areas of growth. We want to be the forefront of our client’s businesses; representing them on all fronts. Being at the peak is non-negotiable! We do that for ourselves; and we empower you to dominate your arena. Every strategy, every system is meticulously designed to give your vision a momentum; to generate long-lasting impact.`,
     },
   ];

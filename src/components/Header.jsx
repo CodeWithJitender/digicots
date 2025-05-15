@@ -11,61 +11,61 @@ function Header({ location }) {
     {
       title: "Content Production",
       pera: "The art of storytelling by transforming ideas into captivating visual narratives that engage...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-9.png",
+      icon: "https://digicots.com/images/service/content-production.png",
       id: "content-production",
     },
     {
       title: "Outreach Solutions",
       pera: "In today's super crowded market, old-school ads just don't cut it anymore. Really connecting with...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-8.png",
+      icon: "https://digicots.com/images/service/outreach-solutions.png",
       id: "outreach-solutions",
     },
     {
       title: "Public Relations",
       pera: "This is the art of shaping and maintaining a brand’s reputation – its most valuable asset...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png",
+      icon: "https://digicots.com/images/service/public-relations.png",
       id: "public-relations",
     },
     {
       title: "Digital Marketing",
       pera: "We do way more than just post on social media. We build real strategies with data behind...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-6.png",
+      icon: "https://digicots.com/images/service/digital-marketing.png",
       id: "digital-marketing",
     },
     {
       title: "Performance Marketing",
       pera: "We're all about getting you the best returns on your advertising budget. We do this by creating...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-5.png",
+      icon: "https://digicots.com/images/service/performance-marketing.png",
       id: "performance-marketing",
     },
     {
       title: "Creative Designing",
       pera: "Turn concepts into striking visual assets – digital or print. Design is way more than just aesthetics...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-7.png",
+      icon: "https://digicots.com/images/service/creative-designing.png",
       id: "creative-designing",
     },
     {
       title: "Branding",
       pera: "We're all about getting you the best returns on your advertising budget. We do this by creating...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png",
+      icon: "https://digicots.com/images/service/branding.png",
       id: "branding",
     },
     {
       title: "Outdoor Advertising",
       pera: "Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-3.png",
+      icon: "https://digicots.com/images/service/outdoor-advertising.png",
       id: "outdoor-advertising",
     },
     {
       title: "Website Development",
       pera: "Think of a website like your brand's online home. It's not just a place on the internet, it's how people...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-1.png",
+      icon: "https://digicots.com/images/service/website-development.png",
       id: "website-development",
     },
     {
       title: "Artificial Reality (AR)",
       pera: "The future of marketing is immersive. AR brings products to life – allowing consumers to virtually...",
-      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-2.png",
+      icon: "https://digicots.com/images/service/artificial-reality.png",
       id: "artificial-reality",
     },
   ];
@@ -306,8 +306,8 @@ function Header({ location }) {
                 src={
                   ["/case-study"].includes(location.pathname) &&
                   window.innerWidth > 600
-                    ? "https://ik.imagekit.io/x5xessyka/digicots/public/logo-black.png"
-                    : "https://ik.imagekit.io/x5xessyka/digicots/public/logo-white.png"
+                    ? "https://digicots.com/images/logo-black.png"
+                    : "https://digicots.com/images/logo-white.png"
                 }
                 className="max-w-36 md:max-w-40 lg:max-w-52"
                 alt=""
@@ -475,7 +475,7 @@ function Header({ location }) {
             <div className="logo">
               <Link onClick={() =>{ setDeskToggle(false, navigate("/")) }}>
                 <img
-                  src="https://ik.imagekit.io/8mbzq2hdl/digicots/logo-new.png"
+                  src="https://digicots.com/images/logo.png"
                   className="w-full max-w-36 md:max-w-40 lg:max-w-52"
                   alt=""
                 />

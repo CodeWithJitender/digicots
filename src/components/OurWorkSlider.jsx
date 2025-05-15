@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 const baseImages = [
   
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-1-1.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-2-1.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-3-1.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-4-1.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-5-1.webp",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/project-6-1.webp",
+  "https://digicots.com/images/things-we-do/cover/1.webp",
+  "https://digicots.com/images/things-we-do/cover/2.webp",
+  "https://digicots.com/images/things-we-do/cover/3.webp",
+  "https://digicots.com/images/things-we-do/cover/4.webp",
+  "https://digicots.com/images/things-we-do/cover/5.webp",
+  "https://digicots.com/images/things-we-do/cover/6.webp",
 ];
 
 

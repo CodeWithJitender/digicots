@@ -14,8 +14,8 @@ import { useSearchParams } from "react-router-dom";
 const brandingData = [
   {
     id: 1,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-1-1.webp",
-    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/1.webp",
+    image: "https://digicots.com/images/things-we-do/cover/1.webp",
+    internal: "https://digicots.com/images/things-we-do/internal/1.webp",
     url: "https://www.drinkcharlies.com/",
     title: "Charlie’s Organics",
     tags: ["HTML5", "CSS3", "React.js", "Vue.js", "JQuery"],
@@ -29,8 +29,8 @@ const brandingData = [
   },
   {
     id: 2,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-2-1.webp",
-    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/2.webp",
+    image: "https://digicots.com/images/things-we-do/cover/2.webp",
+    internal: "https://digicots.com/images/things-we-do/internal/2.webp",
     url: "https://www.triplettapizza.com/",
     title: "Tripletta",
     tags: ["HTML5", "CSS3", "GSAP", "React.js", "JQuery"],
@@ -45,8 +45,8 @@ const brandingData = [
   },
   {
     id: 3,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-3-1.webp",
-    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/3.webp",
+    image: "https://digicots.com/images/things-we-do/cover/3.webp",
+    internal: "https://digicots.com/images/things-we-do/internal/3.webp",
     url: "https://surge.peachworlds.com/",
     title: "Surge",
     tags: ["HTML5", "CSS3", "GSAP,", "React.js", "JQuery"],
@@ -61,8 +61,8 @@ const brandingData = [
   },
   {
     id: 4,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-4-1.webp",
-    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/4.webp",
+    image: "https://digicots.com/images/things-we-do/cover/4.webp",
+    internal: "https://digicots.com/images/things-we-do/internal/4.webp",
     url: "https://isradesign.com/en/",
     title: "ISRA Design",
     tags: ["HTML5", "CSS3", "GSAP", "React.js", "Vue.js", "JQuery"],
@@ -77,8 +77,8 @@ const brandingData = [
   },
   {
     id: 5,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-5-1.webp",
-    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/5.webp",
+    image: "https://digicots.com/images/things-we-do/cover/5.webp",
+    internal: "https://digicots.com/images/things-we-do/internal/5.webp",
     url: "https://leoff-paris.com/en/",
     title: "Le OFF Paris",
     tags: ["HTML5", "CSS3", "Vue.js", "React.js", "Third-party APIs / Plugins"],
@@ -99,8 +99,8 @@ const brandingData = [
   },
   {
     id: 6,
-    image: "https://ik.imagekit.io/8mbzq2hdl/digicots/project-6-1.webp",
-    internal: "https://ik.imagekit.io/8mbzq2hdl/digicots/Internal/6.webp",
+    image: "https://digicots.com/images/things-we-do/cover/6.webp",
+    internal: "https://digicots.com/images/things-we-do/internal/6.webp",
     url: "https://kindly-2e8okmvk.peachworlds.com/",
     title: "Anima",
     tags: ["HTML5", "CSS3", "Vue.js", "React.js", "CMS (PeachWorlds)"],

@@ -52,7 +52,7 @@ const WhyChooseUs = () => {
     {
       id: 1,
       title: "Exclusivity",
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-1.webp",
+      image: "https://digicots.com/images/why-choose-us/1.webp",
       description1: "We don’t just work with anyone.",
       description2:
         "Partnering exclusively with brands ready to dominate the global arena.",
@@ -61,7 +61,7 @@ const WhyChooseUs = () => {
     {
       id: 2,
       title: "Duality",
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-2.webp",
+      image: "https://digicots.com/images/why-choose-us/2.webp",
       description1: "We don’t compromise.",
       description2:
         "Every solution strikes the perfect balance between raw instinct & precise strategy.",
@@ -70,7 +70,7 @@ const WhyChooseUs = () => {
     {
       id: 3,
       title: "Boldness",
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-3.webp",
+      image: "https://digicots.com/images/why-choose-us/3.webp",
       description1: "We don’t follow.",
       description2:
         "Running with brands that crave risk, aim for greatness and are ready to dust their competition.",
@@ -79,7 +79,7 @@ const WhyChooseUs = () => {
     {
       id: 4,
       title: "True Power",
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-4.webp",
+      image: "https://digicots.com/images/why-choose-us/4.webp",
       description1: "We fear nothing.",
       description2:
         "Tearing into the wild knowing that risk-taking is the only path to true power.",
@@ -88,7 +88,7 @@ const WhyChooseUs = () => {
     {
       id: 5,
       title: "Farsightedness",
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/why-5.webp",
+      image: "https://digicots.com/images/why-choose-us/5.webp",
       description1: "We don’t build for today.",
       description2:
         "Forging brands that destroy boundaries, thrive in chaos and master the ever-changing landscape.",

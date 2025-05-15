@@ -190,7 +190,7 @@ function Insights() {
               className="insights-box lg:left-[200vw] md:left-[47vw] relative z-10 bg-black p-5 rounded-3xl"
             >
               <div ref={blackBoxTextRef} className="">
-                <h1 className="font-bold audiowide-regular text-white">XXX</h1>
+                <h1 className="font-bold audiowide-regular text-white">14K+</h1>
                 <h4 className="font-bold font-inter text-white text-2xl">
                   Employees across the Globe
                 </h4>
@@ -208,7 +208,7 @@ function Insights() {
               className="insights-box relative bg-[#93E9FF] p-5 pb-0 rounded-3xl flex flex-col md:flex-col lg:flex-row pr-0  md:col-span-1 lg:col-span-3 "
             >
               <div className="flex flex-col justify-between pr-2">
-                <h1 className="font-bold audiowide-regular">XXXX</h1>
+                <h1 className="font-bold audiowide-regular">200+</h1>
                 <div className=" pb-5">
                   <h4 className="font-bold font-inter text-2xl">
                     Global Customers{" "}
@@ -222,7 +222,7 @@ function Insights() {
                 </div>
               </div>
               <img
-                src="https://ik.imagekit.io/8mbzq2hdl/digicots/insights-img.png"
+                src="https://digicots.com/images/insights-man.png"
                 className="w-full max-w-sm md:max-w-md lg:max-w-xs"
                 alt=""
               />
@@ -233,7 +233,7 @@ function Insights() {
               ref={(el) => (boxsRefs.current[1] = el)}
               className="insights-box relative bg-[#63D863] p-5 rounded-3xl flex flex-col justify-between"
             >
-              <h1 className="font-bold audiowide-regular">XXXX</h1>
+              <h1 className="font-bold audiowide-regular">20+</h1>
               <div className="">
                 <h4 className="font-bold font-inter text-2xl">
                   Industries Served
@@ -249,7 +249,7 @@ function Insights() {
               ref={(el) => (boxsRefs.current[2] = el)}
               className="insights-box relative bg-[#61A0FF] p-5 rounded-3xl flex flex-col md:flex-col lg:flex-row items-center gap-5 md:col-span-1 lg:col-span-3"
             >
-              <h1 className="font-bold audiowide-regular">XXXX</h1>
+              <h1 className="font-bold audiowide-regular">72%</h1>
               <h4 className="font-bold font-inter text-2xl">Repeat Business</h4>
               <p className="font-inter text-sm mt-3">
                 Enduring allegiance is what drives growth– once you’re in the
@@ -268,7 +268,7 @@ function Insights() {
               >
                 {" "}
                 <img
-                  src="https://ik.imagekit.io/8mbzq2hdl/digicots/insights-img-2.png?updatedAt=1744631768255"
+                  src="https://digicots.com/images/insights-arrow.png"
                   alt=""
                   className="w-full"
                 />

@@ -20,7 +20,7 @@ function HowWeWork() {
       quoat: "Your vision becomes our obsession.",
       bgColor: "bg-[#F3A265]",
       textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
+      img: "https://digicots.com/images/how-it-works.png",
     },
     {
       id: 2,
@@ -35,7 +35,7 @@ function HowWeWork() {
       quoat: "Our instinct is your advantage.",
       bgColor: "bg-[#2A2A2A]",
       textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
+      img: "https://digicots.com/images/how-it-works.png",
     },
     {
       id: 3,
@@ -50,7 +50,7 @@ function HowWeWork() {
       quoat: "This isn’t execution. This is a movement.",
       bgColor: "bg-[#515151]",
       textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
+      img: "https://digicots.com/images/how-it-works.png",
     },
     {
       id: 4,
@@ -65,7 +65,7 @@ function HowWeWork() {
       quoat: "Survival is only the beginning. Domination is the goal.",
       bgColor: "bg-[#F3A265]",
       textColor: "text-white",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/wolf-face.png",
+      img: "https://digicots.com/images/how-it-works.png",
     },
   ];
 

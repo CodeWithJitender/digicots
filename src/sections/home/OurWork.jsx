@@ -3,7 +3,7 @@ import MainHeading from "../../components/MainHeading";
 import CylindricalSlider from "../../components/OurWorkSlider";
 
 function OurWork() {
-  const [videoSrc, setVideoSrc] = useState("./side_walk/side.webm");
+  const [videoSrc, setVideoSrc] = useState("https://digicots.com/images/side_walk/side.webm");
   // const [videoSrc, setVideoSrc] = useState("./side_walk/Final_side.mov");
 
   useEffect(() => {

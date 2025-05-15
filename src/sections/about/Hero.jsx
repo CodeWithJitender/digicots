@@ -188,7 +188,7 @@ const RandomBalls = ({ count = 300 }) => {
 
 const Hero = () => {
   const modelPath =
-    "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf";
+    "https://digicots.com/images/Digitcots_3d.gltf";
   const heroRef = useRef(null);
 
   gsap.registerPlugin(ScrollTrigger);
@@ -271,7 +271,7 @@ const Hero = () => {
         {/* Scroll Indicator */}
         <div className="absolute pointer-events-none bottom-0 left-1/2 transform -translate-x-1/2  px-6  rounded-full text-black font-medium">
           <img
-            src="https://ik.imagekit.io/x5xessyka/digicots/public/scroll.png"
+            src="https://digicots.com/images/scroll.png"
             className="max-w-80"
             alt=""
           />

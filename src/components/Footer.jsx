@@ -286,7 +286,7 @@ export default function Footer({ popActive, setPopActive }) {
             >
               <Link to={"/"}>
                 <img
-                  src="https://ik.imagekit.io/8mbzq2hdl/digicots/logo-white.png?updatedAt=1744631774835"
+                  src="https://digicots.com/images/logo.png"
                   className="max-w-[200px]"
                   alt=""
                 />

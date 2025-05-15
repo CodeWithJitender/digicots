@@ -12,7 +12,7 @@ function Testimonials() {
       name: "John Doe",
       position: "~Glocal Edits",
       text: "Digicots knows how to strike a balance among knowledge, humor & relatability. They really know how to keep our viewers engaged.",
-      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-1.webp",
+      img: "https://digicots.com/images/testimonials/1.webp",
       isCenter: false,
     },
     {
@@ -20,7 +20,7 @@ function Testimonials() {
       name: "Jane Smith",
       position: "~Head Field Solutions",
       text: "It feels like having a team that can flawlessly harmonize with our vision, mission and values. They thoroughly understand how we want the world to see us; and they make it happen.",
-      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-2.webp",
+      img: "https://digicots.com/images/testimonials/2.webp",
       isCenter: false,
     },
     {
@@ -28,7 +28,7 @@ function Testimonials() {
       name: "Ashwary Sinha",
       position: "~Taste & Beyond",
       text: "The design sense perfectly aligns with the vision we have. Having Digicots is like having a therapist who gets you.",
-      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-3.webp",
+      img: "https://digicots.com/images/testimonials/3.webp",
       isCenter: false,
     },
     {
@@ -36,7 +36,7 @@ function Testimonials() {
       name: "Ashwary Sinha",
       position: "~ArtifiQ",
       text: "They are data-driven and that is where our visions align. Their ability to blend data, tech & creativity is truly exceptional.",
-      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-4.webp",
+      img: "https://digicots.com/images/testimonials/4.webp",
       isCenter: false,
     },
     {
@@ -44,7 +44,7 @@ function Testimonials() {
       name: "Ashwary Sinha",
       position: "~Glocal BPO",
       text: "It is phenomenal how easily they dive into details and grab the gap. They really do know when, where and how to strike.",
-      img: "https://ik.imagekit.io/8mbzq2hdl/digicots/testimonial-5.webp",
+      img: "https://digicots.com/images/testimonials/5.webp",
       isCenter: false,
     },
   ]

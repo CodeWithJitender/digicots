@@ -98,34 +98,34 @@ export default function BlogModal({ isOpen, onClose, post }) {
       title: "Local SEO for Healthcare",
       author: "Admin",
       date: "Jan 25, 2025",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
+      img: "https://digicots.com/images/featured-post-4.png",
       imgArr: [
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post2.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post3.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post4.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post5.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post6.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
+        "https://digicots.com/images/blog/internal/1.webp",
+        "https://digicots.com/images/blog/internal/2.webp",
+        "https://digicots.com/images/blog/internal/3.webp",
+        "https://digicots.com/images/blog/internal/4.webp",
+        "https://digicots.com/images/blog/internal/5.webp",
+        "https://digicots.com/images/blog/internal/6.webp",
+        "https://digicots.com/images/blog/internal/7.webp",
+        "https://digicots.com/images/blog/internal/8.webp",
+        "https://digicots.com/images/blog/internal/9.webp",
       ],
     },
     {
       title: "Local SEO for Healthcare",
       author: "Admin",
       date: "Jan 25, 2025",
-      img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-3.png",
+      img: "https://digicots.com/images/featured-post-3.png",
       imgArr: [
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post1.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post2.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post3.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post4.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post5.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post6.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post7.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post8.png",
-        "https://ik.imagekit.io/x5xessyka/digicots/public/blog-post9.png",
+        "https://digicots.com/images/blog/internal/1.webp",
+        "https://digicots.com/images/blog/internal/2.webp",
+        "https://digicots.com/images/blog/internal/3.webp",
+        "https://digicots.com/images/blog/internal/4.webp",
+        "https://digicots.com/images/blog/internal/5.webp",
+        "https://digicots.com/images/blog/internal/6.webp",
+        "https://digicots.com/images/blog/internal/7.webp",
+        "https://digicots.com/images/blog/internal/8.webp",
+        "https://digicots.com/images/blog/internal/9.webp",
       ],
     },
   ];
@@ -200,7 +200,7 @@ export default function BlogModal({ isOpen, onClose, post }) {
                 }}
                 className="text-xl cursor-pointer relative z-[9]"
               >
-                <img src="https://ik.imagekit.io/x5xessyka/digicots/public/cross.png" className="max-w-10" alt="" />
+                <img src="https://digicots.com/images/close.png" className="max-w-10" alt="" />
               </button>
             </div>
             <div className="w-full h-[100vh] flex justify-center items-center">

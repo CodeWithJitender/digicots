@@ -25,7 +25,7 @@ const HomeHeroCanvas = () => {
     const loadImages = async () => {
       const promises = Array.from({ length: frameCount }, (_, i) => {
         const img = new Image();
-        img.src = `https://ik.imagekit.io/x5xessyka/digicots/hero_section/H${i.toString().padStart(3, "0")}.avif`;
+        img.src = `https://digicots.com/images/HEROSECTION/H${i.toString().padStart(3, "0")}.avif`;
         return new Promise((resolve) => {
           img.onload = () => resolve(img);
           img.onerror = () => resolve(null);
@@ -197,7 +197,7 @@ const HomeHeroCanvas = () => {
               SCROLL TO EXPLORE 
             </p>
               {/* <MdKeyboardDoubleArrowDown />  */}
-              <img src="https://ik.imagekit.io/8mbzq2hdl/digicots/scroll-to-explore.gif" className="max-w-10" alt="" />
+              <img src="https://digicots.com/images/scroll-to-explore.gif" className="max-w-10" alt="" />
               
             </div>
           </div>

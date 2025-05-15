@@ -14,15 +14,18 @@ const POSTS = [
     title: "Local SEO for Healthcare",
     author: "Admin",
     date: "April 22, 2025",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-1.png",
-    imgArr: Array(9)
-      .fill()
-      .map(
-        (_, i) =>
-          `https://ik.imagekit.io/x5xessyka/digicots/public/blog-post${
-            i + 1
-          }.png`
-      ),
+    img: "https://digicots.com/images/featured-post-1.png",
+    imgArr:[
+      "https://digicots.com/images/blog/internal/1.webp",
+      "https://digicots.com/images/blog/internal/2.webp",
+      "https://digicots.com/images/blog/internal/3.webp",
+      "https://digicots.com/images/blog/internal/4.webp",
+      "https://digicots.com/images/blog/internal/5.webp",
+      "https://digicots.com/images/blog/internal/6.webp",
+      "https://digicots.com/images/blog/internal/7.webp",
+      "https://digicots.com/images/blog/internal/8.webp",
+      "https://digicots.com/images/blog/internal/9.webp",
+    ],
   },
   {
     id: "2",
@@ -30,15 +33,18 @@ const POSTS = [
     author: "Admin",
     date: "April 22, 2025",
     readTime: "2 Min Read",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-2.png",
-    imgArr: Array(9)
-      .fill()
-      .map(
-        (_, i) =>
-          `https://ik.imagekit.io/x5xessyka/digicots/public/blog-post${
-            i + 1
-          }.png`
-      ),
+    img: "https://digicots.com/images/featured-post-2.png",
+    imgArr:[
+      "https://digicots.com/images/blog/internal/1.webp",
+      "https://digicots.com/images/blog/internal/2.webp",
+      "https://digicots.com/images/blog/internal/3.webp",
+      "https://digicots.com/images/blog/internal/4.webp",
+      "https://digicots.com/images/blog/internal/5.webp",
+      "https://digicots.com/images/blog/internal/6.webp",
+      "https://digicots.com/images/blog/internal/7.webp",
+      "https://digicots.com/images/blog/internal/8.webp",
+      "https://digicots.com/images/blog/internal/9.webp",
+    ],
   },
   {
     id: "3",
@@ -46,15 +52,18 @@ const POSTS = [
     author: "Admin",
     date: "April 22, 2025",
     readTime: "2 Min Read",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-3.png",
-    imgArr: Array(9)
-      .fill()
-      .map(
-        (_, i) =>
-          `https://ik.imagekit.io/x5xessyka/digicots/public/blog-post${
-            i + 1
-          }.png`
-      ),
+    img: "https://digicots.com/images/featured-post-3.png",
+    imgArr: [
+      "https://digicots.com/images/blog/internal/1.webp",
+      "https://digicots.com/images/blog/internal/2.webp",
+      "https://digicots.com/images/blog/internal/3.webp",
+      "https://digicots.com/images/blog/internal/4.webp",
+      "https://digicots.com/images/blog/internal/5.webp",
+      "https://digicots.com/images/blog/internal/6.webp",
+      "https://digicots.com/images/blog/internal/7.webp",
+      "https://digicots.com/images/blog/internal/8.webp",
+      "https://digicots.com/images/blog/internal/9.webp",
+    ],
   },
   {
     id: "4",
@@ -62,15 +71,18 @@ const POSTS = [
     author: "Admin",
     date: "April 22, 2025",
     readTime: "2 Min Read",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/topic-4.png",
-    imgArr: Array(9)
-      .fill()
-      .map(
-        (_, i) =>
-          `https://ik.imagekit.io/x5xessyka/digicots/public/blog-post${
-            i + 1
-          }.png`
-      ),
+    img: "https://digicots.com/images/featured-post-4.png",
+    imgArr:[
+      "https://digicots.com/images/blog/internal/1.webp",
+      "https://digicots.com/images/blog/internal/2.webp",
+      "https://digicots.com/images/blog/internal/3.webp",
+      "https://digicots.com/images/blog/internal/4.webp",
+      "https://digicots.com/images/blog/internal/5.webp",
+      "https://digicots.com/images/blog/internal/6.webp",
+      "https://digicots.com/images/blog/internal/7.webp",
+      "https://digicots.com/images/blog/internal/8.webp",
+      "https://digicots.com/images/blog/internal/9.webp",
+    ],
   },
   {
     id: "5",
@@ -78,15 +90,18 @@ const POSTS = [
     author: "Admin",
     date: "April 22, 2025",
     readTime: "2 Min Read",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/blog/featured-post.png",
-    imgArr: Array(9)
-      .fill()
-      .map(
-        (_, i) =>
-          `https://ik.imagekit.io/x5xessyka/digicots/public/blog-post${
-            i + 1
-          }.png`
-      ),
+    img: "https://digicots.com/images/featured-post-4.png",
+    imgArr: [
+      "https://digicots.com/images/blog/internal/1.webp",
+      "https://digicots.com/images/blog/internal/2.webp",
+      "https://digicots.com/images/blog/internal/3.webp",
+      "https://digicots.com/images/blog/internal/4.webp",
+      "https://digicots.com/images/blog/internal/5.webp",
+      "https://digicots.com/images/blog/internal/6.webp",
+      "https://digicots.com/images/blog/internal/7.webp",
+      "https://digicots.com/images/blog/internal/8.webp",
+      "https://digicots.com/images/blog/internal/9.webp",
+    ],
   },
 ];
 
@@ -265,7 +280,7 @@ export default function BlogSection() {
             className="relative order-1 cursor-pointer"
           >
             <img
-              src={POSTS[POSTS.length - 1].img}
+              src="https://digicots.com/images/featured-blog.png"
               alt="Featured Post"
               className="w-full h-80 md:h-full object-cover rounded-lg"
             />

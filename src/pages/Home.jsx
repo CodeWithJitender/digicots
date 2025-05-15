@@ -16,6 +16,7 @@ import Loading from "../components/Loading";
 import ContentSlider from "../sections/home/ContentSlider";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Helmet } from "react-helmet";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -42,10 +43,18 @@ function Home() {
       ctx.revert();
     };
   }, []);
-  
+
   return (
     <div>
       <div className="main contain-paint">
+        <Helmet>
+          <title>Digicots | MarCom & Advertising Agency</title>
+          <meta
+            name="description"
+            content="Digicots offers end-to-end IT services including software development, web design, cloud solutions, and tech support—all under one roof. Empower your business with our expert digital solutions."
+          />
+        </Helmet>
+        
         <Suspense fallback={<Loading />}>
           <HomeHeroCanvas />
         </Suspense>

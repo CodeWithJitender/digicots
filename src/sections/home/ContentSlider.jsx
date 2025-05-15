@@ -10,6 +10,7 @@ import { ScrollTrigger } from "gsap/all";
 
 // Register plugins once
 gsap.registerPlugin(ScrollTrigger);
+      
 
 const contentData = [
   {
@@ -17,8 +18,8 @@ const contentData = [
     i:"Crafting your howl in seamless harmony with the consumer’s voice.",
     p: "The art of storytelling by transforming ideas into captivating visual narratives that engage, inform, and persuade. Content production is the bridge between creativity and commerce – making brands not just visible, but rather unforgettable.",
     link: "/content-production",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-9.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-9.png",
+    img: "https://digicots.com/images/service/content-production.png",
+    thumbnail: "https://digicots.com/images/service/content-production.png",
     tag: [
       "Product Photography",
       "Corporate Videos",
@@ -33,8 +34,8 @@ const contentData = [
     i:"Exploring the Unknown; Making Your Mark.",
     p: "Extend brand awareness beyond traditional channels by leveraging trusted voices in the industry to authentically engage with niche groups. Reaching the right audience requires more than just good content – it demands strategic outreach that ensures maximum impact.",
     link: "/marketing-strategy",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-8.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-8.png",
+    img: "https://digicots.com/images/service/outreach-solutions.png",
+    thumbnail: "https://digicots.com/images/service/outreach-solutions.png",
     tag: [
       "Influencer Marketing",
       "Inter-Brand Collaborations",
@@ -47,8 +48,8 @@ const contentData = [
     i:"Making your vision echo across the globe",
     p: "This is the art of shaping and maintaining a brand’s reputation – its most valuable asset. PR strategies go way beyond publicity; they help in establishing credibility, authority, and trust. Effective PR creates a wave that turns mere businesses into industry icons.",
     link: "/web-development",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-4.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-4.png",
+    img: "https://digicots.com/images/service/public-relations.png",
+    thumbnail: "https://digicots.com/images/service/public-relations.png",
     tag: [
       "Press Releases & Editorial Articles",
       "Authored Articles",
@@ -60,8 +61,8 @@ const contentData = [
     i:"Hunt Smarter. Hunt Harder.",
     p: "It’s not just about posting on social media; it’s about formulating impactful, data-driven strategies. A strong, consistent online presence helps garner engagement and brand loyalty. Digital marketing is the ultimate blend of creativity, analytics, and strategy delivering quantifiable results that drive growth.",
     link: "/web-development",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-6.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-6.png",
+    img: "https://digicots.com/images/service/digital-marketing.png",
+    thumbnail: "https://digicots.com/images/service/digital-marketing.png",
     tag: [
       "Social Media Management & Evergreen Strategies",
       "Campaign-level Strategy & SEO",
@@ -72,8 +73,8 @@ const contentData = [
     i:"Unmatched Precision. Uncaged Results.",
     p: "Maximize ROI through hyper-targeted advertising and conversion-focused strategies. Every click, every impression, every interaction is counted for to ensure the highest possible return. It isn’t about spending more; it’s about spending smart, leveraging data, and strategizing growth.",
     link: "/web-development",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-5.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-5.png",
+    img: "https://digicots.com/images/service/performance-marketing.png",
+    thumbnail: "https://digicots.com/images/service/performance-marketing.png",
     tag: [
       "eCommerce Revenue & Brand Awareness Campaigns",
       "Lead Generation & Remarketing Funnels",
@@ -85,8 +86,8 @@ const contentData = [
     i:"Visuals that Make the Consumer Stop.",
     p: "Turn concepts into striking visual assets – digital or print. Design is way more than just aesthetics; it is the visual language of a brand. It is the backbone of compelling brand communication ensuring every interaction is simply WOW!",
     link: "/web-development",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-7.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-7.png",
+    img: "https://digicots.com/images/service/creative-designing.png",
+    thumbnail: "https://digicots.com/images/service/creative-designing.png",
     tag: [
       "Lookbooks, Catalogs & Pitch Decks",
       "Illustrations",
@@ -98,8 +99,8 @@ const contentData = [
     i:"Craft the soul of your company",
     p: "Carving the Alpha Identity. Craft the soul of your company – define an identity, shape user perception, and create an emotional connection. Branding is the art of ensuring that people don’t just buy products; they buy into a vision, a story, an experience.",
     link: "/web-development",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-4.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-4.png",
+    img: "https://digicots.com/images/service/branding.png",
+    thumbnail: "https://digicots.com/images/service/branding.png",
     tag: [
       "Naming & Logo Development",
       "Brand Matrix & Packaging Development",
@@ -111,8 +112,8 @@ const contentData = [
     i:"Marking Your Territory in the Real World",
     p: "Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled tool for massive brand visibility. We, at Digicots, ensure that advertising comes across as an experience rather than an interruption.",
     link: "/web-development",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-3.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-3.png",
+    img: "https://digicots.com/images/service/outdoor-advertising.png",
+    thumbnail: "https://digicots.com/images/service/outdoor-advertising.png",
     tag: ["Hoardings & Unipoles", "Kiosks & Outdoor Design"],
   },
   {
@@ -120,8 +121,8 @@ const contentData = [
     i:"Your Digital Swarm",
     p: "A website is more than an online address; it’s a brand’s digital storefront. Website development is a blend of technology, design, and user experience to create seamless, high-converting platforms with every element optimized for performance.",
     link: "/web-development",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-1.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-1.png",
+    img: "https://digicots.com/images/service/website-development.png",
+    thumbnail: "https://digicots.com/images/service/website-development.png",
     tag: [
       "eCommerce Websites & Landing Pages",
       "Dynamic Website & CRO",
@@ -133,8 +134,8 @@ const contentData = [
     i:"Wildly Immersive Experiences",
     p: "The future of marketing is immersive. AR brings products to life – allowing consumers to virtually experience near-real manifestations of products before purchasing them. This revolutionizes how brands interact with consumers making experiences richer, more engaging, and more impactful.",
     link: "/web-development",
-    img: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-2.png",
-    thumbnail: "https://ik.imagekit.io/x5xessyka/digicots/public/icon-2.png",
+    img: "https://digicots.com/images/service/artificial-reality.png",
+    thumbnail: "https://digicots.com/images/service/artificial-reality.png",
     tag: ["Augmented Reality", "Virtual Reality","Story-driven Games"],
   },
 ];

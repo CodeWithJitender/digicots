@@ -8,36 +8,36 @@ import { useGSAP } from "@gsap/react";
 // import {withLoading} from "../../components/Loading";
 
 const textures = [
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-4.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-4.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-4.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-4.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-4.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-4.png",
-  "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
+  "https://digicots.com/images/case-study/1.webp",
+  "https://digicots.com/images/case-study/2.webp",
+  "https://digicots.com/images/case-study/3.webp",
+  "https://digicots.com/images/case-study/4.webp",
+  "https://digicots.com/images/case-study/5.webp",
+  "https://digicots.com/images/case-study/1.webp",
+  "https://digicots.com/images/case-study/2.webp",
+  "https://digicots.com/images/case-study/3.webp",
+  "https://digicots.com/images/case-study/4.webp",
+  "https://digicots.com/images/case-study/5.webp",
+  "https://digicots.com/images/case-study/1.webp",
+  "https://digicots.com/images/case-study/2.webp",
+  "https://digicots.com/images/case-study/3.webp",
+  "https://digicots.com/images/case-study/4.webp",
+  "https://digicots.com/images/case-study/5.webp",
+  "https://digicots.com/images/case-study/1.webp",
+  "https://digicots.com/images/case-study/2.webp",
+  "https://digicots.com/images/case-study/3.webp",
+  "https://digicots.com/images/case-study/4.webp",
+  "https://digicots.com/images/case-study/5.webp",
+  "https://digicots.com/images/case-study/1.webp",
+  "https://digicots.com/images/case-study/2.webp",
+  "https://digicots.com/images/case-study/3.webp",
+  "https://digicots.com/images/case-study/4.webp",
+  "https://digicots.com/images/case-study/5.webp",
+  "https://digicots.com/images/case-study/1.webp",
+  "https://digicots.com/images/case-study/2.webp",
+  "https://digicots.com/images/case-study/3.webp",
+  "https://digicots.com/images/case-study/4.webp",
+  "https://digicots.com/images/case-study/5.webp",
 ];
 
 const textureLoader = new THREE.TextureLoader();
@@ -444,7 +444,7 @@ const RotatingGroup = ({ canvas, setSelectedIndex, bgRef }) => {
 const Slide = ({ index, onClose, setSelectedIndex }) => {
   const slides = [
     {
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-1.png",
+      image: "https://digicots.com/images/case-study/1.webp",
       title: "Apple Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -502,7 +502,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-2.png",
+      image: "https://digicots.com/images/case-study/2.webp",
       title: "Tropicana Rebranding Failure Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -555,7 +555,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-3.png",
+      image: "https://digicots.com/images/case-study/3.webp",
       title: "Oreo Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -638,7 +638,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-4.png",
+      image: "https://digicots.com/images/case-study/4.webp",
       title: "Liquid Death Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -698,7 +698,7 @@ const Slide = ({ index, onClose, setSelectedIndex }) => {
       tags: ["Design", "Web-Dev", "Product"],
     },
     {
-      image: "https://ik.imagekit.io/8mbzq2hdl/digicots/case-study-5.png",
+      image: "https://digicots.com/images/case-study/5.webp",
       title: "Coca Cola Marketing Case Study",
       text: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
