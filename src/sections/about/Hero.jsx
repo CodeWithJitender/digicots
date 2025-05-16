@@ -187,7 +187,7 @@ const RandomBalls = ({ count = 300 }) => {
 };
 
 const Hero = ({ setComponentLoaded }) => {
-  const modelPath = "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf?loading=true";
+  const modelPath = "./model.gltf";
   const heroRef = useRef(null);
 
   gsap.registerPlugin(ScrollTrigger);

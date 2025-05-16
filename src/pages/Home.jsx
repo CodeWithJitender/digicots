@@ -82,6 +82,7 @@ function Home() {
 
   return (
     <div>
+      <img src="" alt="" />
       <div className="main contain-paint">
         <Helmet>
           <title>Digicots | MarCom & Advertising Agency</title>

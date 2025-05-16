@@ -66,9 +66,9 @@ const VideoLikeCanvasAnimation = ({
     const container = containerRef.current;
     if (!canvas || !container) return;
 
-    const dpr = Math.min(window.devicePixelRatio, 1.0); // Kept at 1.0; try 0.5 if needed
+    const dpr = Math.min(window.devicePixelRatio, 2.0); // Kept at 1.0; try 0.5 if needed
     const width = container.clientWidth;
-    const height = container.clientHeight;
+    const height = window.innerWidth > 600 ?  container.clientHeight : container.clientHeight * 0.5;
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -80,7 +80,7 @@ const VideoLikeCanvasAnimation = ({
   const loadImages = useCallback(async () => {
     const imagePromises = [];
     for (let i = startFrame; i <= endFrame; i++) {
-      const frameNumber = String(i).padStart(4, "0");
+      const frameNumber = String(i).padStart(3, "0");
       const img = new Image();
       img.src = `${imgPath}${frameNumber}.png`;
       imagePromises.push(
@@ -183,7 +183,7 @@ const VideoLikeCanvasAnimation = ({
     >
       <canvas
         ref={canvasRef}
-        className="w-full h-full relative z-[99999]"
+        className="w-full md:h-full h-[50vh_!important] absolute bottom-10 z-[99999]"
         style={{
           display: "block",
           width: "100%",
