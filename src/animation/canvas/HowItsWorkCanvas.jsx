@@ -11,16 +11,16 @@ const HowItWorksCanvas = ({ setComponentLoaded = (val)=>{} }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const screen2TextRef = useRef(null);
-  const frameCount = 131;
+  const frameCount = 60;
   const images = useRef([]);
   const isHome = useLocation().pathname === "/";
 
   // Preload images once
   useEffect(() => {
     const imageElements = [];
-    for (let i = 151; i < 285; i++) {
+    for (let i = 60; i < 120; i++) {
       const img = new Image();
-      img.src = `https://ik.imagekit.io/x5xessyka/digicots/front_wolf/output_${i.toString().padStart(4, "0")}.png`;
+      img.src = `https://digicots.com/images/FRONT/${i.toString().padStart(4, "0")}.avif`;
       imageElements.push(img);
     }
     images.current = imageElements;
