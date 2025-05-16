@@ -1,8 +1,6 @@
 // App.jsx
 import React, { useEffect, useState, createContext, useContext } from "react";
-import {
-  BrowserRouter as Router,
-} from "react-router-dom";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import gsap from "gsap";
@@ -49,17 +47,17 @@ function App() {
     loading: true,
     setIsLoading: (value) => {
       loadingContext.loading = value;
-    }
-  }
+    },
+  };
 
 
   return (
     <LenisContext.Provider value={lenis}>
       <Router>
-      <LoadingContext.Provider value={{loadingContext}}>
-        <Loading />
-        <AppContent /> {/* 👈 Now location and routing work correctly */}
-      </LoadingContext.Provider>
+        <LoadingContext.Provider value={{ loadingContext }}>
+          <Loading />
+          <AppContent /> {/* 👈 Now location and routing work correctly */}
+        </LoadingContext.Provider>
       </Router>
     </LenisContext.Provider>
   );

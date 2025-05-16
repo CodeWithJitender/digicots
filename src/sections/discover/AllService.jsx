@@ -5,7 +5,7 @@ import React, { useRef, useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useLenis } from "../../App";
 
-function AllService() {
+function AllService({ setComponentLoaded }) {
   const [searchParams] = useSearchParams();
   const lenis = useLenis();
 
@@ -37,7 +37,17 @@ function AllService() {
         }, 500); // thoda delay for safe mount
       }
     }
-  }, [searchParams, lenis]);
+
+    setTimeout(()=>{
+      setComponentLoaded((prev) => ({
+        ...prev,
+        allService: true,
+      }));
+    },500)
+
+  }, [searchParams, lenis, setComponentLoaded]);
+
+
 
   const data = {
     "Content Production": {

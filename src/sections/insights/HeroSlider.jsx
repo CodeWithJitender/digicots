@@ -2,7 +2,7 @@ import React from "react";
 import ThumbnailSlider from "../../components/ThumbnailSlider";
 import TextAnimation1 from "../../animation/text/TextAnimation1.jsx";
 
-function HeroSlider() {
+function HeroSlider({ setComponentLoaded }) {
   return (
     <div className="pt-20">
       {/* <h2 className="text-2xl md:text-3xl overflow-hidden pt-40 md:mb-20 max-w-[800px] m-auto text-center text-white font-bold px-2">
@@ -11,7 +11,7 @@ function HeroSlider() {
           eiusmod
         </TextAnimation1>
       </h2> */}
-      <ThumbnailSlider />
+      <ThumbnailSlider setcomponentLoaded={setComponentLoaded} />
     </div>
   );
 }

@@ -5,15 +5,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function HeroDiscover() {
+function HeroDiscover({ setComponentLoaded }) {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const screen1TextRef = useRef(null);
   const screen2TextRef = useRef(null);
   const images = useRef([]);
   const frameCount = 181;
-
-  
 
   // Load and store images
   useEffect(() => {
@@ -22,9 +20,12 @@ function HeroDiscover() {
     const loadImages = () => {
       for (let i = 0; i < frameCount; i++) {
         const img = new Image();
-        img.src = `https://digicots.com/images/MOON%27/M${i.toString().padStart(3, "0")}.avif`;
+        img.src = `https://digicots.com/images/MOON%27/M${i
+          .toString()
+          .padStart(3, "0")}.avif`;
         images.current[i] = img;
       }
+      setComponentLoaded((prev) => ({ ...prev, heroDiscover: true }));
     };
 
     loadImages();
@@ -33,7 +34,7 @@ function HeroDiscover() {
       isMounted = false;
       images.current = [];
     };
-  }, []);
+  }, [setComponentLoaded]);
 
   // Set canvas size once the image is ready
   useEffect(() => {
@@ -98,23 +99,21 @@ function HeroDiscover() {
           },
         },
         "start"
-      ).to(
-        screen1TextRef.current,
-        { opacity: 0.5, bottom: "100%" },
-        "start"
-      ).to(
-        screen2TextRef.current,
-        {
-          opacity: 1,
-          bottom: "10%",
-          duration: 0.5,
-        },
-        "start"
-      );
+      )
+        .to(screen1TextRef.current, { opacity: 0.5, bottom: "100%" }, "start")
+        .to(
+          screen2TextRef.current,
+          {
+            opacity: 1,
+            bottom: "10%",
+            duration: 0.5,
+          },
+          "start"
+        );
     }, containerRef);
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       ctx.revert();
     };
   }, []);

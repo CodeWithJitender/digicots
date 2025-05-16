@@ -1,9 +1,9 @@
-import React, { useEffect, Suspense } from "react";
+import React, { useEffect, Suspense, useContext, useState } from "react";
 import Header from "../components/Header";
 import HeroHeading from "../sections/our-work/HeroHeading";
 import BrandingGrid from "../sections/our-work/BrandingGrid";
 import HowItWorksCanvas from "../animation/canvas/HowItsWorkCanvas";
-import Loading from "../components/Loading";
+import Loading, { LoadingContext } from "../components/Loading";
 // import { withLoading } from "../components/Loading"; // Adjust path as needed
 
 function OurWork() {
@@ -35,23 +35,47 @@ function OurWork() {
     };
   }, []);
 
+  const { loadingContext } = useContext(LoadingContext);
+
+  const [componentLoaded, setComponentLoaded] = useState({
+    heroCanvas: false,
+    heroHeading: false,
+    brandingGrid: false,
+  });
+
+  useEffect(() => {
+    if (
+      componentLoaded.heroCanvas &&
+      componentLoaded.heroHeading &&
+      componentLoaded.brandingGrid
+    ) {
+      setTimeout(() => {
+        // All components have loaded
+        console.log("All components have loaded");
+        loadingContext.setIsLoading(false); // Set loading to false
+        console.log(loadingContext);
+      }, 500);
+    }
+    console.log(componentLoaded);
+    console.log(loadingContext);
+  }, [componentLoaded, loadingContext]);
+
   return (
     <>
       {/* Content below video */}
       <div className="w-full min-h-screen overflow-y-auto overflow-x-hidden">
         <div className="fixed top-0 left-0 w-full h-screen pointer-events-none">
           <Suspense fallback={<Loading />}>
-            <HowItWorksCanvas />
+            <HowItWorksCanvas setComponentLoaded={setComponentLoaded} />
           </Suspense>
         </div>
 
-        <HeroHeading />
-        <BrandingGrid />
+        <HeroHeading setComponentLoaded={setComponentLoaded} />
+        <BrandingGrid setComponentLoaded={setComponentLoaded} />
       </div>
     </>
   );
 }
-
 
 // Wrap OurWork with withLoading and memoize
 // export default withLoading(React.memo(OurWork), loadOurWorkResources);

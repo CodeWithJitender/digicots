@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HowItWorksCanvas = () => {
+const HowItWorksCanvas = ({ setComponentLoaded = (val)=>{} }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const screen2TextRef = useRef(null);
@@ -34,6 +34,7 @@ const HowItWorksCanvas = () => {
 
       const loadedImages = await Promise.all(promises);
       images.current = loadedImages.filter(Boolean);
+      setComponentLoaded((prev) => ({ ...prev, heroCanvas: true }));
     };
     loadImages();
     return () => {

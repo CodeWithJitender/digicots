@@ -185,8 +185,7 @@ const RandomBalls = ({ count = 300 }) => {
 };
 
 const Hero = () => {
-  const modelPath =
-    "https://digicots.com/images/Digitcots_3d.gltf";
+  const modelPath = "https://digicots.com/images/Digitcots_3d.gltf";
   const heroRef = useRef(null);
 
   gsap.registerPlugin(ScrollTrigger);
@@ -261,7 +260,7 @@ const Hero = () => {
           />
 
           <Suspense fallback={null}>
-            {/* <Model modelPath={modelPath} /> */}
+            <Model modelPath={modelPath} />
             {/* <CameraControls /> */}
             <RandomBalls /> {/* Add 30 random balls */}
           </Suspense>

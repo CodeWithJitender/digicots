@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BlogModal from "./BlogModal";
 
-export default function TopicSection() {
+export default function TopicSection({setComponentLoaded}) {
   const [selectedPost, setSelectedPost] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -85,6 +85,15 @@ export default function TopicSection() {
       ],
     },
   ];
+
+  useEffect(()=>{ 
+    setTimeout(() => {
+      setComponentLoaded((prev) => ({
+        ...prev,
+        topicList: true,
+      }));
+    }, 1000);
+  },[setComponentLoaded])
 
   return (
     <>

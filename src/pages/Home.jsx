@@ -77,7 +77,7 @@ function Home() {
     }
     console.log(componentLoaded);
     console.log(loadingContext);
-  }, [componentLoaded]);
+  }, [componentLoaded, loadingContext]);
 
 
   return (

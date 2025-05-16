@@ -3,7 +3,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BlogModal from "./BlogModal";
 
 const slides = [
@@ -89,7 +89,7 @@ const slides = [
   },
 ];
 
-export default function ThumbnailSlider() {
+export default function ThumbnailSlider({setcomponentLoaded}) {
   const [selectedPost, setSelectedPost] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -102,6 +102,10 @@ export default function ThumbnailSlider() {
     setIsOpen(false);
     setSelectedPost(null);
   };
+
+  useEffect(()=>{
+    setcomponentLoaded((prev)=> ({...prev, heroSlider: true}))
+  },[setcomponentLoaded])
 
   return (
     <>

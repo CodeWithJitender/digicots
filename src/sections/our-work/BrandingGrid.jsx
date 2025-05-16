@@ -456,80 +456,84 @@ const CardWrapperDesktop = React.memo(({ setSelectedCard, from, to }) => {
   );
 });
 
-const CardWrapperMobile = React.memo(({ setSelectedCard, from, to }) => {
-  const cardRef = useRef(null);
-  const cardWrapperRef = useRef(null);
-  const isDesktop = window.innerWidth > 628;
+const CardWrapperMobile = React.memo(
+  ({ setSelectedCard, from, to }) => {
+    const cardRef = useRef(null);
+    const cardWrapperRef = useRef(null);
+    const isDesktop = window.innerWidth > 628;
 
-  useGSAP(() => {
-    if (!cardWrapperRef.current || !cardRef.current) return;
+    useGSAP(() => {
+      if (!cardWrapperRef.current || !cardRef.current) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: cardWrapperRef.current,
-        start: "top 120%",
-        end: "top -40%",
-        scrub: 1,
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardWrapperRef.current,
+          start: "top 120%",
+          end: "top -40%",
+          scrub: 1,
+        },
+      });
+
+      tl.fromTo(
+        cardRef.current,
+        { scale: 1.2, opacity: 0, rotationX: 40 },
+        {
+          scale: 0.8,
+          opacity: 1,
+          rotationX: 0,
+          duration: 20,
+          ease: "power1.inOut",
+        }
+      ).to(
+        cardRef.current,
+        {
+          scale: 1.1,
+          opacity: 0.2,
+          rotationX: -40,
+          duration: 15,
+          ease: "power1.inOut",
+          // immediateRender: false,
+        },
+        "-=1"
+      );
+    }, [isDesktop, cardRef.current, cardWrapperRef.current]);
+
+    const handleCardClick = useCallback(
+      (index) => {
+        setSelectedCard(brandingData[from + index]);
       },
-    });
-
-    tl.fromTo(
-      cardRef.current,
-      { scale: 1.2, opacity: 0, rotationX: 40 },
-      {
-        scale: 0.8,
-        opacity: 1,
-        rotationX: 0,
-        duration: 20,
-        ease: "power1.inOut",
-      }
-    ).to(
-      cardRef.current,
-      {
-        scale: 1.1,
-        opacity: 0.2,
-        rotationX: -40,
-        duration: 15,
-        ease: "power1.inOut",
-        // immediateRender: false,
-      },
-      "-=1"
+      [from, setSelectedCard]
     );
-  }, [isDesktop, cardRef.current, cardWrapperRef.current]);
 
-  const handleCardClick = useCallback(
-    (index) => {
-      setSelectedCard(brandingData[from + index]);
-    },
-    [from, setSelectedCard]
-  );
+    
 
-  return (
-    <div
-      ref={cardWrapperRef}
-      className="card-wrapper flex flex-col gap-10 perspective-[1000px]"
-    >
+    return (
       <div
-        ref={cardRef}
-        className="w-full bg-cover transform-3d translate-3d rotate-x-[30deg]"
+        ref={cardWrapperRef}
+        className="card-wrapper flex flex-col gap-10 perspective-[1000px]"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-20 perspective-[1000px]">
-          {brandingData.slice(from, to).map((card, index) => (
-            <BrandingCard
-              key={`${card.id}-${index}`}
-              card={card}
-              onClick={() => handleCardClick(index)}
-            />
-          ))}
+        <div
+          ref={cardRef}
+          className="w-full bg-cover transform-3d translate-3d rotate-x-[30deg]"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-20 perspective-[1000px]">
+            {brandingData.slice(from, to).map((card, index) => (
+              <BrandingCard
+                key={`${card.id}-${index}`}
+                card={card}
+                onClick={() => handleCardClick(index)}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 // Main BrandingGrid component
 
-const BrandingGrid = () => {
+const BrandingGrid = ({ setComponentLoaded }) => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("i");
   const [selectedCard, setSelectedCard] = useState(null);
@@ -558,6 +562,10 @@ const BrandingGrid = () => {
       }
     }
   }, [id]);
+  
+  useEffect(() => {
+    setComponentLoaded((prev) => ({ ...prev, brandingGrid: true }));
+  }, [setComponentLoaded]);
 
   const cardWrappers = useMemo(() => {
     if (isDesktop) {

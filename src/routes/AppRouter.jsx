@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";          // added useState
+import React, { useContext, useEffect, useState } from "react"; // added useState
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -11,7 +11,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollHandler from "../scroll/ScrollHandler";
 import { setPrevPath } from "../hook/useHistory";
-import Loading from "../components/Loading";
+import Loading, { LoadingContext } from "../components/Loading";
 import ThankYou from "../pages/ThankYou";
 import Test from "../pages/Test";
 import ThankyouPopUp from "../components/ThankyouPopUp";
@@ -19,17 +19,20 @@ import ThankyouPopUp from "../components/ThankyouPopUp";
 const AppContent = () => {
   const location = useLocation();
   const [popActive, setPopActive] = useState(false);
-
+  const {loadingContext} = useContext(LoadingContext);
 
   useEffect(() => {
     setPrevPath(location.pathname); // store current route as previous
+    loadingContext.setIsLoading(true);
   }, [location]);
 
   return (
     <>
       {/* <Loading /> */}
       <ScrollHandler />
-      {!["/loading"].includes(location.pathname) && <Header location={location} />}
+      {!["/loading"].includes(location.pathname) && (
+        <Header location={location} />
+      )}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -43,7 +46,9 @@ const AppContent = () => {
       </Routes>
 
       {/* Only show footer on pages other than /case-study and /contact */}
-      {!["/case-study", "/contact" ,"/loading"].includes(location.pathname) && <Footer popActive={popActive} setPopActive={setPopActive} />}
+      {!["/case-study", "/contact", "/loading"].includes(location.pathname) && (
+        <Footer popActive={popActive} setPopActive={setPopActive} />
+      )}
 
       {/* your main content here */}
       <ThankyouPopUp
