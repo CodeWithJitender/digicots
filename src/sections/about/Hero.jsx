@@ -34,7 +34,7 @@ export const CameraControls = () => {
   return null;
 };
 
-function Model({ modelPath }) {
+function Model({ modelPath, setComponentLoaded }) {
   const gltf = useLoader(GLTFLoader, modelPath);
 
   // Traverse and enhance all materials in the model
@@ -58,6 +58,8 @@ function Model({ modelPath }) {
         child.material.metalness = 0.1;
       }
     });
+
+    setComponentLoaded((prev)=> ({...prev, hero: true})); // Set component loaded state
   }, [gltf]);
 
   const modelRef = useRef();
@@ -184,8 +186,8 @@ const RandomBalls = ({ count = 300 }) => {
   );
 };
 
-const Hero = () => {
-  const modelPath = "https://digicots.com/images/Digitcots_3d.gltf";
+const Hero = ({ setComponentLoaded }) => {
+  const modelPath = "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf?loading=true";
   const heroRef = useRef(null);
 
   gsap.registerPlugin(ScrollTrigger);
@@ -260,7 +262,7 @@ const Hero = () => {
           />
 
           <Suspense fallback={null}>
-            <Model modelPath={modelPath} />
+            <Model modelPath={modelPath} setComponentLoaded={setComponentLoaded} />
             {/* <CameraControls /> */}
             <RandomBalls /> {/* Add 30 random balls */}
           </Suspense>

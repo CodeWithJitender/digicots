@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import TextAnimation1 from "../../animation/text/TextAnimation1";
 import TextAnimation2 from "../../animation/text/TextAnimation2";
 
@@ -45,7 +45,7 @@ const CardComponent = ({ card, index }) => {
   );
 };
 
-const WhyChooseUs = () => {
+const WhyChooseUs = ({ setComponentLoaded }) => {
   gsap.ticker.lagSmoothing(1000, 16);
 
   const cards = [
@@ -122,7 +122,7 @@ const WhyChooseUs = () => {
         }
       )
         .to(scrollXRef.current, {
-          transform: `translateX(-130%)`,
+          transform: `translateX(-7680px)`,
           duration: 10,
           ease:"power1.inOut",
         })
@@ -159,7 +159,14 @@ const WhyChooseUs = () => {
           borderRadius: "19px",
         });
     }
+
+    console.log(window.innerWidth);
+
   }, [scrollXRef.current, window.innerWidth, sectionRef.current]);
+
+  useEffect(()=>{
+    setComponentLoaded((prev) => ({ ...prev, whyChooseUs: true }));
+  },[setComponentLoaded])
 
   return (
     <div className="why-choose min-h-[500vh]">

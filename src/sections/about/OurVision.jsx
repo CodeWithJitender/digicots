@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import TextAnimation2 from "../../animation/text/TextAnimation2";
 
 const Section = ({ title, img, p }) => {
@@ -97,7 +97,7 @@ const Section = ({ title, img, p }) => {
   );
 };
 
-const OurVision = () => {
+const OurVision = ({ setComponentLoaded }) => {
   gsap.ticker.lagSmoothing(1000, 16);
 
   const data = [
@@ -112,6 +112,10 @@ const OurVision = () => {
       p: `Our mission is to guide businesses that dare to be different through the unknown with sharp vision, adaptability and loyalty. We don’t prioritize superficial outcomes; we juggle calculated risk & bold innovation in order to create legacies. We are picky as sh*t! We don’t want to be your average outsourcing agency. We want to know you, delve into your story, know your vision and philosophies. With a blend of data-backed insights, tech-savvy approach and creative finesse; we craft bespoke systems unlocking abundance. With us, it will never just be marketing. We want to be the answer to all your problems – a central hub you can rely on for recognizing gaps in any process; and trustworthy, worthwhile consultancy in all areas of growth. We want to be the forefront of our client’s businesses; representing them on all fronts. Being at the peak is non-negotiable! We do that for ourselves; and we empower you to dominate your arena. Every strategy, every system is meticulously designed to give your vision a momentum; to generate long-lasting impact.`,
     },
   ];
+
+  useEffect(()=>{
+    setComponentLoaded((prev) => ({ ...prev, ourVision: true }));
+  },[setComponentLoaded])
 
   return (
     <section className="h-full w-full">

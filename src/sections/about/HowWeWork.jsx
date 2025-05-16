@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
-function HowWeWork() {
+function HowWeWork({ setComponentLoaded }) {
   const cardList = [
     {
       id: 1,
@@ -81,6 +81,11 @@ function HowWeWork() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(()=>{
+    setComponentLoaded((prev) => ({ ...prev, howWeWork: true }));
+  },[setComponentLoaded])
+
 
   gsap.registerPlugin(ScrollTrigger);
 

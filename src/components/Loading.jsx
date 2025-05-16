@@ -53,7 +53,7 @@ const Loading = () => {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const modelPath =
-    "https://digicots.com/images/Digitcots_3d.gltf";
+    "https://ik.imagekit.io/x5xessyka/digicots/public/3dmodel/Digitcots_3d.gltf?loading=true";
 
  useEffect(() => {
   setProgress(0);
