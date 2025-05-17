@@ -1,43 +1,44 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { useDrag } from "react-use-gesture";
 import * as THREE from "three";
 import gsap from "gsap";
 import CaseStudy from "../../sections/case-studies/CaseStudy";
 import { useGSAP } from "@gsap/react";
+import { LoadingContext } from "../../components/Loading";
 // import {withLoading} from "../../components/Loading";
 
 const textures = [
-  "https://digicots.com/images/case-study/1.webp",
-  "https://digicots.com/images/case-study/2.webp",
-  "https://digicots.com/images/case-study/3.webp",
-  "https://digicots.com/images/case-study/4.webp",
-  "https://digicots.com/images/case-study/5.webp",
-  "https://digicots.com/images/case-study/1.webp",
-  "https://digicots.com/images/case-study/2.webp",
-  "https://digicots.com/images/case-study/3.webp",
-  "https://digicots.com/images/case-study/4.webp",
-  "https://digicots.com/images/case-study/5.webp",
-  "https://digicots.com/images/case-study/1.webp",
-  "https://digicots.com/images/case-study/2.webp",
-  "https://digicots.com/images/case-study/3.webp",
-  "https://digicots.com/images/case-study/4.webp",
-  "https://digicots.com/images/case-study/5.webp",
-  "https://digicots.com/images/case-study/1.webp",
-  "https://digicots.com/images/case-study/2.webp",
-  "https://digicots.com/images/case-study/3.webp",
-  "https://digicots.com/images/case-study/4.webp",
-  "https://digicots.com/images/case-study/5.webp",
-  "https://digicots.com/images/case-study/1.webp",
-  "https://digicots.com/images/case-study/2.webp",
-  "https://digicots.com/images/case-study/3.webp",
-  "https://digicots.com/images/case-study/4.webp",
-  "https://digicots.com/images/case-study/5.webp",
-  "https://digicots.com/images/case-study/1.webp",
-  "https://digicots.com/images/case-study/2.webp",
-  "https://digicots.com/images/case-study/3.webp",
-  "https://digicots.com/images/case-study/4.webp",
-  "https://digicots.com/images/case-study/5.webp",
+  "./case-study/1.webp",
+  "./case-study/2.webp",
+  "./case-study/3.webp",
+  "./case-study/4.webp",
+  "./case-study/5.webp",
+  "./case-study/1.webp",
+  "./case-study/2.webp",
+  "./case-study/3.webp",
+  "./case-study/4.webp",
+  "./case-study/5.webp",
+  "./case-study/1.webp",
+  "./case-study/2.webp",
+  "./case-study/3.webp",
+  "./case-study/4.webp",
+  "./case-study/5.webp",
+  "./case-study/1.webp",
+  "./case-study/2.webp",
+  "./case-study/3.webp",
+  "./case-study/4.webp",
+  "./case-study/5.webp",
+  "./case-study/1.webp",
+  "./case-study/2.webp",
+  "./case-study/3.webp",
+  "./case-study/4.webp",
+  "./case-study/5.webp",
+  "./case-study/1.webp",
+  "./case-study/2.webp",
+  "./case-study/3.webp",
+  "./case-study/4.webp",
+  "./case-study/5.webp",
 ];
 
 const textureLoader = new THREE.TextureLoader();
@@ -866,10 +867,21 @@ const Bg = ({ bgRef }) => {
 
 
 const Scene = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const bgRef = useRef([]); // Shared reference for Bg cards
   const canvasRef = useRef(null); // Shared reference for Bg cards
+
+  const {loadingContext} = useContext(LoadingContext);
+
+  useEffect(()=>{
+
+  loadingContext.setIsLoading(false);
+  setTimeout(() => {
+    setIsLoading(true);
+  }, 3000);
+  },[loadingContext])
+
 
   return (
     <>

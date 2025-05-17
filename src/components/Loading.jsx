@@ -79,9 +79,9 @@ const Loading = () => {
           setProgress(100); // Final jump to 100
           setTimeout(() => {
             setIsLoading(false);
-          }, 500); // slight delay for final animation
+          }, 10); // slight delay for final animation
         }
-      }, 100); // check every 100ms
+      }, 50); // check every 100ms
     }
   };
 
