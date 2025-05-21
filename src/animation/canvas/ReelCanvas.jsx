@@ -17,7 +17,7 @@ const debounce = (func, wait) => {
   };
 };
 
-const WavePlane = ({ setOpacity }) => {
+const WavePlane = ({ setIsReelLoaded, setOpacity }) => {
   const meshRef = useRef();
   const materialRef = useRef();
   const amplitude = useRef({ value: 0 });
@@ -42,6 +42,7 @@ const WavePlane = ({ setOpacity }) => {
       video.play().catch((err) => {
         console.warn("Video playback failed:", err);
       });
+      setIsReelLoaded(true);
     });
   
     const videoTexture = new THREE.VideoTexture(video);
@@ -50,7 +51,7 @@ const WavePlane = ({ setOpacity }) => {
     videoTexture.format = THREE.RGBFormat;
   
     return videoTexture;
-  }, []);
+  }, [setIsReelLoaded]);
   
 
   const mapWidth = (
@@ -221,7 +222,7 @@ const WebGLCleanup = () => {
   return null;
 };
 
-const Scene = () => {
+const Scene = ({setIsReelLoaded}) => {
   const [opacity, setOpacity] = useState(0.9);
   const reelContainerRef = useRef(null);
   const playReelText = useRef(null);
@@ -259,7 +260,7 @@ const Scene = () => {
       display: "initial",
       onComplete: () => {
         videoElementRef.current.src =
-          "https://digicots.com/images/showreel/desktop.mp4";
+          "./desktop.mp4";
         videoElementRef.current.play();
       },
     });
@@ -381,7 +382,7 @@ const Scene = () => {
         >
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 10, 10]} />
-          <WavePlane setOpacity={setOpacity} />
+          <WavePlane setIsReelLoaded={setIsReelLoaded} setOpacity={setOpacity} />
           <WebGLCleanup />
         </Canvas>
 
@@ -408,7 +409,7 @@ const Scene = () => {
             className="reel-video hidden opacity-0 h-full w-full absolute top-0 z-[2]"
           >
             <video
-              src="https://digicots.com/images/showreel/desktop.mp4"
+              src="./desktop.mp4"
               className="w-full h-full object-cover"
               autoPlay
               loop
@@ -417,7 +418,7 @@ const Scene = () => {
             <div className="h-full w-full backdrop-blur-2xl absolute top-0 bg-zinc-800/[.1]" />
             <video
               ref={videoElementRef}
-              src="https://digicots.com/images/showreel/desktop.mp4"
+              src="./desktop.mp4"
               className="w-full h-full md:object-cover absolute top-0"
               controls
             />

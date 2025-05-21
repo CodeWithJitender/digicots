@@ -3,8 +3,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReelCanvas from "./ReelCanvas";
-import { MdKeyboardDoubleArrowDown } from "react-icons/md";
-import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +15,8 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
   const frameCount = 180;
   const images = useRef([]);
   const animationRefs = useRef({});
+  const [isReelLoaded, setIsReelLoaded] = useState(false);
+  const [canvasImagesLoaded, setCanvasImagesLoaded] = useState(false);
 
   // Image preload
   useEffect(() => {
@@ -36,7 +36,7 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
       if (isMounted) {
         images.current = loadedImages.filter(Boolean);
         setIsLoading(false);
-        setComponentLoaded((prev) => ({ ...prev, homeHero: true }));
+        setCanvasImagesLoaded(true);
       }
     };
 
@@ -48,6 +48,14 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
       images.current = [];
     };
   }, []);
+
+
+  useEffect(()=>{
+    if(isReelLoaded && canvasImagesLoaded) {
+          setComponentLoaded((prev) => ({ ...prev, homeHero: true }));
+        }
+  },[isReelLoaded,canvasImagesLoaded]);
+
 
   // Canvas setup
   const setupCanvas = useCallback(() => {
@@ -206,7 +214,7 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
             ref={screen2TextRef}
             className="service-text absolute bottom-[-300%] w-full"
           >
-            <ReelCanvas />
+            <ReelCanvas setIsReelLoaded={setIsReelLoaded} />
           </div>
         </div>
       </div>
