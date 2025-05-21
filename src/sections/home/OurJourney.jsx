@@ -196,20 +196,7 @@ const OurJourney = ({setComponentLoaded}) => {
       ease: "power1.inOut",
     });
 
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: parentRef.current,
-        start: "top -90%",
-        end: "top -92%",
-        scrub: 1,
-        // markers:true
-      },
-    });
-
-    tl2.to("body", {
-      backgroundColor: "white",
-      ease: "power1.inOut",
-    });
+    
   }, [parentRef.current]);
 
   return (

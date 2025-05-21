@@ -76,6 +76,24 @@ function Testimonials({setComponentLoaded}) {
     },[])
 
 
+    useGSAP(()=>{
+      const tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: testimonialsRef.current,
+        start: "top 50%",
+        end: "top 49%",
+        scrub: 1,
+        // markers:true
+      },
+    });
+
+    tl2.to("body", {
+      backgroundColor: "white",
+      ease: "power1.inOut",
+    });
+    })
+
+
   return testimonials.length > 0 && (
     <section ref={testimonialsRef} className="testimonial min-h-[65vh] relative z-[5] pb-30">
       <div className="">
