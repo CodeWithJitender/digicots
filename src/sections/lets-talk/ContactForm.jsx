@@ -137,7 +137,7 @@ const ContactForm = () => {
         <div className="w-full scale-[1.1] max-w-md hidden md:block absolute top-[4%] left-0">
           <video
             className="w-full"
-            src="https://digicots.com/images/breathing/breath.webm"
+            src="breath.webm"
             autoPlay
             muted
             ref={(videoRef) => {

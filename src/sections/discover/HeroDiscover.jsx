@@ -20,9 +20,12 @@ function HeroDiscover({ setComponentLoaded }) {
     const loadImages = () => {
       for (let i = 0; i < frameCount; i++) {
         const img = new Image();
-        img.src = `https://digicots.com/images/MOON%27/M${i
+        img.src = `https://ik.imagekit.io/ltdhrkrll/MOON/M${i
           .toString()
           .padStart(3, "0")}.avif`;
+        // img.src = `https://digicots.com/images/MOON%27/M${i
+        //   .toString()
+        //   .padStart(3, "0")}.avif`;
         images.current[i] = img;
       }
       setComponentLoaded((prev) => ({ ...prev, heroDiscover: true }));

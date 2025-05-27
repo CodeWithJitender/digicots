@@ -31,7 +31,7 @@ export default function ThankyouPopUp({ popActive, onClose }) {
             <h1 className="text-4xl md:text-6xl font-extrabold bg-clip-text bg-gradient-to-r flex items-center text-[#ED510C] mb-6 justify-center">
               THANK Y
               <img
-                src="https://ik.imagekit.io/8mbzq2hdl/digicots/wolf.gif"
+                src="thankyou.gif"
                 className="bg-no-repeat bg-center bg-contain w-[35px] md:w-[50px] h-[35px] md:h-[50px] align-middle mx-1"
                 alt=""
               />

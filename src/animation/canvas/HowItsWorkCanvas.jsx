@@ -20,7 +20,8 @@ const HowItWorksCanvas = ({ setComponentLoaded =(val)=>{} }) => {
     const imageElements = [];
     for (let i = 60; i < 120; i++) {
       const img = new Image();
-      img.src = `https://digicots.com/images/FRONT/${i.toString().padStart(4, "0")}.avif`;
+      // img.src = `https://digicots.com/images/FRONT/${i.toString().padStart(4, "0")}.avif`;
+      img.src = `https://ik.imagekit.io/ltdhrkrll/FRONT/${i.toString().padStart(4, "0")}.avif`;
       imageElements.push(img);
     }
     images.current = imageElements;
