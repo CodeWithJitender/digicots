@@ -12,7 +12,7 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
   const screen2TextRef = useRef(null);
   const scrollText = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
-  const frameCount = 180;
+  const frameCount = 363;
   const images = useRef([]);
   const animationRefs = useRef({});
   const [isReelLoaded, setIsReelLoaded] = useState(false);
