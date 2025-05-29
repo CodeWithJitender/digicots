@@ -84,17 +84,9 @@ function Home() {
     <div>
       <img src="" alt="" />
       <div className="main contain-paint">
-        <Helmet>
-          <title>Digicots | MarCom & Advertising Agency</title>
-          <meta
-            name="description"
-            content="Digicots offers end-to-end IT services including software development, web design, cloud solutions, and tech support—all under one roof. Empower your business with our expert digital solutions."
-          />
-        </Helmet>
-
-        {/* <Suspense fallback={<Loading />}>
+        <Suspense fallback={<Loading />}>
           <HomeHeroCanvas setComponentLoaded={setComponentLoaded} />
-        </Suspense> */}
+        </Suspense>
         <HowItWorks setComponentLoaded={setComponentLoaded} />
         <ContentSlider setComponentLoaded={setComponentLoaded} />
         <OurWork setComponentLoaded={setComponentLoaded} />
