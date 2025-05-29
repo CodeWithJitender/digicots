@@ -36,24 +36,55 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
 
   // Image preload
   const loadImages = async () => {
-    let isMounted = true;
 
-    const loadImages = async () => {
-      const promises = Array.from({ length: frameCount }, (_, i) => {
-        const img = new Image();
-        img.src = `https://digicots.com/images/HEROSECTION/H${i.toString().padStart(3, "0")}.avif`;
-        return new Promise((resolve) => {
-          img.onload = () => resolve(img);
-          img.onerror = () => resolve(null);
-        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    const promises = Array.from({ length: frameCount }, (_, i) => {
+      const img = new window.Image();
+      img.src = `https://digicots.com/images/HEROSECTION/H${i.toString().padStart(3, "0")}.avif`;
+      return new Promise((resolve) => {
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
       });
-
+    });
     const loadedImages = await Promise.all(promises);
-    if (isMounted) {
-      images.current = loadedImages.filter(Boolean);
-      setIsLoading(false);
-      setCanvasImagesLoaded(true);
-    }
+    images.current = loadedImages.filter(Boolean);
+    setIsLoading(false);
+    setCanvasImagesLoaded(true);
   };
 
   useEffect(() => {
