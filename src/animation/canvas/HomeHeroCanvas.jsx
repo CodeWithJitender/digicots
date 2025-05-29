@@ -13,8 +13,7 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
   const screen2TextRef = useRef(null);
   const scrollText = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
-  // const frameCount = 180;
-  const frameCount = 363;
+  const frameCount = 180;
   const images = useRef([]);
   const animationRefs = useRef({});
   const [isReelLoaded, setIsReelLoaded] = useState(false);
@@ -38,16 +37,16 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
   // Image preload
   const loadImages = async () => {
     let isMounted = true;
-    const promises = Array.from({ length: frameCount }, (_, i) => {
-      const img = new Image();
-      // img.src = `https://digicots.com/images/HEROSECTION/H${i.toString().padStart(3, "0")}.avif`;
-      img.src = `./home_frames/frame_${i.toString().padStart(5, "0")}.webp`;
-      // img.src = `https://sheryians-v3.vercel.app/videos/frames/${i}.jpg`;
-      return new Promise((resolve) => {
-        img.onload = () => resolve(img);
-        img.onerror = () => resolve(null);
+
+    const loadImages = async () => {
+      const promises = Array.from({ length: frameCount }, (_, i) => {
+        const img = new Image();
+        img.src = `https://digicots.com/images/HEROSECTION/H${i.toString().padStart(3, "0")}.avif`;
+        return new Promise((resolve) => {
+          img.onload = () => resolve(img);
+          img.onerror = () => resolve(null);
+        });
       });
-    });
 
     const loadedImages = await Promise.all(promises);
     if (isMounted) {

@@ -18,7 +18,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
           <div data-lenis-prevent >
             <div className="flex justify-between mb-10 sticky top-0 bg-[#ebebeb] p-4">
               <img
-                src="https://ik.imagekit.io/x5xessyka/digicots/public/logo-black.png"
+                src="logo.png"
                 className="max-w-[200px]"
                 alt="Logo"
               />
@@ -42,7 +42,7 @@ export default function CaseStudy({ slide, index, onClose, setSelectedIndex }) {
                 className="text-xl text-gray-600 hover:text-black cursor-pointer"
               >
                 <img
-                  src="https://ik.imagekit.io/8mbzq2hdl/digicots/close-2.png"
+                  src="close-th.png"
                   className="max-w-[40px]"
                   alt="Close"
                 />
