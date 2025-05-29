@@ -92,9 +92,9 @@ function Home() {
           />
         </Helmet>
 
-        <Suspense fallback={<Loading />}>
+        {/* <Suspense fallback={<Loading />}>
           <HomeHeroCanvas setComponentLoaded={setComponentLoaded} />
-        </Suspense>
+        </Suspense> */}
         <HowItWorks setComponentLoaded={setComponentLoaded} />
         <ContentSlider setComponentLoaded={setComponentLoaded} />
         <OurWork setComponentLoaded={setComponentLoaded} />
