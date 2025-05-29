@@ -193,7 +193,7 @@ const WhyChooseUs = ({ setComponentLoaded }) => {
             </p>
           </div>
           {cards.map((card, index) => (
-            <div className="relative flex sm:justify-end ml-[10%]">
+            <div className="relative flex sm:justify-end ml-[600px]">
               <CardComponent key={card.id} card={card} index={index} />
             </div>
           ))}

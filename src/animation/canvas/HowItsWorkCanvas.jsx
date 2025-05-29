@@ -1,50 +1,82 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReelCanvas from "./ReelCanvas";
 import { useLocation } from "react-router-dom";
 
+// Register plugin
 gsap.registerPlugin(ScrollTrigger);
 
-const HowItWorksCanvas = ({ setComponentLoaded =(val)=>{} }) => {
+const HowItWorksCanvas = ({ setComponentLoaded = () => {} }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const screen2TextRef = useRef(null);
-  const frameCount = 60;
+  const frameCount = 122; 
   const images = useRef([]);
   const isHome = useLocation().pathname === "/";
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [startLoading, setStartLoading] = useState(false);
 
-  // Preload images once
+  // Lazy-load images when in view
   useEffect(() => {
-    const imageElements = [];
-    for (let i = 60; i < 120; i++) {
-      const img = new Image();
-      img.src = `https://digicots.com/images/FRONT/${i.toString().padStart(4, "0")}.avif`;
-      imageElements.push(img);
-    }
-    images.current = imageElements;
-    const loadImages = async () => {
-      const promises = imageElements.map((img) => {
-        return new Promise((resolve) => {
-          img.onload = () => resolve(img);
-          img.onerror = () => resolve(null);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setStartLoading(true);
+            observer.disconnect();
+          }
         });
-      });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Preload images after lazy trigger
+  useEffect(() => {
+    if (!startLoading) return;
+
+    const loadImages = async () => {
+      const imageElements = [];
+      for (let i = 160; i < 285; i++) {
+        const img = new Image();
+        // img.src = `https://digicots.com/images/FRONT/${i.toString().padStart(4, "0")}.avif`;
+        img.src = `/front-frame/frame_${i.toString().padStart(5, "0")}.webp`;
+        imageElements.push(img);
+      }
+
+      const promises = imageElements.map(
+        (img) =>
+          new Promise((resolve) => {
+            img.onload = () => resolve(img);
+            img.onerror = () => resolve(null);
+          })
+      );
 
       const loadedImages = await Promise.all(promises);
       images.current = loadedImages.filter(Boolean);
+      setImagesLoaded(true);
+      setComponentLoaded((prev) => ({ ...prev, heroCanvas: true }));
     };
+
     loadImages();
-    setComponentLoaded((prev) => ({ ...prev, heroCanvas: true }));
+
     return () => {
-      // Optional cleanup if needed
       images.current = [];
     };
-  }, []);
+  }, [startLoading]);
 
-  // Set canvas dimensions based on first image
+  // Canvas initialization
   useEffect(() => {
+    if (!imagesLoaded) return;
+
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
     const firstImage = images.current[0];
@@ -70,10 +102,12 @@ const HowItWorksCanvas = ({ setComponentLoaded =(val)=>{} }) => {
         firstImage.onload = null;
       }
     };
-  }, []);
+  }, [imagesLoaded]);
 
-
+  // Scroll-based animation
   useGSAP(() => {
+    if (!imagesLoaded) return;
+
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
 
@@ -90,36 +124,20 @@ const HowItWorksCanvas = ({ setComponentLoaded =(val)=>{} }) => {
         trigger: containerRef.current,
         start: "top 0",
         end: "top -240%",
-        scrub: .1,
-        // pin: true,
-        // // // markers: true,
+        scrub: 0.1,
       },
     });
 
     const animationObject = { frame: 0 };
-    timeline.to(
-      animationObject,
-      {
-        frame: frameCount - 1,
-        ease: "none",
-        snap: "frame",
-        onUpdate: () => updateFrame(animationObject.frame),
-      },
-      "start"
-    );
-
-    // timeline.to(
-    //   screen2TextRef.current,
-    //   {
-    //     opacity: 1,
-    //     bottom: "0%",
-    //     duration: 1,
-    //   },
-    //   "start"
-    // );
+    timeline.to(animationObject, {
+      frame: frameCount - 1,
+      ease: "none",
+      snap: "frame",
+      onUpdate: () => updateFrame(animationObject.frame),
+    });
 
     let moveY;
-    if(isHome){
+    if (isHome) {
       moveY = gsap.to(containerRef.current, {
         y: "40%",
         duration: 20,
@@ -128,19 +146,19 @@ const HowItWorksCanvas = ({ setComponentLoaded =(val)=>{} }) => {
           trigger: containerRef.current,
           start: "top -302%",
           end: "top -400%",
-          scrub: .2,
+          scrub: 0.2,
         },
       });
     }
 
     return () => {
       timeline.scrollTrigger?.kill();
-      if(isHome) moveY?.scrollTrigger?.kill();
+      if (isHome) moveY?.scrollTrigger?.kill();
       timeline.kill();
       moveY?.kill();
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
-  }, [isHome]);
+  }, [isHome, imagesLoaded]);
 
   return (
     <section className="hero-main min-h-[400vh] bg-black">
@@ -154,7 +172,6 @@ const HowItWorksCanvas = ({ setComponentLoaded =(val)=>{} }) => {
           style={{ objectFit: "cover" }}
         />
       </div>
-      {/* Extra space for scroll */}
       <div style={{ height: "200vh" }} />
     </section>
   );

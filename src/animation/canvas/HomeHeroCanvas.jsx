@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReelCanvas from "./ReelCanvas";
 
+// Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const HomeHeroCanvas = ({ setComponentLoaded }) => {
@@ -12,50 +13,55 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
   const screen2TextRef = useRef(null);
   const scrollText = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
-  const frameCount = 180;
+  // const frameCount = 180;
+  const frameCount = 363;
   const images = useRef([]);
   const animationRefs = useRef({});
   const [isReelLoaded, setIsReelLoaded] = useState(false);
   const [canvasImagesLoaded, setCanvasImagesLoaded] = useState(false);
 
-  // Image preload
+  // Lazy load images when in view
   useEffect(() => {
-    let isMounted = true;
-
-    const loadImages = async () => {
-      const promises = Array.from({ length: frameCount }, (_, i) => {
-        const img = new Image();
-        img.src = `https://digicots.com/images/HEROSECTION/H${i.toString().padStart(3, "0")}.avif`;
-        return new Promise((resolve) => {
-          img.onload = () => resolve(img);
-          img.onerror = () => resolve(null);
-        });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadImages();
+          observer.disconnect();
+        }
       });
+    });
+    if (containerRef.current) observer.observe(containerRef.current);
 
-      const loadedImages = await Promise.all(promises);
-      if (isMounted) {
-        images.current = loadedImages.filter(Boolean);
-        setIsLoading(false);
-        setCanvasImagesLoaded(true);
-      }
-    };
-
-    loadImages();
-
-    return () => {
-      isMounted = false;
-      images.current.forEach((img) => (img.onload = null));
-      images.current = [];
-    };
+    return () => observer.disconnect();
   }, []);
 
+  // Image preload
+  const loadImages = async () => {
+    let isMounted = true;
+    const promises = Array.from({ length: frameCount }, (_, i) => {
+      const img = new Image();
+      // img.src = `https://digicots.com/images/HEROSECTION/H${i.toString().padStart(3, "0")}.avif`;
+      img.src = `./home_frames/frame_${i.toString().padStart(5, "0")}.webp`;
+      // img.src = `https://sheryians-v3.vercel.app/videos/frames/${i}.jpg`;
+      return new Promise((resolve) => {
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+      });
+    });
 
-  useEffect(()=>{
-    if(isReelLoaded && canvasImagesLoaded) {
-          setComponentLoaded((prev) => ({ ...prev, homeHero: true }));
-        }
-  },[isReelLoaded,canvasImagesLoaded]);
+    const loadedImages = await Promise.all(promises);
+    if (isMounted) {
+      images.current = loadedImages.filter(Boolean);
+      setIsLoading(false);
+      setCanvasImagesLoaded(true);
+    }
+  };
 
+  useEffect(() => {
+    if (isReelLoaded && canvasImagesLoaded) {
+      setComponentLoaded((prev) => ({ ...prev, homeHero: true }));
+    }
+  }, [isReelLoaded, canvasImagesLoaded]);
 
   // Canvas setup
   const setupCanvas = useCallback(() => {
@@ -91,83 +97,80 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
   }, [isLoading, setupCanvas]);
 
   // Main GSAP animation
-  useGSAP(
-    () => {
-      if (!canvasRef.current || !containerRef.current || isLoading) return;
+  useGSAP(() => {
+    if (!canvasRef.current || !containerRef.current || isLoading) return;
 
-      const ctx = gsap.context(() => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext("2d");
+    const ctx = gsap.context(() => {
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
 
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
 
-        const renderFrame = (index) => {
-          const img = images.current[Math.floor(index)];
-          if (img?.complete) {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.drawImage(img, 0, 0, canvas.width, canvas.height);
-          }
-        };
+      const renderFrame = (index) => {
+        const img = images.current[Math.floor(index)];
+        if (img?.complete) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+      };
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top top",
-            end: "top -350%",
-            scrub: 0.2,
-            invalidateOnRefresh: true,
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "top -350%",
+          scrub: 0.2,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl.to(
+        { frame: 0 },
+        {
+          frame: frameCount - 1,
+          ease: "none",
+          snap: "frame",
+          onUpdate() {
+            renderFrame(this.targets()[0].frame);
           },
-        });
+        },
+        "start"
+      );
 
+      if (screen2TextRef.current) {
         tl.to(
-          { frame: 0 },
+          screen2TextRef.current,
           {
-            frame: frameCount - 1,
-            ease: "none",
-            snap: "frame",
-            onUpdate() {
-              renderFrame(this.targets()[0].frame);
-            },
+            opacity: 1,
+            bottom: "0%",
+            duration: 1,
+            ease: "power2.out",
           },
           "start"
         );
+      }
 
-        if (screen2TextRef.current) {
-          tl.to(
-            screen2TextRef.current,
-            {
-              opacity: 1,
-              bottom: "0%",
-              duration: 1,
-              ease: "power2.out",
-            },
-            "start"
-          );
-        }
+      const moveY = gsap.to(containerRef.current, {
+        y: "40%",
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top -302%",
+          end: "top -400%",
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
 
-        const moveY = gsap.to(containerRef.current, {
-          y: "40%",
-          ease: "power1.inOut",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top -302%",
-            end: "top -400%",
-            scrub: 1,
-            invalidateOnRefresh: true,
-          },
-        });
+      animationRefs.current = { tl, moveY };
+    }, containerRef);
 
-        animationRefs.current = { tl, moveY };
-      }, containerRef);
-
-      return () => {
-        ctx.revert(); // ✅ kills all ScrollTriggers/animations inside context
-        animationRefs.current = {};
-      };
-    },
-    { dependencies: [isLoading] }
-  );
+    return () => {
+      ctx.revert();
+      animationRefs.current = {};
+    };
+  }, { dependencies: [isLoading] });
 
   // Text fade scroll
   useGSAP(() => {
@@ -199,15 +202,13 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
           className="h-full w-full"
           style={{ objectFit: "cover" }}
         />
-        <div  className="hero-container h-screen w-full absolute top-0 text-center">
+        <div className="hero-container h-screen w-full absolute top-0 text-center">
           <div ref={scrollText} className="w-full absolute bottom-8 md:text-[1.2vw] ">
-            <div className="text-white flex items-center  justify-center w-full flex-col ">
-            <p className="text-inter text-lg text-center text-white mb-3 raleway font-semibold">
-              SCROLL TO EXPLORE 
-            </p>
-              {/* <MdKeyboardDoubleArrowDown />  */}
+            <div className="text-white flex items-center justify-center w-full flex-col ">
+              <p className="text-inter text-lg text-center text-white mb-3 raleway font-semibold">
+                SCROLL TO EXPLORE
+              </p>
               <img src="https://digicots.com/images/scroll-to-explore.gif" className="max-w-10" alt="" />
-              
             </div>
           </div>
           <div

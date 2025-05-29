@@ -1,19 +1,13 @@
 import React, { Suspense, useContext, useEffect, useState } from "react";
-import Hero from "../sections/home/Hero";
-import homeHero from "../assets/home-hero.png";
-import HowItWorks from "../sections/home/HowItWorks";
-import Solutions from "../sections/home/Solutions";
-import OurWork from "../sections/home/OurWork";
 import Insights from "../sections/home/Insights";
 import OurJourney from "../sections/home/OurJourney";
-import Header from "../components/Header";
 import Faq from "../sections/home/Faq";
-import KeywordsSection from "../sections/home/KeywordsSection";
 import Testimonials from "../sections/home/Testimonials";
-import ReelCanvas from "../animation/canvas/ReelCanvas";
 import HomeHeroCanvas from "../animation/canvas/HomeHeroCanvas";
 import Loading, { LoadingContext } from "../components/Loading";
+import HowItWorks from "../sections/home/HowItWorks";
 import ContentSlider from "../sections/home/ContentSlider";
+import OurWork from "../sections/home/OurWork";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Helmet } from "react-helmet";
@@ -68,17 +62,16 @@ function Home() {
       componentLoaded.testimonials &&
       componentLoaded.faq
     ) {
-      setTimeout(()=>{
+      setTimeout(() => {
         // All components have loaded
-      console.log("All components have loaded");
-      loadingContext.setIsLoading(false); // Set loading to false
-      console.log(loadingContext);
-      },500)
+        console.log("All components have loaded");
+        loadingContext.setIsLoading(false); // Set loading to false
+        console.log(loadingContext);
+      }, 500);
     }
     console.log(componentLoaded);
     console.log(loadingContext);
   }, [componentLoaded, loadingContext]);
-
 
   return (
     <div>

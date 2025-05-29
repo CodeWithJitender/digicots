@@ -41,8 +41,8 @@ const AppContent = () => {
         <Route path="/things-we-do" element={<OurWork />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/insights" element={<Insights />} />
-        {/* <Route path="/thankyou" element={<ThankYou />} /> */}
-        {/* <Route path="/test" element={<Test />} /> */}
+        <Route path="/thankyou" element={<ThankYou />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
 
       {/* Only show footer on pages other than /case-study and /contact */}

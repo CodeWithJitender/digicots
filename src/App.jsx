@@ -55,7 +55,7 @@ function App() {
     <LenisContext.Provider value={lenis}>
       <Router>
         <LoadingContext.Provider value={{ loadingContext }}>
-          <Loading />
+          {/* <Loading /> */}
           <AppContent /> {/* 👈 Now location and routing work correctly */}
         </LoadingContext.Provider>
       </Router>

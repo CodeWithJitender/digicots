@@ -30,7 +30,7 @@ const WavePlane = ({ setIsReelLoaded, setOpacity }) => {
 
   const texture = useMemo(() => {
     const video = document.createElement("video");
-    video.src = "./public/desktop.mp4";
+    video.src = "./desktop.mp4";
     video.crossOrigin = "anonymous";
     video.loop = true;
     video.muted = true;
