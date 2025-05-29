@@ -36,43 +36,6 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
 
   // Image preload
   const loadImages = async () => {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
     const promises = Array.from({ length: frameCount }, (_, i) => {
       const img = new window.Image();
       img.src = `https://digicots.com/images/HEROSECTION/H${i.toString().padStart(3, "0")}.avif`;
