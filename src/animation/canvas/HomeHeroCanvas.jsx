@@ -27,7 +27,8 @@ const HomeHeroCanvas = ({ setComponentLoaded }) => {
         const img = new Image();
         // img.src = `https://digicots.com/images/HEROSECTION/H${i.toString().padStart(3, "0")}.avif`;
         https://ik.imagekit.io/ltdhrkrll/Home_Landing/frame_00362.webp?updatedAt=1748337814822
-        img.src = `https://ik.imagekit.io/ltdhrkrll/Home_Landing/frame_00${i.toString().padStart(3, "0")}.webp`;
+        // img.src = `https://ik.imagekit.io/ltdhrkrll/Home_Landing/frame_00${i.toString().padStart(3, "0")}.webp`;
+        img.src = `./Home_Landing/frame_00${i.toString().padStart(3, "0")}.webp`;
         return new Promise((resolve) => {
           img.onload = () => resolve(img);
           img.onerror = () => resolve(null);

@@ -5,7 +5,7 @@ import AutoPlayCanvasAnimation from "../../animation/canvas/AutoPlayCanvasAnimat
 
 function OurWork({ setComponentLoaded }) {
   const [videoSrc, setVideoSrc] = useState(
-    "https://digicots.com/images/side_walk/side.webm"
+    "platform.webm"
   );
   // const [videoSrc, setVideoSrc] = useState("./side_walk/Final_side.mov");
 
