@@ -408,7 +408,7 @@ const Scene = ({setIsReelLoaded}) => {
             ref={reelVideoRef}
             className="reel-video hidden opacity-0 h-full w-full absolute top-0 z-[2]"
           >
-            <video
+            {/* <video
               src="./desktop.mp4"
               className="w-full h-full object-cover"
               autoPlay
@@ -421,7 +421,7 @@ const Scene = ({setIsReelLoaded}) => {
               src="./desktop.mp4"
               className="w-full h-full md:object-cover absolute top-0"
               controls
-            />
+            /> */}
             <button
               onClick={handleCloseReel}
               className="absolute top-20 md:top-8 right-8 text-white text-2xl font-bold bg-zinc-800/[.5] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer z-20"
